@@ -1,52 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using Dashboard.Models.@base;
+using Dashboard.Models.core;
+using Newtonsoft.Json;
 
 namespace Dashboard.Models;
 
 /// <summary>
 /// A data model representing a single RMMZ weapon.
 /// </summary>
-public class RPG_Weapon : RPG_Base
+public class RPG_Weapon : RPG_EquipItem
 {
     #region regular properties
     /// <summary>
     /// The id of the animation that plays for this weapon.
     /// </summary>
-    public int animationId { get; set; } = 0;
-    
-    /// <summary>
-    /// The id of the equipment type.
-    /// </summary>
-    public int etypeId { get; set; } = 1;
-    
-    /// <summary>
-    /// The collection of traits on this item.
-    /// </summary>
-    public RPG_Trait[] traits { get; set; } = Array.Empty<RPG_Trait>();
-    
-    /// <summary>
-    /// The icon index associated with this item.
-    /// </summary>
-    public int iconIndex { get; set; } = 0;
-    
-    /// <summary>
-    /// The base params associated with this equip.
-    /// </summary>
-    public int[] @params { get; set; } = Array.Empty<int>();
-    
-    /// <summary>
-    /// The price point of this database entry.
-    /// </summary>
-    public int price { get; set; } = 0;
+    public int animationId { get; set; } = -1;
     
     /// <summary>
     /// The weapon type id defining the category of weapon this belongs to.
     /// </summary>
     public int wtypeId { get; set; } = 1;
-
-    /// <summary>
-    /// The description of the weapon.
-    /// </summary>
-    public string description { get; set; } = string.Empty;
     #endregion regular properties
     
     /// <summary>

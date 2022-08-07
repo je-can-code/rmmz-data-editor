@@ -5,10 +5,19 @@ namespace Dashboard;
 
 public partial class WeaponsForm : Form
 {
+    /// <summary>
+    /// The running list of parsed data including any edits made by the user.
+    /// </summary>
     private List<RPG_Weapon> weaponsList = new();
 
+    /// <summary>
+    /// Whether or not this form needs setup.
+    /// </summary>
     private bool needsSetup = true;
 
+    /// <summary>
+    /// Constructor.
+    /// </summary>
     public WeaponsForm()
     {
         InitializeComponent();
@@ -39,8 +48,6 @@ public partial class WeaponsForm : Form
         var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
 
         selectedItem.updateSkillId(decimal.ToInt32(this.num_weaponSkillId.Value));
-
-        //this.updateSkillId(selectedItem.note, decimal.ToInt32(this.num_weaponSkillId.Value));
 
         this.listWeapons.Items[weaponIndex - 1] = selectedItem;
         

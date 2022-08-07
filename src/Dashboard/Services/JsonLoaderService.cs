@@ -1,8 +1,13 @@
 ﻿using Dashboard.Models;
+using Dashboard.Models.implementations;
 using Newtonsoft.Json;
 
 namespace Dashboard.Services;
 
+/// <summary>
+/// A utility class for loading JSON data files from a given location
+/// and parsing them as their type.
+/// </summary>
 public static class JsonLoaderService
 {
     /// <summary>
@@ -24,21 +29,24 @@ public static class JsonLoaderService
         // return what we found.
         return weapons;
     }
-
+    
     /// <summary>
-    /// Saves the current state of weapons to the current project path directory.
+    /// Loads the skills from the json found in the of the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
-    /// <param name="weapons">The current state of weapons.</param>
-    public static async Task SaveWeapons(string path, List<RPG_Weapon> weapons)
+    /// <returns>The converted skills.</returns>
+    public static List<RPG_Skill> LoadSkills(string path)
     {
-        // convert the objects to JSON.
-        var jsonWeapons = JsonConvert.SerializeObject(weapons);
-
         // build the path.
-        var fullPath = $"{path}/Weapons.json";
+        var fullPath = $"{path}/Skills.json";
 
-        // write all the text back out as json.
-        await File.WriteAllTextAsync(fullPath, jsonWeapons);
+        // read the file as json.
+        var rawJson = File.ReadAllText(fullPath);
+
+        // parse the json.
+        var parsed = JsonConvert.DeserializeObject<List<RPG_Skill>>(rawJson) ?? new();
+
+        // return what we found.
+        return parsed;
     }
 }
