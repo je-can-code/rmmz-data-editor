@@ -15,4 +15,9 @@ public class NoteTag
     /// The right side of the : in the tag, aka the value.
     /// </summary>
     public string Value { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Whether or not this is a boolean-type tag, as in only a name, no value.
+    /// </summary>
+    public bool isBoolean { get; set; } = false;
 }

@@ -75,7 +75,7 @@ public partial class BaseBoard : Form
 
     private async void button_saveSkills_Click(object sender, EventArgs e)
     {
-        var dialogResult = MessageBox.Show("Are you sure you want to save weapons?");
+        var dialogResult = MessageBox.Show("Are you sure you want to save skills?");
         if (dialogResult == DialogResult.OK)
         {
             var updated = this.skillsForm.Skills();

@@ -234,11 +234,6 @@ partial class SkillsForm
             0,
             0,
             0});
-            this.num_actionId.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.num_actionId.Name = "num_actionId";
             this.num_actionId.Size = new System.Drawing.Size(56, 23);
             this.num_actionId.TabIndex = 19;
@@ -262,11 +257,6 @@ partial class SkillsForm
             this.num_castAnimation.Location = new System.Drawing.Point(100, 51);
             this.num_castAnimation.Maximum = new decimal(new int[] {
             9999,
-            0,
-            0,
-            0});
-            this.num_castAnimation.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -559,11 +549,6 @@ partial class SkillsForm
             this.num_poseIndex.Location = new System.Drawing.Point(67, 46);
             this.num_poseIndex.Maximum = new decimal(new int[] {
             9999,
-            0,
-            0,
-            0});
-            this.num_poseIndex.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});

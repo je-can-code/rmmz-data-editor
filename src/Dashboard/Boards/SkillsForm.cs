@@ -28,6 +28,8 @@ public partial class SkillsForm : Form
 
         // update basic data.
         this.textBox_skillName.TextChanged += this.UpdateSkillName;
+        this.textBox_skillExtend.TextChanged += this.UpdateSkillExtend;
+        this.checkBox_hideFromJabsMenu.CheckedChanged += this.UpdateQuickMenuVisibility;
 
         // update targeting data.
         this.num_proximity.ValueChanged += this.UpdateProximity;
@@ -52,6 +54,15 @@ public partial class SkillsForm : Form
         this.num_poseIndex.ValueChanged += this.UpdatePoseData;
         this.num_poseDuration.ValueChanged += this.UpdatePoseData;
     }
+    
+    /// <summary>
+    /// Gets the current state of skills.
+    /// </summary>
+    /// <returns>The skill data including any edits.</returns>
+    public List<RPG_Skill> Skills()
+    {
+        return this.skillsList;
+    }
 
     private (RPG_Skill skill, int index) getSkillSelection()
     {
@@ -65,6 +76,20 @@ public partial class SkillsForm : Form
         return new(selectedItem, index);
     }
 
+    private void UpdateQuickMenuVisibility(object? sender, EventArgs e)
+    {
+        // determine the selected skill.
+        var selectedItem = (RPG_Skill)this.listboxSkills.SelectedItem;
+        
+        // find the index of the selected skill in our local list.
+        var index = this.skillsList.FindIndex(data => data != null && data.id == selectedItem.id);
+
+    }
+
+    private void UpdateSkillExtend(object? sender, EventArgs e)
+    {
+    }
+    
     private void UpdatePoseData(object? sender, EventArgs e)
     {
     }
@@ -121,15 +146,6 @@ public partial class SkillsForm : Form
     }
 
     /// <summary>
-    /// Gets the current state of skills.
-    /// </summary>
-    /// <returns>The skill data including any edits.</returns>
-    public List<RPG_Skill> Skills()
-    {
-        return this.skillsList;
-    }
-
-    /// <summary>
     /// Refreshes the form on-demand, repopulating all data points with the latest.
     /// </summary>
     private void RefreshForm(object? sender, EventArgs e)
@@ -146,10 +162,47 @@ public partial class SkillsForm : Form
 
         if (selectedItem == null) return;
 
-        this.textBox_skillName.Text = selectedItem.name;
+        // core data
         this.label_skillIdValue.Text = selectedItem.id.ToString();
+        this.textBox_skillName.Text = selectedItem.name;
+        this.checkBox_hideFromJabsMenu.Checked = selectedItem.jabsHideFromQuickMenu;
 
-        // update other data in form here.
+        // targeting data
+        this.num_radius.Value = selectedItem.jabsRadius;
+        this.num_proximity.Value = selectedItem.jabsProximity;
+        var hitboxIndex = this.comboBox_hitbox.FindString(selectedItem.jabsHitbox.ToString());
+        if (hitboxIndex != -1)
+        {
+            this.comboBox_hitbox.SelectedIndex = hitboxIndex;
+        }
+
+        this.textBox_skillExtend.Text = selectedItem.jabsSkillExtends;
+
+        // combo data
+        this.num_comboSkill.Value = selectedItem.jabsComboSkillId;
+        this.num_comboDelay.Value = selectedItem.jabsComboDelay;
+        this.checkBox_freeCombo.Checked = selectedItem.jabsFreeCombo;
+
+        // map data
+        this.num_actionId.Value = selectedItem.jabsActionId;
+        this.num_duration.Value = selectedItem.jabsDuration;
+
+        // piercing data
+        this.num_piercingCount.Value = selectedItem.jabsPierceCount;
+        this.num_piercingDelay.Value = selectedItem.jabsPierceDelay;
+
+        // usage data
+        this.num_cooldown.Value = selectedItem.jabsCooldown;
+        this.num_castAnimation.Value = selectedItem.jabsCastAnimation;
+
+        // pose data
+        this.textBox_poseSuffix.Text = selectedItem.jabsPoseSuffix;
+        this.num_poseIndex.Value = selectedItem.jabsPoseIndex;
+        this.num_poseDuration.Value = selectedItem.jabsPoseDuration;
+        
+        /*
+
+        */
     }
     
     #region setup
