@@ -1,8 +1,7 @@
-﻿using Dashboard.Models.@base;
-using Dashboard.Models.core;
+﻿using Dashboard.Models.db.core;
 using Newtonsoft.Json;
 
-namespace Dashboard.Models;
+namespace Dashboard.Models.db.implementations;
 
 /// <summary>
 /// A data model representing a single RMMZ weapon.
@@ -26,43 +25,22 @@ public class RPG_Weapon : RPG_EquipItem
     /// The skill id associated with a given weapon.
     /// </summary>
     [JsonIgnore]
-    public int jabsSkillId => this.skillId();
+    public decimal jabsSkillId => this.skillId();
 
     /// <summary>
     /// Gets the jabs skill id from the notes.
     /// </summary>
     /// <returns>The skill id, or 0 if not found.</returns>
-    private int skillId()
+    private decimal skillId()
     {
-        // grab the note data to scan.
-        var tags = this.notedata();
-        
-        // if we have no note data, then we have no skill id.
-        if (tags.Count == 0) return 0;
-
-        // initialize to 0.
-        var skillId = 0;
-        
-        // iterate over each of the tags.
-        tags.ForEach(tag =>
-        {
-            // check if the tag is the one we're looking for.
-            if (tag.Name == "skillId")
-            {
-                // parse and assign the value.
-                skillId = int.Parse(tag.Value);
-            }
-        });
-
-        // return the result.
-        return skillId;
+        return this.getAsNumberByTag(JABS.RmmzTags.SkillId.Name) ?? decimal.Zero;
     }
 
     /// <summary>
     /// Updates the skill id associated with this weapon.
     /// </summary>
-    /// <param name="newSkillId"></param>
-    internal void updateSkillId(int newSkillId)
+    /// <param name="newSkillId">The updated skill id.</param>
+    internal void updateSkillId(decimal newSkillId)
     {
         this.updateNotedata(@"<skillId:[ ]?(\d+)>", $"<skillId:{newSkillId}>");
     }

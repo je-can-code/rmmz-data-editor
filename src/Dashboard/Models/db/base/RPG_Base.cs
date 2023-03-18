@@ -3,7 +3,7 @@ using Dashboard.Extensions;
 using Dashboard.Models.Tags;
 using Dashboard.Services;
 
-namespace Dashboard.Models.@base;
+namespace Dashboard.Models.db.@base;
 
 /// <summary>
 /// A class representing the foundation of all database objects.
@@ -65,7 +65,7 @@ public abstract class RPG_Base
             .ToList();
     }
 
-    internal string? getStringByTag(string tagName, bool nullIfEmpty = false)
+    internal string? getAsStringByTag(string tagName, bool nullIfEmpty = false)
     {
         // grab the note data to scan.
         var tags = this.notedataByTagName(tagName);
@@ -89,7 +89,40 @@ public abstract class RPG_Base
         return stringyValue;
     }
 
-    internal decimal? getNumberByTag(string tagName, bool nullIfEmpty = false)
+    internal List<string>? getAsStringsByTag(string tagName, bool nullIfEmpty = false)
+    {
+        // grab the note data to scan.
+        var tags = this.notedataByTagName(tagName);
+        
+        // check if we had any tags on this entry.
+        if (!tags.Any())
+        {
+            // return null or empty based on parameters.
+            return nullIfEmpty
+                ? null
+                : new();
+        }
+        
+        // iterate over each of the tags.
+        var strings = tags.Aggregate(
+            new List<string>(),
+            (runningList, tag) =>
+            {
+                // translate the string array of numbers into a list of strings.
+                var valueStrings = tag.Value.toStringList();
+
+                // add the values to the list.
+                runningList.AddRange(valueStrings);
+                
+                // return the running collection.
+                return runningList;
+            });
+
+        // return what we found.
+        return strings;
+    }
+
+    internal decimal? getAsNumberByTag(string tagName, bool nullIfEmpty = false)
     {
         // grab the note data to scan.
         var tags = this.notedataByTagName(tagName);
@@ -113,7 +146,7 @@ public abstract class RPG_Base
         return number;
     }
 
-    internal List<decimal>? getNumbersByTag(string tagName, bool nullIfEmpty = false)
+    internal List<decimal>? getAsNumbersByTag(string tagName, bool nullIfEmpty = false)
     {
         // grab the note data to scan.
         var tags = this.notedataByTagName(tagName);
@@ -179,8 +212,7 @@ public abstract class RPG_Base
     }
 
     /// <summary>
-    /// Updates the note data accordingly to the regex structure provided and replaces
-    /// the value of that structure with the given value.
+    /// Updates all tags that match the given regex with the new value.
     /// </summary>
     /// <param name="structure">The structure of note to find.</param>
     /// <param name="replacement">The value to replace with the original value.</param>
@@ -193,7 +225,7 @@ public abstract class RPG_Base
         var regex = new Regex(structure, RegexOptions.IgnoreCase);
         
         // split the tags into an array based on new lines.
-        var tagCollection = tags.Split('\n').ToList();
+        var tagCollection = tags.Split(Environment.NewLine).ToList();
         
         // iterate over the array and update it with the new value.
         tagCollection = tagCollection
@@ -212,13 +244,60 @@ public abstract class RPG_Base
             .ToList();
 
         // reconnect all the tags as a single long string.
-        this.note = string.Join('\n', tagCollection);
+        this.note = string.Join(Environment.NewLine, tagCollection);
+    }
+
+    /// <summary>
+    /// Adds a new tag as a full string to the note.
+    /// </summary>
+    /// <param name="addition"></param>
+    internal void addNotedata(string addition)
+    {
+        // add the new data between two new lines.
+        this.note += $"\n{addition}\n";
+        
+        // cleanup excess newlines.
+        this.cleanupNotedata();
     }
     
     /// <summary>
-    /// Parses the tags.
+    /// Removes all instances of a tag that match the given regex.
     /// </summary>
-    public virtual void parseTags()
+    /// <param name="structure"></param>
+    internal void removeNotedata(string structure)
     {
+        // remove the note by replacing it with an empty string.
+        this.updateNotedata(structure, string.Empty);
+        
+        // cleanup excess newlines.
+        this.cleanupNotedata();
+    }
+
+    /// <summary>
+    /// Manually cleans up any excess new lines as a result of modifying the note field.
+    /// This is a destructive procedure against the note field.
+    /// </summary>
+    private void cleanupNotedata()
+    {
+        // while we have duplicate newlines...
+        while (this.note.Contains("\n\n"))
+        {
+            // keep removing the duplicates.
+            this.note = this.note.Replace("\n\n", "\n");
+        }
+        
+        // while we have duplicate newlines... (non-windows)
+        while (this.note.Contains("\r\r"))
+        {
+            // keep removing the duplicates.
+            this.note = this.note.Replace("\r\r", "\r");
+        }
+
+        // check if we have any leading newlines.
+        while (this.note.StartsWith("\n") || this.note.StartsWith("\r"))
+        {
+            // strip off the starting newline as well.
+            this.note = this.note[2..];
+        }
     }
 }

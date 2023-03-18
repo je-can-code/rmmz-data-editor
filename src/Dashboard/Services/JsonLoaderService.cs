@@ -1,5 +1,5 @@
 ﻿using Dashboard.Models;
-using Dashboard.Models.implementations;
+using Dashboard.Models.db.implementations;
 using Newtonsoft.Json;
 
 namespace Dashboard.Services;

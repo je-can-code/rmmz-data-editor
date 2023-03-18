@@ -1,4 +1,4 @@
-namespace Dashboard.Models._data;
+namespace Dashboard.Models.db._data;
 
 public class RPG_SkillDamage
 {

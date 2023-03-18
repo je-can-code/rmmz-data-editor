@@ -1,4 +1,6 @@
-﻿namespace Dashboard
+﻿using Dashboard.Models.db.implementations;
+
+namespace Dashboard.Boards
 {
     partial class WeaponsForm
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listWeapons = new System.Windows.Forms.ListBox();
+            this.listBoxWeapons = new System.Windows.Forms.ListBox();
             this.textBox_weaponName = new System.Windows.Forms.TextBox();
             this.weaponBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label_weaponName = new System.Windows.Forms.Label();
@@ -43,12 +45,12 @@
             // 
             // listWeapons
             // 
-            this.listWeapons.FormattingEnabled = true;
-            this.listWeapons.ItemHeight = 15;
-            this.listWeapons.Location = new System.Drawing.Point(12, 12);
-            this.listWeapons.Name = "listWeapons";
-            this.listWeapons.Size = new System.Drawing.Size(192, 484);
-            this.listWeapons.TabIndex = 0;
+            this.listBoxWeapons.FormattingEnabled = true;
+            this.listBoxWeapons.ItemHeight = 15;
+            this.listBoxWeapons.Location = new System.Drawing.Point(12, 12);
+            this.listBoxWeapons.Name = "listBoxWeapons";
+            this.listBoxWeapons.Size = new System.Drawing.Size(192, 484);
+            this.listBoxWeapons.TabIndex = 0;
             // 
             // textBox_weaponName
             // 
@@ -60,7 +62,7 @@
             // 
             // weaponBindingSource
             // 
-            this.weaponBindingSource.DataSource = typeof(Dashboard.Models.RPG_Weapon);
+            this.weaponBindingSource.DataSource = typeof(RPG_Weapon);
             // 
             // label_weaponName
             // 
@@ -126,7 +128,7 @@
             this.Controls.Add(this.label_weaponId);
             this.Controls.Add(this.label_weaponName);
             this.Controls.Add(this.textBox_weaponName);
-            this.Controls.Add(this.listWeapons);
+            this.Controls.Add(this.listBoxWeapons);
             this.Name = "WeaponsForm";
             this.Text = "WeaponsForm";
             ((System.ComponentModel.ISupportInitialize)(this.weaponBindingSource)).EndInit();
@@ -138,7 +140,7 @@
 
         #endregion
 
-        private ListBox listWeapons;
+        private ListBox listBoxWeapons;
         private TextBox textBox_weaponName;
         private BindingSource weaponBindingSource;
         private Label label_weaponName;

@@ -1,4 +1,4 @@
-﻿namespace Dashboard.Models
+﻿namespace Dashboard.Models.db._data
 {
     /// <summary>
     /// A data model representing a single trait.

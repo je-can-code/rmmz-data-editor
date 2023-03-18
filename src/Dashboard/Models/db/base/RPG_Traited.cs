@@ -1,4 +1,6 @@
-namespace Dashboard.Models.@base;
+using Dashboard.Models.db._data;
+
+namespace Dashboard.Models.db.@base;
 
 /// <summary>
 /// A data model representing a base-level item from the database- but with traits!

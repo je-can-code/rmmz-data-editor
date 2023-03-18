@@ -1,7 +1,6 @@
-﻿using Dashboard.Models;
-using System.Text.RegularExpressions;
+﻿using Dashboard.Models.db.implementations;
 
-namespace Dashboard;
+namespace Dashboard.Boards;
 
 public partial class WeaponsForm : Form
 {
@@ -21,9 +20,9 @@ public partial class WeaponsForm : Form
     public WeaponsForm()
     {
         InitializeComponent();
-        this.listWeapons.DisplayMember = "name";
-        this.listWeapons.ValueMember = "id";
-        this.listWeapons.SelectedIndexChanged += this.RefreshForm;
+        this.listBoxWeapons.DisplayMember = "name";
+        this.listBoxWeapons.ValueMember = "id";
+        this.listBoxWeapons.SelectedIndexChanged += this.RefreshForm;
         this.textBox_weaponName.TextChanged += this.UpdateWeaponName;
         this.num_weaponSkillId.ValueChanged += this.UpdateWeaponSkillId;
     }
@@ -35,23 +34,23 @@ public partial class WeaponsForm : Form
 
     private void UpdateWeaponName(object? sender, EventArgs e)
     {
-        var selectedItem = (RPG_Weapon)this.listWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
         var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
         weaponsList[weaponIndex].name = this.textBox_weaponName.Text;
-        this.listWeapons.Items[weaponIndex-1] = weaponsList[weaponIndex];
-        this.listWeapons.Refresh();
+        this.listBoxWeapons.Items[weaponIndex-1] = weaponsList[weaponIndex];
+        this.listBoxWeapons.Refresh();
     }
 
     private void UpdateWeaponSkillId(object? sender, EventArgs e)
     {
-        var selectedItem = (RPG_Weapon)this.listWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
         var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
 
-        selectedItem.updateSkillId(decimal.ToInt32(this.num_weaponSkillId.Value));
+        selectedItem.updateSkillId(this.num_weaponSkillId.Value);
 
-        this.listWeapons.Items[weaponIndex - 1] = selectedItem;
+        this.listBoxWeapons.Items[weaponIndex - 1] = selectedItem;
         
-        this.listWeapons.Refresh();
+        this.listBoxWeapons.Refresh();
     }
 
     private void RefreshForm(object? sender, EventArgs e)
@@ -61,7 +60,7 @@ public partial class WeaponsForm : Form
 
     private void _RefreshForm()
     {
-        var selectedItem = (RPG_Weapon)this.listWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
 
         if (selectedItem == null) return;
 
@@ -92,10 +91,10 @@ public partial class WeaponsForm : Form
         this.PopulateWeaponsList(weapons);
 
         // check if we need to autopick an index.
-        if (this.listWeapons.SelectedIndex == -1)
+        if (this.listBoxWeapons.SelectedIndex == -1)
         {
             // set the index to the first item.
-            this.listWeapons.SelectedIndex = 0;
+            this.listBoxWeapons.SelectedIndex = 0;
         }
     }
 
@@ -111,7 +110,7 @@ public partial class WeaponsForm : Form
             if (weapon != null)
             {
                 // add the weapon to the running list.
-                this.listWeapons.Items.Add(weapon);
+                this.listBoxWeapons.Items.Add(weapon);
             }
         });
 

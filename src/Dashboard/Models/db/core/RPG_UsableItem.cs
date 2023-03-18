@@ -1,7 +1,7 @@
-using Dashboard.Models._data;
-using Dashboard.Models.@base;
+using Dashboard.Models.db._data;
+using Dashboard.Models.db.@base;
 
-namespace Dashboard.Models.core;
+namespace Dashboard.Models.db.core;
 
 /// <summary>
 /// A data model representing the base properties for any usable item or skill.

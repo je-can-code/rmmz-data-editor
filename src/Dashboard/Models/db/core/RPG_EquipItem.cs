@@ -1,6 +1,6 @@
-using Dashboard.Models.@base;
+using Dashboard.Models.db.@base;
 
-namespace Dashboard.Models.core;
+namespace Dashboard.Models.db.core;
 
 /// <summary>
 /// A data model containing common properties found in both weapons and armor.

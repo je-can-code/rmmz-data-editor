@@ -1,4 +1,4 @@
-namespace Dashboard.Models._data;
+namespace Dashboard.Models.db._data;
 
 /// <summary>
 /// A data model representing a single effect on an item or skill.

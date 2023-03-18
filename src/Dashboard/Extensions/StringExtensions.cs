@@ -34,7 +34,7 @@ public static class StringExtensions
     /// <returns>A conversion of the string into a list of decimals.</returns>
     public static List<decimal> toDecimalList(this string input, string delimiter = ",")
     {
-        // check if the input is 
+        // check if the input is invalid.
         if (input == null)
         {
             // return an empty list.
@@ -56,5 +56,37 @@ public static class StringExtensions
         
         // the input was a single number in a container.
         return new() { decimal.Parse(unwrappedInput) };
+    }
+
+    /// <summary>
+    /// Converts a string that is expected to be a delimited list of strings,
+    /// into a list of strings.
+    /// </summary>
+    /// <param name="input">The string to be converted.</param>
+    /// <param name="delimiter">The delimiter character(s); defaults to a single comma.</param>
+    /// <returns>A conversion of the string into a list of decimals.</returns>
+    public static List<string> toStringList(this string input, string delimiter = ",")
+    {
+        // check if the input is invalid.
+        if (input == null)
+        {
+            // return an empty list.
+            return new();
+        }
+
+        // unwrap the input from its hard brackets.
+        var unwrappedInput = input.UnwrapBrackets();
+        
+        // check if the input has the delimiter, meaning its a list.
+        if (unwrappedInput.Contains(delimiter))
+        {
+            // split the string into a list of strings.
+            return unwrappedInput
+                .Split(delimiter)
+                .ToList();
+        }
+
+        // the input was a single string in a container.
+        return new() { unwrappedInput };
     }
 }

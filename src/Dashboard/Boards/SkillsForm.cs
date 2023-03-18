@@ -1,4 +1,4 @@
-using Dashboard.Models.implementations;
+using Dashboard.Models.db.implementations;
 using Dashboard.Models.JABS;
 
 namespace Dashboard.Boards;
@@ -20,7 +20,10 @@ public partial class SkillsForm : Form
     /// </summary>
     public SkillsForm()
     {
+        // default initialization.
         InitializeComponent();
+        
+        // setup the main list box of skills.
         this.listboxSkills.DisplayMember = "name";
         this.listboxSkills.ValueMember = "id";
         this.listboxSkills.SelectedIndexChanged += this.RefreshForm;
@@ -64,6 +67,10 @@ public partial class SkillsForm : Form
         return this.skillsList;
     }
 
+    /// <summary>
+    /// Gets the currently selected item and also the index of that item.
+    /// </summary>
+    /// <returns>A pair of skill and its index in the list of skills.</returns>
     private (RPG_Skill skill, int index) getSkillSelection()
     {
         // determine the selected skill.
@@ -76,14 +83,27 @@ public partial class SkillsForm : Form
         return new(selectedItem, index);
     }
 
+    /// <summary>
+    /// Updates the 
+    /// </summary>
+    /// <param name="skill"></param>
+    /// <param name="index"></param>
+    private void updateSkillData(RPG_Skill skill, int index)
+    {
+        // update the backed skill data with this new data.
+        this.listboxSkills.Items[index - 1] = skill;
+    }
+
     private void UpdateQuickMenuVisibility(object? sender, EventArgs e)
     {
-        // determine the selected skill.
-        var selectedItem = (RPG_Skill)this.listboxSkills.SelectedItem;
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
         
-        // find the index of the selected skill in our local list.
-        var index = this.skillsList.FindIndex(data => data != null && data.id == selectedItem.id);
-
+        // update the underlying data.
+        skill.updateHideFromQuickMenu(this.checkBox_hideFromJabsMenu.Checked);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateSkillExtend(object? sender, EventArgs e)
@@ -100,6 +120,20 @@ public partial class SkillsForm : Form
 
     private void UpdateComboData(object? sender, EventArgs e)
     {
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
+
+        // grab the current combo skill in the box.
+        var comboSkill = this.num_comboSkill.Value;
+
+        // grab the current combo delay in the box.
+        var comboDelay = this.num_comboDelay.Value;
+
+        // update the underlying data.
+        skill.updateJabsCombo(comboSkill, comboDelay);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateCastAnimation(object? sender, EventArgs e)
@@ -116,6 +150,17 @@ public partial class SkillsForm : Form
 
     private void UpdateActionId(object? sender, EventArgs e)
     {
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
+        
+        // grab the current value in the input.
+        var actionId = this.num_actionId.Value;
+
+        // update the underlying data.
+        skill.updateJabsActionId(actionId);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateHitbox(object? sender, EventArgs e)
@@ -124,10 +169,32 @@ public partial class SkillsForm : Form
 
     private void UpdateRadius(object? sender, EventArgs e)
     {
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
+        
+        // grab the current value in the input.
+        var radius = this.num_radius.Value;
+
+        // update the underlying data.
+        skill.updateJabsRadius(radius);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateProximity(object? sender, EventArgs e)
     {
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
+        
+        // grab the current value in the input.
+        var proximity = this.num_proximity.Value;
+
+        // update the underlying data.
+        skill.updateJabsProximity(proximity);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateSkillName(object? sender, EventArgs e)
@@ -199,10 +266,6 @@ public partial class SkillsForm : Form
         this.textBox_poseSuffix.Text = selectedItem.jabsPoseSuffix;
         this.num_poseIndex.Value = selectedItem.jabsPoseIndex;
         this.num_poseDuration.Value = selectedItem.jabsPoseDuration;
-        
-        /*
-
-        */
     }
     
     #region setup

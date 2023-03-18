@@ -1,6 +1,7 @@
 using Dashboard.Models;
-using Dashboard.Models.implementations;
+using Dashboard.Models.db.implementations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Dashboard.Services;
 
@@ -18,7 +19,10 @@ public static class JsonSavingService
     public static async Task SaveWeapons(string path, List<RPG_Weapon> data)
     {
         // convert the objects to JSON.
-        var json = JsonConvert.SerializeObject(data);
+        var json = JsonConvert.SerializeObject(
+            data,
+            Formatting.Indented,
+            new StringEnumConverter());
 
         // build the path.
         var fullPath = $"{path}/Weapons.json";
@@ -35,7 +39,10 @@ public static class JsonSavingService
     public static async Task SaveSkills(string path, List<RPG_Skill> data)
     {
         // convert the objects to JSON.
-        var json = JsonConvert.SerializeObject(data);
+        var json = JsonConvert.SerializeObject(
+            data,
+            Formatting.Indented,
+            new StringEnumConverter());
 
         // build the path.
         var fullPath = $"{path}/Skills.json";

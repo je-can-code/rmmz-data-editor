@@ -159,6 +159,11 @@ partial class SkillsForm
             0,
             0,
             0});
+            this.num_radius.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147418112});
             this.num_radius.Name = "num_radius";
             this.num_radius.Size = new System.Drawing.Size(48, 23);
             this.num_radius.TabIndex = 13;
@@ -669,42 +674,42 @@ partial class SkillsForm
         private Label label_skillId;
         private Label label_skillName;
         private TextBox textBox_skillName;
-    private Label label_radius;
-    private NumericUpDown num_radius;
-    private NumericUpDown num_proximity;
-    private Label label_proximity;
-    private NumericUpDown num_cooldown;
-    private Label label_cooldown;
-    private NumericUpDown num_actionId;
-    private Label label_actionId;
-    private NumericUpDown num_castAnimation;
-    private Label label_castAnimation;
-    private NumericUpDown num_duration;
-    private Label label_duration;
-    private GroupBox groupBox_combo;
-    private NumericUpDown num_comboDelay;
-    private Label label_comboDelay;
-    private NumericUpDown num_comboSkill;
-    private Label label_comboSkill;
-    private GroupBox groupBox_mapData;
-    private Label label_hitbox;
-    private ComboBox comboBox_hitbox;
-    private CheckBox checkBox_freeCombo;
-    private GroupBox groupBox_targetingData;
-    private GroupBox groupBox_piercingData;
-    private NumericUpDown num_piercingCount;
-    private Label label_piercingCount;
-    private Label label_piercingDelay;
-    private NumericUpDown num_piercingDelay;
-    private GroupBox groupBox_usageData;
-    private GroupBox groupBox_poseData;
-    private NumericUpDown num_poseDuration;
-    private Label label_poseDuration;
-    private NumericUpDown num_poseIndex;
-    private Label label_poseIndex;
-    private Label label_poseSuffix;
-    private TextBox textBox_poseSuffix;
-    private CheckBox checkBox_hideFromJabsMenu;
-    private TextBox textBox_skillExtend;
-    private Label label_skillExtend;
+        private Label label_radius;
+        private NumericUpDown num_radius;
+        private NumericUpDown num_proximity;
+        private Label label_proximity;
+        private NumericUpDown num_cooldown;
+        private Label label_cooldown;
+        private NumericUpDown num_actionId;
+        private Label label_actionId;
+        private NumericUpDown num_castAnimation;
+        private Label label_castAnimation;
+        private NumericUpDown num_duration;
+        private Label label_duration;
+        private GroupBox groupBox_combo;
+        private NumericUpDown num_comboDelay;
+        private Label label_comboDelay;
+        private NumericUpDown num_comboSkill;
+        private Label label_comboSkill;
+        private GroupBox groupBox_mapData;
+        private Label label_hitbox;
+        private ComboBox comboBox_hitbox;
+        private CheckBox checkBox_freeCombo;
+        private GroupBox groupBox_targetingData;
+        private GroupBox groupBox_piercingData;
+        private NumericUpDown num_piercingCount;
+        private Label label_piercingCount;
+        private Label label_piercingDelay;
+        private NumericUpDown num_piercingDelay;
+        private GroupBox groupBox_usageData;
+        private GroupBox groupBox_poseData;
+        private NumericUpDown num_poseDuration;
+        private Label label_poseDuration;
+        private NumericUpDown num_poseIndex;
+        private Label label_poseIndex;
+        private Label label_poseSuffix;
+        private TextBox textBox_poseSuffix;
+        private CheckBox checkBox_hideFromJabsMenu;
+        private TextBox textBox_skillExtend;
+        private Label label_skillExtend;
 }
