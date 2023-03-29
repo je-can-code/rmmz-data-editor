@@ -2,7 +2,7 @@
 
 namespace Dashboard.Boards;
 
-public partial class WeaponsForm : Form
+public partial class WeaponsBoard : Form
 {
     /// <summary>
     /// The running list of parsed data including any edits made by the user.
@@ -17,7 +17,7 @@ public partial class WeaponsForm : Form
     /// <summary>
     /// Constructor.
     /// </summary>
-    public WeaponsForm()
+    public WeaponsBoard()
     {
         InitializeComponent();
         this.listBoxWeapons.DisplayMember = "name";

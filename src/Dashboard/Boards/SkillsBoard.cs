@@ -3,7 +3,7 @@ using Dashboard.Models.JABS;
 
 namespace Dashboard.Boards;
 
-public partial class SkillsForm : Form
+public partial class SkillsBoard : Form
 {
     /// <summary>
     /// The running list of parsed data including any edits made by the user.
@@ -18,11 +18,11 @@ public partial class SkillsForm : Form
     /// <summary>
     /// Constructor.
     /// </summary>
-    public SkillsForm()
+    public SkillsBoard()
     {
         // default initialization.
         InitializeComponent();
-        
+
         // setup the main list box of skills.
         this.listboxSkills.DisplayMember = "name";
         this.listboxSkills.ValueMember = "id";
@@ -77,6 +77,7 @@ public partial class SkillsForm : Form
         var selectedItem = (RPG_Skill)this.listboxSkills.SelectedItem;
         
         // find the index of the selected skill in our local list.
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         var index = this.skillsList.FindIndex(data => data != null && data.id == selectedItem.id);
 
         // return both data points.
@@ -165,6 +166,17 @@ public partial class SkillsForm : Form
 
     private void UpdateHitbox(object? sender, EventArgs e)
     {
+        // get the data of the selected item.
+        var (skill, index) = this.getSkillSelection();
+
+        // grab the current value in the input.
+        var hitbox = (Hitbox) this.comboBox_hitbox.SelectedItem;
+
+        // update the underlying data.
+        skill.updateJabsHitbox(hitbox);
+        
+        // update the running list.
+        this.updateSkillData(skill, index);
     }
 
     private void UpdateRadius(object? sender, EventArgs e)

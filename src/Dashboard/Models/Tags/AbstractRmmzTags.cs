@@ -3,7 +3,7 @@ namespace Dashboard.Models.Tags;
 /// <summary>
 /// The common class for the enumeration of various tag names across the system.
 /// </summary>
-internal class AbstractRmmzTags
+internal abstract class AbstractRmmzTags
 {
     /// <summary>
     /// Constructor.

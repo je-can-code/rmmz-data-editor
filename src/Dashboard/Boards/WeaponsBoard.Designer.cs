@@ -2,7 +2,7 @@
 
 namespace Dashboard.Boards
 {
-    partial class WeaponsForm
+    partial class WeaponsBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -129,7 +129,7 @@ namespace Dashboard.Boards
             this.Controls.Add(this.label_weaponName);
             this.Controls.Add(this.textBox_weaponName);
             this.Controls.Add(this.listBoxWeapons);
-            this.Name = "WeaponsForm";
+            this.Name = "WeaponsBoard";
             this.Text = "WeaponsForm";
             ((System.ComponentModel.ISupportInitialize)(this.weaponBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_weaponSkillId)).EndInit();

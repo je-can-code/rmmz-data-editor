@@ -251,7 +251,36 @@ public class RPG_Skill : RPG_UsableItem
         // the default hitbox is that none is associated.
         return Hitbox.None;
     }
-    
+
+    internal void updateJabsHitbox(Hitbox hitbox)
+    {
+        // grab our current state.
+        var currentHitbox = this.getJabsHitbox();
+
+        // check if there was no hitbox and is no hitbox.
+        if (currentHitbox == Hitbox.None && hitbox == Hitbox.None)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if there was a value, but is no longer.
+        if (currentHitbox != Hitbox.None && hitbox == Hitbox.None)
+        {
+            // remove the note, it is no longer needed.
+            this.removeNotedata(JABS.RmmzTags.Hitbox.Regex);
+
+            // stop processing.
+            return;
+        }
+
+        // we need to update the tag, so build the updated note with the new value.
+        var updatedNote = JABS.RmmzTags.Hitbox.ToValueTag(hitbox.ToString().ToLower());
+        
+        // update the actual note.
+        this.updateNotedata(JABS.RmmzTags.Hitbox.Regex, updatedNote);
+    }
+
     /// <summary>
     /// Extracts the boolean for whether or not there is a tag for enabling
     /// free combo in the context of JABS.

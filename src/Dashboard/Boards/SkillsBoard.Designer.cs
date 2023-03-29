@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Dashboard.Boards;
 
-partial class SkillsForm
+partial class SkillsBoard
 {
         /// <summary>
         /// Required designer variable.
@@ -636,7 +636,7 @@ partial class SkillsForm
             this.Controls.Add(this.label_skillName);
             this.Controls.Add(this.textBox_skillName);
             this.Controls.Add(this.listboxSkills);
-            this.Name = "SkillsForm";
+            this.Name = "SkillsBoard";
             this.Text = "Skill Data";
             ((System.ComponentModel.ISupportInitialize)(this.num_radius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_proximity)).EndInit();
