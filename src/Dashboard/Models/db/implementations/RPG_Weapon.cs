@@ -33,7 +33,7 @@ public class RPG_Weapon : RPG_EquipItem
     /// <returns>The skill id, or 0 if not found.</returns>
     private decimal skillId()
     {
-        return this.getAsNumberByTag(JABS.RmmzTags.SkillId.Name) ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.SkillId.Name) ?? decimal.Zero;
     }
 
     /// <summary>

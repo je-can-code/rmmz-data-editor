@@ -1,47 +1,49 @@
 namespace Dashboard.Models.Tags;
 
 /// <summary>
-/// The common class for the enumeration of various tag names across the system.
+/// An implementation class including constructors for building conventionalized tag data.
 /// </summary>
-internal abstract class AbstractRmmzTags
+internal class Tag : AbstractTag
 {
+    #region constructors
     /// <summary>
-    /// Constructor.
+    /// Constructor for boolean tags.
     /// </summary>
     /// <param name="name">The name of this tag as a string.</param>
-    protected AbstractRmmzTags(string name)
+    public Tag(string name) : base(name)
     {
-        // assign the name.
-        this.Name = name;
-        
-        // default to a boolean tag.
-        this.Regex = $"<{name}>";
     }
-
+    
     /// <summary>
-    /// Constructor.
+    /// Constructor for tags that use a regex to capture their value.
     /// </summary>
     /// <param name="name">The name of this tag as a string.</param>
     /// <param name="regex">The regex of this tag.</param>
-    protected AbstractRmmzTags(string name, string regex)
+    public Tag(string name, string regex) : base(name, regex)
     {
-        // assign the name.
-        this.Name = name;
-        
-        // update the regex as given.
-        this.Regex = regex;
+    }
+    
+    /// <summary>
+    /// Constructor for tags that use a regex to capture their value.
+    /// </summary>
+    /// <param name="name">The name of this tag as a string.</param>
+    /// <param name="regex">The regex of this tag.</param>
+    /// <param name="description">The description of this tag.</param>
+    public Tag(string name, string regex, string description) : base(name, regex, description)
+    {
     }
 
     /// <summary>
-    /// The tag name itself as a string.
+    /// Constructor for tags that use a regex to capture their value.
     /// </summary>
-    public string Name { get; }
+    /// <param name="name">The name of this tag as a string.</param>
+    /// <param name="regex">The regex of this tag.</param>
+    /// <param name="descriptions">The multi-tag description collection for this tag.</param>
+    public Tag(string name, string regex, params string[] descriptions) : base(name, regex, descriptions)
+    {
+    }
+    #endregion constructors
     
-    /// <summary>
-    /// The regex that matches this tag.
-    /// </summary>
-    public string Regex { get; }
-
     /// <summary>
     /// Builds a tag with this tag's name as the boolean value.
     /// </summary>

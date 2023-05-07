@@ -1,6 +1,7 @@
 using Dashboard.Extensions;
 using Dashboard.Models.db.core;
 using Dashboard.Models.JABS;
+using Dashboard.Services;
 using Newtonsoft.Json;
 
 namespace Dashboard.Models.db.implementations;
@@ -57,56 +58,49 @@ public class RPG_Skill : RPG_UsableItem
     /// <summary>
     /// Whether or not this skill should be hidden from the JABS quick menu assignment.
     /// </summary>
-    [JsonIgnore]
-    public bool jabsHideFromQuickMenu => this.hideFromQuickMenu();
+    internal bool jabsHideFromQuickMenu => this.hideFromQuickMenu();
 
-    [JsonIgnore]
-    public decimal jabsRadius => this.getJabsRadius();
+    internal bool jabsDirectTargeting => this.isJabsDirectTargeting();
 
-    [JsonIgnore]
-    public decimal jabsProximity => this.getJabsProximity();
+    internal decimal jabsRadius => this.getJabsRadius();
 
-    [JsonIgnore]
-    public Hitbox jabsHitbox => this.getJabsHitbox();
+    internal decimal jabsProximity => this.getJabsProximity();
 
-    [JsonIgnore]
-    public string jabsSkillExtends => this.getSkillExtends();
+    internal Hitbox jabsHitbox => this.getJabsHitbox();
 
-    [JsonIgnore]
-    public decimal jabsComboSkillId => this.getJabsComboSkillId();
+    internal string jabsSkillExtends => this.getSkillExtends();
+
+    internal decimal jabsComboSkillId => this.getJabsComboSkillId();
     
-    [JsonIgnore]
-    public decimal jabsComboDelay => this.getJabsComboDelay();
+    internal decimal jabsComboDelay => this.getJabsComboDelay();
 
-    [JsonIgnore]
-    public bool jabsFreeCombo => this.freeComboEnabled();
+    internal bool jabsFreeCombo => this.isFreeComboEnabled();
+
+    internal bool jabsAiComboStarter => this.isAiComboStarter();
+
+    internal bool jabsAiSkillExclusion => this.isSkillExcludedFromAi();
+
+    internal bool jabsGapCloser => this.canGapClose();
     
-    [JsonIgnore]
-    public decimal jabsActionId => this.getJabsActionId();
+    internal decimal jabsActionId => this.getJabsActionId();
 
-    [JsonIgnore]
-    public decimal jabsDuration => this.getJabsDuration();
+    internal decimal jabsDuration => this.getJabsDuration();
 
-    [JsonIgnore]
-    public decimal jabsPierceCount => this.getJabsPierceCount();
+    internal decimal jabsPierceCount => this.getJabsPierceCount();
 
-    [JsonIgnore]
-    public decimal jabsPierceDelay => this.getJabsPierceDelay();
+    internal decimal jabsPierceDelay => this.getJabsPierceDelay();
     
-    [JsonIgnore]
-    public decimal jabsCooldown => this.getJabsCooldown();
+    internal decimal jabsCooldown => this.getJabsCooldown();
 
-    [JsonIgnore]
-    public decimal jabsCastAnimation => this.getJabsCastAnimation();
+    internal decimal jabsCastAnimation => this.getJabsCastAnimation();
 
-    [JsonIgnore]
-    public string jabsPoseSuffix => this.getJabsPoseSuffix();
+    internal decimal jabsCastTime => this.getJabsCastTime();
+
+    internal string jabsPoseSuffix => this.getJabsPoseSuffix();
     
-    [JsonIgnore]
-    public decimal jabsPoseIndex => this.getJabsPoseIndex();
+    internal decimal jabsPoseIndex => this.getJabsPoseIndex();
 
-    [JsonIgnore]
-    public decimal jabsPoseDuration => this.getJabsPoseDuration();
+    internal decimal jabsPoseDuration => this.getJabsPoseDuration();
     
     /// <summary>
     /// Extracts the boolean for whether or not there is a tag for hiding this
@@ -137,11 +131,39 @@ public class RPG_Skill : RPG_UsableItem
                 return;
             // currently hiding, but no more.
             case true:
-                this.removeNotedata(JABS.RmmzTags.HideFromJabsMenu.Regex);
+                this.removeNotedata(JABS.Tags.HideFromJabsMenu.Regex);
                 break;
             // not currently hiding, but should.
             case false when hideFromQuickMenu:
-                this.addNotedata(JABS.RmmzTags.HideFromJabsMenu.ToBooleanTag());
+                this.addNotedata(JABS.Tags.HideFromJabsMenu.ToBooleanTag());
+                break;
+        }
+    }
+    
+    private bool isJabsDirectTargeting()
+    {
+        // return what we found.
+        return this.hasBooleanTag(JABS.Tags.Direct.Name);
+    }
+
+    internal void updateJabsDirectTargeting(bool directTargeting)
+    {
+        // check what our current state is.
+        var currentlyEnabled = this.isJabsDirectTargeting();
+
+        // determine what action to take.
+        switch (currentlyEnabled)
+        {
+            // was before and still is.
+            case true when directTargeting:
+                return;
+            // was previously but is not any longer.
+            case true:
+                this.removeNotedata(JABS.Tags.Direct.Regex);
+                break;
+            // was not previously, but is now.
+            case false when directTargeting:
+                this.addNotedata(JABS.Tags.Direct.ToBooleanTag());
                 break;
         }
     }
@@ -176,17 +198,17 @@ public class RPG_Skill : RPG_UsableItem
         if (radius < 0 && currentRadius >= 0)
         {
             // remove the note, it is no longer needed.
-            this.removeNotedata(JABS.RmmzTags.Radius.Regex);
+            this.removeNotedata(JABS.Tags.Radius.Regex);
 
             // stop processing.
             return;
         }
 
         // we need to update the tag, so build the updated note with the new value.
-        var updatedNote = JABS.RmmzTags.Radius.ToValueTag(radius.ToString());
+        var updatedNote = JABS.Tags.Radius.ToValueTag(radius.ToString());
         
         // update the actual note.
-        this.updateNotedata(JABS.RmmzTags.Radius.Regex, updatedNote);
+        this.updateNotedata(JABS.Tags.Radius.Regex, updatedNote);
     }
 
     /// <summary>
@@ -219,17 +241,17 @@ public class RPG_Skill : RPG_UsableItem
         if (proximity < 0 && currentProximity >= 0)
         {
             // remove the note, it is no longer needed.
-            this.removeNotedata(JABS.RmmzTags.Proximity.Regex);
+            this.removeNotedata(JABS.Tags.Proximity.Regex);
 
             // stop processing.
             return;
         }
 
         // we need to update the tag, so build the updated note with the new value.
-        var updatedNote = JABS.RmmzTags.Proximity.ToValueTag(proximity.ToString());
+        var updatedNote = JABS.Tags.Proximity.ToValueTag(proximity.ToString());
         
         // update the actual note.
-        this.updateNotedata(JABS.RmmzTags.Proximity.Regex, updatedNote);
+        this.updateNotedata(JABS.Tags.Proximity.Regex, updatedNote);
     }
     
     /// <summary>
@@ -268,17 +290,17 @@ public class RPG_Skill : RPG_UsableItem
         if (currentHitbox != Hitbox.None && hitbox == Hitbox.None)
         {
             // remove the note, it is no longer needed.
-            this.removeNotedata(JABS.RmmzTags.Hitbox.Regex);
+            this.removeNotedata(JABS.Tags.Hitbox.Regex);
 
             // stop processing.
             return;
         }
 
         // we need to update the tag, so build the updated note with the new value.
-        var updatedNote = JABS.RmmzTags.Hitbox.ToValueTag(hitbox.ToString().ToLower());
+        var updatedNote = JABS.Tags.Hitbox.ToValueTag(hitbox.ToString().ToLower());
         
         // update the actual note.
-        this.updateNotedata(JABS.RmmzTags.Hitbox.Regex, updatedNote);
+        this.updateNotedata(JABS.Tags.Hitbox.Regex, updatedNote);
     }
 
     /// <summary>
@@ -286,12 +308,116 @@ public class RPG_Skill : RPG_UsableItem
     /// free combo in the context of JABS.
     /// </summary>
     /// <returns>True if the tag was present, false otherwise.</returns>
-    private bool freeComboEnabled()
+    private bool isFreeComboEnabled()
     {
         // return what we found.
-        return this.hasBooleanTag("freeCombo");
+        return this.hasBooleanTag(JABS.Tags.FreeCombo.Name);
+    }
+
+    internal void updateFreeComboEnabled(bool freeComboEnabled)
+    {
+        // check what our current state is.
+        var currentlyEnabled = this.isFreeComboEnabled();
+
+        // determine what action to take.
+        switch (currentlyEnabled)
+        {
+            // currently and still hiding.
+            case true when freeComboEnabled:
+                // do not process anything.
+                return;
+            // currently hiding, but no more.
+            case true:
+                this.removeNotedata(JABS.Tags.AiComboStarter.Regex);
+                break;
+            // not currently hiding, but should.
+            case false when freeComboEnabled:
+                this.addNotedata(JABS.Tags.AiComboStarter.ToBooleanTag());
+                break;
+        }
+    }
+
+    private bool isAiComboStarter()
+    {
+        return this.hasBooleanTag(JABS.Tags.AiComboStarter.Name);
+    }
+
+    internal void updateAiComboStarter(bool isAiComboStarter)
+    {
+        // check what our current state is.
+        var currentlyEnabled = this.isAiComboStarter();
+
+        // determine what action to take.
+        switch (currentlyEnabled)
+        {
+            // was before and still is.
+            case true when isAiComboStarter:
+                return;
+            // was previously but is not any longer.
+            case true:
+                this.removeNotedata(JABS.Tags.AiComboStarter.Regex);
+                break;
+            // was not previously, but is now.
+            case false when isAiComboStarter:
+                this.addNotedata(JABS.Tags.AiComboStarter.ToBooleanTag());
+                break;
+        }
+    }
+
+    private bool canGapClose()
+    {
+        return this.hasBooleanTag(JABS.Tags.GapCloser.Name);
+    }
+
+    internal void updateCanGapClose(bool canGapClose)
+    {
+        // check what our current state is.
+        var currentlyEnabled = this.canGapClose();
+
+        // determine what action to take.
+        switch (currentlyEnabled)
+        {
+            // was before and still is.
+            case true when canGapClose:
+                return;
+            // was previously but is not any longer.
+            case true:
+                this.removeNotedata(JABS.Tags.GapCloser.Regex);
+                break;
+            // was not previously, but is now.
+            case false when canGapClose:
+                this.addNotedata(JABS.Tags.GapCloser.ToBooleanTag());
+                break;
+        }
     }
     
+    private bool isSkillExcludedFromAi()
+    {
+        return this.hasBooleanTag(JABS.Tags.AiSkillExclusion.Name);
+    }
+
+    internal void updateAiSkillExclusion(bool isSkillExcluded)
+    {
+        // check what our current state is.
+        var currentState = this.isSkillExcludedFromAi();
+
+        // determine what action to take.
+        switch (currentState)
+        {
+            // was before and still is.
+            case true when isSkillExcluded:
+                return;
+            // was previously but is not any longer.
+            case true:
+                this.removeNotedata(JABS.Tags.AiSkillExclusion.Regex);
+                break;
+            // was not previously, but is now.
+            case false when isSkillExcluded:
+                this.addNotedata(JABS.Tags.AiSkillExclusion.ToBooleanTag());
+                break;
+        }
+    }
+
     /// <summary>
     /// Extracts the numeric value representing the cooldown of this skill
     /// in the context of JABS.
@@ -302,6 +428,45 @@ public class RPG_Skill : RPG_UsableItem
         return this.getAsNumberByTag("cooldown") ?? decimal.Zero;
     }
 
+    internal void updateJabsCooldown(decimal cooldown)
+    {
+        // determine if this skill currently has a value on it.
+        var isMissing = this.getJabsCooldown() == decimal.Zero;
+
+        // check if there is no value, and was passed a non-value value.
+        if (isMissing && cooldown == 0)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if we had a value, but are now removing it.
+        if (cooldown == 0)
+        {
+            // remove the tag entirely, zero is an invalid cooldown.
+            this.removeNotedata(JABS.Tags.Cooldown.Regex);
+            
+            // stop processing.
+            return;
+        }
+
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = JABS.Tags.Cooldown.ToValueTag(cooldown.ToString());
+
+        // check if the value was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            this.addNotedata(updatedNote);
+        }
+        // the value just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(JABS.Tags.Cooldown.Regex, updatedNote);
+        }
+    }
+
     /// <summary>
     /// Extracts the numeric value representing the cast animation id of this skill
     /// in the context of JABS.
@@ -309,9 +474,92 @@ public class RPG_Skill : RPG_UsableItem
     /// <returns>The cast animation of this skill.</returns>
     private decimal getJabsCastAnimation()
     {
-        return this.getAsNumberByTag("castAnimation") ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.CastAnimation.Name) ?? decimal.Zero;
     }
 
+    internal void updateJabsCastAnimation(decimal castAnimationId)
+    {
+        // determine if this skill currently has actionId on it.
+        var isMissing = this.getJabsCastAnimation() == decimal.Zero;
+
+        // check if there is no castAnimationId and was passed a no-castAnimationId value.
+        if (isMissing && castAnimationId == 0)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if we had an actionId, but are now removing it.
+        if (castAnimationId == 0)
+        {
+            // remove the tag entirely, zero is an invalid castAnimationId.
+            this.removeNotedata(JABS.Tags.CastAnimation.Regex);
+            
+            // stop processing.
+            return;
+        }
+
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = JABS.Tags.CastAnimation.ToValueTag(castAnimationId.ToString());
+
+        // check if the actionId was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            this.addNotedata(updatedNote);
+        }
+        // the actionId just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(JABS.Tags.CastAnimation.Regex, updatedNote);
+        }
+    }
+
+    private decimal getJabsCastTime()
+    {
+        return this.getAsNumberByTag("castTime") ?? decimal.Zero;
+    }
+
+    internal void updateJabsCastTime(decimal castTime)
+    {
+        // determine if this skill currently has actionId on it.
+        var isMissing = this.getJabsCastTime() == decimal.Zero;
+
+        // check if there is no castAnimationId and was passed a no-castAnimationId value.
+        if (isMissing && castTime == 0)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if we had an actionId, but are now removing it.
+        if (castTime == 0)
+        {
+            // remove the tag entirely, zero is an invalid castAnimationId.
+            this.removeNotedata(JABS.Tags.CastTime.Regex);
+            
+            // stop processing.
+            return;
+        }
+
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = JABS.Tags.CastTime.ToValueTag(castTime.ToString());
+
+        // check if the actionId was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            this.addNotedata(updatedNote);
+        }
+        // the actionId just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(JABS.Tags.CastTime.Regex, updatedNote);
+        }
+    }
+    
     /// <summary>
     /// Extracts the numeric value representing the action id of this skill
     /// in the context of JABS.
@@ -319,7 +567,7 @@ public class RPG_Skill : RPG_UsableItem
     /// <returns>The action id of this skill.</returns>
     private decimal getJabsActionId()
     {
-        return this.getAsNumberByTag(JABS.RmmzTags.ActionId.Name) ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.ActionId.Name) ?? decimal.Zero;
     }
 
     internal void updateJabsActionId(decimal actionId)
@@ -334,17 +582,18 @@ public class RPG_Skill : RPG_UsableItem
             return;
         }
 
+        // check if we had an actionId, but are now removing it.
         if (actionId == 0)
         {
             // remove the tag entirely, zero is an invalid actionId.
-            this.removeNotedata(JABS.RmmzTags.ActionId.Regex);
+            this.removeNotedata(JABS.Tags.ActionId.Regex);
             
             // stop processing.
             return;
         }
 
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = JABS.RmmzTags.ActionId.ToValueTag(actionId.ToString());
+        var updatedNote = JABS.Tags.ActionId.ToValueTag(actionId.ToString());
 
         // check if the actionId was missing previously.
         if (missingActionId)
@@ -356,7 +605,7 @@ public class RPG_Skill : RPG_UsableItem
         else
         {
             // update the actual note.
-            this.updateNotedata(JABS.RmmzTags.ActionId.Regex, updatedNote);
+            this.updateNotedata(JABS.Tags.ActionId.Regex, updatedNote);
         }
     }
 
@@ -367,7 +616,46 @@ public class RPG_Skill : RPG_UsableItem
     /// <returns>The duration of this skill.</returns>
     private decimal getJabsDuration()
     {
-        return this.getAsNumberByTag(JABS.RmmzTags.Duration.Name) ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.Duration.Name) ?? decimal.Zero;
+    }
+
+    internal void updateJabsDuration(decimal duration)
+    {
+        // determine if this skill currently has a value on it.
+        var missingDuration = this.getJabsDuration() == decimal.Zero;
+
+        // check if there is no value, and was passed a non-value value.
+        if (missingDuration && duration == 0)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if we had a value, but are now removing it.
+        if (duration == 0)
+        {
+            // remove the tag entirely, zero is an invalid duration.
+            this.removeNotedata(JABS.Tags.Duration.Regex);
+            
+            // stop processing.
+            return;
+        }
+
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = JABS.Tags.Duration.ToValueTag(duration.ToString());
+
+        // check if the value was missing previously.
+        if (missingDuration)
+        {
+            // add the new tag to the note.
+            this.addNotedata(updatedNote);
+        }
+        // the value just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(JABS.Tags.Duration.Regex, updatedNote);
+        }
     }
 
     #region pose
@@ -401,9 +689,43 @@ public class RPG_Skill : RPG_UsableItem
         return this.getJabsPoseData().poseDuration;
     }
 
+    internal void updateJabsPose(string newPoseSuffix, decimal newPoseIndex, decimal newPoseDuration)
+    {
+        // grab the current pose suffix for this skill.
+        var poseSuffix = this.getJabsPoseSuffix();
+
+        // determine if this skill is missing a pose suffix.
+        var missingPoseSuffix = poseSuffix == string.Empty;
+
+        // check if there is no skill and was passed a no-combo-skill value.
+        if (missingPoseSuffix && newPoseSuffix == string.Empty)
+        {
+            // do nothing.
+            return;
+        }
+
+        // check if the pose suffix became empty but had a suffix previously.
+        if (newPoseSuffix == string.Empty)
+        {
+            this.removeNotedata(JABS.Tags.Pose.Regex);
+
+            // do nothing.
+            return;
+        }
+        
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = JABS.Tags.Pose.ToArrayTag(
+            newPoseSuffix,
+            newPoseIndex.ToString(),
+            newPoseDuration.ToString());
+        
+        // update the actual note.
+        this.updateNotedata(JABS.Tags.Pose.Regex, updatedNote);
+    }
+
     private (string poseSuffix, decimal poseIndex, decimal poseDuration) getJabsPoseData()
     {
-        var poseData = this.getAsStringsByTag(JABS.RmmzTags.Pose.Name) ?? new List<string>();
+        var poseData = this.getAsStringsByTag(JABS.Tags.Pose.Name) ?? new List<string>();
 
         // if there are no data points, then there are no poses.
         if (!poseData.Any())
@@ -444,7 +766,7 @@ public class RPG_Skill : RPG_UsableItem
     private (decimal comboSkill, decimal comboDelay) getJabsComboData()
     {
         // grab the number data from the combo.
-        var combos = this.getAsNumbersByTag(JABS.RmmzTags.Combo.Name) ?? new List<decimal>();
+        var combos = this.getAsNumbersByTag(JABS.Tags.Combo.Name) ?? new List<decimal>();
 
         // if there are no numbers, then there are no combos.
         if (!combos.Any())
@@ -459,6 +781,15 @@ public class RPG_Skill : RPG_UsableItem
 
     internal void updateJabsCombo(decimal comboSkill, decimal comboDelay)
     {
+        if (comboSkill == decimal.Zero)
+        {
+            LogService.log("omg combo is 0");
+        }
+
+        LogService.log($"{comboSkill} - {comboDelay}");
+        LogService.log(this.id.ToString());
+        LogService.log(this.note);
+
         // determine if this skill is missing a combo skill on it.
         var missingComboSkill = this.getJabsComboSkillId() == decimal.Zero;
 
@@ -473,17 +804,25 @@ public class RPG_Skill : RPG_UsableItem
         if (comboSkill == 0)
         {
             // remove the tag entirely, zero is an invalid combo skill.
-            this.removeNotedata(JABS.RmmzTags.Combo.Regex);
+            this.removeNotedata(JABS.Tags.Combo.Regex);
             
             // stop processing.
             return;
         }
 
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = JABS.RmmzTags.Combo.ToArrayTag(comboSkill.ToString(), comboDelay.ToString());
-        
-        // update the actual note.
-        this.updateNotedata(JABS.RmmzTags.Combo.Regex, updatedNote);
+        var updatedNote = JABS.Tags.Combo.ToArrayTag(comboSkill.ToString(), comboDelay.ToString());
+
+        if (missingComboSkill)
+        {
+            this.addNotedata(updatedNote);
+        }
+        // the note just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(JABS.Tags.Combo.Regex, updatedNote);
+        }
     }
 
     #endregion combo
@@ -512,7 +851,7 @@ public class RPG_Skill : RPG_UsableItem
     private (decimal pierceCount, decimal pierceDelay) getJabsPierceData()
     {
         // grab the number data from the combo.
-        var data = this.getAsNumbersByTag(JABS.RmmzTags.Pierce.Name) ?? new List<decimal>();
+        var data = this.getAsNumbersByTag(JABS.Tags.Pierce.Name) ?? new List<decimal>();
 
         // if there are no numbers, then there are no combos.
         if (!data.Any())
@@ -534,9 +873,43 @@ public class RPG_Skill : RPG_UsableItem
     private string getSkillExtends()
     {
         // grab the contents of the list- we don't question what is within!
-        var extensions = this.getAsStringByTag(SkillExtend.RmmzTags.Extend.Name) ?? string.Empty;
+        var extensions = this.getAsStringByTag(SkillExtend.Tags.Extend.Name) ?? string.Empty;
 
         // remove the outer brackets.
         return extensions.UnwrapBrackets();
+    }
+
+    internal void updateSkillExtends(string extensions)
+    {
+        var isMissing = this.getSkillExtends() == string.Empty;
+
+        if (isMissing && extensions == string.Empty)
+        {
+            // do nothing.
+            return;
+        }
+
+        if (extensions == string.Empty)
+        {
+            this.removeNotedata(SkillExtend.Tags.Extend.Regex);
+
+            return;
+        }
+        
+        // we need to update the tag, so build the updated note with the new values.
+        var updatedNote = SkillExtend.Tags.Extend.ToArrayTag(extensions);
+
+        // check if the actionId was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            this.addNotedata(updatedNote);
+        }
+        // the data just needs to be updated.
+        else
+        {
+            // update the actual note.
+            this.updateNotedata(SkillExtend.Tags.Extend.Regex, updatedNote);
+        }
     }
 }

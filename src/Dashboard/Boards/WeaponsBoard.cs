@@ -34,7 +34,7 @@ public partial class WeaponsBoard : Form
 
     private void UpdateWeaponName(object? sender, EventArgs e)
     {
-        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem!;
         var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
         weaponsList[weaponIndex].name = this.textBox_weaponName.Text;
         this.listBoxWeapons.Items[weaponIndex-1] = weaponsList[weaponIndex];
@@ -43,7 +43,7 @@ public partial class WeaponsBoard : Form
 
     private void UpdateWeaponSkillId(object? sender, EventArgs e)
     {
-        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem!;
         var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
 
         selectedItem.updateSkillId(this.num_weaponSkillId.Value);
@@ -60,7 +60,7 @@ public partial class WeaponsBoard : Form
 
     private void _RefreshForm()
     {
-        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem;
+        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem!;
 
         if (selectedItem == null) return;
 

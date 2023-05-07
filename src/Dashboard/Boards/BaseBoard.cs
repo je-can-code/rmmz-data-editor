@@ -7,7 +7,7 @@ public partial class BaseBoard : Form
     private readonly WeaponsBoard weaponsBoard;
     private readonly SkillsBoard skillsBoard;
 
-    private string projectPath = @"D:\dev\code\gaming\ca\chef-adventure\data";//String.Empty;
+    private string projectPath = @"D:\dev\gaming\ca\chef-adventure\data";//String.Empty;
 
     public BaseBoard()
     {
