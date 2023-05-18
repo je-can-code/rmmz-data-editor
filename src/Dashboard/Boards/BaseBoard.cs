@@ -37,7 +37,7 @@ public partial class BaseBoard : Form
     {
         var dialogResult = folderDialog_dataPath.ShowDialog();
         if (dialogResult != DialogResult.OK) return;
-        
+
         if (this.projectPath != folderDialog_dataPath.SelectedPath)
         {
             this.weaponsBoard.FlagForRefresh();
@@ -53,7 +53,7 @@ public partial class BaseBoard : Form
         this.weaponsBoard.Show();
         this.weaponsBoard.Setup(baseWeaponsList);
     }
-    
+
     private async void button_saveWeapons_Click(object sender, EventArgs e)
     {
         var dialogResult = MessageBox.Show("Are you sure you want to save weapons?");
@@ -68,7 +68,7 @@ public partial class BaseBoard : Form
             MessageBox.Show("Edits were not lost. Hit the 'save weapons' button again to be prompted again.");
         }
     }
-    
+
     private async void button_skills_Click(object sender, EventArgs e)
     {
         var dataList = JsonLoaderService.LoadSkills(this.projectPath);
