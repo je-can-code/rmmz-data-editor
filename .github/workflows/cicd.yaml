@@ -14,11 +14,14 @@ jobs:
     strategy:
       matrix:
         target-platform: [x64]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    
+    outputs:
+      OUTPUT_FOLDER: ${{ env.DOTNET_ROOT }}/out
     
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT_FOLDER: /out
+      
     
     steps:
       - name: Checkout
@@ -33,13 +36,18 @@ jobs:
   publish:
     needs:
       - setup
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    
+    env:
+      OUTPUT: ${{ needs.setup.outputs.OUTPUT_FOLDER }}
+    
     steps:
+      - run: echo "$OUTPUT"
       - name: Build w/ dotnet
-        run: dotnet build -c Release -o ${{env.OUTPUT_FOLDER}}
+        run: dotnet build -c Release -o ${{ env.OUTPUT }}
 
       - name: Publish w/ dotnet
-        run: dotnet publish -c Release -o ${{env.OUTPUT_FOLDER}}
+        run: dotnet publish -c Release -o ${{ env.OUTPUT }}
 
       - name: Create Release
         id: create_release
@@ -54,7 +62,7 @@ jobs:
         uses: actions/upload-release-asset@v1.0.1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{env.OUTPUT_FOLDER}}
+          asset_path: ${{ env.OUTPUT }}
           asset_name: '*.*'
           asset_content_type: application/zip
 
