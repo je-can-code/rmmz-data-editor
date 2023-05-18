@@ -31,6 +31,8 @@ jobs:
 
 # step 2: publish the content
   publish:
+    needs:
+      - setup
     runs-on: windows-latest
     steps:
       - name: Build w/ dotnet
