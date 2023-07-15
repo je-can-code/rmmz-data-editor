@@ -1,4 +1,4 @@
-﻿name: winforms workflow
+﻿name: Build & Deploy
 
 on:
   push:
