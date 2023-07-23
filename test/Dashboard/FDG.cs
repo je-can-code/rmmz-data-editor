@@ -80,6 +80,34 @@ public class FDG
         return builtTag;
     }
     
+    /// <summary>
+    /// Generates a actionId tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string ActionIdTag(int? input = null)
+    {
+        var tagValue = input ?? RmmzUNumber();
+        var builtTag = Tags.ActionId.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates a duration tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string DurationTag(int? input = null)
+    {
+        var tagValue = input ?? RmmzUNumber();
+        var builtTag = Tags.Duration.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates a duration tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string HideFromQuickMenuTag()
+    {
+        return Tags.HideFromJabsMenu.ToBooleanTag();
+    }
+    
     #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.

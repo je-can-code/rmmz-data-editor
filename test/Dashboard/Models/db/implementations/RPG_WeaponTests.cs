@@ -62,7 +62,7 @@ public class RPG_WeaponTests : BaseTests
 
     [Fact]
     [Trait("Category","skillId")]
-    public void jabsSkillId_whenRemoved_returnsDefaultValue()
+    public void jabsSkillId_whenRemoved_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
@@ -128,7 +128,7 @@ public class RPG_WeaponTests : BaseTests
 
     [Fact]
     [Trait("Category","speedBoost")]
-    public void jabsSpeedBoost_whenRemoved_returnsDefaultValue()
+    public void jabsSpeedBoost_whenRemoved_returnsDefault()
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();

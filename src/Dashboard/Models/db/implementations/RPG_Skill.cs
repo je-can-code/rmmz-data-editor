@@ -110,7 +110,7 @@ public class RPG_Skill : RPG_UsableItem
     private bool hideFromQuickMenu()
     {
         // return what we found.
-        return this.hasBooleanTag("hideFromJabsMenu");
+        return this.hasBooleanTag(JABS.Tags.HideFromJabsMenu.Name);
     }
 
     /// <summary>
