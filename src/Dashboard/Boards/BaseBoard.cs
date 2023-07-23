@@ -16,7 +16,7 @@ public partial class BaseBoard : Form
         this.skillsBoard = new();
     }
 
-    private async void ShowBaseBoard(object? sender, FormClosingEventArgs e)
+    private void ShowBaseBoard(object? sender, FormClosingEventArgs e)
     {
         if (e.CloseReason == CloseReason.UserClosing)
         {
@@ -27,13 +27,13 @@ public partial class BaseBoard : Form
         this.Show();
     }
 
-    private async void HideSubBoards()
+    private void HideSubBoards()
     {
         this.weaponsBoard.Hide();
         this.skillsBoard.Hide();
     }
 
-    private async void button_pickDataPath_Click(object sender, EventArgs e)
+    private void button_pickDataPath_Click(object sender, EventArgs e)
     {
         var dialogResult = folderDialog_dataPath.ShowDialog();
         if (dialogResult != DialogResult.OK) return;
@@ -46,7 +46,7 @@ public partial class BaseBoard : Form
         this.projectPath = folderDialog_dataPath.SelectedPath;
     }
 
-    private async void button_weapons_Click(object sender, EventArgs e)
+    private void button_weapons_Click(object sender, EventArgs e)
     {
         var baseWeaponsList = JsonLoaderService.LoadWeapons(this.projectPath);
         this.weaponsBoard.FormClosing += this.ShowBaseBoard;
@@ -69,7 +69,7 @@ public partial class BaseBoard : Form
         }
     }
 
-    private async void button_skills_Click(object sender, EventArgs e)
+    private void button_skills_Click(object sender, EventArgs e)
     {
         var dataList = JsonLoaderService.LoadSkills(this.projectPath);
         this.skillsBoard.FormClosing += this.ShowBaseBoard;

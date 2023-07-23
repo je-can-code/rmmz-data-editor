@@ -781,15 +781,6 @@ public class RPG_Skill : RPG_UsableItem
 
     internal void updateJabsCombo(decimal comboSkill, decimal comboDelay)
     {
-        if (comboSkill == decimal.Zero)
-        {
-            LogService.log("omg combo is 0");
-        }
-
-        LogService.log($"{comboSkill} - {comboDelay}");
-        LogService.log(this.id.ToString());
-        LogService.log(this.note);
-
         // determine if this skill is missing a combo skill on it.
         var missingComboSkill = this.getJabsComboSkillId() == decimal.Zero;
 
