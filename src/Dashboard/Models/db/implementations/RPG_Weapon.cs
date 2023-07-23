@@ -6,7 +6,7 @@ namespace Dashboard.Models.db.implementations;
 /// <summary>
 /// A data model representing a single RMMZ weapon.
 /// </summary>
-public class RPG_Weapon : RPG_EquipItem
+public partial class RPG_Weapon : RPG_EquipItem
 {
     #region regular properties
     /// <summary>

@@ -36,7 +36,7 @@ internal static class Tags
     static Tags()
     {
         // weapons.
-        SkillId = new("skillId");
+        SkillId = skillId();
         
         // skills.
         HideFromJabsMenu = new("hideFromJabsMenu");
@@ -65,7 +65,18 @@ internal static class Tags
 
         SpeedBoost = speedBoost();
     }
-    
+
+    private static Tag skillId()
+    {
+        var tag = "skillId";
+        var regex = @"<skillId:[ ]?(\d+)>";
+        var description = 
+            "The id of the skill triggered when this weapon is used in combat.\n" +
+            "\n" +
+            "Set this to 0 to remove the tag.";
+        return new(tag, regex, description);
+    }
+
     private static Tag radius()
     {
         var tag = "radius";

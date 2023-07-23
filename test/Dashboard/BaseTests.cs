@@ -1,5 +1,9 @@
 ﻿namespace Dashboard.Tests;
 
+/// <summary>
+/// A baseclass for extending tests with.
+/// Will provide useful testing utilities to accelerate testing.
+/// </summary>
 public class BaseTests
 {
     /// <summary>
@@ -7,10 +11,5 @@ public class BaseTests
     /// Use this to generate various components of RM objects, or
     /// to generate the RM objects themselves.
     /// </summary>
-    internal readonly FDG fdg;
-
-    protected BaseTests()
-    {
-        this.fdg = new();
-    }
+    protected readonly FDG fdg = new();
 }

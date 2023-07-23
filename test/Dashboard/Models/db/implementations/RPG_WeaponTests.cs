@@ -2,6 +2,7 @@
 
 namespace Dashboard.Tests.Models.db.implementations;
 
+[Trait("Category","weapon")]
 public class RPG_WeaponTests : BaseTests
 {
     private readonly RPG_Weapon modelUnderTest;
@@ -13,6 +14,7 @@ public class RPG_WeaponTests : BaseTests
 
     #region skillId
     [Fact]
+    [Trait("Category","skillId")]
     public void jabsSkillId_whenUnset_returnsDefault()
     {
         // given
@@ -27,6 +29,7 @@ public class RPG_WeaponTests : BaseTests
     }
     
     [Fact]
+    [Trait("Category","skillId")]
     public void jabsSkillId_whenSetExplicitly_explicitValueIsReturned()
     {
         // given
@@ -43,6 +46,7 @@ public class RPG_WeaponTests : BaseTests
     }
 
     [Fact]
+    [Trait("Category","skillId")]
     public void jabsSkillId_whenUpdated_returnsUpdatedValue()
     {
         // given
@@ -57,23 +61,26 @@ public class RPG_WeaponTests : BaseTests
     }
 
     [Fact]
+    [Trait("Category","skillId")]
     public void jabsSkillId_whenRemoved_returnsDefaultValue()
     {
         // given
+        var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
         modelUnderTest.updateSkillId(fakeTagValue); // update with valid value.
-        modelUnderTest.updateSkillId(decimal.Zero);
+        modelUnderTest.updateSkillId(expected);
         
         // when
         var actual = modelUnderTest.jabsSkillId;
         
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should().Be(expected);
     }
     #endregion skillId
     
     #region speedBoost
     [Fact]
+    [Trait("Category","speedBoost")]
     public void jabsSpeedBoost_whenUnset_returnsDefault()
     {
         // given
@@ -88,6 +95,7 @@ public class RPG_WeaponTests : BaseTests
     }
     
     [Fact]
+    [Trait("Category","speedBoost")]
     public void jabsSpeedBoost_whenSetExplicitly_explicitValueIsReturned()
     {
         // given
@@ -104,6 +112,7 @@ public class RPG_WeaponTests : BaseTests
     }
     
     [Fact]
+    [Trait("Category","speedBoost")]
     public void jabsSpeedBoost_whenUpdated_returnsUpdatedValue()
     {
         // given
@@ -118,6 +127,7 @@ public class RPG_WeaponTests : BaseTests
     }
 
     [Fact]
+    [Trait("Category","speedBoost")]
     public void jabsSpeedBoost_whenRemoved_returnsDefaultValue()
     {
         // given

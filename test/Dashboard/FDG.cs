@@ -17,22 +17,23 @@ public class FDG
         return new Faker<RPG_Weapon>()
             .RuleFor(weapon => weapon.note, (f, w) =>
             {
-                var fakeSkillIdTag = RandomSkillIdTaR();
-                var fakeSpeedBoostTag = RandomSpeedBoostTag();
+                var fakeSkillIdTag = SkillIdTag();
+                var fakeSpeedBoostTag = SpeedBoostTag();
+                
                 return BuildNoteTag(fakeSkillIdTag, fakeSpeedBoostTag);
             })
             .Generate();
     }
 
-    /// <summary>
-    /// Generates a skillId tag with a random skill id value inside.
-    /// </summary>
-    public string RandomSkillIdTaR()
+    public RPG_Skill GenerateSkill()
     {
-        return this.SkillIdTag(RmmzUNumber());
+        return new Faker<RPG_Skill>().Generate();
     }
 
-    public string SkillIdTag(int? input)
+    /// <summary>
+    /// Generates a skillId tag with a given skill id, or random skill id if none is provided.
+    /// </summary>
+    public string SkillIdTag(int? input = null)
     {
         var tagValue = input ?? RmmzUNumber();
         var builtTag = Tags.SkillId.ToValueTag(tagValue.ToString());
@@ -40,20 +41,46 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a speedBoost tag with a random speed boost value inside.
+    /// Generates a speedBoost tag with a given value, or random value if none is provided.
     /// </summary>
-    public string RandomSpeedBoostTag()
-    {
-        return this.SpeedBoostTag(this.RmmzUNumber());
-    }
-    
-    public string SpeedBoostTag(decimal? input)
+    public string SpeedBoostTag(int? input = null)
     {
         var tagValue = input ?? RmmzNumber();
         var builtTag = Tags.SpeedBoost.ToValueTag(tagValue.ToString());
         return builtTag;
     }
 
+    /// <summary>
+    /// Generates a cooldown tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string CooldownTag(int? input = null)
+    {
+        var tagValue = input ?? RmmzUNumber();
+        var builtTag = Tags.Cooldown.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates a castAnimation tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string CastAnimationTag(int? input = null)
+    {
+        var tagValue = input ?? RmmzUNumber();
+        var builtTag = Tags.CastAnimation.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates a castTime tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string CastTimeTag(int? input = null)
+    {
+        var tagValue = input ?? RmmzUNumber();
+        var builtTag = Tags.CastTime.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.
     /// </summary>
@@ -73,13 +100,13 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random whole number between -255 and 500.
+    /// Generates a random whole number between -500 and 500.
     /// This is a small number deliberately since most values used in RMMZ are pretty small,
     /// and includes negative lower bounds to accommodate possible detriment effects.
     /// </summary>
     public int RmmzNumber()
     {
-        return RNG.Next(-255, 501);
+        return RNG.Next(-500, 501);
     }
 
     /// <summary>
@@ -94,4 +121,5 @@ public class FDG
         var combined = $"{left}.{right}";
         return decimal.Parse(combined);
     }
+    #endregion utility
 }

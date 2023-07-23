@@ -23,8 +23,8 @@ public partial class WeaponsBoard : Form
         this.listBoxWeapons.DisplayMember = "name";
         this.listBoxWeapons.ValueMember = "id";
         this.listBoxWeapons.SelectedIndexChanged += this.RefreshForm;
-        this.textBox_weaponName.TextChanged += this.UpdateWeaponName;
-        this.num_weaponSkillId.ValueChanged += this.UpdateWeaponSkillId;
+        this.textBox_weaponName.TextChanged += this.UpdateName;
+        this.num_weaponSkillId.ValueChanged += this.UpdateSkillId;
     }
 
     public List<RPG_Weapon> Weapons()
@@ -32,25 +32,48 @@ public partial class WeaponsBoard : Form
         return this.weaponsList;
     }
 
-    private void UpdateWeaponName(object? sender, EventArgs e)
+    private (RPG_Weapon weapon, int index) getWeaponSelection()
     {
+        // determine the selected weapon.
         var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem!;
-        var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
-        weaponsList[weaponIndex].name = this.textBox_weaponName.Text;
-        this.listBoxWeapons.Items[weaponIndex-1] = weaponsList[weaponIndex];
-        this.listBoxWeapons.Refresh();
+
+        // find the index of the selected weapon in our local list.
+        var index = this.weaponsList.FindIndex(data => data != null && data.id == selectedItem.id);
+
+        // return both data points.
+        return new(selectedItem, index);
     }
 
-    private void UpdateWeaponSkillId(object? sender, EventArgs e)
+    private void updateWeaponData(RPG_Weapon weapon, int index)
     {
-        var selectedItem = (RPG_Weapon)this.listBoxWeapons.SelectedItem!;
-        var weaponIndex = this.weaponsList.FindIndex(weapon => weapon != null && weapon.id == selectedItem.id);
+        this.listBoxWeapons.Items[index - 1] = weapon;
+    }
 
-        selectedItem.updateSkillId(this.num_weaponSkillId.Value);
+    private void UpdateName(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (weapon, index) = this.getWeaponSelection();
 
-        this.listBoxWeapons.Items[weaponIndex - 1] = selectedItem;
+        var name = this.textBox_weaponName.Text;
+
+        weapon.name = name;
         
-        this.listBoxWeapons.Refresh();
+        this.updateWeaponData(weapon, index);
+    }
+
+    private void UpdateSkillId(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (weapon, index) = this.getWeaponSelection();
+
+        // grab the current value in the input.
+        var skillId = this.num_weaponSkillId.Value;
+        
+        // update the underlying data.
+        weapon.updateSkillId(skillId);
+
+        // update the running list.
+        this.updateWeaponData(weapon, index);
     }
 
     private void RefreshForm(object? sender, EventArgs e)

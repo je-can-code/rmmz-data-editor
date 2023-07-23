@@ -97,8 +97,8 @@ public partial class SkillsBoard : Form
         _toolTip.SetToolTip(this.num_proximity, Dashboard.Models.JABS.Tags.Proximity.Description);
         _toolTip.SetToolTip(this.comboBox_hitbox, Dashboard.Models.JABS.Tags.Hitbox.Description);
 
-        _toolTip.SetToolTip(this.num_comboSkill, Dashboard.Models.JABS.Tags.Combo.Description);
-        _toolTip.SetToolTip(this.num_comboDelay, Dashboard.Models.JABS.Tags.Combo.Description);
+        _toolTip.SetToolTip(this.num_comboSkill, Dashboard.Models.JABS.Tags.Combo.Descriptions[0]);
+        _toolTip.SetToolTip(this.num_comboDelay, Dashboard.Models.JABS.Tags.Combo.Descriptions[1]);
         _toolTip.SetToolTip(this.checkBox_comboStarter, Dashboard.Models.JABS.Tags.AiComboStarter.Description);
         _toolTip.SetToolTip(this.checkBox_freeCombo, Dashboard.Models.JABS.Tags.FreeCombo.Description);
 

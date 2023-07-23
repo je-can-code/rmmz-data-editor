@@ -425,7 +425,7 @@ public class RPG_Skill : RPG_UsableItem
     /// <returns>The cooldown of this skill.</returns>
     private decimal getJabsCooldown()
     {
-        return this.getAsNumberByTag("cooldown") ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.Cooldown.Name) ?? decimal.Zero;
     }
 
     internal void updateJabsCooldown(decimal cooldown)
@@ -518,7 +518,7 @@ public class RPG_Skill : RPG_UsableItem
 
     private decimal getJabsCastTime()
     {
-        return this.getAsNumberByTag("castTime") ?? decimal.Zero;
+        return this.getAsNumberByTag(JABS.Tags.CastTime.Name) ?? decimal.Zero;
     }
 
     internal void updateJabsCastTime(decimal castTime)
