@@ -305,7 +305,7 @@ public abstract class RPG_Base
         while (this.note.StartsWith("\n") || this.note.StartsWith("\r"))
         {
             // strip off the starting newline as well.
-            this.note = this.note[2..];
+            this.note = this.note[1..];
         }
     }
 }

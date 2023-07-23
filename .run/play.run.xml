@@ -1,5 +1,5 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="run" type="DotNetProject" factoryName=".NET Project">
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="play" type="DotNetProject" factoryName=".NET Project">
     <option name="EXE_PATH" value="$PROJECT_DIR$/src/Dashboard/bin/Debug/net7.0-windows/Dashboard.exe" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Dashboard/bin/Debug/net7.0-windows" />

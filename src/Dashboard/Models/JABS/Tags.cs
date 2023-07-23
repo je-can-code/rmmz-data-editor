@@ -30,6 +30,8 @@ internal static class Tags
     public static Tag FreeCombo { get; }
     public static Tag AiComboStarter { get; }
     public static Tag AiSkillExclusion { get; }
+    
+    public static Tag SpeedBoost { get; }
 
     static Tags()
     {
@@ -60,6 +62,8 @@ internal static class Tags
         FreeCombo = new("freeCombo");
         AiComboStarter = new("comboStarter");
         AiSkillExclusion = new("aiSkillExclusion");
+
+        SpeedBoost = speedBoost();
     }
     
     private static Tag radius()
@@ -118,5 +122,17 @@ internal static class Tags
         var delayDescription =
             "The combo delay represents the number of frames the user must wait before executing the combo skill.";
         return new(tag, regex, skillDescription, delayDescription);
+    }
+
+    private static Tag speedBoost()
+    {
+        var tag = "speedBoost";
+        var regex = @"<speedBoost:[ ]?((0|([1-9][0-9]*))(\.[0-9]+)?)>";
+        var description = 
+            "The additive percent-based speedboost provided.\n" +
+            "The speedboost provides a literal percent boost to the battler's movespeed on the map.\n" +
+            "\n" +
+            "Set this to 0.0 to remove the tag.";
+        return new(tag, regex, description);
     }
 }
