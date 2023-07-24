@@ -43,7 +43,7 @@ jobs:
         run: dotnet test $env:TEST_PROJECT_PATH
         
       - name: Publish artifacts
-        run: dotnet publish $env:SOLUTION_PATH -c Release -o ${{ $env:ARTIFACT_PATH }}
+        run: dotnet publish $env:SOLUTION_PATH -c Release -o $env:ARTIFACT_PATH
 
 # step 2: publish the content
   publish:
