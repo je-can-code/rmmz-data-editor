@@ -17,11 +17,17 @@ jobs:
     runs-on: windows-latest
     
     env:
-      APP_PROJECT_PATH: src\Dashboard\Dashboard.csproj
-      TEST_PROJECT_PATH: test\Dashboard\Dashboard.Tests.csproj
-      ARTIFACT_PATH: out\
-      SOLUTION_PATH: J-EmZee.sln
-      PUBLISH_PROFILE: .run\publish.run.xml
+      APP_PROJECT_PATH: .\src\Dashboard\Dashboard.csproj
+      TEST_PROJECT_PATH: .\test\Dashboard\Dashboard.Tests.csproj
+      ARTIFACT_PATH: .\out
+      SOLUTION_PATH: .\J-EmZee.sln
+      
+      PUBLISH_ARGS: |
+        -c Release \
+        -o $env:ARTIFACT_PATH \
+        --self-contained true \
+        -p:PublishSingleFile=true \
+        
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -44,7 +50,7 @@ jobs:
         run: dotnet test $env:TEST_PROJECT_PATH
         
       - name: Compile app as Release
-        run: dotnet publish $env:APP_PROJECT_PATH -p:PublishProfile=$env:PUBLISH_PROFILE -c Release -o $env:ARTIFACT_PATH
+        run: dotnet publish $env:APP_PROJECT_PATH $env:PUBLISHER_ARGS
       
       - name: 'DEBUG: Log output'
         run: ls $env:ARTIFACT_PATH
