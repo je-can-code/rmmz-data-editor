@@ -44,6 +44,9 @@ jobs:
         
       - name: Compile app as Release
         run: dotnet publish $env:APP_PROJECT_PATH -c Release -o $env:ARTIFACT_PATH
+      
+      - name: 'DEBUG: Log output'
+        run: ls $env:ARTIFACT_PATH
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
