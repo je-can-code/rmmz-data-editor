@@ -36,14 +36,20 @@ jobs:
         with:
           global-json-file: global.json
         
-      - name: Build app
+      - name: Build solution
         run: dotnet build $env:SOLUTION_PATH
 
       - name: Run tests
         run: dotnet test $env:TEST_PROJECT_PATH
         
-      - name: Publish artifacts
+      - name: Compile app as Release
         run: dotnet publish $env:APP_PROJECT_PATH -c Release -o $env:ARTIFACT_PATH
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: gui-output
+          path: $env:ARTIFACT_PATH
 
 # step 2: publish the content
   publish:
