@@ -24,10 +24,12 @@ jobs:
       
       PUBLISH_ARGS: |
         -c Release \
+        -r win-x64 \
         -o $env:ARTIFACT_PATH \
         --self-contained true \
         -p:PublishSingleFile=true \
-        
+        -p:IncludeNativeLibrariesForSelfExtract=true \
+        --self-contained
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
