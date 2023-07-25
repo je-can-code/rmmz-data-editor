@@ -23,6 +23,9 @@ jobs:
       SOLUTION_PATH: J-EmZee.sln
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    outputs:
+      ARTIFACT_PATH: $env:ARTIFACT_PATH
     
     steps:
       - name: Checkout
@@ -32,9 +35,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
-
-#      - name: Setup msbuild
-#        uses: microsoft/setup-msbuild@v1.1
         
       - name: Build app
         run: dotnet build $env:SOLUTION_PATH
@@ -43,7 +43,7 @@ jobs:
         run: dotnet test $env:TEST_PROJECT_PATH
         
       - name: Publish artifacts
-        run: dotnet publish $env:SOLUTION_PATH -c Release -o $env:ARTIFACT_PATH
+        run: dotnet publish $env:APP_PROJECT_PATH -c Release -o $env:ARTIFACT_PATH
 
 # step 2: publish the content
   publish:
