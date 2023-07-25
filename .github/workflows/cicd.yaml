@@ -22,14 +22,7 @@ jobs:
       ARTIFACT_PATH: .\out
       SOLUTION_PATH: .\J-EmZee.sln
       
-      PUBLISH_ARGS: |
-        -c Release \
-        -r win-x64 \
-        -o $env:ARTIFACT_PATH \
-        --self-contained true \
-        -p:PublishSingleFile=true \
-        -p:IncludeNativeLibrariesForSelfExtract=true \
-        --self-contained
+      PUBLISH_ARGS: -c Release -r win-x64 -o $env:ARTIFACT_PATH --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -47,6 +40,8 @@ jobs:
         
       - name: Build solution
         run: dotnet build $env:SOLUTION_PATH
+        with:
+          uses-cache: true
 
       - name: Run tests
         run: dotnet test $env:TEST_PROJECT_PATH
