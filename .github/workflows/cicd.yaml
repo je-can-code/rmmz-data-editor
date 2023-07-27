@@ -43,6 +43,9 @@ jobs:
 
       - name: Run tests
         run: dotnet test $env:TEST_PROJECT_PATH
+      
+      - name: Make output directory
+        run: New-Item -ItemType Directory -Force -Path $env:ARTIFACT_PATH
         
       - name: Compile app as Release
         run: >-
