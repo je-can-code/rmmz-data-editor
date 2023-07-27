@@ -45,7 +45,14 @@ jobs:
         run: dotnet test $env:TEST_PROJECT_PATH
         
       - name: Compile app as Release
-        run: dotnet publish $env:APP_PROJECT_PATH $env:PUBLISHER_ARGS
+        run: >-
+          dotnet publish $env:APP_PROJECT_PATH
+          -c Release
+          -r win-x64
+          -o $env:ARTIFACT_PATH
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
       
       - name: 'DEBUG: Log output'
         run: ls $env:ARTIFACT_PATH
