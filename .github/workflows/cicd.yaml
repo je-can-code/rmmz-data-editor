@@ -66,8 +66,9 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
         with:
-          name: gui-output
-          path: $env:ARTIFACT_PATH
+          name: build-artifacts
+          path: ${{ env.ARTIFACT_PATH }}
+          retention-days: 2
 
 # step 2: publish the content
   publish:
