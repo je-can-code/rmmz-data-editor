@@ -42,7 +42,7 @@ jobs:
         run: dotnet build $env:SOLUTION_PATH
 
       - name: Run tests
-        run: dotnet test $env:TEST_PROJECT_PATH
+        run: dotnet test $env:TEST_PROJECT_PATH --no-restore
       
       - name: Make output directory
         run: New-Item -ItemType Directory -Force -Path $env:ARTIFACT_PATH
@@ -60,11 +60,14 @@ jobs:
       - name: 'DEBUG: Log output'
         run: ls $env:ARTIFACT_PATH
 
+      - name: 'DEBUG: Log overall directory structure'
+        run: ls
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
         with:
           name: gui-output
-          path: $env:ARTIFACT_PATH
+          path: "$env:ARTIFACT_PATH"
 
 # step 2: publish the content
   publish:
