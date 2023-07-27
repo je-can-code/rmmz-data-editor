@@ -14,15 +14,13 @@ jobs:
     strategy:
       matrix:
         target-platform: [x64]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     env:
-      APP_PROJECT_PATH: .\src\Dashboard\Dashboard.csproj
-      TEST_PROJECT_PATH: .\test\Dashboard\Dashboard.Tests.csproj
-      ARTIFACT_PATH: .\out\
-      SOLUTION_PATH: .\J-EmZee.sln
-      
-      PUBLISH_ARGS: -c Release -r win-x64 -o $env:ARTIFACT_PATH --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained
+      APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
+      TEST_PROJECT_PATH: ./test/Dashboard/Dashboard.Tests.csproj
+      ARTIFACT_PATH: ./out/
+      SOLUTION_PATH: ./J-EmZee.sln
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -39,32 +37,32 @@ jobs:
           global-json-file: global.json
         
       - name: Build solution
-        run: dotnet build $env:SOLUTION_PATH
+        run: dotnet build $SOLUTION_PATH
 
       - name: Run tests
-        run: dotnet test $env:TEST_PROJECT_PATH --no-restore
+        run: dotnet test $TEST_PROJECT_PATH --no-restore
       
       - name: Make output directory
-        run: New-Item -ItemType Directory -Force -Path $env:ARTIFACT_PATH
+        run: New-Item -ItemType Directory -Force -Path $ARTIFACT_PATH
         
       - name: Compile app as Release
         run: >-
-          dotnet publish $env:APP_PROJECT_PATH
+          dotnet publish $APP_PROJECT_PATH
+          -o $ARTIFACT_PATH
           -c Release
           -r win-x64
-          -o $env:ARTIFACT_PATH
           --self-contained true
           -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true
       
       - name: 'DEBUG: Log output'
-        run: ls $env:ARTIFACT_PATH
+        run: ls $ARTIFACT_PATH
 
       - name: 'DEBUG: Log overall directory structure'
         run: ls
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: ${{ env.ARTIFACT_PATH }}
@@ -78,25 +76,17 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      OUTPUT: ${{ needs.setup.outputs.OUTPUT_FOLDER }}
+      OUTPUT: ${{ needs.setup.outputs.ARTIFACT_PATH }}
     
     steps:
-      - run: echo "$OUTPUT"
-
-      - name: Build w/ dotnet
-        run: dotnet build -c Release -o ${{ env.OUTPUT }}
-
-      - name: Publish w/ dotnet
-        run: dotnet publish -c Release -o ${{ env.OUTPUT }}
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: 'test-tag-name'
           release_name: 'test-release-name'
-          draft: false
-          prerelease: false
+          draft: true
+          prerelease: true
 
       - name: Upload Release Assets
         uses: actions/upload-release-asset@v1.0.1
