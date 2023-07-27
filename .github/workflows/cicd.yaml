@@ -19,7 +19,7 @@ jobs:
     env:
       APP_PROJECT_PATH: .\src\Dashboard\Dashboard.csproj
       TEST_PROJECT_PATH: .\test\Dashboard\Dashboard.Tests.csproj
-      ARTIFACT_PATH: .\out
+      ARTIFACT_PATH: .\out\
       SOLUTION_PATH: .\J-EmZee.sln
       
       PUBLISH_ARGS: -c Release -r win-x64 -o $env:ARTIFACT_PATH --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: gui-output
-          path: "$env:ARTIFACT_PATH"
+          path: $env:ARTIFACT_PATH
 
 # step 2: publish the content
   publish:
