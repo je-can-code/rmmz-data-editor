@@ -35,7 +35,7 @@ jobs:
     steps:
       # Download your repository to the runner.
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Install .NET onto the runner.
       - name: Install .NET
@@ -102,6 +102,13 @@ jobs:
       OUTPUT: ${{ needs.setup.outputs.ARTIFACT_PATH }}
     
     steps:
+      # Download the artifacts from the previous step.
+      - name: Download the artifact  
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: ${{ env.OUTPUT }}
+      
       # Initialize a new release with the designated data points.
       - name: Create the release
         id: create_release
@@ -114,7 +121,7 @@ jobs:
       
       # Upload the files we want as a part of the release.
       - name: Upload assets to the release
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.OUTPUT }}
