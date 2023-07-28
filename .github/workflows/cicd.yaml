@@ -64,12 +64,15 @@ jobs:
 
       - name: 'DEBUG: Log overall directory structure'
         run: ls
+      
+      - name: Zip app
+        run: zip -r ./archive.zip $ARTIFACT_PATH 
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: ${{ env.ARTIFACT_PATH }}
+          path: ./archive.zip #${{ env.ARTIFACT_PATH }}
           retention-days: 2
 
 # step 2: publish the content
