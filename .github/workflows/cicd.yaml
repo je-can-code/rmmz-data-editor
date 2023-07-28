@@ -10,6 +10,9 @@ on:
     branches:
       - master
 
+env:
+  DEBUG: false
+
 jobs:
   # step 1: build, test, and upload the artifact if successful.
   ci:
@@ -18,8 +21,6 @@ jobs:
     
     # The environment variables that are used throughout this step.
     env:
-      DEBUG: false
-      
       SOLUTION_PATH: ./J-EmZee.sln
       APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
       TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
@@ -75,12 +76,12 @@ jobs:
       
       # Zip up the app output into a regular .zip archive, so all files are together and compressed.
       - name: Zip app
-        run: zip -r -9 $ARTIFACT_NAME.zip $ARTIFACT_PATH
+        run: zip -r $ARTIFACT_NAME.zip $ARTIFACT_PATH
 
       # Some debug logging for what everything looks like before uploading.
       - name: 'DEBUG: Log current and output directories'
         if: ${{ env.DEBUG }}
-        run: ls && ls $ARTIFACT_PATH
+        run: ll && ll $ARTIFACT_PATH
 
       # Expose the archive as an artifact for download or use in further jobs.
       - name: Upload artifact
