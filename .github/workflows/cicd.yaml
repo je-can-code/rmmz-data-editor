@@ -98,6 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: ${{ needs.setup.outputs.ARTIFACT_PATH }}
     
     steps:
@@ -110,7 +111,7 @@ jobs:
           release_name: 'test-release-name'
           draft: true
           prerelease: true
-
+      
       # Upload the files we want as a part of the release.
       - name: Upload assets to the release
         uses: actions/upload-release-asset@v1.0.1
