@@ -100,7 +100,7 @@ jobs:
     # The environment variables that are used throughout this step.
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      ARTIFACT_PATH: ${{ needs.setup.outputs.ARTIFACT_PATH }}
+      ARTIFACT_PATH: ${{ needs.ci.outputs.ARTIFACT_PATH }}
     
     steps:
       # Download the artifacts from the previous step.
