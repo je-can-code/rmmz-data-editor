@@ -1,14 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../../Directory.Build.props" />
     
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <UseWindowsForms>true</UseWindowsForms>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="..\..\.editorconfig" Link=".editorconfig" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="log4net" Version="2.0.15" />
@@ -21,10 +16,6 @@
         <Compile Update="Boards\SkillsBoard.cs">
         <SubType>Form</SubType>
         </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Models\db" />
     </ItemGroup>
 
 </Project>
