@@ -11,9 +11,6 @@ on:
 jobs:
   # step 1: setup the dotnet stuff
   setup:
-    strategy:
-      matrix:
-        target-platform: [x64]
     runs-on: ubuntu-latest
     
     env:
