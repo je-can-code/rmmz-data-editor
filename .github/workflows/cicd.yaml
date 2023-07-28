@@ -79,7 +79,7 @@ jobs:
 
       # Some debug logging for what everything looks like before uploading.
       - name: 'DEBUG: Log current and output directories'
-        if: $DEBUG
+        if: ${{ env.DEBUG }}
         run: ls && ls $ARTIFACT_PATH
 
       # Expose the archive as an artifact for download or use in further jobs.
