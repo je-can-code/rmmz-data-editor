@@ -97,9 +97,10 @@ jobs:
       - ci
     runs-on: ubuntu-latest
     
+    # The environment variables that are used throughout this step.
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: ${{ needs.setup.outputs.ARTIFACT_PATH }}
+      ARTIFACT_PATH: ${{ needs.setup.outputs.ARTIFACT_PATH }}
     
     steps:
       # Download the artifacts from the previous step.
@@ -107,7 +108,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
-          path: ${{ env.OUTPUT }}
+          path: ${{ env.ARTIFACT_PATH }}
       
       # Initialize a new release with the designated data points.
       - name: Create the release
@@ -124,7 +125,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.OUTPUT }}
+          asset_path: ${{ env.ARTIFACT_PATH }}
           asset_name: '*.*'
           asset_content_type: application/zip
 
