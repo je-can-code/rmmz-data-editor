@@ -1,4 +1,4 @@
-﻿name: Build & Deploy
+﻿name: Build & Release
 
 # Defines the trigger for when to execute this workflow.
 on:
@@ -109,7 +109,12 @@ jobs:
         with:
           name: build-artifacts
           path: ${{ env.ARTIFACT_PATH }}
-      
+
+      # Some debug logging for what everything looks like before doing release things.
+      - name: 'DEBUG: Log current and output directories'
+        if: ${{ env.DEBUG }}
+        run: ls && ls $ARTIFACT_PATH
+
       # Initialize a new release with the designated data points.
       - name: Create the release
         id: create_release
