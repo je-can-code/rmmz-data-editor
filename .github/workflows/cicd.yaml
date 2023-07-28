@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
+          # cache: true
         
       - name: Display dotnet version
         run: dotnet --version
@@ -43,10 +44,7 @@ jobs:
         run: dotnet build $SOLUTION_PATH --no-restore
 
       - name: Run tests
-        run: |
-          cd ./test/Dashboard &&
-          dotnet test --no-restore &&
-          cd ../../
+        run: dotnet test $TEST_PROJECT_PATH --no-build --no-restore
       
       - name: Make output directory
         run: mkdir $ARTIFACT_PATH
