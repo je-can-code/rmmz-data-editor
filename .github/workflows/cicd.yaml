@@ -45,7 +45,7 @@ jobs:
       - name: Run tests
         run: |
           cd ./test/Dashboard &&
-          dotnet test $TEST_PROJECT_PATH --no-restore &&
+          dotnet test --no-restore &&
           cd ../../
       
       - name: Make output directory
