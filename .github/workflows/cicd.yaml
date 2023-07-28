@@ -33,7 +33,6 @@ jobs:
         with:
           global-json-file: global.json
         
-      # You can test your matrix by printing the current dotnet version
       - name: Display dotnet version
         run: dotnet --version
 
@@ -41,10 +40,13 @@ jobs:
         run: dotnet restore 
         
       - name: Build solution
-        run: dotnet build $SOLUTION_PATH
+        run: dotnet build $SOLUTION_PATH --no-restore
 
       - name: Run tests
-        run: dotnet test $TEST_PROJECT_PATH
+        run: |
+          cd ./test/Dashboard
+          dotnet test $TEST_PROJECT_PATH --no-restore
+          cd ../../
       
       - name: Make output directory
         run: mkdir $ARTIFACT_PATH
