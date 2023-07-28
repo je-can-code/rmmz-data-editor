@@ -42,6 +42,9 @@ jobs:
         
       - name: Build solution
         run: dotnet build $SOLUTION_PATH --no-restore
+      
+      - name: Add windows dotnet runtime
+        run: dotnet workload install runtimes-windows
 
       - name: Run tests
         run: dotnet test $TEST_PROJECT_PATH --no-build --no-restore
