@@ -1,4 +1,4 @@
-﻿using Dashboard.Models.db.implementations;
+﻿using Rmmz.Data.Models.db.implementations;
 
 namespace Dashboard.Boards;
 

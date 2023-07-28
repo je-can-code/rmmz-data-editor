@@ -1,4 +1,4 @@
-namespace Dashboard.Extensions;
+namespace Rmmz.Data.Extensions;
 
 /// <summary>
 /// Extensions for strings used by this project.

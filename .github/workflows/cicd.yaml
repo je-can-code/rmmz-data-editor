@@ -15,7 +15,7 @@ jobs:
     
     env:
       APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
-      TEST_PROJECT_PATH: ./test/Dashboard/Dashboard.Tests.csproj
+      TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
       ARTIFACT_PATH: ./out/
       SOLUTION_PATH: ./J-EmZee.sln
       
@@ -41,10 +41,7 @@ jobs:
         run: dotnet restore 
         
       - name: Build solution
-        run: dotnet build $SOLUTION_PATH --no-restore
-      
-      - name: Add windows dotnet runtime
-        run: dotnet workload install runtimes-windows
+        run: dotnet build --no-restore
 
       - name: Run tests
         run: dotnet test $TEST_PROJECT_PATH --no-build --no-restore

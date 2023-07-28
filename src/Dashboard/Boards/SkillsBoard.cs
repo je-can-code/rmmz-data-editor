@@ -1,5 +1,5 @@
-using Dashboard.Models.db.implementations;
-using Dashboard.Models.JABS;
+using Rmmz.Data.Models.db.implementations;
+using Rmmz.Data.Models.JABS;
 
 namespace Dashboard.Boards;
 
@@ -40,7 +40,7 @@ public partial class SkillsBoard : Form
         // setup the main list box of skills.
         this.listboxSkills.DisplayMember = "name";
         this.listboxSkills.ValueMember = "id";
-        this.comboBox_hitbox.DataSource = Enum.GetValues(typeof(Dashboard.Models.JABS.Hitbox));
+        this.comboBox_hitbox.DataSource = Enum.GetValues(typeof(Rmmz.Data.Models.JABS.Hitbox));
     }
 
     /// <summary>
@@ -93,27 +93,27 @@ public partial class SkillsBoard : Form
         _toolTip.ToolTipIcon = ToolTipIcon.Info;
         _toolTip.ToolTipTitle = "Details and Usage";
 
-        _toolTip.SetToolTip(this.num_radius, Dashboard.Models.JABS.Tags.Radius.Description);
-        _toolTip.SetToolTip(this.num_proximity, Dashboard.Models.JABS.Tags.Proximity.Description);
-        _toolTip.SetToolTip(this.comboBox_hitbox, Dashboard.Models.JABS.Tags.Hitbox.Description);
+        _toolTip.SetToolTip(this.num_radius, Rmmz.Data.Models.JABS.Tags.Radius.Description);
+        _toolTip.SetToolTip(this.num_proximity, Rmmz.Data.Models.JABS.Tags.Proximity.Description);
+        _toolTip.SetToolTip(this.comboBox_hitbox, Rmmz.Data.Models.JABS.Tags.Hitbox.Description);
 
-        _toolTip.SetToolTip(this.num_comboSkill, Dashboard.Models.JABS.Tags.Combo.Descriptions[0]);
-        _toolTip.SetToolTip(this.num_comboDelay, Dashboard.Models.JABS.Tags.Combo.Descriptions[1]);
-        _toolTip.SetToolTip(this.checkBox_comboStarter, Dashboard.Models.JABS.Tags.AiComboStarter.Description);
-        _toolTip.SetToolTip(this.checkBox_freeCombo, Dashboard.Models.JABS.Tags.FreeCombo.Description);
+        _toolTip.SetToolTip(this.num_comboSkill, Rmmz.Data.Models.JABS.Tags.Combo.Descriptions[0]);
+        _toolTip.SetToolTip(this.num_comboDelay, Rmmz.Data.Models.JABS.Tags.Combo.Descriptions[1]);
+        _toolTip.SetToolTip(this.checkBox_comboStarter, Rmmz.Data.Models.JABS.Tags.AiComboStarter.Description);
+        _toolTip.SetToolTip(this.checkBox_freeCombo, Rmmz.Data.Models.JABS.Tags.FreeCombo.Description);
 
-        _toolTip.SetToolTip(this.num_piercingCount, Dashboard.Models.JABS.Tags.Pierce.Description);
-        _toolTip.SetToolTip(this.num_piercingDelay, Dashboard.Models.JABS.Tags.Pierce.Description);
+        _toolTip.SetToolTip(this.num_piercingCount, Rmmz.Data.Models.JABS.Tags.Pierce.Description);
+        _toolTip.SetToolTip(this.num_piercingDelay, Rmmz.Data.Models.JABS.Tags.Pierce.Description);
 
-        _toolTip.SetToolTip(this.num_actionId, Dashboard.Models.JABS.Tags.ActionId.Description);
-        _toolTip.SetToolTip(this.num_duration, Dashboard.Models.JABS.Tags.Duration.Description);
+        _toolTip.SetToolTip(this.num_actionId, Rmmz.Data.Models.JABS.Tags.ActionId.Description);
+        _toolTip.SetToolTip(this.num_duration, Rmmz.Data.Models.JABS.Tags.Duration.Description);
 
-        _toolTip.SetToolTip(this.num_cooldown, Dashboard.Models.JABS.Tags.Cooldown.Description);
-        _toolTip.SetToolTip(this.num_castAnimation, Dashboard.Models.JABS.Tags.CastAnimation.Description);
+        _toolTip.SetToolTip(this.num_cooldown, Rmmz.Data.Models.JABS.Tags.Cooldown.Description);
+        _toolTip.SetToolTip(this.num_castAnimation, Rmmz.Data.Models.JABS.Tags.CastAnimation.Description);
 
-        _toolTip.SetToolTip(this.textBox_poseSuffix, Dashboard.Models.JABS.Tags.Pose.Description);
-        _toolTip.SetToolTip(this.num_poseIndex, Dashboard.Models.JABS.Tags.Pose.Description);
-        _toolTip.SetToolTip(this.num_poseDuration, Dashboard.Models.JABS.Tags.Pose.Description);
+        _toolTip.SetToolTip(this.textBox_poseSuffix, Rmmz.Data.Models.JABS.Tags.Pose.Description);
+        _toolTip.SetToolTip(this.num_poseIndex, Rmmz.Data.Models.JABS.Tags.Pose.Description);
+        _toolTip.SetToolTip(this.num_poseDuration, Rmmz.Data.Models.JABS.Tags.Pose.Description);
     }
 
     /// <summary>

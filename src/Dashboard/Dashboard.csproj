@@ -19,4 +19,8 @@
         </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
+    </ItemGroup>
+
 </Project>
