@@ -92,7 +92,7 @@ jobs:
 
 # step 2: publish the app as a release.
   cd:
-    if: true == false
+    # if: true == false
     needs:
       - ci
     runs-on: ubuntu-latest
