@@ -1,6 +1,8 @@
 ﻿name: Build & Deploy
 
+# Defines the trigger for when to execute this workflow.
 on:
+  # Arbitrary decisions that will likely be changed once a proper workflow is ready and branching strategy decided.
   push:
     branches:
       - master
@@ -9,47 +11,59 @@ on:
       - master
 
 jobs:
-  # step 1: setup the dotnet stuff
-  setup:
+  # step 1: build, test, and upload the artifact if successful.
+  ci:
+    # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
     runs-on: ubuntu-latest
     
+    # The environment variables that are used throughout this step.
     env:
+      DEBUG: false
+      
+      SOLUTION_PATH: ./J-EmZee.sln
       APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
       TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
-      ARTIFACT_PATH: ./out/
-      SOLUTION_PATH: ./J-EmZee.sln
+      ARTIFACT_PATH: ./out
+      ARTIFACT_NAME: artifact
       
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+    # The custom output variables available 
     outputs:
-      ARTIFACT_PATH: $env:ARTIFACT_PATH
+      ARTIFACT_PATH: ${{ env.ARTIFACT_PATH }}
     
     steps:
+      # Download your repository to the runner.
       - name: Checkout
         uses: actions/checkout@v2
 
+      # Install .NET onto the runner.
       - name: Install .NET
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
           # cache: true
-        
-      - name: Display dotnet version
-        run: dotnet --version
 
+      # Restore all dependencies to the solution.
       - name: Restore dependencies
         run: dotnet restore 
-        
+
+      # Build all projects of the solution (without implicit restore).
       - name: Build solution
         run: dotnet build --no-restore
 
+      # Run all tests of the solution (without implicit restore or build).
       - name: Run tests
-        run: dotnet test $TEST_PROJECT_PATH --no-build --no-restore
+        run: dotnet test --no-restore --no-build
       
+      # Create the output directory ahead of publishing- can't publish to a place that doesn't exist!.
       - name: Make output directory
         run: mkdir $ARTIFACT_PATH
-        
-      - name: Compile app as Release
+      
+      # Compile the app with an arbitrary selection of options.
+      # The selection from top to bottom: the path to the main project, the output path, the configuration type,
+      # the runtime target, and the last three together enforce "1-file publishing" (plus the debug files).
+      - name: Compile app
         run: >-
           dotnet publish $APP_PROJECT_PATH
           -o $ARTIFACT_PATH
@@ -59,34 +73,36 @@ jobs:
           -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true
       
-      - name: 'DEBUG: Log output'
-        run: ls $ARTIFACT_PATH
-
-      - name: 'DEBUG: Log overall directory structure'
-        run: ls
-      
+      # Zip up the app output into a regular .zip archive, so all files are together and compressed.
       - name: Zip app
-        run: zip -r ./archive.zip $ARTIFACT_PATH 
+        run: zip -r -9 $ARTIFACT_NAME.zip $ARTIFACT_PATH
 
-      - name: Upload artifacts
+      # Some debug logging for what everything looks like before uploading.
+      - name: 'DEBUG: Log current and output directories'
+        if: $DEBUG
+        run: ls && ls $ARTIFACT_PATH
+
+      # Expose the archive as an artifact for download or use in further jobs.
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: ./archive.zip #${{ env.ARTIFACT_PATH }}
+          path: ${{ env.ARTIFACT_NAME }}.zip
           retention-days: 2
 
-# step 2: publish the content
-  publish:
+# step 2: publish the app as a release.
+  cd:
     if: true == false
     needs:
-      - setup
+      - ci
     runs-on: ubuntu-latest
     
     env:
       OUTPUT: ${{ needs.setup.outputs.ARTIFACT_PATH }}
     
     steps:
-      - name: Create Release
+      # Initialize a new release with the designated data points.
+      - name: Create the release
         id: create_release
         uses: actions/create-release@v1
         with:
@@ -95,7 +111,8 @@ jobs:
           draft: true
           prerelease: true
 
-      - name: Upload Release Assets
+      # Upload the files we want as a part of the release.
+      - name: Upload assets to the release
         uses: actions/upload-release-asset@v1.0.1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
@@ -103,7 +120,9 @@ jobs:
           asset_name: '*.*'
           asset_content_type: application/zip
 
-      - name: Publish Release
+      # Upload the files we want as a part of the release.
+      - name: Publish the Release (maybe we shouldn't do this yet)
+        if: true == false
         uses: eregon/publish-release@v1
         with:
           release_id: ${{ steps.create_release.outputs.id }}
