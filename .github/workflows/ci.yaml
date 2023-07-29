@@ -1,5 +1,9 @@
 ﻿on:
   workflow_call:
+    outputs:
+      ARTIFACT_PATH: ${{ jobs.ci.env.ARTIFACT_PATH }}
+      ARTIFACT_NAME: ${{ jobs.ci.env.ARTIFACT_NAME }}
+      ARTIFACT_FILE: ${{ jobs.ci.env.ARTIFACT_FILE }}
     inputs:
       qwer:
         required: false
@@ -28,12 +32,6 @@ jobs:
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_NOLOGO: true
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
-    
-    # The custom output variables available 
-    outputs:
-      ARTIFACT_PATH: ${{ env.ARTIFACT_PATH }}
-      ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
-      ARTIFACT_FILE: ${{ env.ARTIFACT_FILE }}
 
     steps:
       # Download your repository to the runner.

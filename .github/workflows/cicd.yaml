@@ -12,24 +12,24 @@ on:
 
 jobs:
   # step 1: build, test, and upload the artifact if successful.
-  ci:
+  continuous-integration:
     uses: ./.github/workflows/ci.yaml
 
   # step 2: publish the app as a release.
-  cd:
+  continuous-deployment:
     # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
     runs-on: ubuntu-latest
     
     # This job requires successful completion of the previous job.
     needs:
-      - ci
+      - continuous-integration
     
     # The environment variables that are used throughout this step.
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      ARTIFACT_PATH: ${{ needs.ci.outputs.ARTIFACT_PATH }}
-      ARTIFACT_NAME: ${{ needs.ci.outputs.ARTIFACT_NAME }}
-      ARTIFACT_FILE: ${{ needs.ci.outputs.ARTIFACT_FILE }}
+      ARTIFACT_PATH: ${{ needs.continuous-integration.outputs.ARTIFACT_PATH }}
+      ARTIFACT_NAME: ${{ needs.continuous-integration.outputs.ARTIFACT_NAME }}
+      ARTIFACT_FILE: ${{ needs.continuous-integration.outputs.ARTIFACT_FILE }}
     
     steps:
       # Download the artifacts from the previous step.
