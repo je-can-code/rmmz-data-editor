@@ -6,13 +6,9 @@ on:
   push:
     branches:
       - master
-    paths:
-      - '**.cs'
   pull_request:
     branches:
       - master
-    paths:
-      - '**.cs'
 
 jobs:
   # step 1: build, test, and upload the artifact if successful.
@@ -22,7 +18,7 @@ jobs:
 
   # step 2: publish the app as a release.
   continuous-deployment:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
     # This job requires successful completion of the previous job.
     needs:
       - continuous-integration
