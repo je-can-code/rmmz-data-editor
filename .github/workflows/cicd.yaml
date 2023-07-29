@@ -26,14 +26,16 @@ jobs:
       TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
       ARTIFACT_PATH: ./out
       ARTIFACT_NAME: artifact
-      
+      ARTIFACT_FILE: ${{ env.ARTIFACT_NAME }}.zip
+
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     # The custom output variables available 
     outputs:
       ARTIFACT_PATH: ${{ env.ARTIFACT_PATH }}
       ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
-    
+      ARTIFACT_FILE: ${{ env.ARTIFACT_FILE }}
+
     steps:
       # Download your repository to the runner.
       - name: Checkout
@@ -77,7 +79,7 @@ jobs:
       
       # Zip up the app output into a regular .zip archive, so all files are together and compressed.
       - name: Zip app
-        run: zip -r $ARTIFACT_NAME.zip $ARTIFACT_PATH
+        run: zip -r ARTIFACT_FILE $ARTIFACT_PATH
 
       # Some debug logging for what everything looks like before uploading.
       - name: 'DEBUG: Log current and output directories'
@@ -89,7 +91,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: ${{ env.ARTIFACT_NAME }}.zip
+          path: ${{ env.ARTIFACT_FILE }}
           retention-days: 2
 
 # step 2: publish the app as a release.
@@ -104,6 +106,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ARTIFACT_PATH: ${{ needs.ci.outputs.ARTIFACT_PATH }}
       ARTIFACT_NAME: ${{ needs.ci.outputs.ARTIFACT_NAME }}
+      ARTIFACT_FILE: ${{ needs.ci.outputs.ARTIFACT_FILE }}
     
     steps:
       # Download the artifacts from the previous step.
@@ -133,8 +136,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ env.ARTIFACT_NAME }}.zip
-          asset_name: ${{ env.ARTIFACT_NAME }}.zip
+          asset_path: ./${{ env.ARTIFACT_FILE }}
+          asset_name: ${{ env.ARTIFACT_FILE }}
           asset_content_type: application/zip
 
       # Upload the files we want as a part of the release.
