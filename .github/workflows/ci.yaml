@@ -1,4 +1,6 @@
-﻿on:
+﻿name: ci - Build & Test & Upload Artifact
+
+on:
   workflow_call:
     # these variables must be captured as outputs so they are usable for external steps.
     outputs:

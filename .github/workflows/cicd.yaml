@@ -1,4 +1,4 @@
-﻿name: Build & Release
+﻿name: ci/cd
 
 # Defines the trigger for when to execute this workflow.
 on:

@@ -1,4 +1,6 @@
-﻿on:
+﻿name: cd - Download Artifact & Create Release
+
+on:
   workflow_call:
     # these variables must be injected as inputs for them to be usable here.
     inputs:
@@ -18,7 +20,7 @@
 
 jobs:
   # publish the app as a release.
-  continuous-deployment:
+  cd:
     # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
     runs-on: ubuntu-latest
     
