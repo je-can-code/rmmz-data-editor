@@ -79,7 +79,7 @@ jobs:
       
       # Zip up the app output into a regular .zip archive, so all files are together and compressed.
       - name: Zip app
-        run: zip -r ARTIFACT_FILE $ARTIFACT_PATH
+        run: zip -r $ARTIFACT_FILE $ARTIFACT_PATH
 
       # Some debug logging for what everything looks like before uploading.
       - name: 'DEBUG: Log current and output directories'
