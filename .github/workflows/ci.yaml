@@ -1,7 +1,12 @@
 ﻿on:
   workflow_call:
-    inputs: {}
-    secrets: []
+    inputs:
+      qwer:
+        required: false
+        type: string
+    secrets:
+      asdf:
+        required: false
 
 jobs:
   # step 1: build, test, and upload the artifact if successful.
