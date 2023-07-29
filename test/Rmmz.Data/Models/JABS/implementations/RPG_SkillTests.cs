@@ -1,6 +1,6 @@
-﻿using Rmmz.Data.Models.db.implementations;
+﻿using Rmmz.Data.Models.JABS.implementations;
 
-namespace Rmmz.Data.Tests.Models.db.implementations;
+namespace Rmmz.Data.Tests.Models.JABS.implementations;
 
 [Trait("Category","skill")]
 public class RPG_SkillTests : BaseTests
