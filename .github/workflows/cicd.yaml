@@ -17,53 +17,12 @@ jobs:
 
   # step 2: publish the app as a release.
   continuous-deployment:
-    # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
-    runs-on: ubuntu-latest
-    
     # This job requires successful completion of the previous job.
     needs:
       - continuous-integration
     
-    # The environment variables that are used throughout this step.
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: ./.github/workflows/ci.yaml
+    with:
       ARTIFACT_PATH: ${{ needs.continuous-integration.outputs.ARTIFACT_PATH }}
       ARTIFACT_NAME: ${{ needs.continuous-integration.outputs.ARTIFACT_NAME }}
       ARTIFACT_FILE: ${{ needs.continuous-integration.outputs.ARTIFACT_FILE }}
-    
-    steps:
-      # Download the artifacts from the previous step.
-      - name: Download the artifact  
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifacts
-          path: ./
-
-      # Initialize a new release with the designated data points.
-      - name: Create the release
-        id: create_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: 'test-tag'
-          release_name: 'test-release'
-          draft: true
-          prerelease: false
-          body: |
-            This is an automatic generated release for merging into the main branch.
-      
-      # Upload the files we want as a part of the release.
-      - name: Upload assets to the release
-        uses: actions/upload-release-asset@v1
-        with:
-          # this uses the previous step's output to determine what to upload from.
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ env.ARTIFACT_FILE }}    # despite the key name, it is the path and file.
-          asset_name: ${{ env.ARTIFACT_FILE }}      # this is just the file.
-          asset_content_type: application/zip       # the mediaType of the file.
-
-      # Upload the files we want as a part of the release.
-      - name: Publish the Release
-        uses: StuYarrow/publish-release@v1.1.2
-        with:
-          # this uses the previous step's output to determine what release to publish.
-          id: ${{ steps.create_release.outputs.id }}
