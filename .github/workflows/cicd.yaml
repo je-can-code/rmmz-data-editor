@@ -157,4 +157,4 @@ jobs:
         uses: StuYarrow/publish-release@v1.1.2
         with:
           # this uses the previous step's output to determine what release to publish.
-          release_id: ${{ steps.create_release.outputs.id }}
+          id: ${{ steps.create_release.outputs.id }}
