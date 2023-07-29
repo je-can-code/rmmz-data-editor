@@ -114,7 +114,7 @@ jobs:
           path: ./
 
       # Some debug logging for what everything looks like before doing release things.
-      - name: 'DEBUG: Log current and output directories'
+      - name: 'DEBUG: Log directories'
         if: ${{ env.DEBUG }}
         run: ls
 
@@ -133,8 +133,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ARTIFACT_NAME }}
-          asset_name: '*.*'
+          asset_path: ./
+          asset_name: ${{ env.ARTIFACT_NAME }}
           asset_content_type: application/zip
 
       # Upload the files we want as a part of the release.
