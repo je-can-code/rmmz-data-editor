@@ -1,16 +1,12 @@
 ﻿on:
   workflow_call:
     outputs:
-      ARTIFACT_PATH: ${{ ci.env.ARTIFACT_PATH }}
-      ARTIFACT_NAME: ${{ ci.env.ARTIFACT_NAME }}
-      ARTIFACT_FILE: ${{ ci.env.ARTIFACT_FILE }}
-    inputs:
-      qwer:
-        required: false
-        type: string
-    secrets:
-      asdf:
-        required: false
+      ARTIFACT_PATH:
+        value: ${{ jobs.ci.env.ARTIFACT_PATH }}
+      ARTIFACT_NAME:
+        value: ${{ jobs.ci.env.ARTIFACT_NAME }}
+      ARTIFACT_FILE:
+        value: ${{ jobs.ci.env.ARTIFACT_FILE }}
 
 jobs:
   # step 1: build, test, and upload the artifact if successful.
