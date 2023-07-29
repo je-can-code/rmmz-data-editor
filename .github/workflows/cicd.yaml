@@ -139,19 +139,22 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: true
           prerelease: false
+          body: |
+            This is an automatic generated release for merging into the main branch.
       
       # Upload the files we want as a part of the release.
       - name: Upload assets to the release
         uses: actions/upload-release-asset@v1
         with:
+          # this uses the previous step's output to determine what to upload from.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ env.ARTIFACT_FILE }}
-          asset_name: ${{ env.ARTIFACT_FILE }}
-          asset_content_type: application/zip
+          asset_path: ./${{ env.ARTIFACT_FILE }}    # despite the key name, it is the path and file.
+          asset_name: ${{ env.ARTIFACT_FILE }}      # this is just the file.
+          asset_content_type: application/zip       # the mediaType of the file.
 
       # Upload the files we want as a part of the release.
-      - name: Publish the Release (maybe we shouldn't do this yet)
-        if: true == false
-        uses: eregon/publish-release@v1
+      - name: Publish the Release
+        uses: StuYarrow/publish-release@v1.1.2
         with:
+          # this uses the previous step's output to determine what release to publish.
           release_id: ${{ steps.create_release.outputs.id }}
