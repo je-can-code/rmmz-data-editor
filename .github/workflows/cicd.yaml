@@ -18,6 +18,9 @@ jobs:
 
   # step 2: publish the app as a release.
   continuous-deployment:
+    # only trigger this if we're pushing onto master.
+    if: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+    
     # This job requires successful completion of the previous job.
     needs:
       - continuous-integration
