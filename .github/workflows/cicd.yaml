@@ -126,10 +126,10 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: 'test-tag-name'
-          release_name: 'test-release-name'
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: true
-          prerelease: true
+          prerelease: false
       
       # Upload the files we want as a part of the release.
       - name: Upload assets to the release
