@@ -29,6 +29,7 @@ jobs:
       ARTIFACT_FILE: artifact.zip
 
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
       
     # The custom output variables available 
     outputs:
@@ -46,11 +47,11 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
-          # cache: true
+          cache: true
 
       # Restore all dependencies to the solution.
       - name: Restore dependencies
-        run: dotnet restore 
+        run: dotnet restore --locked-mode
 
       # Build all projects of the solution (without implicit restore).
       - name: Build solution
