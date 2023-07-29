@@ -19,6 +19,9 @@
 jobs:
   # publish the app as a release.
   continuous-deployment:
+    # only trigger this if we're pushing onto master.
+    if: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
+
     # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
     runs-on: ubuntu-latest
     
