@@ -13,7 +13,7 @@ on:
 jobs:
   # step 1: build, test, and upload the artifact if successful.
   ci:
-    uses: ./ci.yaml
+    uses: ./.github/workflows/ci.yaml
 
   # step 2: publish the app as a release.
   cd:
