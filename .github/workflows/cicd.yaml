@@ -21,7 +21,7 @@ jobs:
     needs:
       - continuous-integration
     
-    uses: ./.github/workflows/ci.yaml
+    uses: ./.github/workflows/cd.yaml
     with:
       ARTIFACT_PATH: ${{ needs.continuous-integration.outputs.ARTIFACT_PATH }}
       ARTIFACT_NAME: ${{ needs.continuous-integration.outputs.ARTIFACT_NAME }}
