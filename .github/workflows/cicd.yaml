@@ -109,7 +109,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
-          path: ${{ env.ARTIFACT_PATH }}
+          path: ./
 
       # Some debug logging for what everything looks like before doing release things.
       - name: 'DEBUG: Log current and output directories'
