@@ -29,6 +29,9 @@ jobs:
       ARTIFACT_FILE: artifact.zip
 
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
       
     # The custom output variables available 
@@ -44,10 +47,15 @@ jobs:
 
       # Install .NET onto the runner.
       - name: Install .NET
+        id: install_dotnet
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
           cache: true
+
+      - name: 'DEBUG: do we have cache?'
+        if: ${{ env.DEBUG }}
+        run: echo 'cache hit? ${{ steps.install_dotnet.outputs.cache-hit }}'
 
       # Restore all dependencies to the solution.
       - name: Restore dependencies
