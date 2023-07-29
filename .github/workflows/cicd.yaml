@@ -32,6 +32,7 @@ jobs:
     # The custom output variables available 
     outputs:
       ARTIFACT_PATH: ${{ env.ARTIFACT_PATH }}
+      ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
     
     steps:
       # Download your repository to the runner.
@@ -102,6 +103,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ARTIFACT_PATH: ${{ needs.ci.outputs.ARTIFACT_PATH }}
+      ARTIFACT_NAME: ${{ needs.ci.outputs.ARTIFACT_NAME }}
     
     steps:
       # Download the artifacts from the previous step.
@@ -114,7 +116,7 @@ jobs:
       # Some debug logging for what everything looks like before doing release things.
       - name: 'DEBUG: Log current and output directories'
         if: ${{ env.DEBUG }}
-        run: ls && ls $ARTIFACT_PATH
+        run: ls
 
       # Initialize a new release with the designated data points.
       - name: Create the release
@@ -131,7 +133,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ARTIFACT_PATH }}
+          asset_path: ${{ env.ARTIFACT_NAME }}
           asset_name: '*.*'
           asset_content_type: application/zip
 
