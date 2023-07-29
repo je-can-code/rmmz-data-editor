@@ -1,0 +1,89 @@
+﻿on:
+  # Arbitrary decisions that will likely be changed once a proper workflow is ready and branching strategy decided.
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  # step 1: build, test, and upload the artifact if successful.
+  ci:
+    # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
+    runs-on: ubuntu-latest
+    
+    # The environment variables that are used throughout this step.
+    env:
+      SOLUTION_PATH: ./J-EmZee.sln
+      APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
+      TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
+      ARTIFACT_PATH: ./out
+      ARTIFACT_NAME: artifact
+      ARTIFACT_FILE: artifact.zip
+
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+    
+    # The custom output variables available 
+    outputs:
+      ARTIFACT_PATH: ${{ env.ARTIFACT_PATH }}
+      ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
+      ARTIFACT_FILE: ${{ env.ARTIFACT_FILE }}
+
+    steps:
+      # Download your repository to the runner.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Install .NET onto the runner.
+      - name: Install .NET
+        id: install_dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+          cache: true
+
+      # Restore all dependencies to the solution.
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
+
+      # Build all projects of the solution (without implicit restore).
+      - name: Build solution
+        run: dotnet build --no-restore
+
+      # Run all tests of the solution (without implicit restore or build).
+      - name: Run tests
+        run: dotnet test --no-restore --no-build
+      
+      # Create the output directory ahead of publishing- can't publish to a place that doesn't exist!.
+      - name: Make output directory
+        run: mkdir $ARTIFACT_PATH
+      
+      # Compile the app with an arbitrary selection of options.
+      # The selection from top to bottom: the path to the main project, the output path, the configuration type,
+      # the runtime target, and the last three together enforce "1-file publishing" (plus the debug files).
+      - name: Compile app
+        run: >-
+          dotnet publish $APP_PROJECT_PATH
+          -o $ARTIFACT_PATH
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+      
+      # Zip up the app output into a regular .zip archive, so all files are together and compressed.
+      - name: Zip app
+        run: zip -r $ARTIFACT_FILE $ARTIFACT_PATH
+
+      # Expose the archive as an artifact for download or use in further jobs.
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: ${{ env.ARTIFACT_FILE }}
+          retention-days: 2
