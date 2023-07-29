@@ -1,5 +1,6 @@
 ﻿on:
   workflow_call:
+    # these variables must be captured as outputs so they are usable for external steps.
     outputs:
       ARTIFACT_PATH:
         value: ${{ jobs.ci.outputs.ARTIFACT_PATH }}
@@ -9,7 +10,7 @@
         value: ${{ jobs.ci.outputs.ARTIFACT_FILE }}
 
 jobs:
-  # step 1: build, test, and upload the artifact if successful.
+  # build, test, and upload the artifact if successful.
   ci:
     # I choose ubuntu mostly because it loads and executes the steps in like 20% the time windows-latest did.
     runs-on: ubuntu-latest

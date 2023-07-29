@@ -13,6 +13,7 @@ on:
 jobs:
   # step 1: build, test, and upload the artifact if successful.
   continuous-integration:
+    # use the abstracted CI steps to build, test, compile, and upload artifacts.
     uses: ./.github/workflows/ci.yaml
 
   # step 2: publish the app as a release.
@@ -21,8 +22,13 @@ jobs:
     needs:
       - continuous-integration
     
+    # use the abstracted CD steps to download artifacts, create a release, and publish it.
     uses: ./.github/workflows/cd.yaml
+    
+    # pass the inputs from the previous job.
     with:
       ARTIFACT_PATH: ${{ needs.continuous-integration.outputs.ARTIFACT_PATH }}
       ARTIFACT_NAME: ${{ needs.continuous-integration.outputs.ARTIFACT_NAME }}
       ARTIFACT_FILE: ${{ needs.continuous-integration.outputs.ARTIFACT_FILE }}
+      # we may change this in the future.
+      # ARTIFACT_TYPE: application/zip
