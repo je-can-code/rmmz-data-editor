@@ -1,11 +1,6 @@
 ﻿on:
-  # Arbitrary decisions that will likely be changed once a proper workflow is ready and branching strategy decided.
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+  workflow_call:
+    secrets: inherit
 
 jobs:
   # step 1: build, test, and upload the artifact if successful.
