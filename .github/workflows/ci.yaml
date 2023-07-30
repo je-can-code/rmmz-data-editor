@@ -60,7 +60,21 @@ jobs:
 
       # Run all tests of the solution (without implicit restore or build).
       - name: Run tests
-        run: dotnet test --no-restore --no-build
+        # run: dotnet test --no-restore --no-build
+        run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./.coverage
+
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: ./.coverage/**/coverage.cobertura.xml
+          badge: true
+          fail_below_min: false # should be TRUE.
+          format: markdown # can be 'text' too.
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: '0 80' # should be '60 80' or better.
       
       # Create the output directory ahead of publishing- can't publish to a place that doesn't exist!.
       - name: Make output directory
