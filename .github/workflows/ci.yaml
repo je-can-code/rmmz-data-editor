@@ -75,10 +75,17 @@ jobs:
           indicators: true
           output: both
           thresholds: '0 80' # should be '60 80' or better.
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
       
       # Create the output directory ahead of publishing- can't publish to a place that doesn't exist!.
-      - name: Make output directory
-        run: mkdir $ARTIFACT_PATH
+      # - name: Make output directory
+      #   run: mkdir $ARTIFACT_PATH
       
       # Compile the app with an arbitrary selection of options.
       # The selection from top to bottom: the path to the main project, the output path, the configuration type,
