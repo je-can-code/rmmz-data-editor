@@ -63,6 +63,7 @@ jobs:
         # run: dotnet test --no-restore --no-build
         run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./.coverage
 
+      # Parse and act upon the code coverage results- and also parse it into markdown for bragging rights.
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
@@ -76,16 +77,17 @@ jobs:
           output: both
           thresholds: '0 80' # should be '60 80' or better.
 
+      # Add the code coverage to the pull request if that was what initiated this pipeline.
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
         with:
           recreate: true
           path: code-coverage-results.md
-      
-      # Create the output directory ahead of publishing- can't publish to a place that doesn't exist!.
-      # - name: Make output directory
-      #   run: mkdir $ARTIFACT_PATH
+
+      # Add the code coverage to the overall pipeline summary.
+      - name: Write to Job Summary
+        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
       # Compile the app with an arbitrary selection of options.
       # The selection from top to bottom: the path to the main project, the output path, the configuration type,
