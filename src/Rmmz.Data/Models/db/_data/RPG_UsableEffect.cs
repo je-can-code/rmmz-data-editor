@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Models.db._data;
+namespace JMZ.Rmmz.Data.Models.db._data;
 
 /// <summary>
 /// A data model representing a single effect on an item or skill.

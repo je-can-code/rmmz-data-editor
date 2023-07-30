@@ -1,6 +1,6 @@
-﻿using Dashboard.Services;
+﻿using JMZ.Dashboard.Services;
 
-namespace Dashboard.Boards;
+namespace JMZ.Dashboard.Boards;
 
 public partial class BaseBoard : Form
 {

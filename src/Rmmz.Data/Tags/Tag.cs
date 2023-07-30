@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Tags;
+namespace JMZ.Rmmz.Data.Tags;
 
 /// <summary>
 /// An implementation class including constructors for building conventionalized tag data.

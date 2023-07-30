@@ -1,6 +1,6 @@
-using Rmmz.Data.Models.db.core;
+using JMZ.Rmmz.Data.Models.db.core;
 
-namespace Rmmz.Data.Models.db.implementations;
+namespace JMZ.Rmmz.Data.Models.db.implementations;
 
 /// <summary>
 /// A data model representing a single skill from the database.

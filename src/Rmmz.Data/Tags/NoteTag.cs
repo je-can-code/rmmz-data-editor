@@ -1,4 +1,4 @@
-﻿namespace Rmmz.Data.Tags;
+﻿namespace JMZ.Rmmz.Data.Tags;
 
 /// <summary>
 /// A data model representing a single tag found in the notes of almost any

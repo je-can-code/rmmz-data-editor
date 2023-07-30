@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Models.db._data;
+namespace JMZ.Rmmz.Data.Models.db._data;
 
 public class RPG_SkillDamage
 {

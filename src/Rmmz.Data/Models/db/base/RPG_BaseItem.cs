@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Models.db.@base;
+namespace JMZ.Rmmz.Data.Models.db.@base;
 
 /// <summary>
 /// The data model representing a base-level item from the database.

@@ -1,4 +1,4 @@
-﻿namespace Dashboard.Boards
+﻿namespace JMZ.Dashboard.Boards
 {
     partial class BaseBoard
     {

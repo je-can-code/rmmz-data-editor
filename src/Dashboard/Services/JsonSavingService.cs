@@ -1,8 +1,8 @@
+using JMZ.Rmmz.Data.Models.JABS.implementations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Rmmz.Data.Models.JABS.implementations;
 
-namespace Dashboard.Services;
+namespace JMZ.Dashboard.Services;
 
 /// <summary>
 /// A utility class for saving JSON data files as their appropriate types.

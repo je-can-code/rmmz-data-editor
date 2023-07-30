@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Models.JABS;
+namespace JMZ.Rmmz.Data.Models.JABS;
 
 /// <summary>
 /// Represents all currently available hitboxes used in JABS.

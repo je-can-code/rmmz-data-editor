@@ -1,6 +1,6 @@
-﻿using Rmmz.Data.Tags;
+﻿using JMZ.Rmmz.Data.Tags;
 
-namespace Rmmz.Data.Services;
+namespace JMZ.Rmmz.Data.Services;
 
 /// <summary>
 /// A service for translating tag blobs into a collection of tags.

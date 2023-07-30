@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Dashboard.Services;
+namespace JMZ.Dashboard.Services;
 
 public static class LogService
 {

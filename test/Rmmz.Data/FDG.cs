@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using Rmmz.Data.Models.db.implementations;
+using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace Rmmz.Data.Tests;
+namespace JMZ.Rmmz.Data.Tests;
 
 /// <summary>
 /// The fake data generator.

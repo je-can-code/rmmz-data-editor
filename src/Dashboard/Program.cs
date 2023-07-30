@@ -1,6 +1,6 @@
-using Dashboard.Boards;
+using JMZ.Dashboard.Boards;
 
-namespace Dashboard;
+namespace JMZ.Dashboard;
 
 // ReSharper disable once UnusedType.Global
 // ReSharper disable once ArrangeTypeModifiers

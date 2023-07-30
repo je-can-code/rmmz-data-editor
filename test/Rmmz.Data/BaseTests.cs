@@ -1,4 +1,4 @@
-﻿namespace Rmmz.Data.Tests;
+﻿namespace JMZ.Rmmz.Data.Tests;
 
 /// <summary>
 /// A baseclass for extending tests with.

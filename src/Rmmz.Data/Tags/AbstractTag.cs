@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Tags;
+namespace JMZ.Rmmz.Data.Tags;
 
 /// <summary>
 /// An abstract class representing the various data points that make up structure for tag data.

@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Dashboard.Boards;
+namespace JMZ.Dashboard.Boards;
 
 partial class SkillsBoard
 {

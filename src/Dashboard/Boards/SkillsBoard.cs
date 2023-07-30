@@ -1,7 +1,7 @@
-using Rmmz.Data.Models.JABS;
-using Rmmz.Data.Models.JABS.implementations;
+using JMZ.Rmmz.Data.Models.JABS;
+using JMZ.Rmmz.Data.Models.JABS.implementations;
 
-namespace Dashboard.Boards;
+namespace JMZ.Dashboard.Boards;
 
 public partial class SkillsBoard : Form
 {

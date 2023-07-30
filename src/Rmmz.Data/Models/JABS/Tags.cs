@@ -1,6 +1,6 @@
-﻿using Rmmz.Data.Tags;
+﻿using JMZ.Rmmz.Data.Tags;
 
-namespace Rmmz.Data.Models.JABS;
+namespace JMZ.Rmmz.Data.Models.JABS;
 
 internal static class Tags
 {

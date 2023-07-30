@@ -1,6 +1,6 @@
-﻿using Rmmz.Data.Models.JABS.implementations;
+﻿using JMZ.Rmmz.Data.Models.JABS.implementations;
 
-namespace Rmmz.Data.Tests.Models.JABS.implementations;
+namespace JMZ.Rmmz.Data.Tests.Models.JABS.implementations;
 
 [Trait("Category","weapon")]
 public class RPG_WeaponTests : BaseTests

@@ -1,4 +1,4 @@
-namespace Rmmz.Data.Extensions;
+namespace JMZ.Rmmz.Data.Extensions;
 
 /// <summary>
 /// Extensions for strings used by this project.

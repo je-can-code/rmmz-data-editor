@@ -1,7 +1,7 @@
-using Rmmz.Data.Models.db._data;
-using Rmmz.Data.Models.db.@base;
+using JMZ.Rmmz.Data.Models.db._data;
+using JMZ.Rmmz.Data.Models.db.@base;
 
-namespace Rmmz.Data.Models.db.core;
+namespace JMZ.Rmmz.Data.Models.db.core;
 
 /// <summary>
 /// A data model representing the base properties for any usable item or skill.

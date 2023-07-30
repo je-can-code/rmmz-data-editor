@@ -1,7 +1,7 @@
-﻿using Rmmz.Data.Extensions;
-using Rmmz.Data.Models.db.core;
+﻿using JMZ.Rmmz.Data.Extensions;
+using JMZ.Rmmz.Data.Models.db.core;
 
-namespace Rmmz.Data.Models.JABS.implementations;
+namespace JMZ.Rmmz.Data.Models.JABS.implementations;
 
 /// <summary>
 /// JABS-related API extension for skills.

@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using Rmmz.Data.Extensions;
-using Rmmz.Data.Services;
-using Rmmz.Data.Tags;
+using JMZ.Rmmz.Data.Extensions;
+using JMZ.Rmmz.Data.Services;
+using JMZ.Rmmz.Data.Tags;
 
-namespace Rmmz.Data.Models.db.@base;
+namespace JMZ.Rmmz.Data.Models.db.@base;
 
 /// <summary>
 /// A class representing the foundation of all database objects.
