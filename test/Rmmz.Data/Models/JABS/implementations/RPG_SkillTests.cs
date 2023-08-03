@@ -95,7 +95,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.jabsCastAnimation;
+        var actual = modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(expected);
@@ -113,7 +113,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.jabsCastAnimation;
+        var actual = modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -126,10 +126,10 @@ public class RPG_SkillTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCastAnimation(fakeTagValue);
+        modelUnderTest.UpdateJabsCastAnimation(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.jabsCastAnimation;
+        var actual = modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -143,11 +143,11 @@ public class RPG_SkillTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCastAnimation(fakeTagValue); // update with valid value.
-        modelUnderTest.updateJabsCastAnimation(expected);
+        modelUnderTest.UpdateJabsCastAnimation(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsCastAnimation(expected);
         
         // when
-        var actual = modelUnderTest.jabsCastAnimation;
+        var actual = modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(expected);
@@ -165,7 +165,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.jabsCastTime;
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);
@@ -183,7 +183,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.jabsCastTime;
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -196,10 +196,10 @@ public class RPG_SkillTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCastTime(fakeTagValue);
+        modelUnderTest.UpdateJabsCastTime(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.jabsCastTime;
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -213,11 +213,11 @@ public class RPG_SkillTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCastTime(fakeTagValue); // update with valid value.
-        modelUnderTest.updateJabsCastTime(expected);
+        modelUnderTest.UpdateJabsCastTime(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsCastTime(expected);
         
         // when
-        var actual = modelUnderTest.jabsCastTime;
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);
