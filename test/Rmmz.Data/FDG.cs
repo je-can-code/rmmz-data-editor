@@ -107,6 +107,14 @@ public class FDG
         return Data.Models.JABS.Tags.HideFromJabsMenu.ToBooleanTag();
     }
     
+    /// <summary>
+    /// Generates a duration tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string DirectTargetingTag()
+    {
+        return Data.Models.JABS.Tags.Direct.ToBooleanTag();
+    }
+    
     #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.

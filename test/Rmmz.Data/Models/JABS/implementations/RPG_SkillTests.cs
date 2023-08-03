@@ -1,4 +1,6 @@
-﻿using JMZ.Rmmz.Data.Models.JABS.implementations;
+﻿using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.TargetingData;
+using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.UsageData;
+using JMZ.Rmmz.Data.Models.JABS.implementations;
 
 namespace JMZ.Rmmz.Data.Tests.Models.JABS.implementations;
 
@@ -232,7 +234,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.jabsCooldown;
+        var actual = modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(expected);
@@ -249,7 +251,7 @@ public class RPG_SkillTests : BaseTests
         modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.jabsCooldown;
+        var actual = modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -261,10 +263,10 @@ public class RPG_SkillTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCooldown(fakeTagValue);
+        modelUnderTest.UpdateJabsCooldown(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.jabsCooldown;
+        var actual = modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -277,11 +279,11 @@ public class RPG_SkillTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.updateJabsCooldown(fakeTagValue); // update with valid value.
-        modelUnderTest.updateJabsCooldown(expected);
+        modelUnderTest.UpdateJabsCooldown(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsCooldown(expected);
         
         // when
-        var actual = modelUnderTest.jabsCooldown;
+        var actual = modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(expected);
@@ -409,4 +411,56 @@ public class RPG_SkillTests : BaseTests
         actual.Should().BeFalse();
     }
     #endregion hideFromQuickMenu
+
+    #region directTargeting
+    [Fact]
+    [Trait("Category","targetingData")]
+    [Trait("Category","directTargeting")]
+    public void jabsDirectTargeting_whenUnset_returnsDefault()
+    {
+        // given
+        modelUnderTest.note = string.Empty;
+        
+        // when
+        var actual = modelUnderTest.HasJabsDirectTargeting();
+        
+        // then
+        actual.Should().BeFalse();
+    }
+    
+    [Fact]
+    [Trait("Category","targetingData")]
+    [Trait("Category","directTargeting")]
+    public void jabsDirectTargeting_whenAdded_returnsValue()
+    {
+        // given
+        var fakeTag = this.fdg.DirectTargetingTag();
+        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
+        
+        // when
+        var actual = modelUnderTest.HasJabsDirectTargeting();
+        
+        // then
+        actual.Should().BeTrue();
+    }
+
+    [Fact]
+    [Trait("Category","targetingData")]
+    [Trait("Category","directTargeting")]
+    public void jabsDirectTargeting_whenRemoved_returnsDefault()
+    {
+        // given
+        var expected = false;
+        var fakeTagValue = true;
+        modelUnderTest.UpdateJabsDirectTargeting(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsDirectTargeting(expected);
+        
+        // when
+        var actual = modelUnderTest.HasJabsDirectTargeting();
+        
+        // then
+        actual.Should().BeFalse();
+    }
+    #endregion directTargeting
 }
