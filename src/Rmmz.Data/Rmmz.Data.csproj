@@ -5,11 +5,4 @@
     <RootNamespace>JMZ.Rmmz.Data</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Extensions\JABS\implementations\" />
-    <Folder Include="Extensions\JABS\implementations\_Skill\ComboData\" />
-    <Folder Include="Extensions\JABS\implementations\_Skill\MapData\" />
-    <Folder Include="Models\JABS\implementations\Skill\" />
-  </ItemGroup>
-
 </Project>

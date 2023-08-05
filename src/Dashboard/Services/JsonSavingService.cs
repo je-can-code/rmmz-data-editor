@@ -1,4 +1,4 @@
-using JMZ.Rmmz.Data.Models.JABS.implementations;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

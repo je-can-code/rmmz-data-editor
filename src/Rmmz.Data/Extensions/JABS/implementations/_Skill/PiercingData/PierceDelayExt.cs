@@ -1,4 +1,4 @@
-﻿using JMZ.Rmmz.Data.Models.JABS.implementations;
+﻿using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.PiercingData;
 

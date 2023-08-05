@@ -1,5 +1,5 @@
 ﻿using JMZ.Rmmz.Data.Extensions.db.@base._Base;
-using JMZ.Rmmz.Data.Models.JABS.implementations;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using PiercingDataRecord = JMZ.Rmmz.Data.Models.JABS.PiercingData;
 
 namespace JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.PiercingData;

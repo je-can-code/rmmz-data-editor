@@ -26,4 +26,10 @@
     <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\JABS\implementations\_Skill\ComboData\" />
+    <Folder Include="Extensions\JABS\implementations\_Skill\PiercingData\" />
+    <Folder Include="Extensions\JABS\implementations\_Skill\PoseData\" />
+  </ItemGroup>
+
 </Project>

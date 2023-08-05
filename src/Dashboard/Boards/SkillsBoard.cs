@@ -1,9 +1,13 @@
+using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.ComboData;
+using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.CoreData;
+using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.MapData;
 using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.PiercingData;
 using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.PoseData;
 using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.TargetingData;
 using JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.UsageData;
+using JMZ.Rmmz.Data.Extensions.SkillExtend.implementations._Skill;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Rmmz.Data.Models.JABS;
-using JMZ.Rmmz.Data.Models.JABS.implementations;
 
 namespace JMZ.Dashboard.Boards;
 
@@ -195,7 +199,7 @@ public partial class SkillsBoard : Form
         var (skill, index) = this.GetSkillSelection();
 
         // update the underlying data.
-        skill.updateHideFromQuickMenu(this.checkBox_hideFromJabsMenu.Checked);
+        skill.UpdateJabsHideFromQuickMenu(this.checkBox_hideFromJabsMenu.Checked);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -210,7 +214,7 @@ public partial class SkillsBoard : Form
         var extensions = this.textBox_skillExtend.Text;
 
         // update the underlying data.
-        skill.updateSkillExtends(extensions);
+        skill.UpdateSkillExtendIds(extensions);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -261,7 +265,7 @@ public partial class SkillsBoard : Form
         var (skill, index) = this.GetSkillSelection();
 
         // update the underlying data.
-        skill.updateFreeComboEnabled(this.checkBox_freeCombo.Checked);
+        skill.UpdateJabsFreeCombo(this.checkBox_freeCombo.Checked);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -273,7 +277,7 @@ public partial class SkillsBoard : Form
         var (skill, index) = this.GetSkillSelection();
 
         // update the underlying data.
-        skill.updateAiComboStarter(this.checkBox_comboStarter.Checked);
+        skill.UpdateJabsAiComboStarter(this.checkBox_comboStarter.Checked);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -315,7 +319,7 @@ public partial class SkillsBoard : Form
         var comboDelay = this.num_comboDelay.Value;
 
         // update the underlying data.
-        skill.updateJabsCombo(comboSkill, comboDelay);
+        skill.UpdateJabsComboData(comboSkill, comboDelay);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -375,7 +379,7 @@ public partial class SkillsBoard : Form
         var duration = this.num_duration.Value;
 
         // update the underlying data.
-        skill.updateJabsDuration(duration);
+        skill.UpdateJabsDuration(duration);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -390,7 +394,7 @@ public partial class SkillsBoard : Form
         var actionId = this.num_actionId.Value;
 
         // update the underlying data.
-        skill.updateJabsActionId(actionId);
+        skill.UpdateJabsActionId(actionId);
 
         // update the running list.
         this.UpdateSkillData(skill, index);
@@ -489,7 +493,7 @@ public partial class SkillsBoard : Form
         // core data
         this.label_skillIdValue.Text = selectedItem.id.ToString();
         this.textBox_skillName.Text = selectedItem.name;
-        this.checkBox_hideFromJabsMenu.Checked = selectedItem.jabsHideFromQuickMenu;
+        this.checkBox_hideFromJabsMenu.Checked = selectedItem.HasJabsHideFromQuickMenu();
 
         // targeting data
         this.checkBox_direct.Checked = selectedItem.HasJabsDirectTargeting();
@@ -501,17 +505,17 @@ public partial class SkillsBoard : Form
             this.comboBox_hitbox.SelectedIndex = hitboxIndex;
         }
 
-        this.textBox_skillExtend.Text = selectedItem.jabsSkillExtends;
+        this.textBox_skillExtend.Text = selectedItem.GetSkillExtendIds();
 
         // combo data
-        this.num_comboSkill.Value = selectedItem.jabsComboSkillId;
-        this.num_comboDelay.Value = selectedItem.jabsComboDelay;
-        this.checkBox_freeCombo.Checked = selectedItem.jabsFreeCombo;
-        this.checkBox_comboStarter.Checked = selectedItem.jabsAiComboStarter;
+        this.num_comboSkill.Value = selectedItem.GetJabsComboSkillId();
+        this.num_comboDelay.Value = selectedItem.GetJabsComboDelay();
+        this.checkBox_freeCombo.Checked = selectedItem.HasJabsFreeCombo();
+        this.checkBox_comboStarter.Checked = selectedItem.HasJabsAiComboStarter();
 
         // map data
-        this.num_actionId.Value = selectedItem.jabsActionId;
-        this.num_duration.Value = selectedItem.jabsDuration;
+        this.num_actionId.Value = selectedItem.GetJabsActionId();
+        this.num_duration.Value = selectedItem.GetJabsDuration();
 
         // piercing data
         this.num_piercingCount.Value = selectedItem.GetJabsPiercingCount();

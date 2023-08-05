@@ -1,5 +1,5 @@
 ﻿using JMZ.Rmmz.Data.Extensions.db.@base._Base;
-using JMZ.Rmmz.Data.Models.JABS.implementations;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using PoseDataRecord = JMZ.Rmmz.Data.Models.JABS.PoseData;
 
 namespace JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.PoseData;

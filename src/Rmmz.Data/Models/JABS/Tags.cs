@@ -6,7 +6,7 @@ internal static class Tags
 {
     public static Tag SkillId { get; }
     
-    public static Tag HideFromJabsMenu { get; }
+    public static Tag HideFromQuickMenu { get; }
     
     public static Tag Pose { get; }
     
@@ -39,7 +39,7 @@ internal static class Tags
         SkillId = skillId();
         
         // skills.
-        HideFromJabsMenu = new("hideFromJabsMenu");
+        HideFromQuickMenu = new("hideFromJabsMenu");
 
         Pose = new("poseSuffix", @"<poseSuffix:[ ]?(\[[-_]?\w+,[ ]?\d+,[ ]?\d+])>");
 

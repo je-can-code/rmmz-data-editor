@@ -104,7 +104,7 @@ public class FDG
     /// </summary>
     public string HideFromQuickMenuTag()
     {
-        return Data.Models.JABS.Tags.HideFromJabsMenu.ToBooleanTag();
+        return Data.Models.JABS.Tags.HideFromQuickMenu.ToBooleanTag();
     }
     
     /// <summary>

@@ -1,5 +1,5 @@
 ﻿using JMZ.Rmmz.Data.Extensions.db.@base._Base;
-using JMZ.Rmmz.Data.Models.JABS.implementations;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using JabsHitbox = JMZ.Rmmz.Data.Models.JABS.Hitbox;
 
 namespace JMZ.Rmmz.Data.Extensions.JABS.implementations._Skill.TargetingData;
