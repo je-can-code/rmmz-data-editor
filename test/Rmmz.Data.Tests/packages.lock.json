@@ -1048,11 +1048,18 @@
         "type": "Project",
         "dependencies": {
           "Bogus": "[34.0.2, )",
+          "Extend.Data": "[1.0.0, )",
           "FluentAssertions": "[6.11.0, )",
           "JABS.Data": "[1.0.0, )",
           "Microsoft.NET.Test.Sdk": "[17.5.0, )",
           "Rmmz.Data": "[1.0.0, )",
           "xunit": "[2.4.2, )"
+        }
+      },
+      "extend.data": {
+        "type": "Project",
+        "dependencies": {
+          "Rmmz.Data": "[1.0.0, )"
         }
       },
       "jabs.data": {

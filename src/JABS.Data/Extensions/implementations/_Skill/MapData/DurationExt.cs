@@ -36,13 +36,13 @@ public static class DurationExt
         // we need to update the tag, so build the updated note with the new values.
         var updatedNote = Tags.Duration.ToValueTag(duration.ToString());
 
-        // check if the actionId was missing previously.
+        // check if the value was missing previously.
         if (isMissing)
         {
             // add the new tag to the note.
             skill.AddNoteData(updatedNote);
         }
-        // the actionId just needs to be updated.
+        // the value just needs to be updated.
         else
         {
             // update the actual note.

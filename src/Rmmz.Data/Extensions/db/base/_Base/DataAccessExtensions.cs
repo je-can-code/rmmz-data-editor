@@ -79,7 +79,7 @@ public static class DataAccessExtensions
             (runningTotal, tag) =>
             {
                 // translate the string array of numbers into a list of decimals.
-                var valueNumbers = tag.Value.toDecimalList();
+                var valueNumbers = tag.Value.ToDecimalList();
 
                 // add the values to the list.
                 runningTotal.AddRange(valueNumbers);
@@ -183,7 +183,7 @@ public static class DataAccessExtensions
             (runningList, tag) =>
             {
                 // translate the string array of numbers into a list of strings.
-                var valueStrings = tag.Value.toStringList();
+                var valueStrings = tag.Value.ToStringList();
 
                 // add the values to the list.
                 runningList.AddRange(valueStrings);

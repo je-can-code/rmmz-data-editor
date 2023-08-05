@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
-        <RootNamespace>$(SolutionNamespace).JABS.Data</RootNamespace>
+        <RootNamespace>$(SolutionNamespace).Extend.Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

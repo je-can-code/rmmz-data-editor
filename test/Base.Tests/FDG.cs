@@ -1,6 +1,8 @@
 ﻿using Bogus;
+using JMZ.JABS.Data.Models;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JabsTags = JMZ.JABS.Data.Models.Tags;
+using ExtendTags = JMZ.Extend.Data.Models.Tags;
 
 namespace JMZ.Base.Tests;
 
@@ -109,13 +111,71 @@ public class FDG
     }
     
     /// <summary>
-    /// Generates a duration tag with a given value, or random value if none is provided.
+    /// Generates a direct targeting tag.
     /// </summary>
     public string DirectTargetingTag()
     {
         return JabsTags.Direct.ToBooleanTag();
     }
+
+    /// <summary>
+    /// Generates a hitbox tag with a given value, or a random value if none is provided.
+    /// Will not generate <see cref="Hitbox.None"/>.
+    /// </summary>
+    public string HitboxTag(Hitbox? input = null)
+    {
+        var tagValue = (input ?? this.RandomHitbox()).ToString();
+        return JabsTags.Hitbox.ToValueTag(tagValue);
+    }
+
+    public string RadiusTag(decimal? input = null)
+    {
+        var tagValue = input ?? RmmzDecimal();
+        var builtTag = JabsTags.Radius.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
     
+    public string ProximityTag(decimal? input = null)
+    {
+        var tagValue = input ?? RmmzDecimal();
+        var builtTag = JabsTags.Proximity.ToValueTag(tagValue.ToString());
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates a actionId tag with a given value, or random value if none is provided.
+    /// </summary>
+    public string SkillExtensionIdsTag(IEnumerable<int>? input = null)
+    {
+        var tagValue = input ?? new List<int>
+        {
+            this.RmmzUNumber(),
+            this.RmmzUNumber(),
+            this.RmmzUNumber()
+        };
+        var stringValues = tagValue
+            .Select(value => value.ToString())
+            .ToArray();
+        var builtTag = ExtendTags.Extend.ToArrayTag(stringValues);
+        return builtTag;
+    }
+    
+    /// <summary>
+    /// Generates an AI skill exclusion tag.
+    /// </summary>
+    public string AiSkillExclusionTag()
+    {
+        return JabsTags.AiSkillExclusion.ToBooleanTag();
+    }
+
+    /// <summary>
+    /// Generates a gap closer tag.
+    /// </summary>
+    public string GapCloserTag()
+    {
+        return JabsTags.GapCloser.ToBooleanTag();
+    }
+
     #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.
@@ -157,5 +217,16 @@ public class FDG
         var combined = $"{left}.{right}";
         return decimal.Parse(combined);
     }
+
+    /// <summary>
+    /// Generates a random <see cref="Hitbox"/> from the available values in the enum.
+    /// Will not generate ordinal 0 aka <see cref="Hitbox.None"/>.
+    /// </summary>
+    public Hitbox RandomHitbox()
+    {
+        var values = Enum.GetValues<Hitbox>();
+        return values[RNG.Next(1, values.Length)];
+    }
+
     #endregion utility
 }

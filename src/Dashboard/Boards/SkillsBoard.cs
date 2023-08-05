@@ -1,3 +1,4 @@
+using JMZ.Extend.Data.Extensions.implementations._Skill;
 using JMZ.JABS.Data.Extensions.implementations._Skill.ComboData;
 using JMZ.JABS.Data.Extensions.implementations._Skill.CoreData;
 using JMZ.JABS.Data.Extensions.implementations._Skill.MapData;
@@ -6,7 +7,6 @@ using JMZ.JABS.Data.Extensions.implementations._Skill.PoseData;
 using JMZ.JABS.Data.Extensions.implementations._Skill.TargetingData;
 using JMZ.JABS.Data.Extensions.implementations._Skill.UsageData;
 using JMZ.JABS.Data.Models;
-using JMZ.Rmmz.Data.Extensions.SkillExtend.implementations._Skill;
 using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.Dashboard.Boards;

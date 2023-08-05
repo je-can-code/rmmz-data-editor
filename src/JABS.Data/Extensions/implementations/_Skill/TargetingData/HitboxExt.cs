@@ -25,17 +25,17 @@ public static class HitboxExt
     public static void UpdateJabsHitbox(this RPG_Skill skill, JabsHitbox hitbox)
     {
         // grab our current state.
-        var currentHitbox = skill.GetJabsHitbox();
+        var isMissing = skill.GetJabsHitbox() == Hitbox.None;
 
-        // check if there was no hitbox and is no hitbox.
-        if (currentHitbox == JabsHitbox.None && hitbox == JabsHitbox.None)
+        // check if there was no value and is no value.
+        if (isMissing && hitbox == JabsHitbox.None)
         {
             // do nothing.
             return;
         }
 
         // check if there was a value, but is no longer.
-        if (currentHitbox != JabsHitbox.None && hitbox == JabsHitbox.None)
+        if (hitbox == JabsHitbox.None)
         {
             // remove the note, it is no longer needed.
             skill.RemoveNoteData(Tags.Hitbox.Regex);
@@ -46,8 +46,17 @@ public static class HitboxExt
 
         // we need to update the tag, so build the updated note with the new value.
         var updatedNote = Tags.Hitbox.ToValueTag(hitbox.ToString().ToLower());
-        
-        // update the actual note.
-        skill.UpdateNoteData(Tags.Hitbox.Regex, updatedNote);
+
+        // check if the value was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            skill.AddNoteData(updatedNote);
+        }
+        else
+        {
+            // update the actual note.
+            skill.UpdateNoteData(Tags.Hitbox.Regex, updatedNote);    
+        }
     }
 }

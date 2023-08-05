@@ -338,6 +338,12 @@
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
+      "extend.data": {
+        "type": "Project",
+        "dependencies": {
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
       "jabs.data": {
         "type": "Project",
         "dependencies": {

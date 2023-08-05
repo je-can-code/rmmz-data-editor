@@ -1,6 +1,6 @@
 ﻿using JMZ.Rmmz.Data.Tags;
 
-namespace JMZ.Rmmz.Data.Models.SkillExtend;
+namespace JMZ.Extend.Data.Models;
 
 internal static class Tags
 {

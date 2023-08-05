@@ -30,30 +30,11 @@ public static class StringExtensions
     /// <param name="input">The string to be converted.</param>
     /// <param name="delimiter">The delimiter character(s); defaults to a single comma.</param>
     /// <returns>A conversion of the string into a list of decimals.</returns>
-    public static List<decimal> toDecimalList(this string input, string delimiter = ",")
+    public static IEnumerable<decimal> ToDecimalList(this string input, string delimiter = ",")
     {
-        // check if the input is invalid.
-        if (input == null)
-        {
-            // return an empty list.
-            return new();
-        }
-
-        // unwrap the input from its hard brackets.
-        var unwrappedInput = input.UnwrapBrackets();
-
-        // check if the input has the delimiter, meaning its a list.
-        if (unwrappedInput.Contains(delimiter))
-        {
-            // split the string into a list of numbers.
-            return unwrappedInput
-                .Split(delimiter)
-                .Select(decimal.Parse)
-                .ToList();
-        }
-        
-        // the input was a single number in a container.
-        return new() { decimal.Parse(unwrappedInput) };
+        return input
+            .ToStringList(delimiter)
+            .Select(decimal.Parse);
     }
 
     /// <summary>
@@ -63,13 +44,13 @@ public static class StringExtensions
     /// <param name="input">The string to be converted.</param>
     /// <param name="delimiter">The delimiter character(s); defaults to a single comma.</param>
     /// <returns>A conversion of the string into a list of decimals.</returns>
-    public static List<string> toStringList(this string input, string delimiter = ",")
+    public static IEnumerable<string> ToStringList(this string input, string delimiter = ",")
     {
         // check if the input is invalid.
         if (input == null)
         {
             // return an empty list.
-            return new();
+            return Enumerable.Empty<string>();
         }
 
         // unwrap the input from its hard brackets.
@@ -83,8 +64,8 @@ public static class StringExtensions
                 .Split(delimiter)
                 .ToList();
         }
-
+        
         // the input was a single string in a container.
-        return new() { unwrappedInput };
+        return new List<string> { unwrappedInput };
     }
 }

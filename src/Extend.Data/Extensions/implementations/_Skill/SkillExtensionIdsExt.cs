@@ -1,7 +1,9 @@
-﻿using JMZ.Rmmz.Data.Extensions.db.@base._Base;
+﻿using JMZ.Extend.Data.Models;
+using JMZ.Rmmz.Data.Extensions;
+using JMZ.Rmmz.Data.Extensions.db.@base._Base;
 using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace JMZ.Rmmz.Data.Extensions.SkillExtend.implementations._Skill;
+namespace JMZ.Extend.Data.Extensions.implementations._Skill;
 
 // TODO: should this be managed as a collection of numbers?
 public static class SkillExtensionIdsExt
@@ -9,7 +11,7 @@ public static class SkillExtensionIdsExt
     public static string GetSkillExtendIds(this RPG_Skill skill)
     {
         // grab the contents of the list- we don't question what is within!
-        var extensions = skill.getAsStringByTag(Models.SkillExtend.Tags.Extend.Name) ?? string.Empty;
+        var extensions = skill.GetFirstStringByTag(Tags.Extend.Name) ?? string.Empty;
 
         // remove the outer brackets.
         return extensions.UnwrapBrackets();
@@ -31,14 +33,14 @@ public static class SkillExtensionIdsExt
         if (extensions == string.Empty)
         {
             // remove the tag entirely, no value is invalid.
-            skill.RemoveNoteData(Models.SkillExtend.Tags.Extend.Regex);
+            skill.RemoveNoteData(Tags.Extend.Regex);
 
             // stop processing.
             return;
         }
         
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = Models.SkillExtend.Tags.Extend.ToArrayTag(extensions);
+        var updatedNote = Tags.Extend.ToArrayTag(extensions);
 
         // check if the value was missing previously.
         if (isMissing)
@@ -50,7 +52,7 @@ public static class SkillExtensionIdsExt
         else
         {
             // update the actual note.
-            skill.UpdateNoteData(Models.SkillExtend.Tags.Extend.Regex, updatedNote);
+            skill.UpdateNoteData(Tags.Extend.Regex, updatedNote);
         }
     }
 }

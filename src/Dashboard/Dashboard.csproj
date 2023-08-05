@@ -21,8 +21,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\JABS.Data\JABS.Data.csproj" />
-        <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
+        <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
+
+        <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
+        <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
     </ItemGroup>
 
 </Project>

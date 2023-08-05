@@ -3,7 +3,7 @@ namespace JMZ.Rmmz.Data.Models.db.@base;
 /// <summary>
 /// The data model representing a base-level item from the database.
 /// </summary>
-public class RPG_BaseItem : RPG_Base
+public abstract class RPG_BaseItem : RPG_Base
 {
     /// <summary>
     /// The description of this entry.

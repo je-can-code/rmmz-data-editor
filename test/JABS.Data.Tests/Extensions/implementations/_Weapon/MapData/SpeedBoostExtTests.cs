@@ -4,6 +4,7 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Weapon.MapData;
 
+[Trait("Category","MapData")]
 public class SpeedBoostExtTests : BaseTests
 {
     private readonly RPG_Weapon modelUnderTest;
@@ -14,8 +15,7 @@ public class SpeedBoostExtTests : BaseTests
     }
     
     [Fact]
-    [Trait("Category","speedBoost")]
-    public void jabsSpeedBoost_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
@@ -29,8 +29,7 @@ public class SpeedBoostExtTests : BaseTests
     }
     
     [Fact]
-    [Trait("Category","speedBoost")]
-    public void jabsSpeedBoost_whenSetExplicitly_explicitValueIsReturned()
+    public void whenSetExplicitly_explicitValueIsReturned()
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();
@@ -46,8 +45,7 @@ public class SpeedBoostExtTests : BaseTests
     }
     
     [Fact]
-    [Trait("Category","speedBoost")]
-    public void jabsSpeedBoost_whenUpdated_returnsUpdatedValue()
+    public void whenUpdated_returnsUpdatedValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();
@@ -61,8 +59,7 @@ public class SpeedBoostExtTests : BaseTests
     }
 
     [Fact]
-    [Trait("Category","speedBoost")]
-    public void jabsSpeedBoost_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();

@@ -6,7 +6,7 @@ namespace JMZ.Rmmz.Data.Models.db.core;
 /// <summary>
 /// A data model representing the base properties for any usable item or skill.
 /// </summary>
-public class RPG_UsableItem : RPG_BaseItem
+public abstract class RPG_UsableItem : RPG_BaseItem
 {
     /// <summary>
     /// The animation id to execute.
