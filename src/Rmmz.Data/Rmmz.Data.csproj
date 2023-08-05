@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>JMZ.Rmmz.Data</RootNamespace>
-  </PropertyGroup>
-
+    <PropertyGroup>
+        <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
+        <RootNamespace>$(SolutionNamespace).Rmmz.Data</RootNamespace>
+    </PropertyGroup>
 </Project>

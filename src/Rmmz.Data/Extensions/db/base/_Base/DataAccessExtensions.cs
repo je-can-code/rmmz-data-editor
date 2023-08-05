@@ -15,10 +15,10 @@ public static class DataAccessExtensions
     public static bool HasBooleanTag(this RPG_Base @base, string tagName)
     {
         // grab the note data to scan.
-        var tags = @base.NoteData();
+        var tags = @base.NoteDataByTagName(tagName);
 
         // check if we have the tag.
-        var hasBooleanTag = tags.Any(tag => tag.Name == tagName);
+        var hasBooleanTag = tags.Any();
 
         // return what we found.
         return hasBooleanTag;

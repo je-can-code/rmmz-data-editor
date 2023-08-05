@@ -3,12 +3,20 @@
         <EnableWindowsTargeting>true</EnableWindowsTargeting>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <TargetFramework>net7.0-windows</TargetFramework>
         <LangVersion>latest</LangVersion>
+
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+
+        <SolutionNamespace>JMZ</SolutionNamespace>
+        
+        <UITargetFramework>net7.0-windows</UITargetFramework>
+        <LibraryTargetFramework>net7.0</LibraryTargetFramework>
     </PropertyGroup>
     
     <PropertyGroup>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>        
+        <Log4NetVersion>2.0.15</Log4NetVersion>
+        <NewtonsoftJsonVersion>13.0.1</NewtonsoftJsonVersion>
+        <MicrosoftExtensionsVersion>7.0.0</MicrosoftExtensionsVersion>
     </PropertyGroup>
 </Project>

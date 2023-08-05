@@ -1,4 +1,4 @@
-﻿using JMZ.Rmmz.Data.Extensions.JABS.implementations._Weapon.CoreData;
+﻿using JMZ.JABS.Data.Extensions.implementations._Weapon.CoreData;
 using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.Dashboard.Boards;

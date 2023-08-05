@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
+    <RootNamespace>$(SolutionNamespace).Base.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
+    <ProjectReference Include="..\..\src\JABS.Data\JABS.Data.csproj" />
+  </ItemGroup>
+</Project>

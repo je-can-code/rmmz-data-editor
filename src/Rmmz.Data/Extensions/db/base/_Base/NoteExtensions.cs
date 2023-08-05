@@ -14,7 +14,7 @@ public static class NoteExtensions
     /// <summary>
     /// Updates all tags that match the given regex with the new value.
     /// </summary>
-    internal static void UpdateNoteData(this RPG_Base @base, string structure, string replacement)
+    public static void UpdateNoteData(this RPG_Base @base, string structure, string replacement)
     {
         // We don't start with a match.
         var foundMatch = false;
@@ -56,7 +56,7 @@ public static class NoteExtensions
     /// <summary>
     /// Adds a new tag as a full string to the note.
     /// </summary>
-    internal static void AddNoteData(this RPG_Base @base, string addition)
+    public static void AddNoteData(this RPG_Base @base, string addition)
     {
         // add the new data between two new lines.
         @base.note += $"\n{addition}\n";
@@ -68,7 +68,7 @@ public static class NoteExtensions
     /// <summary>
     /// Removes all instances of a tag that match the given regex.
     /// </summary>
-    internal static void RemoveNoteData(this RPG_Base @base, string structure)
+    public static void RemoveNoteData(this RPG_Base @base, string structure)
     {
         // remove the note by replacing it with an empty string.
         @base.UpdateNoteData(structure, string.Empty);
@@ -78,10 +78,24 @@ public static class NoteExtensions
     }
 
     /// <summary>
+    /// Gets all <see cref="NoteTag"/>s from this database object that match the given tag name.
+    /// </summary>
+    internal static List<NoteTag> NoteDataByTagName(this RPG_Base @base, string tagName)
+    {
+        // grab the note data to scan.
+        var tags = @base.NoteData();
+
+        // filter down to the tags we care about.
+        return tags
+            .Where(tag => tag.Name == tagName)
+            .ToList();
+    }
+
+    /// <summary>
     /// Manually cleans up any excess new lines as a result of modifying the note field.
     /// This is a destructive procedure against the note field.
     /// </summary>
-    internal static void CleanupNoteData(this RPG_Base @base)
+    private static void CleanupNoteData(this RPG_Base @base)
     {
         // while we have duplicate newlines...
         while (@base.note.Contains("\n\n"))
@@ -108,22 +122,8 @@ public static class NoteExtensions
     /// <summary>
     /// Converts the note object on this database data into a <see cref="List{NoteTag}"/>.
     /// </summary>
-    internal static List<NoteTag> NoteData(this RPG_Base @base)
+    private static IEnumerable<NoteTag> NoteData(this RPG_Base @base)
     {
         return TagService.translateTags(@base.note);
-    }
-
-    /// <summary>
-    /// Gets all <see cref="NoteTag"/>s from this database object that match the given tag name.
-    /// </summary>
-    internal static List<NoteTag> NoteDataByTagName(this RPG_Base @base, string tagName)
-    {
-        // grab the note data to scan.
-        var tags = @base.NoteData();
-
-        // filter down to the tags we care about.
-        return tags
-            .Where(tag => tag.Name == tagName)
-            .ToList();
     }
 }

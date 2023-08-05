@@ -3,7 +3,7 @@ namespace JMZ.Rmmz.Data.Tags;
 /// <summary>
 /// An abstract class representing the various data points that make up structure for tag data.
 /// </summary>
-internal abstract class AbstractTag
+public abstract class AbstractTag
 {
     private const string NO_DESCRIPTION = "A description for this tag has yet to be defined.";
 
@@ -89,7 +89,13 @@ internal abstract class AbstractTag
     /// </summary>
     public string Regex { get; }
     
+    /// <summary>
+    /// A singular description for the tooltips to define what the function of this tag is.
+    /// </summary>
     public string Description { get; }
 
+    /// <summary>
+    /// A multi-description for when a single regex maps to multiple fields on the UI.
+    /// </summary>
     public string[] Descriptions { get; } = { };
 }

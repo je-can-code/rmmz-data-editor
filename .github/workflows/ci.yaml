@@ -19,9 +19,7 @@ jobs:
     
     # The environment variables that are used throughout this step.
     env:
-      SOLUTION_PATH: ./J-EmZee.sln
       APP_PROJECT_PATH: ./src/Dashboard/Dashboard.csproj
-      TEST_PROJECT_PATH: ./test/Rmmz.Data/Rmmz.Data.Tests.csproj
       ARTIFACT_PATH: ./out
       ARTIFACT_NAME: artifact
       ARTIFACT_FILE: artifact.zip

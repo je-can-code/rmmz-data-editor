@@ -3,7 +3,7 @@ namespace JMZ.Rmmz.Data.Tags;
 /// <summary>
 /// An implementation class including constructors for building conventionalized tag data.
 /// </summary>
-internal class Tag : AbstractTag
+public class Tag : AbstractTag
 {
     #region constructors
     /// <summary>
@@ -15,7 +15,7 @@ internal class Tag : AbstractTag
     }
     
     /// <summary>
-    /// Constructor for tags that use a regex to capture their value.
+    /// Constructor for tags that use a regex to capture their value(s).
     /// </summary>
     /// <param name="name">The name of this tag as a string.</param>
     /// <param name="regex">The regex of this tag.</param>
@@ -24,7 +24,7 @@ internal class Tag : AbstractTag
     }
     
     /// <summary>
-    /// Constructor for tags that use a regex to capture their value.
+    /// Constructor for tags that use a regex to capture their value(s), but with a description.
     /// </summary>
     /// <param name="name">The name of this tag as a string.</param>
     /// <param name="regex">The regex of this tag.</param>
@@ -34,7 +34,7 @@ internal class Tag : AbstractTag
     }
 
     /// <summary>
-    /// Constructor for tags that use a regex to capture their value.
+    /// Constructor for tags that use a regex to capture their value(s), but with multiple descriptions
     /// </summary>
     /// <param name="name">The name of this tag as a string.</param>
     /// <param name="regex">The regex of this tag.</param>
@@ -48,7 +48,7 @@ internal class Tag : AbstractTag
     /// Builds a tag with this tag's name as the boolean value.
     /// </summary>
     /// <returns>The output that will show up in the RMMZ note field.</returns>
-    internal string ToBooleanTag()
+    public string ToBooleanTag()
     {
         return $"<{this.Name}>";
     }
@@ -58,7 +58,7 @@ internal class Tag : AbstractTag
     /// </summary>
     /// <param name="parameter">The parameter to fill the value with.</param>
     /// <returns>The output that will show up in the RMMZ note field.</returns>
-    internal string ToValueTag(string parameter)
+    public string ToValueTag(string parameter)
     {
         return $"<{this.Name}:{parameter}>";
     }
@@ -68,7 +68,7 @@ internal class Tag : AbstractTag
     /// </summary>
     /// <param name="parameters">The 1+ parameters to fill the array with.</param>
     /// <returns>The output that will show up in the RMMZ note field.</returns>
-    internal string ToArrayTag(params string[] parameters)
+    public string ToArrayTag(params string[] parameters)
     {
         return $"<{this.Name}:[{string.Join(',', parameters)}]>";
     }
