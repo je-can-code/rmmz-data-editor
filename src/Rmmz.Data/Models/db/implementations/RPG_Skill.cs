@@ -1,13 +1,12 @@
-using Rmmz.Data.Models.db.core;
+using JMZ.Rmmz.Data.Models.db.core;
 
-namespace Rmmz.Data.Models.db.implementations;
+namespace JMZ.Rmmz.Data.Models.db.implementations;
 
 /// <summary>
 /// A data model representing a single skill from the database.
 /// </summary>
-public partial class RPG_Skill : RPG_UsableItem
+public class RPG_Skill : RPG_UsableItem
 {
-    #region properties
     /// <summary>
     /// The first line of the message for this skill.
     /// </summary>
@@ -49,5 +48,4 @@ public partial class RPG_Skill : RPG_UsableItem
     /// The amount of TP required to execute this skill.
     /// </summary>
     public int tpCost { get; set; } = 0;
-    #endregion properties
 }

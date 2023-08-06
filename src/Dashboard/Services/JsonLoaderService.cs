@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using Rmmz.Data.Models.JABS.implementations;
+﻿using JMZ.Rmmz.Data.Models.db.implementations;
+using Newtonsoft.Json;
 
-namespace Dashboard.Services;
+namespace JMZ.Dashboard.Services;
 
 /// <summary>
 /// A utility class for loading JSON data files from a given location

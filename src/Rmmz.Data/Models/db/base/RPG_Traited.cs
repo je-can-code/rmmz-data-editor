@@ -1,11 +1,11 @@
-using Rmmz.Data.Models.db._data;
+using JMZ.Rmmz.Data.Models.db._data;
 
-namespace Rmmz.Data.Models.db.@base;
+namespace JMZ.Rmmz.Data.Models.db.@base;
 
 /// <summary>
 /// A data model representing a base-level item from the database- but with traits!
 /// </summary>
-public class RPG_Traited : RPG_BaseItem
+public abstract class RPG_Traited : RPG_BaseItem
 {
     /// <summary>
     /// A collection of all traits this item possesses.

@@ -1,6 +1,7 @@
-﻿using Rmmz.Data.Models.JABS.implementations;
+﻿using JMZ.JABS.Data.Extensions.implementations._Weapon.CoreData;
+using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace Dashboard.Boards;
+namespace JMZ.Dashboard.Boards;
 
 public partial class WeaponsBoard : Form
 {
@@ -70,7 +71,7 @@ public partial class WeaponsBoard : Form
         var skillId = this.num_weaponSkillId.Value;
         
         // update the underlying data.
-        weapon.updateSkillId(skillId);
+        weapon.UpdateJabsSkillId(skillId);
 
         // update the running list.
         this.updateWeaponData(weapon, index);
@@ -90,7 +91,7 @@ public partial class WeaponsBoard : Form
         this.textBox_weaponName.Text = selectedItem.name;
         this.label_weaponIdValue.Text = selectedItem.id.ToString();
 
-        this.num_weaponSkillId.Value = selectedItem.jabsSkillId;
+        this.num_weaponSkillId.Value = selectedItem.GetJabsSkillId();
 
         // update other data in form here.
     }

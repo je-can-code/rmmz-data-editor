@@ -1,6 +1,6 @@
-using Rmmz.Data.Models.db.@base;
+using JMZ.Rmmz.Data.Models.db.@base;
 
-namespace Rmmz.Data.Models.db.core;
+namespace JMZ.Rmmz.Data.Models.db.core;
 
 /// <summary>
 /// A data model containing common properties found in both weapons and armor.

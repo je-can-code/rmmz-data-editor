@@ -1,6 +1,6 @@
-﻿using Rmmz.Data.Models.db.implementations;
+﻿using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace Dashboard.Boards
+namespace JMZ.Dashboard.Boards
 {
     partial class WeaponsBoard
     {

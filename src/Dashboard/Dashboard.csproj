@@ -1,26 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0-windows</TargetFramework>
+        <TargetFramework>$(UITargetFramework)</TargetFramework>
+        <RootNamespace>$(SolutionNamespace).Dashboard</RootNamespace>
+
         <UseWindowsForms>true</UseWindowsForms>
+        <OutputType>WinExe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="log4net" Version="2.0.15" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+        <!-- TODO: remove this and add some test coverage to the winforms stuff when you learn how. -->
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Boards\SkillsBoard.cs">
-        <SubType>Form</SubType>
-        </Compile>
+        <PackageReference Include="log4net" Version="$(Log4NetVersion)" />
+        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
+        <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
+
+        <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
+        <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
     </ItemGroup>
 
 </Project>
