@@ -16,7 +16,7 @@ public class HitboxExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsHitbox_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         var expected = Hitbox.None;
@@ -30,7 +30,7 @@ public class HitboxExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsHitbox_whenAdded_returnsValue()
+    public void whenAdded_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RandomHitbox();
@@ -46,7 +46,7 @@ public class HitboxExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsHitbox_whenUpdated_returnsValue()
+    public void whenUpdated_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RandomHitbox();
@@ -60,7 +60,7 @@ public class HitboxExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsHitbox_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var expected = Hitbox.None;

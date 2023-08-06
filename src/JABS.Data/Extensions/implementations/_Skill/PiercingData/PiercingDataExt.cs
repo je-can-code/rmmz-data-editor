@@ -28,14 +28,11 @@ internal static class PiercingDataExt
         decimal newPiercingCount,
         decimal newPiercingDelay)
     {
-        // grab the current pose suffix for this skill.
-        var piercingCount = skill.GetJabsPiercingCount();
-
-        // determine if this skill is missing a pose suffix.
-        var missingPiercingCount = piercingCount == decimal.Zero;
+        // determine if this skill is missing piercing data.
+        var isMissing = skill.GetJabsPiercingCount() == decimal.Zero;
 
         // check if there is no value and was passed a no-data value.
-        if (missingPiercingCount && newPiercingCount == decimal.Zero)
+        if (isMissing && newPiercingCount == decimal.Zero)
         {
             // do nothing.
             return;
@@ -55,8 +52,18 @@ internal static class PiercingDataExt
         var updatedNote = Tags.Pierce.ToArrayTag(
             newPiercingCount.ToString(),
             newPiercingDelay.ToString());
-        
-        // update the actual note.
-        skill.UpdateNoteData(Tags.Pierce.Regex, updatedNote);
+
+        // check if the value was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            skill.AddNoteData(updatedNote);
+        }
+        // the value just needs to be updated.
+        else
+        {
+            // update the actual note.
+            skill.UpdateNoteData(Tags.Pierce.Regex, updatedNote);   
+        }
     }
 }

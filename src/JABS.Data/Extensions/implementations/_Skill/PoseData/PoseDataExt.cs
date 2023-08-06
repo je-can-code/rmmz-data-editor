@@ -16,7 +16,7 @@ internal static class PoseDataExt
         if (!poseData.Any())
         {
             // return an empty set.
-            return new();
+            return new(string.Empty);
         }
         
         // the actual suffix appended to the base character sheet name.
@@ -35,17 +35,14 @@ internal static class PoseDataExt
     internal static void UpdateJabsPoseData(
         this RPG_Skill skill,
         string newPoseSuffix,
-        decimal newPoseIndex,
-        decimal newPoseDuration)
+        decimal newPoseIndex = 0,
+        decimal newPoseDuration = 0)
     {
-        // grab the current pose suffix for this skill.
-        var poseSuffix = skill.GetJabsPoseSuffix();
+        // check if we currently are missing a primary value.
+        var isMissing = skill.GetJabsPoseSuffix() == string.Empty;
 
-        // determine if this skill is missing a pose suffix.
-        var missingPoseSuffix = poseSuffix == string.Empty;
-
-        // check if there is no skill and was passed a no-combo-skill value.
-        if (missingPoseSuffix && newPoseSuffix == string.Empty)
+        // check if there is no value and was passed a non-value.
+        if (isMissing && newPoseSuffix == string.Empty)
         {
             // do nothing.
             return;
@@ -65,8 +62,18 @@ internal static class PoseDataExt
             newPoseSuffix,
             newPoseIndex.ToString(),
             newPoseDuration.ToString());
-        
-        // update the actual note.
-        skill.UpdateNoteData(Tags.Pose.Regex, updatedNote);
+
+        // check if the value was missing previously.
+        if (isMissing)
+        {
+            // add the new tag to the note.
+            skill.AddNoteData(updatedNote);
+        }
+        // the value just needs to be updated.
+        else
+        {
+            // update the actual note.
+            skill.UpdateNoteData(Tags.Pose.Regex, updatedNote);
+        }
     }
 }

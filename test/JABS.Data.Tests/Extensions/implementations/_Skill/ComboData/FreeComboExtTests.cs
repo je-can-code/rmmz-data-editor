@@ -1,14 +1,14 @@
 ﻿using JMZ.Base.Tests;
-using JMZ.JABS.Data.Extensions.implementations._Skill.CoreData;
+using JMZ.JABS.Data.Extensions.implementations._Skill.ComboData;
 using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.CoreData;
+namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.ComboData;
 
-public class HideFromQuickMenuExtTests : BaseTests
+public class FreeComboExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
     
-    public HideFromQuickMenuExtTests()
+    public FreeComboExtTests()
     {
         modelUnderTest = new();
     }
@@ -20,7 +20,7 @@ public class HideFromQuickMenuExtTests : BaseTests
         modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeFalse();
@@ -30,12 +30,12 @@ public class HideFromQuickMenuExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.HideFromQuickMenuTag();
+        var fakeTag = this.fdg.FreeComboTag();
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeTrue();
@@ -47,11 +47,11 @@ public class HideFromQuickMenuExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        modelUnderTest.UpdateJabsHideFromQuickMenu(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsHideFromQuickMenu(expected);
+        modelUnderTest.UpdateJabsFreeCombo(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsFreeCombo(expected);
         
         // when
-        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeFalse();

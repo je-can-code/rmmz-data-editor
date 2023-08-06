@@ -174,9 +174,9 @@ partial class SkillsBoard
         num_radius.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
         num_radius.Location = new Point(83, 46);
         num_radius.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-        num_radius.Minimum = new decimal(new int[] { 1, 0, 0, -2147418112 });
+        num_radius.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         num_radius.Name = "num_radius";
-        num_radius.Size = new Size(48, 26);
+        num_radius.Size = new Size(96, 26);
         num_radius.TabIndex = 13;
         num_radius.Value = new decimal(new int[] { 15, 0, 0, 65536 });
         // 
@@ -187,8 +187,9 @@ partial class SkillsBoard
         num_proximity.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
         num_proximity.Location = new Point(83, 75);
         num_proximity.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+        num_proximity.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         num_proximity.Name = "num_proximity";
-        num_proximity.Size = new Size(45, 26);
+        num_proximity.Size = new Size(96, 26);
         num_proximity.TabIndex = 15;
         num_proximity.Value = new decimal(new int[] { 15, 0, 0, 65536 });
         // 

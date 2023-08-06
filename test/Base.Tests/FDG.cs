@@ -128,6 +128,9 @@ public class FDG
         return JabsTags.Hitbox.ToValueTag(tagValue);
     }
 
+    /// <summary>
+    /// Generates a radius tag with a given value, or a random value if none is provided.
+    /// </summary>
     public string RadiusTag(decimal? input = null)
     {
         var tagValue = input ?? RmmzDecimal();
@@ -135,31 +138,16 @@ public class FDG
         return builtTag;
     }
     
+    /// <summary>
+    /// Generates a proximity tag with a given value, or a random value if none is provided.
+    /// </summary>
     public string ProximityTag(decimal? input = null)
     {
         var tagValue = input ?? RmmzDecimal();
         var builtTag = JabsTags.Proximity.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
-    /// <summary>
-    /// Generates a actionId tag with a given value, or random value if none is provided.
-    /// </summary>
-    public string SkillExtensionIdsTag(IEnumerable<int>? input = null)
-    {
-        var tagValue = input ?? new List<int>
-        {
-            this.RmmzUNumber(),
-            this.RmmzUNumber(),
-            this.RmmzUNumber()
-        };
-        var stringValues = tagValue
-            .Select(value => value.ToString())
-            .ToArray();
-        var builtTag = ExtendTags.Extend.ToArrayTag(stringValues);
-        return builtTag;
-    }
-    
+
     /// <summary>
     /// Generates an AI skill exclusion tag.
     /// </summary>
@@ -176,6 +164,40 @@ public class FDG
         return JabsTags.GapCloser.ToBooleanTag();
     }
 
+    public string PoseDataTag()
+    {
+        var poseSuffix = "-atk";
+        var poseIndex = this.RmmzUNumber();
+        var poseDuration = this.RmmzUNumber();
+        var tag = JabsTags.Pose.ToArrayTag(poseSuffix, poseIndex.ToString(), poseDuration.ToString());
+        return tag;
+    }
+
+    public string PiercingDataTag(int? inputPierceCount = null, int? inputPierceDelay = null)
+    {
+        var pierceCount = inputPierceCount ?? this.RmmzUNumber();
+        var pierceDelay = inputPierceDelay ?? this.RmmzUNumber();
+        var tag = JabsTags.Pierce.ToArrayTag(pierceCount.ToString(), pierceDelay.ToString());
+        return tag;
+    }
+    
+    public string ComboDataTag(int? inputComboSkill = null, int? inputComboDelay = null)
+    {
+        var comboSkill = inputComboSkill ?? this.RmmzUNumber();
+        var ComboDelay = inputComboDelay ?? this.RmmzUNumber();
+        var tag = JabsTags.Combo.ToArrayTag(comboSkill.ToString(), ComboDelay.ToString());
+        return tag;
+    }
+
+    public string AiComboStarterTag()
+    {
+        return JabsTags.AiComboStarter.ToBooleanTag();
+    }
+
+    public string FreeComboTag()
+    {
+        return JabsTags.FreeCombo.ToBooleanTag();
+    }
     #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.

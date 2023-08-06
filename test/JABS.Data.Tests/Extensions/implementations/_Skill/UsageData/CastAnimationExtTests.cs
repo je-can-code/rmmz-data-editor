@@ -15,7 +15,7 @@ public class CastAnimationExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsCastAnimation_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
@@ -29,7 +29,7 @@ public class CastAnimationExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsCastAnimation_whenAdded_returnsValue()
+    public void whenAdded_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
@@ -45,7 +45,7 @@ public class CastAnimationExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsCastAnimation_whenUpdated_returnsValue()
+    public void whenUpdated_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
@@ -59,7 +59,7 @@ public class CastAnimationExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsCastAnimation_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var expected = decimal.Zero;

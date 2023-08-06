@@ -15,7 +15,7 @@ public class DirectTargetingExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsDirectTargeting_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         modelUnderTest.note = string.Empty;
@@ -28,7 +28,7 @@ public class DirectTargetingExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsDirectTargeting_whenAdded_returnsValue()
+    public void whenAdded_returnsValue()
     {
         // given
         var fakeTag = this.fdg.DirectTargetingTag();
@@ -43,7 +43,7 @@ public class DirectTargetingExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsDirectTargeting_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var expected = false;

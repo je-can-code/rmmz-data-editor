@@ -80,7 +80,7 @@ public partial class SkillsBoard : Form
         _toolTip.SetToolTip(this.num_poseIndex, JABS.Data.Models.Tags.Pose.Description);
         _toolTip.SetToolTip(this.num_poseDuration, JABS.Data.Models.Tags.Pose.Description);
     }
-    
+
     /// <summary>
     /// Binds the update of the various controls across this form.
     /// </summary>
@@ -93,7 +93,7 @@ public partial class SkillsBoard : Form
         this.ApplyUpdateEventsForComboData();
         this.ApplyUpdateEventsForPiercingData();
         this.ApplyUpdateEventsForPoseData();
-        
+
         this.listboxSkills.SelectedValueChanged += this.RefreshForm;
     }
 
@@ -165,7 +165,7 @@ public partial class SkillsBoard : Form
     }
 
     #region updates
-    
+
     /// <summary>
     /// Gets the currently selected item and also the index of that item.
     /// </summary>
@@ -254,7 +254,7 @@ public partial class SkillsBoard : Form
 
         // update the underlying note.
         skill.UpdateJabsPiercingData(piercingCount, piercingDelay);
-        
+
         // update the running list.
         this.UpdateSkillData(skill, index);
     }
@@ -472,7 +472,7 @@ public partial class SkillsBoard : Form
         this.listboxSkills.Refresh();
     }
     #endregion updates
-    
+
     /// <summary>
     /// Refreshes the form on-demand, repopulating all data points with the latest.
     /// </summary>

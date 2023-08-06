@@ -8,7 +8,7 @@ public static class FreeComboExt
 {
     public static bool HasJabsFreeCombo(this RPG_Skill skill)
     {
-        return skill.HasBooleanTag(Tags.Direct.Name);
+        return skill.HasBooleanTag(Tags.FreeCombo.Name);
     }
     
     public static void UpdateJabsFreeCombo(this RPG_Skill skill, bool freeCombo)

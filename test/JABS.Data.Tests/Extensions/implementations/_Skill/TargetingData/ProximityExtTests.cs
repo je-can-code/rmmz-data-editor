@@ -15,7 +15,7 @@ public class ProximityExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsProximity_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         var expected = -1;
@@ -29,7 +29,7 @@ public class ProximityExtTests : BaseTests
     }
     
     [Fact]
-    public void jabsProximity_whenAdded_returnsValue()
+    public void whenAdded_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
@@ -45,7 +45,7 @@ public class ProximityExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsProximity_whenUpdated_returnsValue()
+    public void whenUpdated_returnsValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzDecimal();
@@ -59,7 +59,7 @@ public class ProximityExtTests : BaseTests
     }
 
     [Fact]
-    public void jabsProximity_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var expected = -1;

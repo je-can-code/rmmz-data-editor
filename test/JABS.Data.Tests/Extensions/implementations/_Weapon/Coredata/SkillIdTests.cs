@@ -15,7 +15,7 @@ public class SkillIdTests : BaseTests
     }
     
     [Fact]
-    public void jabsSkillId_whenUnset_returnsDefault()
+    public void whenUnset_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
@@ -29,7 +29,7 @@ public class SkillIdTests : BaseTests
     }
     
     [Fact]
-    public void jabsSkillId_whenSetExplicitly_explicitValueIsReturned()
+    public void whenSetExplicitly_explicitValueIsReturned()
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
@@ -45,7 +45,7 @@ public class SkillIdTests : BaseTests
     }
 
     [Fact]
-    public void jabsSkillId_whenUpdated_returnsUpdatedValue()
+    public void whenUpdated_returnsUpdatedValue()
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
@@ -59,7 +59,7 @@ public class SkillIdTests : BaseTests
     }
 
     [Fact]
-    public void jabsSkillId_whenRemoved_returnsDefault()
+    public void whenRemoved_returnsDefault()
     {
         // given
         var expected = decimal.Zero;

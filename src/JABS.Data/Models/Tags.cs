@@ -41,9 +41,9 @@ public static class Tags
         // skills.
         HideFromQuickMenu = new("hideFromJabsMenu");
 
-        Pose = new("poseSuffix", @"<poseSuffix:[ ]?(\[[-_]?\w+,[ ]?\d+,[ ]?\d+])>");
+        Pose = pose();
 
-        Pierce = new("pierce");
+        Pierce = pierce();
 
         Direct = new("direct");
         Radius = radius();
@@ -85,7 +85,7 @@ public static class Tags
             "The radius or range of this skill.\n" +
             "The radius works in combination with the hitbox to determine the collision vector of this skill.\n" +
             "\n" +
-            "Set this to -0.1 to remove the tag.";
+            "When this is set to a negative value, the tag will be removed.";
         return new(tag, regex, description);
     }
 
@@ -99,7 +99,9 @@ public static class Tags
             "from which a target may be considered- priority to the closest targets.\n" +
             "\n" +
             "For AI-controlled characters, the proximity defines the furthest they may execute this skill from-\n" +
-            "meaning if they are within this distance, no additional movement will be required to perform this skill.";
+            "meaning if they are within this distance, no additional movement will be required to perform this skill." +
+            "\n" +
+            "When this is set to a negative value, the tag will be removed.";
         return new(tag, regex, description);
     }
     
@@ -133,6 +135,32 @@ public static class Tags
         var delayDescription =
             "The combo delay represents the number of frames the user must wait before executing the combo skill.";
         return new(tag, regex, skillDescription, delayDescription);
+    }
+
+    private static Tag pierce()
+    {
+        var tag = "pierce";
+        var regex = @"<pierce:[ ]?(\[\d+,[ ]?\d+])>";
+        var countDescription =
+            "The total number of times this skill can connect with targets before expiring.";
+        var delayDescription =
+            "The number of frames that must pass before this skill can pierce the same target again.";
+        return new(tag, regex, countDescription, delayDescription);
+    }
+
+    private static Tag pose()
+    {
+        var tag = "poseSuffix";
+        var regex = @"<poseSuffix:[ ]?(\[[-_]?\w+,[ ]?\d+,[ ]?\d+])>";
+        var suffixDescription =
+            "The suffix that will be appended to the character's default spritesheet to determine the pose's spritesheet.\n" +
+            "For example, if the base sheet is 'hero.png', and the suffix is '-atk', then the sheet that will be used\n" +
+            "is 'hero-atk.png'.";
+        var indexDescription =
+            "The index of the spritesheet to use.\n" +
+            "Poses were designed to be a part of larger spritesheet, and is not compatible with single-character sheets.";
+        var durationDescription = "The number of frames that will be spent before returning to the original pose";
+        return new(tag, regex, suffixDescription, indexDescription, durationDescription);
     }
 
     private static Tag speedBoost()
