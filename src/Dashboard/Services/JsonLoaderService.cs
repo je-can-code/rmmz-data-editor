@@ -1,4 +1,5 @@
 ﻿using JMZ.Rmmz.Data.Models.db.implementations;
+using JMZ.Sdp.Data.Models;
 using Newtonsoft.Json;
 
 namespace JMZ.Dashboard.Services;
@@ -44,6 +45,26 @@ public static class JsonLoaderService
 
         // parse the json.
         var parsed = JsonConvert.DeserializeObject<List<RPG_Skill>>(rawJson) ?? new();
+
+        // return what we found.
+        return parsed;
+    }
+
+    /// <summary>
+    /// Loads the SDPs from the json found in the of the current project path directory.
+    /// </summary>
+    /// <param name="path">The current project path directory.</param>
+    /// <returns>The converted Sdps.</returns>
+    public static List<StatDistributionPanel> LoadSdps(string path)
+    {
+        // build the path.
+        var fullPath = $"{path}/config.sdp.json";
+
+        // read the file as json.
+        var rawJson = File.ReadAllText(fullPath);
+
+        // parse the json.
+        var parsed = JsonConvert.DeserializeObject<List<StatDistributionPanel>>(rawJson) ?? new();
 
         // return what we found.
         return parsed;

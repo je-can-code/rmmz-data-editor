@@ -58,7 +58,7 @@ public partial class WeaponsBoard : Form
         var name = this.textBox_weaponName.Text;
 
         weapon.name = name;
-        
+
         this.updateWeaponData(weapon, index);
     }
 
@@ -69,7 +69,7 @@ public partial class WeaponsBoard : Form
 
         // grab the current value in the input.
         var skillId = this.num_weaponSkillId.Value;
-        
+
         // update the underlying data.
         weapon.UpdateJabsSkillId(skillId);
 

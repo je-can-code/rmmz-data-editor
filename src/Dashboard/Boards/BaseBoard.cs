@@ -5,15 +5,27 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard : Form
 {
     private readonly WeaponsBoard weaponsBoard;
+    
     private readonly SkillsBoard skillsBoard;
+    
+    private readonly SdpBoard sdpBoard;
 
-    private string projectPath = @"D:\dev\gaming\ca\chef-adventure\data";//String.Empty;
+    private string projectPath = @"D:\dev\gaming\rmmz-plugins\project\data";
 
     public BaseBoard()
     {
         InitializeComponent();
+
         this.weaponsBoard = new();
         this.skillsBoard = new();
+        this.sdpBoard = new();
+
+        this.SynchronizeProjectDataPath();
+    }
+    
+    private void SynchronizeProjectDataPath()
+    {
+        this.label_dataPath.Text = this.projectPath;
     }
 
     private void ShowBaseBoard(object? sender, FormClosingEventArgs e)
@@ -31,6 +43,7 @@ public partial class BaseBoard : Form
     {
         this.weaponsBoard.Hide();
         this.skillsBoard.Hide();
+        this.sdpBoard.Hide();
     }
 
     private void button_pickDataPath_Click(object sender, EventArgs e)
@@ -44,6 +57,7 @@ public partial class BaseBoard : Form
         }
 
         this.projectPath = folderDialog_dataPath.SelectedPath;
+        this.SynchronizeProjectDataPath();
     }
 
     private void button_weapons_Click(object sender, EventArgs e)
@@ -84,6 +98,29 @@ public partial class BaseBoard : Form
         {
             var updated = this.skillsBoard.Skills();
             await JsonSavingService.SaveSkills(this.projectPath, updated);
+            MessageBox.Show("Saving has completed successfully.");
+        }
+        else
+        {
+            MessageBox.Show("Edits were not lost. Hit the 'save skills' button again to be prompted again.");
+        }
+    }
+
+    private void button_sdps_Click(object sender, EventArgs e)
+    {
+        var dataList = JsonLoaderService.LoadSdps(this.projectPath);
+        this.sdpBoard.FormClosing += this.ShowBaseBoard;
+        this.sdpBoard.Show();
+        this.sdpBoard.Setup(dataList);
+    }
+
+    private async void button_saveSdps_Click(object sender, EventArgs e)
+    {
+        var dialogResult = MessageBox.Show("Are you sure you want to save SDPs?");
+        if (dialogResult == DialogResult.OK)
+        {
+            var updated = this.sdpBoard.Sdps();
+            await JsonSavingService.SaveSdps(this.projectPath, updated);
             MessageBox.Show("Saving has completed successfully.");
         }
         else
