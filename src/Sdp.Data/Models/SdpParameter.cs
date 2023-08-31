@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using JMZ.Sdp.Data.Services;
 
 namespace JMZ.Sdp.Data.Models;
 

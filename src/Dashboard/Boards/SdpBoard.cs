@@ -24,15 +24,21 @@ public partial class SdpBoard : Form
     /// </summary>
     private void InitializeDataControls()
     {
-        // setup the main list box of skills.
+        // setup the main list box of SDPs.
         this.listBox_Sdps.DisplayMember = "Name";
         this.listBox_Sdps.ValueMember = "Key";
 
+        // setup the listing of parameters per panel.
         this.listBox_parameters.DisplayMember = "ParameterName";
         this.listBox_parameters.ValueMember = "ParameterId";
 
+        // setup the listing of rewards per panel.
         this.listBox_rewards.DisplayMember = "RewardName";
         this.listBox_rewards.ValueMember = "Effect";
+
+        // associate the dropdowns with their appropriate data types.
+        this.comboBox_parameter.DataSource = Enum.GetValues(typeof(LongParameter));
+        this.comboBox_rarity.DataSource = Enum.GetValues(typeof(Rarity));
     }
 
     /// <summary>
@@ -61,8 +67,6 @@ public partial class SdpBoard : Form
         this.listBox_Sdps.SelectedIndexChanged += this.RefreshForm;
         this.listBox_parameters.SelectedIndexChanged += this.RefreshParameters;
         this.listBox_rewards.SelectedIndexChanged += this.RefreshRewards;
-
-        this.comboBox_parameter.DataSource = Enum.GetValues(typeof(LongParameter));
     }
 
     private void ApplyUpdateEventsForCoreData()
@@ -71,6 +75,7 @@ public partial class SdpBoard : Form
         this.textBox_name.TextChanged += this.UpdateSdpName;
         this.num_iconIndex.ValueChanged += this.UpdateIconIndex;
         this.checkBox_unlockedByDefault.CheckedChanged += this.UpdateUnlockedByDefault;
+        this.comboBox_rarity.SelectedIndexChanged += this.UpdateRarity;
     }
 
     private void ApplyUpdateEventsForCostData()
@@ -165,6 +170,21 @@ public partial class SdpBoard : Form
         // update with the new value.
         sdp.Unlocked = this.checkBox_unlockedByDefault.Checked;
     }
+
+    private void UpdateRarity(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var sdp = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
+
+        // don't update if it was null.
+        if (sdp is null) return;
+
+        // update with the new value.
+        var rarity = (Rarity)this.comboBox_rarity.SelectedItem;
+
+        // cast the rarity as its underlying color index form.
+        sdp.Rarity = (int)rarity;
+    }
     #endregion
 
     #region update cost data
@@ -243,7 +263,6 @@ public partial class SdpBoard : Form
         sdp.TopFlavorText = this.textBox_description.Text;
     }
     #endregion
-
     #endregion
 
     #region update panel-parameter-level data
@@ -299,7 +318,6 @@ public partial class SdpBoard : Form
         this.SyncParameterListNames();
     }
 
-    // TODO: finish implementing parameterId updates with the combo box and an enum.
     private void UpdateParameterType(object? sender, EventArgs e)
     {
         // determine the selected item.
@@ -390,22 +408,33 @@ public partial class SdpBoard : Form
     private void _RefreshForm()
     {
         var selectedItem = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
-
         if (selectedItem != null)
         {
+            // core data
             this.textBox_key.Text = selectedItem.Key;
             this.textBox_name.Text = selectedItem.Name;
             this.num_iconIndex.Value = selectedItem.IconIndex;
-            this.textBox_description.Text = selectedItem.Description;
-            this.textBox_flavorText.Text = selectedItem.TopFlavorText;
+            this.checkBox_unlockedByDefault.Checked = selectedItem.Unlocked;
+            var rarityName = ((Rarity)selectedItem.Rarity).ToString();
+            var rarityIndex = this.comboBox_rarity.FindString(rarityName);
+            if (rarityIndex != -1)
+            {
+                this.comboBox_rarity.SelectedIndex = rarityIndex;
+            }
 
+            // cost data
+            this.num_maxRank.Value = selectedItem.MaxRank;
             this.num_baseCost.Value = selectedItem.BaseCost;
             this.num_flatGrowth.Value = selectedItem.FlatGrowthCost;
             this.num_multGrowth.Value = selectedItem.MultGrowthCost;
+
+            // description data
+            this.textBox_description.Text = selectedItem.Description;
+            this.textBox_flavorText.Text = selectedItem.TopFlavorText;
         }
 
-        this.RenderRewards();
         this.RenderParameters();
+        this.RenderRewards();
     }
 
     #region parameters
