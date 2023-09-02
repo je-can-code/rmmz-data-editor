@@ -260,7 +260,7 @@ public partial class SdpBoard : Form
         if (sdp is null) return;
 
         // update the name with the new value.
-        sdp.TopFlavorText = this.textBox_description.Text;
+        sdp.Description = this.textBox_description.Text;
     }
     #endregion
     #endregion
