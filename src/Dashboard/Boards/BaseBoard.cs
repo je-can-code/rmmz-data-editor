@@ -5,12 +5,14 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard : Form
 {
     private readonly WeaponsBoard weaponsBoard;
-    
+
     private readonly SkillsBoard skillsBoard;
-    
+
     private readonly SdpBoard sdpBoard;
 
     private string projectPath = @"D:\dev\gaming\rmmz-plugins\project\data";
+
+    private bool skipSdpSavePopup = false;
 
     public BaseBoard()
     {
@@ -22,7 +24,7 @@ public partial class BaseBoard : Form
 
         this.SynchronizeProjectDataPath();
     }
-    
+
     private void SynchronizeProjectDataPath()
     {
         this.label_dataPath.Text = this.projectPath;
@@ -116,8 +118,17 @@ public partial class BaseBoard : Form
 
     private async void button_saveSdps_Click(object sender, EventArgs e)
     {
-        var dialogResult = MessageBox.Show("Are you sure you want to save SDPs?");
-        if (dialogResult == DialogResult.OK)
+        if (this.skipSdpSavePopup)
+        {
+            await this.saveSdps();
+            return;
+        }
+
+        var dialogResult = MessageBox.Show(
+            "Are you sure you want to save SDPs?",
+            "Save SDP Configuration Data",
+            MessageBoxButtons.YesNo);
+        if (dialogResult == DialogResult.Yes)
         {
             var updated = this.sdpBoard.Sdps();
             await JsonSavingService.SaveSdps(this.projectPath, updated);
@@ -127,5 +138,21 @@ public partial class BaseBoard : Form
         {
             MessageBox.Show("Edits were not lost. Hit the 'save skills' button again to be prompted again.");
         }
+    }
+
+    private async Task saveSdps()
+    {
+        var updated = this.sdpBoard.Sdps();
+        await JsonSavingService.SaveSdps(this.projectPath, updated);
+        this.statusStrip_base.Text = "Updated SDP configuration data.";
+    }
+
+
+    private void checkBox_sdpSkipSavePopup_CheckedChanged(object sender, EventArgs e)
+    {
+        this.skipSdpSavePopup = this.checkBox_sdpSkipSavePopup.Checked;
+        this.checkBox_sdpSkipSavePopup.Text = this.checkBox_sdpSkipSavePopup.Checked
+            ? "Just doing it ✅"
+            : "Using Save Popup";
     }
 }

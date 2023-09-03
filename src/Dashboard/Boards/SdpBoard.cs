@@ -168,7 +168,7 @@ public partial class SdpBoard : Form
         if (sdp is null) return;
 
         // update with the new value.
-        sdp.Unlocked = this.checkBox_unlockedByDefault.Checked;
+        sdp.UnlockedByDefault = this.checkBox_unlockedByDefault.Checked;
     }
 
     private void UpdateRarity(object? sender, EventArgs e)
@@ -414,7 +414,7 @@ public partial class SdpBoard : Form
             this.textBox_key.Text = selectedItem.Key;
             this.textBox_name.Text = selectedItem.Name;
             this.num_iconIndex.Value = selectedItem.IconIndex;
-            this.checkBox_unlockedByDefault.Checked = selectedItem.Unlocked;
+            this.checkBox_unlockedByDefault.Checked = selectedItem.UnlockedByDefault;
             var rarityName = ((Rarity)selectedItem.Rarity).ToString();
             var rarityIndex = this.comboBox_rarity.FindString(rarityName);
             if (rarityIndex != -1)

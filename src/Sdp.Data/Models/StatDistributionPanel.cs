@@ -25,7 +25,7 @@ public class StatDistributionPanel
     /// <summary>
     /// Whether or not this panel comes unlocked when first acquired.
     /// </summary>
-    public bool Unlocked { get; set; } = false;
+    public bool UnlockedByDefault { get; set; } = false;
 
     /// <summary>
     /// The description of this panel that will show up in the help window in the SDP scene.
