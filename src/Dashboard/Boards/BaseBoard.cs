@@ -17,6 +17,10 @@ public partial class BaseBoard : Form
     public BaseBoard()
     {
         InitializeComponent();
+        this.StartPosition = FormStartPosition.Manual;
+        var x = Screen.PrimaryScreen!.Bounds.Width / 2 - this.Width;
+        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height;
+        this.Location = new(x, y);
 
         this.weaponsBoard = new();
         this.skillsBoard = new();
@@ -110,14 +114,54 @@ public partial class BaseBoard : Form
 
     private void button_sdps_Click(object sender, EventArgs e)
     {
-        var dataList = JsonLoaderService.LoadSdps(this.projectPath);
         this.sdpBoard.FormClosing += this.ShowBaseBoard;
-        this.sdpBoard.Show();
+
+        var configPath = JsonLoaderService.sdpDataPath(this.projectPath);
+        var isConfigPresent = JsonLoaderService.IsConfigPresent(configPath);
+        if (!isConfigPresent)
+        {
+            var dialogResult = MessageBox.Show(
+                "No SDP configuration was detected. Create a new config?",
+                "SDP Configuration Data Missing",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation);
+            if (dialogResult == DialogResult.Yes)
+            {
+                File.WriteAllText(configPath, "[]");
+                MessageBox.Show("Empty SDP configuration has been written.");
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Without SDP configuration data, you cannot modify the SDP configuration data.");
+                return;
+            }
+        }
+
+        var dataList = JsonLoaderService.LoadSdps(this.projectPath);
         this.sdpBoard.Setup(dataList);
+
+        var x = this.Right;
+        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height;
+        this.sdpBoard.Show();
+        this.sdpBoard.SetDesktopLocation(x, y);
     }
 
     private async void button_saveSdps_Click(object sender, EventArgs e)
     {
+        if (this.sdpBoard.needsSetup)
+        {
+            var message = """
+                          SDP configuration data cannot be saved before being initialized.
+                          Please click the 'Configure Panel Data' button to load the current data first.
+                          """;
+            MessageBox.Show(
+                message,
+                "No SDP Configuration Data Loaded",
+                MessageBoxButtons.OK);
+            return;
+        }
+        
         if (this.skipSdpSavePopup)
         {
             await this.saveSdps();
@@ -130,21 +174,30 @@ public partial class BaseBoard : Form
             MessageBoxButtons.YesNo);
         if (dialogResult == DialogResult.Yes)
         {
-            var updated = this.sdpBoard.Sdps();
-            await JsonSavingService.SaveSdps(this.projectPath, updated);
+            await this.saveSdps();
             MessageBox.Show("Saving has completed successfully.");
         }
         else
         {
-            MessageBox.Show("Edits were not lost. Hit the 'save skills' button again to be prompted again.");
+            MessageBox.Show(
+                "Edits were not lost. Hit the 'save skills' button again to be prompted again.");
         }
     }
 
     private async Task saveSdps()
     {
+        // update the tracked stuff to saved stuff.
+        this.sdpBoard.TrackedToSavedSdps();
+        
+        // grab the updated save data.
         var updated = this.sdpBoard.Sdps();
+        
+        // record the newly updated data to disk.
         await JsonSavingService.SaveSdps(this.projectPath, updated);
+        
+        // flag our status strip.
         this.statusStrip_base.Text = "Updated SDP configuration data.";
+        this.statusStrip_base.Refresh();
     }
 
 

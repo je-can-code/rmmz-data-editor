@@ -9,11 +9,12 @@ public partial class SdpBoard : Form
 
     private List<StatDistributionPanel> sdpList = new();
 
-    private bool needsSetup = true;
+    public bool needsSetup = true;
 
     public SdpBoard()
     {
         InitializeComponent();
+        
         this.InitializeDataControls();
         this.InitializeTooltips();
         this.ApplyUpdateEvents();
@@ -116,9 +117,21 @@ public partial class SdpBoard : Form
         return this.sdpList;
     }
 
+    public void TrackedToSavedSdps()
+    {
+        // clear the existing list.
+        this.sdpList.Clear();
+        
+        // iterate over the tracked list.
+        foreach (var sdp in this.listBox_Sdps.Items)
+        {
+            // add each item from the tracked list into the list to be saved.
+            this.sdpList.Add((StatDistributionPanel)sdp);
+        }
+    }
+
     #region updates
     #region update panel-level data
-
     #region update core data
     private void UpdateSdpKey(object? sender, EventArgs e)
     {
@@ -612,7 +625,7 @@ public partial class SdpBoard : Form
         this.PopulateSdpsList(panels);
 
         // check if we need to autopick an index.
-        if (this.listBox_Sdps.SelectedIndex == -1)
+        if (this.listBox_Sdps.SelectedIndex == -1 && this.listBox_Sdps.Items.Count > 0)
         {
             // set the index to the first item.
             this.listBox_Sdps.SelectedIndex = 0;
@@ -621,6 +634,9 @@ public partial class SdpBoard : Form
 
     private void PopulateSdpsList(List<StatDistributionPanel> panels)
     {
+        // empty the list first.
+        this.listBox_Sdps.Items.Clear();
+        
         // assign the list of items locally to the form.
         this.sdpList = panels;
 
@@ -642,14 +658,23 @@ public partial class SdpBoard : Form
 
     private void button_addReward_Click(object sender, EventArgs e)
     {
+        // determine the selected panel.
+        var sdp = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
+
+        // do not proceed if there is no panel selected for some reason.
+        if (sdp is null) return;
+
         // define the new parameter.
         var newReward = new SdpReward();
+        
+        // add the reward to the panel.
+        sdp.PanelRewards.Add(newReward);
 
         // grab the current selection.
         var selectedIndex = this.listBox_rewards.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1)
+        if (selectedIndex == -1 || (selectedIndex == this.listBox_rewards.Items.Count - 1))
         {
             // add the item to the list without regard for index.
             this.listBox_rewards.Items.Add(newReward);
@@ -664,6 +689,12 @@ public partial class SdpBoard : Form
 
     private void button_removeReward_Click(object sender, EventArgs e)
     {
+        // determine the selected panel.
+        var sdp = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
+
+        // do not proceed if there is no panel selected for some reason.
+        if (sdp is null) return;
+        
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_rewards.SelectedIndex;
 
@@ -690,6 +721,7 @@ public partial class SdpBoard : Form
         switch (dialogResult)
         {
             case DialogResult.OK:
+                sdp.PanelRewards.Remove(selectedItem);
                 this.listBox_rewards.Items.RemoveAt(removalIndex);
                 if (this.listBox_rewards.Items.Count != 0)
                 {
@@ -704,14 +736,23 @@ public partial class SdpBoard : Form
 
     private void button_addParameter_Click(object sender, EventArgs e)
     {
+        // determine the selected panel.
+        var sdp = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
+
+        // do not proceed if there is no panel selected for some reason.
+        if (sdp is null) return;
+        
         // define the new parameter.
         var newParameter = new SdpParameter();
+        
+        // add the new parameter to the panel.
+        sdp.PanelParameters.Add(newParameter);
 
         // grab the current selection.
         var selectedIndex = this.listBox_parameters.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1)
+        if (selectedIndex == -1 || (selectedIndex == this.listBox_parameters.Items.Count - 1))
         {
             // add the item to the list without regard for index.
             this.listBox_parameters.Items.Add(newParameter);
@@ -726,6 +767,12 @@ public partial class SdpBoard : Form
 
     private void button_removeParameter_Click(object sender, EventArgs e)
     {
+        // determine the selected panel.
+        var sdp = (StatDistributionPanel)this.listBox_Sdps.SelectedItem!;
+
+        // do not proceed if there is no panel selected for some reason.
+        if (sdp is null) return;
+        
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_parameters.SelectedIndex;
 
@@ -752,6 +799,7 @@ public partial class SdpBoard : Form
         switch (dialogResult)
         {
             case DialogResult.OK:
+                sdp.PanelParameters.Remove(selectedItem);
                 this.listBox_parameters.Items.RemoveAt(removalIndex);
                 if (this.listBox_parameters.Items.Count != 0)
                 {
@@ -777,12 +825,12 @@ public partial class SdpBoard : Form
         var selectedIndex = this.listBox_Sdps.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1)
+        if (selectedIndex == -1 || (selectedIndex == this.listBox_Sdps.Items.Count - 1))
         {
             // add the item to the list without regard for index.
             this.listBox_Sdps.Items.Add(newSdp);
         }
-        // the index selected is valid.
+        // we are in the middle somewhere.
         else
         {
             // add it at the given index.
