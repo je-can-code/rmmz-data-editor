@@ -352,6 +352,9 @@
       },
       "rmmz.data": {
         "type": "Project"
+      },
+      "sdp.data": {
+        "type": "Project"
       }
     }
   }

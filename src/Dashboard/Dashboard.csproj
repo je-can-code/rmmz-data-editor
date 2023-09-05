@@ -24,6 +24,7 @@
 
         <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
         <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
+        <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj" />
     </ItemGroup>
 
 </Project>
