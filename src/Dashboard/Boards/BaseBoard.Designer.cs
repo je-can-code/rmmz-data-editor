@@ -40,24 +40,32 @@
             menuStrip_base = new MenuStrip();
             tabControl_plugins = new TabControl();
             tabPage_jabs = new TabPage();
+            groupBox_enemies = new GroupBox();
+            button_enemies = new Button();
+            button_saveEnemies = new Button();
             tabPage_sdp = new TabPage();
             checkBox_sdpSkipSavePopup = new CheckBox();
             button_saveSdps = new Button();
             button_sdps = new Button();
-            tabPage_jafting = new TabPage();
-            tabPage_diff = new TabPage();
-            tabPage_prof = new TabPage();
+            tabPage_crafting = new TabPage();
+            checkBoxSkipCraftingSavePopup = new CheckBox();
+            button_saveCrafting = new Button();
+            button_recipes = new Button();
+            tabPage_difficulties = new TabPage();
+            tabPage_proficiencies = new TabPage();
             label_dataPath = new Label();
             groupBox_skills.SuspendLayout();
             groupBox_weapons.SuspendLayout();
             tabControl_plugins.SuspendLayout();
             tabPage_jabs.SuspendLayout();
+            groupBox_enemies.SuspendLayout();
             tabPage_sdp.SuspendLayout();
+            tabPage_crafting.SuspendLayout();
             SuspendLayout();
             // 
             // button_weapons
             // 
-            button_weapons.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_weapons.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button_weapons.Location = new Point(6, 22);
             button_weapons.Name = "button_weapons";
             button_weapons.Size = new Size(304, 100);
@@ -68,10 +76,10 @@
             // 
             // button_pickDataPath
             // 
-            button_pickDataPath.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_pickDataPath.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button_pickDataPath.Location = new Point(12, 61);
             button_pickDataPath.Name = "button_pickDataPath";
-            button_pickDataPath.Size = new Size(411, 23);
+            button_pickDataPath.Size = new Size(419, 36);
             button_pickDataPath.TabIndex = 1;
             button_pickDataPath.Text = "Choose Data Path";
             button_pickDataPath.UseVisualStyleBackColor = true;
@@ -79,7 +87,7 @@
             // 
             // button_saveWeapons
             // 
-            button_saveWeapons.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_saveWeapons.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button_saveWeapons.Location = new Point(316, 22);
             button_saveWeapons.Name = "button_saveWeapons";
             button_saveWeapons.Size = new Size(73, 100);
@@ -90,7 +98,7 @@
             // 
             // button_saveSkills
             // 
-            button_saveSkills.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_saveSkills.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button_saveSkills.Location = new Point(316, 22);
             button_saveSkills.Name = "button_saveSkills";
             button_saveSkills.Size = new Size(73, 100);
@@ -101,7 +109,7 @@
             // 
             // button_skills
             // 
-            button_skills.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_skills.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button_skills.Location = new Point(6, 22);
             button_skills.Name = "button_skills";
             button_skills.Size = new Size(304, 100);
@@ -134,9 +142,9 @@
             // 
             // statusStrip_base
             // 
-            statusStrip_base.Location = new Point(0, 435);
+            statusStrip_base.Location = new Point(0, 578);
             statusStrip_base.Name = "statusStrip_base";
-            statusStrip_base.Size = new Size(437, 22);
+            statusStrip_base.Size = new Size(447, 22);
             statusStrip_base.TabIndex = 7;
             statusStrip_base.Text = "qwertyboxheroes";
             // 
@@ -144,7 +152,7 @@
             // 
             menuStrip_base.Location = new Point(0, 0);
             menuStrip_base.Name = "menuStrip_base";
-            menuStrip_base.Size = new Size(437, 24);
+            menuStrip_base.Size = new Size(447, 24);
             menuStrip_base.TabIndex = 8;
             menuStrip_base.Text = "Unimplemented Menu";
             // 
@@ -152,37 +160,71 @@
             // 
             tabControl_plugins.Controls.Add(tabPage_jabs);
             tabControl_plugins.Controls.Add(tabPage_sdp);
-            tabControl_plugins.Controls.Add(tabPage_jafting);
-            tabControl_plugins.Controls.Add(tabPage_diff);
-            tabControl_plugins.Controls.Add(tabPage_prof);
-            tabControl_plugins.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            tabControl_plugins.Controls.Add(tabPage_crafting);
+            tabControl_plugins.Controls.Add(tabPage_difficulties);
+            tabControl_plugins.Controls.Add(tabPage_proficiencies);
+            tabControl_plugins.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl_plugins.Location = new Point(12, 103);
             tabControl_plugins.Name = "tabControl_plugins";
             tabControl_plugins.SelectedIndex = 0;
-            tabControl_plugins.Size = new Size(415, 329);
+            tabControl_plugins.Size = new Size(423, 472);
             tabControl_plugins.TabIndex = 9;
             // 
             // tabPage_jabs
             // 
+            tabPage_jabs.Controls.Add(groupBox_enemies);
             tabPage_jabs.Controls.Add(groupBox_weapons);
             tabPage_jabs.Controls.Add(groupBox_skills);
-            tabPage_jabs.Location = new Point(4, 26);
+            tabPage_jabs.Location = new Point(4, 25);
             tabPage_jabs.Name = "tabPage_jabs";
             tabPage_jabs.Padding = new Padding(3);
-            tabPage_jabs.Size = new Size(407, 299);
+            tabPage_jabs.Size = new Size(415, 443);
             tabPage_jabs.TabIndex = 0;
             tabPage_jabs.Text = "JABS";
             tabPage_jabs.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_enemies
+            // 
+            groupBox_enemies.Controls.Add(button_enemies);
+            groupBox_enemies.Controls.Add(button_saveEnemies);
+            groupBox_enemies.Location = new Point(6, 292);
+            groupBox_enemies.Name = "groupBox_enemies";
+            groupBox_enemies.Size = new Size(395, 136);
+            groupBox_enemies.TabIndex = 6;
+            groupBox_enemies.TabStop = false;
+            groupBox_enemies.Text = "Enemies";
+            // 
+            // button_enemies
+            // 
+            button_enemies.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_enemies.Location = new Point(6, 22);
+            button_enemies.Name = "button_enemies";
+            button_enemies.Size = new Size(304, 100);
+            button_enemies.TabIndex = 3;
+            button_enemies.Text = "Modify Enemies";
+            button_enemies.UseVisualStyleBackColor = true;
+            button_enemies.Click += button_enemies_Click;
+            // 
+            // button_saveEnemies
+            // 
+            button_saveEnemies.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button_saveEnemies.Location = new Point(316, 22);
+            button_saveEnemies.Name = "button_saveEnemies";
+            button_saveEnemies.Size = new Size(73, 100);
+            button_saveEnemies.TabIndex = 4;
+            button_saveEnemies.Text = "Save Enemies";
+            button_saveEnemies.UseVisualStyleBackColor = true;
+            button_saveEnemies.Click += button_saveEnemies_Click;
             // 
             // tabPage_sdp
             // 
             tabPage_sdp.Controls.Add(checkBox_sdpSkipSavePopup);
             tabPage_sdp.Controls.Add(button_saveSdps);
             tabPage_sdp.Controls.Add(button_sdps);
-            tabPage_sdp.Location = new Point(4, 26);
+            tabPage_sdp.Location = new Point(4, 25);
             tabPage_sdp.Name = "tabPage_sdp";
             tabPage_sdp.Padding = new Padding(3);
-            tabPage_sdp.Size = new Size(407, 299);
+            tabPage_sdp.Size = new Size(415, 443);
             tabPage_sdp.TabIndex = 1;
             tabPage_sdp.Text = "SDP";
             tabPage_sdp.UseVisualStyleBackColor = true;
@@ -221,40 +263,77 @@
             button_sdps.UseVisualStyleBackColor = true;
             button_sdps.Click += button_sdps_Click;
             // 
-            // tabPage_jafting
+            // tabPage_crafting
             // 
-            tabPage_jafting.Location = new Point(4, 26);
-            tabPage_jafting.Name = "tabPage_jafting";
-            tabPage_jafting.Size = new Size(365, 299);
-            tabPage_jafting.TabIndex = 2;
-            tabPage_jafting.Text = "Jafting";
-            tabPage_jafting.UseVisualStyleBackColor = true;
+            tabPage_crafting.Controls.Add(checkBoxSkipCraftingSavePopup);
+            tabPage_crafting.Controls.Add(button_saveCrafting);
+            tabPage_crafting.Controls.Add(button_recipes);
+            tabPage_crafting.Location = new Point(4, 25);
+            tabPage_crafting.Name = "tabPage_crafting";
+            tabPage_crafting.Size = new Size(415, 443);
+            tabPage_crafting.TabIndex = 2;
+            tabPage_crafting.Text = "Crafting";
+            tabPage_crafting.UseVisualStyleBackColor = true;
             // 
-            // tabPage_diff
+            // checkBoxSkipCraftingSavePopup
             // 
-            tabPage_diff.Location = new Point(4, 26);
-            tabPage_diff.Name = "tabPage_diff";
-            tabPage_diff.Size = new Size(365, 299);
-            tabPage_diff.TabIndex = 3;
-            tabPage_diff.Text = "Difficulties";
-            tabPage_diff.UseVisualStyleBackColor = true;
+            checkBoxSkipCraftingSavePopup.Appearance = Appearance.Button;
+            checkBoxSkipCraftingSavePopup.AutoSize = true;
+            checkBoxSkipCraftingSavePopup.FlatStyle = FlatStyle.Popup;
+            checkBoxSkipCraftingSavePopup.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSkipCraftingSavePopup.Location = new Point(126, 248);
+            checkBoxSkipCraftingSavePopup.Name = "checkBoxSkipCraftingSavePopup";
+            checkBoxSkipCraftingSavePopup.Size = new Size(146, 27);
+            checkBoxSkipCraftingSavePopup.TabIndex = 4;
+            checkBoxSkipCraftingSavePopup.Text = "Using Save Popup";
+            checkBoxSkipCraftingSavePopup.UseVisualStyleBackColor = true;
+            checkBoxSkipCraftingSavePopup.CheckedChanged += CheckBoxSkipCraftingSavePopupCheckedChanged;
             // 
-            // tabPage_prof
+            // button_saveCrafting
             // 
-            tabPage_prof.Location = new Point(4, 26);
-            tabPage_prof.Name = "tabPage_prof";
-            tabPage_prof.Size = new Size(365, 299);
-            tabPage_prof.TabIndex = 4;
-            tabPage_prof.Text = "Proficiencies";
-            tabPage_prof.UseVisualStyleBackColor = true;
+            button_saveCrafting.Location = new Point(68, 182);
+            button_saveCrafting.Name = "button_saveCrafting";
+            button_saveCrafting.Size = new Size(281, 60);
+            button_saveCrafting.TabIndex = 3;
+            button_saveCrafting.Text = "Save ALL Crafting Data";
+            button_saveCrafting.UseVisualStyleBackColor = true;
+            button_saveCrafting.Click += button_saveCrafting_Click;
+            // 
+            // button_recipes
+            // 
+            button_recipes.Location = new Point(30, 19);
+            button_recipes.Name = "button_recipes";
+            button_recipes.Size = new Size(356, 122);
+            button_recipes.TabIndex = 1;
+            button_recipes.Text = "Configure Recipe Data";
+            button_recipes.UseVisualStyleBackColor = true;
+            button_recipes.Click += button_recipes_Click;
+            // 
+            // tabPage_difficulties
+            // 
+            tabPage_difficulties.Location = new Point(4, 25);
+            tabPage_difficulties.Name = "tabPage_difficulties";
+            tabPage_difficulties.Size = new Size(415, 443);
+            tabPage_difficulties.TabIndex = 3;
+            tabPage_difficulties.Text = "Difficulties";
+            tabPage_difficulties.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_proficiencies
+            // 
+            tabPage_proficiencies.Location = new Point(4, 25);
+            tabPage_proficiencies.Name = "tabPage_proficiencies";
+            tabPage_proficiencies.Size = new Size(415, 443);
+            tabPage_proficiencies.TabIndex = 4;
+            tabPage_proficiencies.Text = "Proficiencies";
+            tabPage_proficiencies.UseVisualStyleBackColor = true;
             // 
             // label_dataPath
             // 
             label_dataPath.AutoSize = true;
-            label_dataPath.Font = new Font("Cascadia Code PL", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label_dataPath.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label_dataPath.Location = new Point(12, 34);
             label_dataPath.Name = "label_dataPath";
-            label_dataPath.Size = new Size(16, 17);
+            label_dataPath.Size = new Size(14, 16);
             label_dataPath.TabIndex = 10;
             label_dataPath.Text = "_";
             // 
@@ -262,7 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 457);
+            ClientSize = new Size(447, 600);
             Controls.Add(label_dataPath);
             Controls.Add(tabControl_plugins);
             Controls.Add(statusStrip_base);
@@ -270,13 +349,16 @@
             Controls.Add(button_pickDataPath);
             MainMenuStrip = menuStrip_base;
             Name = "BaseBoard";
-            Text = "BaseBoard";
+            Text = "J-MZ Data Editor";
             groupBox_skills.ResumeLayout(false);
             groupBox_weapons.ResumeLayout(false);
             tabControl_plugins.ResumeLayout(false);
             tabPage_jabs.ResumeLayout(false);
+            groupBox_enemies.ResumeLayout(false);
             tabPage_sdp.ResumeLayout(false);
             tabPage_sdp.PerformLayout();
+            tabPage_crafting.ResumeLayout(false);
+            tabPage_crafting.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -296,12 +378,18 @@
         private TabControl tabControl_plugins;
         private TabPage tabPage_jabs;
         private TabPage tabPage_sdp;
-        private TabPage tabPage_jafting;
-        private TabPage tabPage_diff;
-        private TabPage tabPage_prof;
+        private TabPage tabPage_crafting;
+        private TabPage tabPage_difficulties;
+        private TabPage tabPage_proficiencies;
         private Label label_dataPath;
         private Button button_saveSdps;
         private Button button_sdps;
         private CheckBox checkBox_sdpSkipSavePopup;
+        private Button button_recipes;
+        private Button button_saveCrafting;
+        private CheckBox checkBoxSkipCraftingSavePopup;
+        private GroupBox groupBox_enemies;
+        private Button button_enemies;
+        private Button button_saveEnemies;
     }
 }

@@ -338,23 +338,45 @@
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
+      "crafting.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )"
+        }
+      },
+      "drops.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
       "extend.data": {
         "type": "Project",
         "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
           "Rmmz.Data": "[1.0.0, )"
         }
       },
       "jabs.data": {
         "type": "Project",
         "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
           "Rmmz.Data": "[1.0.0, )"
         }
       },
       "rmmz.data": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )"
+        }
       },
       "sdp.data": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
       }
     }
   }

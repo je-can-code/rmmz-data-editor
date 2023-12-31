@@ -122,7 +122,7 @@ namespace JMZ.Dashboard.Boards
             Controls.Add(textBox_weaponName);
             Controls.Add(listBoxWeapons);
             Name = "WeaponsBoard";
-            Text = "WeaponsForm";
+            Text = "Weapon Data";
             ((System.ComponentModel.ISupportInitialize)weaponBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)num_weaponSkillId).EndInit();
             ResumeLayout(false);

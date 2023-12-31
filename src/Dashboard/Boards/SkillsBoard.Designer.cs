@@ -114,172 +114,173 @@ partial class SkillsBoard
         // 
         listboxSkills.Font = new Font("Victor Mono", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
         listboxSkills.FormattingEnabled = true;
+        listboxSkills.ItemHeight = 14;
         listboxSkills.Location = new Point(12, 12);
         listboxSkills.Name = "listboxSkills";
-        listboxSkills.Size = new Size(192, 472);
+        listboxSkills.Size = new Size(192, 466);
         listboxSkills.TabIndex = 1;
         // 
         // label_skillIdValue
         // 
         label_skillIdValue.AutoSize = true;
-        label_skillIdValue.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_skillIdValue.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         label_skillIdValue.Location = new Point(233, 12);
         label_skillIdValue.Name = "label_skillIdValue";
-        label_skillIdValue.Size = new Size(28, 16);
+        label_skillIdValue.Size = new Size(32, 17);
         label_skillIdValue.TabIndex = 11;
         label_skillIdValue.Text = "n/a";
         // 
         // label_skillId
         // 
         label_skillId.AutoSize = true;
-        label_skillId.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_skillId.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         label_skillId.Location = new Point(210, 12);
         label_skillId.Name = "label_skillId";
-        label_skillId.Size = new Size(21, 16);
+        label_skillId.Size = new Size(24, 17);
         label_skillId.TabIndex = 10;
         label_skillId.Text = "Id";
         // 
         // label_skillName
         // 
         label_skillName.AutoSize = true;
-        label_skillName.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_skillName.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         label_skillName.Location = new Point(354, 15);
         label_skillName.Name = "label_skillName";
-        label_skillName.Size = new Size(35, 16);
+        label_skillName.Size = new Size(40, 17);
         label_skillName.TabIndex = 9;
         label_skillName.Text = "Name";
         // 
         // textBox_skillName
         // 
-        textBox_skillName.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-        textBox_skillName.Location = new Point(395, 9);
+        textBox_skillName.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        textBox_skillName.Location = new Point(400, 9);
         textBox_skillName.Name = "textBox_skillName";
-        textBox_skillName.Size = new Size(195, 30);
+        textBox_skillName.Size = new Size(195, 26);
         textBox_skillName.TabIndex = 8;
         // 
         // label_radius
         // 
         label_radius.AutoSize = true;
-        label_radius.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_radius.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_radius.Location = new Point(28, 48);
         label_radius.Name = "label_radius";
-        label_radius.Size = new Size(49, 16);
+        label_radius.Size = new Size(43, 15);
         label_radius.TabIndex = 12;
         label_radius.Text = "Radius";
         // 
         // num_radius
         // 
         num_radius.DecimalPlaces = 1;
-        num_radius.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_radius.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_radius.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
         num_radius.Location = new Point(83, 46);
         num_radius.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_radius.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         num_radius.Name = "num_radius";
-        num_radius.Size = new Size(96, 26);
+        num_radius.Size = new Size(96, 23);
         num_radius.TabIndex = 13;
         num_radius.Value = new decimal(new int[] { 15, 0, 0, 65536 });
         // 
         // num_proximity
         // 
         num_proximity.DecimalPlaces = 1;
-        num_proximity.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_proximity.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_proximity.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
         num_proximity.Location = new Point(83, 75);
         num_proximity.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_proximity.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         num_proximity.Name = "num_proximity";
-        num_proximity.Size = new Size(96, 26);
+        num_proximity.Size = new Size(96, 23);
         num_proximity.TabIndex = 15;
         num_proximity.Value = new decimal(new int[] { 15, 0, 0, 65536 });
         // 
         // label_proximity
         // 
         label_proximity.AutoSize = true;
-        label_proximity.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_proximity.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_proximity.Location = new Point(7, 77);
         label_proximity.Name = "label_proximity";
-        label_proximity.Size = new Size(70, 16);
+        label_proximity.Size = new Size(61, 15);
         label_proximity.TabIndex = 14;
         label_proximity.Text = "Proximity";
         // 
         // num_cooldown
         // 
-        num_cooldown.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_cooldown.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_cooldown.Location = new Point(116, 20);
         num_cooldown.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_cooldown.Name = "num_cooldown";
-        num_cooldown.Size = new Size(53, 26);
+        num_cooldown.Size = new Size(53, 23);
         num_cooldown.TabIndex = 17;
         num_cooldown.Value = new decimal(new int[] { 60, 0, 0, 0 });
         // 
         // label_cooldown
         // 
         label_cooldown.AutoSize = true;
-        label_cooldown.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_cooldown.Location = new Point(47, 24);
+        label_cooldown.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_cooldown.Location = new Point(56, 24);
         label_cooldown.Name = "label_cooldown";
-        label_cooldown.Size = new Size(63, 16);
+        label_cooldown.Size = new Size(55, 15);
         label_cooldown.TabIndex = 16;
         label_cooldown.Text = "Cooldown";
         // 
         // num_actionId
         // 
-        num_actionId.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        num_actionId.Location = new Point(85, 21);
+        num_actionId.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+        num_actionId.Location = new Point(113, 22);
         num_actionId.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_actionId.Name = "num_actionId";
-        num_actionId.Size = new Size(56, 26);
+        num_actionId.Size = new Size(56, 23);
         num_actionId.TabIndex = 19;
         num_actionId.Value = new decimal(new int[] { 3, 0, 0, 0 });
         // 
         // label_actionId
         // 
         label_actionId.AutoSize = true;
-        label_actionId.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_actionId.Location = new Point(9, 24);
+        label_actionId.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_actionId.Location = new Point(46, 26);
         label_actionId.Name = "label_actionId";
-        label_actionId.Size = new Size(70, 16);
+        label_actionId.Size = new Size(61, 15);
         label_actionId.TabIndex = 18;
         label_actionId.Text = "Action ID";
         // 
         // num_castAnimation
         // 
-        num_castAnimation.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_castAnimation.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_castAnimation.Location = new Point(117, 52);
         num_castAnimation.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_castAnimation.Name = "num_castAnimation";
-        num_castAnimation.Size = new Size(52, 26);
+        num_castAnimation.Size = new Size(52, 23);
         num_castAnimation.TabIndex = 21;
         num_castAnimation.Value = new decimal(new int[] { 3, 0, 0, 0 });
         // 
         // label_castAnimation
         // 
         label_castAnimation.AutoSize = true;
-        label_castAnimation.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_castAnimation.Location = new Point(6, 54);
+        label_castAnimation.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_castAnimation.Location = new Point(20, 56);
         label_castAnimation.Name = "label_castAnimation";
-        label_castAnimation.Size = new Size(105, 16);
+        label_castAnimation.Size = new Size(91, 15);
         label_castAnimation.TabIndex = 20;
         label_castAnimation.Text = "Cast Animation";
         // 
         // num_duration
         // 
-        num_duration.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        num_duration.Location = new Point(85, 53);
+        num_duration.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+        num_duration.Location = new Point(113, 53);
         num_duration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_duration.Name = "num_duration";
-        num_duration.Size = new Size(56, 26);
+        num_duration.Size = new Size(56, 23);
         num_duration.TabIndex = 23;
         num_duration.Value = new decimal(new int[] { 15, 0, 0, 0 });
         // 
         // label_duration
         // 
         label_duration.AutoSize = true;
-        label_duration.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_duration.Location = new Point(16, 53);
+        label_duration.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_duration.Location = new Point(52, 57);
         label_duration.Name = "label_duration";
-        label_duration.Size = new Size(63, 16);
+        label_duration.Size = new Size(55, 15);
         label_duration.TabIndex = 22;
         label_duration.Text = "Duration";
         // 
@@ -291,7 +292,7 @@ partial class SkillsBoard
         groupBox_combo.Controls.Add(label_comboDelay);
         groupBox_combo.Controls.Add(num_comboSkill);
         groupBox_combo.Controls.Add(label_comboSkill);
-        groupBox_combo.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_combo.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_combo.Location = new Point(204, 167);
         groupBox_combo.Name = "groupBox_combo";
         groupBox_combo.Size = new Size(185, 130);
@@ -302,10 +303,10 @@ partial class SkillsBoard
         // checkBox_comboStarter
         // 
         checkBox_comboStarter.AutoSize = true;
-        checkBox_comboStarter.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_comboStarter.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         checkBox_comboStarter.Location = new Point(14, 79);
         checkBox_comboStarter.Name = "checkBox_comboStarter";
-        checkBox_comboStarter.Size = new Size(138, 20);
+        checkBox_comboStarter.Size = new Size(122, 19);
         checkBox_comboStarter.TabIndex = 30;
         checkBox_comboStarter.Text = "AI Combo Starter";
         toolTip_skillsForm.SetToolTip(checkBox_comboStarter, "fffffff");
@@ -314,10 +315,10 @@ partial class SkillsBoard
         // checkBox_freeCombo
         // 
         checkBox_freeCombo.AutoSize = true;
-        checkBox_freeCombo.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_freeCombo.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         checkBox_freeCombo.Location = new Point(14, 104);
         checkBox_freeCombo.Name = "checkBox_freeCombo";
-        checkBox_freeCombo.Size = new Size(152, 20);
+        checkBox_freeCombo.Size = new Size(134, 19);
         checkBox_freeCombo.TabIndex = 29;
         checkBox_freeCombo.Text = "Free Combo Enabled";
         toolTip_skillsForm.SetToolTip(checkBox_freeCombo, "vvvvvvv");
@@ -325,41 +326,41 @@ partial class SkillsBoard
         // 
         // num_comboDelay
         // 
-        num_comboDelay.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_comboDelay.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_comboDelay.Location = new Point(101, 51);
         num_comboDelay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_comboDelay.Name = "num_comboDelay";
-        num_comboDelay.Size = new Size(62, 26);
+        num_comboDelay.Size = new Size(62, 23);
         num_comboDelay.TabIndex = 28;
         num_comboDelay.Value = new decimal(new int[] { 2, 0, 0, 0 });
         // 
         // label_comboDelay
         // 
         label_comboDelay.AutoSize = true;
-        label_comboDelay.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_comboDelay.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_comboDelay.Location = new Point(11, 56);
         label_comboDelay.Name = "label_comboDelay";
-        label_comboDelay.Size = new Size(84, 16);
+        label_comboDelay.Size = new Size(73, 15);
         label_comboDelay.TabIndex = 27;
         label_comboDelay.Text = "Combo Delay";
         // 
         // num_comboSkill
         // 
-        num_comboSkill.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_comboSkill.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_comboSkill.Location = new Point(101, 22);
         num_comboSkill.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_comboSkill.Name = "num_comboSkill";
-        num_comboSkill.Size = new Size(62, 26);
+        num_comboSkill.Size = new Size(62, 23);
         num_comboSkill.TabIndex = 26;
         num_comboSkill.Value = new decimal(new int[] { 2, 0, 0, 0 });
         // 
         // label_comboSkill
         // 
         label_comboSkill.AutoSize = true;
-        label_comboSkill.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_comboSkill.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_comboSkill.Location = new Point(11, 27);
         label_comboSkill.Name = "label_comboSkill";
-        label_comboSkill.Size = new Size(84, 16);
+        label_comboSkill.Size = new Size(73, 15);
         label_comboSkill.TabIndex = 25;
         label_comboSkill.Text = "Combo Skill";
         // 
@@ -370,7 +371,7 @@ partial class SkillsBoard
         groupBox_mapData.Controls.Add(label_actionId);
         groupBox_mapData.Controls.Add(num_duration);
         groupBox_mapData.Controls.Add(label_duration);
-        groupBox_mapData.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_mapData.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_mapData.Location = new Point(3, 300);
         groupBox_mapData.Name = "groupBox_mapData";
         groupBox_mapData.Size = new Size(185, 111);
@@ -381,10 +382,10 @@ partial class SkillsBoard
         // checkBox_hideFromJabsMenu
         // 
         checkBox_hideFromJabsMenu.AutoSize = true;
-        checkBox_hideFromJabsMenu.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        checkBox_hideFromJabsMenu.Location = new Point(6, 80);
+        checkBox_hideFromJabsMenu.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_hideFromJabsMenu.Location = new Point(11, 82);
         checkBox_hideFromJabsMenu.Name = "checkBox_hideFromJabsMenu";
-        checkBox_hideFromJabsMenu.Size = new Size(180, 20);
+        checkBox_hideFromJabsMenu.Size = new Size(158, 19);
         checkBox_hideFromJabsMenu.TabIndex = 30;
         checkBox_hideFromJabsMenu.Text = "Hidden from Quick Menu";
         checkBox_hideFromJabsMenu.UseVisualStyleBackColor = false;
@@ -392,20 +393,20 @@ partial class SkillsBoard
         // label_hitbox
         // 
         label_hitbox.AutoSize = true;
-        label_hitbox.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_hitbox.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_hitbox.Location = new Point(9, 111);
         label_hitbox.Name = "label_hitbox";
-        label_hitbox.Size = new Size(49, 16);
+        label_hitbox.Size = new Size(43, 15);
         label_hitbox.TabIndex = 26;
         label_hitbox.Text = "Hitbox";
         // 
         // comboBox_hitbox
         // 
-        comboBox_hitbox.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        comboBox_hitbox.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         comboBox_hitbox.FormattingEnabled = true;
         comboBox_hitbox.Location = new Point(58, 107);
         comboBox_hitbox.Name = "comboBox_hitbox";
-        comboBox_hitbox.Size = new Size(121, 24);
+        comboBox_hitbox.Size = new Size(121, 25);
         comboBox_hitbox.TabIndex = 27;
         // 
         // groupBox_targetingData
@@ -417,7 +418,7 @@ partial class SkillsBoard
         groupBox_targetingData.Controls.Add(label_radius);
         groupBox_targetingData.Controls.Add(label_proximity);
         groupBox_targetingData.Controls.Add(num_proximity);
-        groupBox_targetingData.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_targetingData.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_targetingData.Location = new Point(204, 7);
         groupBox_targetingData.Name = "groupBox_targetingData";
         groupBox_targetingData.Size = new Size(185, 140);
@@ -428,10 +429,10 @@ partial class SkillsBoard
         // checkBox_direct
         // 
         checkBox_direct.AutoSize = true;
-        checkBox_direct.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_direct.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         checkBox_direct.Location = new Point(6, 17);
         checkBox_direct.Name = "checkBox_direct";
-        checkBox_direct.Size = new Size(138, 20);
+        checkBox_direct.Size = new Size(122, 19);
         checkBox_direct.TabIndex = 35;
         checkBox_direct.Text = "Direct Targeting";
         toolTip_skillsForm.SetToolTip(checkBox_direct, "fffffff");
@@ -443,7 +444,7 @@ partial class SkillsBoard
         groupBox_piercingData.Controls.Add(num_piercingCount);
         groupBox_piercingData.Controls.Add(label_piercingCount);
         groupBox_piercingData.Controls.Add(label_piercingDelay);
-        groupBox_piercingData.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_piercingData.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_piercingData.Location = new Point(3, 194);
         groupBox_piercingData.Name = "groupBox_piercingData";
         groupBox_piercingData.Size = new Size(185, 88);
@@ -453,41 +454,41 @@ partial class SkillsBoard
         // 
         // num_piercingDelay
         // 
-        num_piercingDelay.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        num_piercingDelay.Location = new Point(104, 54);
+        num_piercingDelay.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+        num_piercingDelay.Location = new Point(121, 54);
         num_piercingDelay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_piercingDelay.Name = "num_piercingDelay";
-        num_piercingDelay.Size = new Size(48, 26);
+        num_piercingDelay.Size = new Size(48, 23);
         num_piercingDelay.TabIndex = 31;
         num_piercingDelay.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
         // num_piercingCount
         // 
-        num_piercingCount.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        num_piercingCount.Location = new Point(104, 25);
+        num_piercingCount.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+        num_piercingCount.Location = new Point(121, 25);
         num_piercingCount.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_piercingCount.Name = "num_piercingCount";
-        num_piercingCount.Size = new Size(48, 26);
+        num_piercingCount.Size = new Size(48, 23);
         num_piercingCount.TabIndex = 29;
         num_piercingCount.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
         // label_piercingCount
         // 
         label_piercingCount.AutoSize = true;
-        label_piercingCount.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_piercingCount.Location = new Point(7, 30);
+        label_piercingCount.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_piercingCount.Location = new Point(32, 28);
         label_piercingCount.Name = "label_piercingCount";
-        label_piercingCount.Size = new Size(91, 16);
+        label_piercingCount.Size = new Size(79, 15);
         label_piercingCount.TabIndex = 28;
         label_piercingCount.Text = "Pierce Count";
         // 
         // label_piercingDelay
         // 
         label_piercingDelay.AutoSize = true;
-        label_piercingDelay.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_piercingDelay.Location = new Point(7, 56);
+        label_piercingDelay.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_piercingDelay.Location = new Point(32, 58);
         label_piercingDelay.Name = "label_piercingDelay";
-        label_piercingDelay.Size = new Size(91, 16);
+        label_piercingDelay.Size = new Size(79, 15);
         label_piercingDelay.TabIndex = 30;
         label_piercingDelay.Text = "Pierce Delay";
         // 
@@ -501,7 +502,7 @@ partial class SkillsBoard
         groupBox_usageData.Controls.Add(num_cooldown);
         groupBox_usageData.Controls.Add(num_castAnimation);
         groupBox_usageData.Controls.Add(label_castAnimation);
-        groupBox_usageData.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_usageData.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_usageData.Location = new Point(3, 3);
         groupBox_usageData.Name = "groupBox_usageData";
         groupBox_usageData.Size = new Size(185, 174);
@@ -511,31 +512,31 @@ partial class SkillsBoard
         // 
         // num_castTime
         // 
-        num_castTime.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_castTime.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_castTime.Location = new Point(117, 84);
         num_castTime.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_castTime.Name = "num_castTime";
-        num_castTime.Size = new Size(52, 26);
+        num_castTime.Size = new Size(52, 23);
         num_castTime.TabIndex = 34;
         num_castTime.Value = new decimal(new int[] { 3, 0, 0, 0 });
         // 
         // label_castTime
         // 
         label_castTime.AutoSize = true;
-        label_castTime.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
-        label_castTime.Location = new Point(41, 88);
+        label_castTime.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label_castTime.Location = new Point(50, 88);
         label_castTime.Name = "label_castTime";
-        label_castTime.Size = new Size(70, 16);
+        label_castTime.Size = new Size(61, 15);
         label_castTime.TabIndex = 33;
         label_castTime.Text = "Cast Time";
         // 
         // checkBox_canGapClose
         // 
         checkBox_canGapClose.AutoSize = true;
-        checkBox_canGapClose.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_canGapClose.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         checkBox_canGapClose.Location = new Point(5, 149);
         checkBox_canGapClose.Name = "checkBox_canGapClose";
-        checkBox_canGapClose.Size = new Size(110, 20);
+        checkBox_canGapClose.Size = new Size(98, 19);
         checkBox_canGapClose.TabIndex = 32;
         checkBox_canGapClose.Text = "Can Gapclose";
         toolTip_skillsForm.SetToolTip(checkBox_canGapClose, "fffffff");
@@ -544,10 +545,10 @@ partial class SkillsBoard
         // checkBox_aiSkillExclude
         // 
         checkBox_aiSkillExclude.AutoSize = true;
-        checkBox_aiSkillExclude.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        checkBox_aiSkillExclude.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         checkBox_aiSkillExclude.Location = new Point(6, 123);
         checkBox_aiSkillExclude.Name = "checkBox_aiSkillExclude";
-        checkBox_aiSkillExclude.Size = new Size(131, 20);
+        checkBox_aiSkillExclude.Size = new Size(116, 19);
         checkBox_aiSkillExclude.TabIndex = 31;
         checkBox_aiSkillExclude.Text = "Exclude from AI";
         toolTip_skillsForm.SetToolTip(checkBox_aiSkillExclude, "fffffff");
@@ -561,7 +562,7 @@ partial class SkillsBoard
         groupBox_poseData.Controls.Add(label_poseIndex);
         groupBox_poseData.Controls.Add(label_poseSuffix);
         groupBox_poseData.Controls.Add(textBox_poseSuffix);
-        groupBox_poseData.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        groupBox_poseData.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         groupBox_poseData.Location = new Point(405, 7);
         groupBox_poseData.Name = "groupBox_poseData";
         groupBox_poseData.Size = new Size(185, 110);
@@ -571,60 +572,60 @@ partial class SkillsBoard
         // 
         // num_poseDuration
         // 
-        num_poseDuration.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_poseDuration.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_poseDuration.Location = new Point(79, 75);
         num_poseDuration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_poseDuration.Name = "num_poseDuration";
-        num_poseDuration.Size = new Size(56, 26);
+        num_poseDuration.Size = new Size(56, 23);
         num_poseDuration.TabIndex = 25;
         num_poseDuration.Value = new decimal(new int[] { 15, 0, 0, 0 });
         // 
         // label_poseDuration
         // 
         label_poseDuration.AutoSize = true;
-        label_poseDuration.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_poseDuration.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_poseDuration.Location = new Point(10, 77);
         label_poseDuration.Name = "label_poseDuration";
-        label_poseDuration.Size = new Size(63, 16);
+        label_poseDuration.Size = new Size(55, 15);
         label_poseDuration.TabIndex = 24;
         label_poseDuration.Text = "Duration";
         // 
         // num_poseIndex
         // 
-        num_poseIndex.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        num_poseIndex.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         num_poseIndex.Location = new Point(79, 46);
         num_poseIndex.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         num_poseIndex.Name = "num_poseIndex";
-        num_poseIndex.Size = new Size(56, 26);
+        num_poseIndex.Size = new Size(56, 23);
         num_poseIndex.TabIndex = 24;
         num_poseIndex.Value = new decimal(new int[] { 3, 0, 0, 0 });
         // 
         // label_poseIndex
         // 
         label_poseIndex.AutoSize = true;
-        label_poseIndex.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_poseIndex.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_poseIndex.Location = new Point(31, 48);
         label_poseIndex.Name = "label_poseIndex";
-        label_poseIndex.Size = new Size(42, 16);
+        label_poseIndex.Size = new Size(37, 15);
         label_poseIndex.TabIndex = 33;
         label_poseIndex.Text = "Index";
         // 
         // label_poseSuffix
         // 
         label_poseSuffix.AutoSize = true;
-        label_poseSuffix.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        label_poseSuffix.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
         label_poseSuffix.Location = new Point(24, 22);
         label_poseSuffix.Name = "label_poseSuffix";
-        label_poseSuffix.Size = new Size(49, 16);
+        label_poseSuffix.Size = new Size(43, 15);
         label_poseSuffix.TabIndex = 32;
         label_poseSuffix.Text = "Suffix";
         // 
         // textBox_poseSuffix
         // 
-        textBox_poseSuffix.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        textBox_poseSuffix.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         textBox_poseSuffix.Location = new Point(79, 17);
         textBox_poseSuffix.Name = "textBox_poseSuffix";
-        textBox_poseSuffix.Size = new Size(97, 26);
+        textBox_poseSuffix.Size = new Size(97, 23);
         textBox_poseSuffix.TabIndex = 32;
         // 
         // textBox_skillExtend
@@ -645,7 +646,7 @@ partial class SkillsBoard
         // 
         tabControl_skills.Controls.Add(tabPage_jabs);
         tabControl_skills.Controls.Add(tabPage_skillExtend);
-        tabControl_skills.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+        tabControl_skills.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         tabControl_skills.Location = new Point(210, 38);
         tabControl_skills.Name = "tabControl_skills";
         tabControl_skills.SelectedIndex = 0;
@@ -660,10 +661,10 @@ partial class SkillsBoard
         tabPage_jabs.Controls.Add(groupBox_mapData);
         tabPage_jabs.Controls.Add(groupBox_piercingData);
         tabPage_jabs.Controls.Add(groupBox_combo);
-        tabPage_jabs.Location = new Point(4, 25);
+        tabPage_jabs.Location = new Point(4, 26);
         tabPage_jabs.Name = "tabPage_jabs";
         tabPage_jabs.Padding = new Padding(3);
-        tabPage_jabs.Size = new Size(599, 417);
+        tabPage_jabs.Size = new Size(599, 416);
         tabPage_jabs.TabIndex = 0;
         tabPage_jabs.Text = "JABS";
         tabPage_jabs.UseVisualStyleBackColor = true;
@@ -671,10 +672,10 @@ partial class SkillsBoard
         // tabPage_skillExtend
         // 
         tabPage_skillExtend.Controls.Add(groupBox_skillExtends);
-        tabPage_skillExtend.Location = new Point(4, 25);
+        tabPage_skillExtend.Location = new Point(4, 26);
         tabPage_skillExtend.Name = "tabPage_skillExtend";
         tabPage_skillExtend.Padding = new Padding(3);
-        tabPage_skillExtend.Size = new Size(599, 417);
+        tabPage_skillExtend.Size = new Size(599, 416);
         tabPage_skillExtend.TabIndex = 1;
         tabPage_skillExtend.Text = "Extend";
         tabPage_skillExtend.UseVisualStyleBackColor = true;

@@ -1,5 +1,4 @@
 ﻿using JMZ.Sdp.Data.Models;
-using JMZ.Sdp.Data.Services;
 
 namespace JMZ.Dashboard.Boards;
 
@@ -14,7 +13,7 @@ public partial class SdpBoard : Form
     public SdpBoard()
     {
         InitializeComponent();
-        
+
         this.InitializeDataControls();
         this.InitializeTooltips();
         this.ApplyUpdateEvents();
@@ -121,7 +120,7 @@ public partial class SdpBoard : Form
     {
         // clear the existing list.
         this.sdpList.Clear();
-        
+
         // iterate over the tracked list.
         foreach (var sdp in this.listBox_Sdps.Items)
         {
@@ -636,7 +635,7 @@ public partial class SdpBoard : Form
     {
         // empty the list first.
         this.listBox_Sdps.Items.Clear();
-        
+
         // assign the list of items locally to the form.
         this.sdpList = panels;
 
@@ -666,7 +665,7 @@ public partial class SdpBoard : Form
 
         // define the new parameter.
         var newReward = new SdpReward();
-        
+
         // add the reward to the panel.
         sdp.PanelRewards.Add(newReward);
 
@@ -694,7 +693,7 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_rewards.SelectedIndex;
 
@@ -741,10 +740,10 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // define the new parameter.
         var newParameter = new SdpParameter();
-        
+
         // add the new parameter to the panel.
         sdp.PanelParameters.Add(newParameter);
 
@@ -772,7 +771,7 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_parameters.SelectedIndex;
 

@@ -490,8 +490,8 @@
             // 
             num_rewardRankRequired.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             num_rewardRankRequired.Location = new Point(446, 28);
-            num_rewardRankRequired.Maximum = 99999;
-            num_rewardRankRequired.Minimum = -1;
+            num_rewardRankRequired.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            num_rewardRankRequired.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             num_rewardRankRequired.Name = "num_rewardRankRequired";
             num_rewardRankRequired.Size = new Size(83, 20);
             num_rewardRankRequired.TabIndex = 44;
@@ -623,7 +623,7 @@
             Controls.Add(groupBox_parameterData);
             Controls.Add(listBox_Sdps);
             Name = "SdpBoard";
-            Text = "SdpBoard";
+            Text = "SDP Configuration";
             ((System.ComponentModel.ISupportInitialize)num_iconIndex).EndInit();
             ((System.ComponentModel.ISupportInitialize)num_maxRank).EndInit();
             ((System.ComponentModel.ISupportInitialize)num_flatGrowth).EndInit();

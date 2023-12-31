@@ -4,5 +4,7 @@
     <RootNamespace>$(SolutionNamespace).Sdp.Data</RootNamespace>
   </PropertyGroup>
 
-
+  <ItemGroup>
+    <ProjectReference Include="../Rmmz.Data/Rmmz.Data.csproj" />
+  </ItemGroup>
 </Project>

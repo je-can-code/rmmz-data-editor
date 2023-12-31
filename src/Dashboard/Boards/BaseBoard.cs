@@ -1,57 +1,105 @@
-﻿using JMZ.Dashboard.Services;
+﻿using JMZ.Crafting.Data;
+using JMZ.Dashboard.Boards.Craft;
+using JMZ.Dashboard.Services;
+using JMZ.Sdp.Data;
 
 namespace JMZ.Dashboard.Boards;
 
 public partial class BaseBoard : Form
 {
+    /// <summary>
+    /// The board that primarily handles weapon modifications.
+    /// </summary>
     private readonly WeaponsBoard weaponsBoard;
 
+    /// <summary>
+    /// The board that primarily handles skill modifications.
+    /// </summary>
     private readonly SkillsBoard skillsBoard;
 
+    /// <summary>
+    /// The board that primarily handles SDP design.
+    /// </summary>
     private readonly SdpBoard sdpBoard;
 
-    private string projectPath = @"D:\dev\gaming\rmmz-plugins\project\data";
+    /// <summary>
+    /// The board that primarily handles Crafting design.
+    /// </summary>
+    private readonly CraftBoard craftBoard;
 
-    private bool skipSdpSavePopup = false;
+    private readonly EnemiesBoard enemiesBoard;
+
+    /// <summary>
+    /// The full path to the /data directory of the project.
+    /// </summary>
+    private string projectPath;
+
+    /// <summary>
+    /// When true, the prompt for skipping the prompt when saving SDP data.
+    /// When false, the confirmation popup will show.
+    /// </summary>
+    private bool skipSdpSavePopup;
+
+    /// <summary>
+    /// When true, the prompt for skipping the prompt when saving crafting data.
+    /// When false, the confirmation popup will show.
+    /// </summary>
+    private bool skipCraftingSavePopup;
 
     public BaseBoard()
     {
         InitializeComponent();
         this.StartPosition = FormStartPosition.Manual;
         var x = Screen.PrimaryScreen!.Bounds.Width / 2 - this.Width;
-        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height;
+        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height + 300;
         this.Location = new(x, y);
+
+        // hard-code this for default, but we should probably make this configurable.
+        //this.projectPath = @"//192.168.86.35/dev/gaming/rmmz-plugins/project/data";
+        this.projectPath = @"//192.168.86.35/dev/gaming/ca/chef-adventure/data";
+
+        this.RefreshDatabaseCaches();
 
         this.weaponsBoard = new();
         this.skillsBoard = new();
         this.sdpBoard = new();
+        this.craftBoard = new();
+        this.enemiesBoard = new();
 
-        this.SynchronizeProjectDataPath();
+        // initialize the boards.
+        this.SetupBoards();
+
+        this.RefreshProjectDataPath();
     }
 
-    private void SynchronizeProjectDataPath()
+    private void SetupBoards()
     {
-        this.label_dataPath.Text = this.projectPath;
+        // TODO: does this sort of one-time setup work?
+        // this.weaponsBoard.Load += SetupWeaponsBoard; // ??
+
+        this.weaponsBoard.FormClosing += HideBoard;
+        this.sdpBoard.FormClosing += HideBoard;
+        this.skillsBoard.FormClosing += HideBoard;
+        this.craftBoard.FormClosing += HideBoard;
+        this.enemiesBoard.FormClosing += HideBoard;
     }
 
-    private void ShowBaseBoard(object? sender, FormClosingEventArgs e)
+    /// <summary>
+    /// An event handler for hiding the boards instead of closing them.
+    /// </summary>
+    private static void HideBoard(object? sender, FormClosingEventArgs e)
     {
-        if (e.CloseReason == CloseReason.UserClosing)
-        {
-            e.Cancel = true;
-            this.HideSubBoards();
-        }
+        // make sure its the user trying to close the window, first.
+        if (e.CloseReason != CloseReason.UserClosing) return;
 
-        this.Show();
+        // actually don't close and dispose of the window.
+        e.Cancel = true;
+
+        // hide the window instead.
+        ((Form)sender!).Hide();
     }
 
-    private void HideSubBoards()
-    {
-        this.weaponsBoard.Hide();
-        this.skillsBoard.Hide();
-        this.sdpBoard.Hide();
-    }
-
+    #region project data path
     private void button_pickDataPath_Click(object sender, EventArgs e)
     {
         var dialogResult = folderDialog_dataPath.ShowDialog();
@@ -59,128 +107,203 @@ public partial class BaseBoard : Form
 
         if (this.projectPath != folderDialog_dataPath.SelectedPath)
         {
-            this.weaponsBoard.FlagForRefresh();
+            this.OnProjectDataPathChange();
         }
 
-        this.projectPath = folderDialog_dataPath.SelectedPath;
-        this.SynchronizeProjectDataPath();
     }
 
+    /// <summary>
+    /// Refreshes the project path and its label by the most-recently-selected project.
+    /// </summary>
+    private void RefreshProjectDataPath()
+    {
+        // check if there is a selected folder path to update our project path with.
+        if (folderDialog_dataPath.SelectedPath.Length > 0)
+        {
+            // update the underlying tracker for the path to the /data folder of the project.
+            this.projectPath = folderDialog_dataPath.SelectedPath;
+        }
+
+        // if there is a project path, update the label.
+        if (this.projectPath.Length > 0)
+        {
+            // update the label for the user to see this text.
+            this.label_dataPath.Text = this.projectPath;
+        }
+    }
+
+    private void OnProjectDataPathChange()
+    {
+        // sync the path and label with the actual project path.
+        this.RefreshProjectDataPath();
+
+        // flag the weapons for update.
+        this.weaponsBoard.FlagForRefresh();
+
+        // refresh the database caches.
+        this.RefreshDatabaseCaches();
+    }
+
+    private void RefreshDatabaseCaches()
+    {
+        // refresh the various database caches.
+        Caches.Items.Refresh(this.projectPath);
+        Caches.Weapons.Refresh(this.projectPath);
+        Caches.Armors.Refresh(this.projectPath);
+    }
+    #endregion
+
+    private void OnDatabaseSave()
+    {
+        this.RefreshDatabaseCaches();
+        this.weaponsBoard.FlagForRefresh();
+        this.enemiesBoard.FlagForRefresh();
+        this.skillsBoard.FlagForRefresh();
+        this.enemiesBoard.FlagForRefresh();
+    }
+
+    #region jabs
     private void button_weapons_Click(object sender, EventArgs e)
     {
-        var baseWeaponsList = JsonLoaderService.LoadWeapons(this.projectPath);
-        this.weaponsBoard.FormClosing += this.ShowBaseBoard;
+        // get the core dataset for this board.
+        var data = JsonLoaderService.LoadWeapons(this.projectPath);
+
+        // setup the board.
         this.weaponsBoard.Show();
-        this.weaponsBoard.Setup(baseWeaponsList);
+        this.weaponsBoard.Setup(data);
     }
 
     private async void button_saveWeapons_Click(object sender, EventArgs e)
     {
+        // ask the user if they are sure they want to do it.
         var dialogResult = MessageBox.Show("Are you sure you want to save weapons?");
+
+        // we only accept "OK" to save the data.
         if (dialogResult == DialogResult.OK)
         {
-            var updatedWeapons = this.weaponsBoard.Weapons();
-            await JsonSavingService.SaveWeapons(this.projectPath, updatedWeapons);
+            // these are updated by reference.
+            var updated = this.weaponsBoard.Weapons();
+
+            // execute the save.
+            await JsonSavingService.SaveWeapons(this.projectPath, updated);
+
+            // upon completion, show the success.
             MessageBox.Show("Saving has completed successfully.");
+
+            // process the event.
+            this.OnDatabaseSave();
         }
         else
         {
-            MessageBox.Show("Edits were not lost. Hit the 'save weapons' button again to be prompted again.");
+            MessageBox.Show("Edits were not lost. Hit the 'save' button again to be prompted again.");
         }
     }
 
     private void button_skills_Click(object sender, EventArgs e)
     {
-        var dataList = JsonLoaderService.LoadSkills(this.projectPath);
-        this.skillsBoard.FormClosing += this.ShowBaseBoard;
+        // get the core dataset for this board.
+        var data = JsonLoaderService.LoadSkills(this.projectPath);
+
+        // setup the board.
         this.skillsBoard.Show();
-        this.skillsBoard.Setup(dataList);
+        this.skillsBoard.Setup(data);
     }
 
     private async void button_saveSkills_Click(object sender, EventArgs e)
     {
+        // ask the user if they are sure they want to do it.
         var dialogResult = MessageBox.Show("Are you sure you want to save skills?");
+
+        // we only accept "OK" to save the data.
         if (dialogResult == DialogResult.OK)
         {
+            // these are updated by reference.
             var updated = this.skillsBoard.Skills();
+
+            // execute the save.
             await JsonSavingService.SaveSkills(this.projectPath, updated);
+
+            // upon completion, show the success.
             MessageBox.Show("Saving has completed successfully.");
+
+            // process the event.
+            this.OnDatabaseSave();
         }
+        // they decided not to save.
         else
         {
-            MessageBox.Show("Edits were not lost. Hit the 'save skills' button again to be prompted again.");
+            // let them know we didn't trash their updates.
+            MessageBox.Show("Edits were not lost. Hit the 'save' button again to be prompted again.");
         }
     }
+    #endregion
 
-    private void button_sdps_Click(object sender, EventArgs e)
+    #region sdp
+    private async void button_sdps_Click(object sender, EventArgs e)
     {
-        this.sdpBoard.FormClosing += this.ShowBaseBoard;
+        // check if we can load the board based on the required config.
+        var canLoadBoard = await this.ValidateConfiguration(
+            JsonLoaderService.sdpDataPath(this.projectPath),
+            SdpInitializer.InitializeConfiguration);
 
-        var configPath = JsonLoaderService.sdpDataPath(this.projectPath);
-        var isConfigPresent = JsonLoaderService.IsConfigPresent(configPath);
-        if (!isConfigPresent)
-        {
-            var dialogResult = MessageBox.Show(
-                "No SDP configuration was detected. Create a new config?",
-                "SDP Configuration Data Missing",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Exclamation);
-            if (dialogResult == DialogResult.Yes)
-            {
-                File.WriteAllText(configPath, "[]");
-                MessageBox.Show("Empty SDP configuration has been written.");
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Without SDP configuration data, you cannot modify the SDP configuration data.");
-                return;
-            }
-        }
+        // validate we are able to load the board.
+        if (canLoadBoard is false) return;
 
-        var dataList = JsonLoaderService.LoadSdps(this.projectPath);
-        this.sdpBoard.Setup(dataList);
+        // initialize the data for the board.
+        var data = JsonLoaderService.LoadSdps(this.projectPath);
+        this.sdpBoard.Setup(data);
 
+        // show the window.
+        this.sdpBoard.Show();
+
+        // relocate the window to where we want it to be.
         var x = this.Right;
         var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height;
-        this.sdpBoard.Show();
         this.sdpBoard.SetDesktopLocation(x, y);
     }
 
     private async void button_saveSdps_Click(object sender, EventArgs e)
     {
+        // check if the board hasn't been setup yet, or is in need of a refresh first.
         if (this.sdpBoard.needsSetup)
         {
-            var message = """
-                          SDP configuration data cannot be saved before being initialized.
-                          Please click the 'Configure Panel Data' button to load the current data first.
-                          """;
             MessageBox.Show(
-                message,
-                "No SDP Configuration Data Loaded",
+                """
+                SDP configuration data needs initialization.
+                Please click the 'Configure Panel Data' button to load the current data first.
+                """,
+                "SDP Configuration Data Needs Initialization",
                 MessageBoxButtons.OK);
             return;
         }
-        
+
+        // check if we're skipping the popup dialogue to confirm saving.
         if (this.skipSdpSavePopup)
         {
+            // just save.
             await this.saveSdps();
             return;
         }
 
+        // ask the user to confirm they want to save.
         var dialogResult = MessageBox.Show(
             "Are you sure you want to save SDPs?",
             "Save SDP Configuration Data",
             MessageBoxButtons.YesNo);
-        if (dialogResult == DialogResult.Yes)
+
+        // pivot on what the user chooses.
+        switch (dialogResult)
         {
-            await this.saveSdps();
-            MessageBox.Show("Saving has completed successfully.");
-        }
-        else
-        {
-            MessageBox.Show(
-                "Edits were not lost. Hit the 'save skills' button again to be prompted again.");
+            // check if the user agreed.
+            case DialogResult.Yes:
+                // then save.
+                await this.saveSdps();
+                MessageBox.Show("Saving has completed successfully.");
+                break;
+            // the user didn't hit YES.
+            default:
+                MessageBox.Show("Edits were not lost. Hit the 'save skills' button again to be prompted again.");
+                break;
         }
     }
 
@@ -188,18 +311,17 @@ public partial class BaseBoard : Form
     {
         // update the tracked stuff to saved stuff.
         this.sdpBoard.TrackedToSavedSdps();
-        
+
         // grab the updated save data.
         var updated = this.sdpBoard.Sdps();
-        
+
         // record the newly updated data to disk.
         await JsonSavingService.SaveSdps(this.projectPath, updated);
-        
+
         // flag our status strip.
         this.statusStrip_base.Text = "Updated SDP configuration data.";
         this.statusStrip_base.Refresh();
     }
-
 
     private void checkBox_sdpSkipSavePopup_CheckedChanged(object sender, EventArgs e)
     {
@@ -207,5 +329,174 @@ public partial class BaseBoard : Form
         this.checkBox_sdpSkipSavePopup.Text = this.checkBox_sdpSkipSavePopup.Checked
             ? "Just doing it ✅"
             : "Using Save Popup";
+    }
+    #endregion
+
+    #region crafting
+    private async void button_saveCrafting_Click(object sender, EventArgs e)
+    {
+        // check if the board hasn't been setup yet, or is in need of a refresh first.
+        if (this.craftBoard.needsSetup)
+        {
+            MessageBox.Show(
+                """
+                Crafting configuration data needs initialization.
+                Please click either the 'Configure Recipe Data' button or the
+                'Configure Category Data' button to load the current data first.
+                """,
+                "Crafting Configuration Data Needs Initialization",
+                MessageBoxButtons.OK);
+            return;
+        }
+
+        // check if we're skipping the popup dialogue to confirm saving.
+        if (this.skipCraftingSavePopup)
+        {
+            // just save.
+            await this.SaveCrafting();
+            return;
+        }
+
+        // ask the user to confirm they want to save.
+        var dialogResult = MessageBox.Show(
+            "Are you sure you want to save all crafting data?",
+            "Save All Crafting Configuration Data",
+            MessageBoxButtons.YesNo);
+
+        // pivot on what the user chooses.
+        switch (dialogResult)
+        {
+            // check if the user agreed.
+            case DialogResult.Yes:
+                // then save.
+                await this.SaveCrafting();
+                MessageBox.Show("Saving has completed successfully.");
+                break;
+            // the user didn't hit YES.
+            default:
+                MessageBox.Show(
+                    """
+                    Edits were not lost.
+                    Hit the 'Save Crafting Config' button again to be prompted again.
+                    """);
+                break;
+        }
+    }
+
+    private async Task SaveCrafting()
+    {
+        // update the tracked stuff to saved stuff.
+        this.craftBoard.TrackedToSavedRecipes();
+        this.craftBoard.TrackedToSavedCategories();
+
+        // create the updated configuration data.
+        var updatedConfiguration = new CraftingConfiguration
+        {
+            Recipes = this.craftBoard.Recipes(),
+            Categories = this.craftBoard.Categories()
+        };
+
+
+        // record the newly updated data to disk.
+        await JsonSavingService.SaveCrafting(this.projectPath, updatedConfiguration);
+
+        // flag our status strip.
+        this.statusStrip_base.Text = "Updated Crafting configuration data.";
+        this.statusStrip_base.Refresh();
+    }
+
+    private void CheckBoxSkipCraftingSavePopupCheckedChanged(object sender, EventArgs e)
+    {
+        this.skipCraftingSavePopup = this.checkBoxSkipCraftingSavePopup.Checked;
+        this.checkBoxSkipCraftingSavePopup.Text = this.checkBoxSkipCraftingSavePopup.Checked
+            ? "Just doing it ✅"
+            : "Using Save Popup";
+    }
+
+    private async void button_recipes_Click(object sender, EventArgs e)
+    {
+        // check if we can load the board based on the required config.
+        var canLoadBoard = await this.ValidateConfiguration(
+            JsonLoaderService.craftingDataPath(this.projectPath),
+            CraftingInitializer.InitializeConfiguration);
+
+        // validate we are able to load the board.
+        if (canLoadBoard is false) return;
+
+        // initialize the data for the board.
+        var data = JsonLoaderService.LoadCrafting(this.projectPath);
+        this.craftBoard.Setup(data);
+
+        // show the window.
+        this.craftBoard.Show();
+    }
+    #endregion
+
+    private async Task<bool> ValidateConfiguration(string configPath, Func<string, Task> initConfigFunc)
+    {
+        // check if the config exists.
+        var isConfigPresent = JsonLoaderService.IsConfigPresent(configPath);
+
+        // it exists, great!
+        if (isConfigPresent) return true;
+
+        // ask the user what they want to do about the missing and required configuration data file.
+        var dialogResult = MessageBox.Show(
+            "No configuration was detected. Create a new config?",
+            "Configuration Data Missing",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Exclamation);
+
+        // there can only be yes/no/cancel.
+        switch (dialogResult)
+        {
+            case DialogResult.Yes:
+                await initConfigFunc(this.projectPath);
+                MessageBox.Show("Empty configuration has been written.");
+                return true;
+            case DialogResult.No:
+                MessageBox.Show(
+                    "Without necessary configuration data, the GUI to manipulate said missing data may not work.");
+                return false;
+            default:
+                MessageBox.Show("Ignoring configuration data check result.");
+                return true;
+        }
+    }
+
+    private async void button_enemies_Click(object sender, EventArgs e)
+    {
+        // get the core dataset for this board.
+        var data = JsonLoaderService.LoadEnemies(this.projectPath);
+
+        // setup the board.
+        this.enemiesBoard.Show();
+        this.enemiesBoard.Setup(data);
+    }
+
+    private async void button_saveEnemies_Click(object sender, EventArgs e)
+    {
+        // ask the user if they are sure they want to do it.
+        var dialogResult = MessageBox.Show("Are you sure you want to save enemies?");
+
+        // we only accept "OK" to save the data.
+        if (dialogResult == DialogResult.OK)
+        {
+            // these are updated by reference.
+            var updated = this.enemiesBoard.Enemies();
+
+            // execute the save.
+            await JsonSavingService.SaveEnemies(this.projectPath, updated);
+
+            // upon completion, show the success.
+            MessageBox.Show("Saving has completed successfully.");
+
+            // process the event.
+            this.OnDatabaseSave();
+        }
+        else
+        {
+            MessageBox.Show("Edits were not lost. Hit the 'save' button again to be prompted again.");
+        }
     }
 }

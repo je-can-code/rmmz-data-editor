@@ -7,7 +7,6 @@ namespace JMZ.Rmmz.Data.Models.db.implementations;
 /// </summary>
 public partial class RPG_Weapon : RPG_EquipItem
 {
-    #region regular properties
     /// <summary>
     /// The id of the animation that plays for this weapon.
     /// </summary>
@@ -17,5 +16,4 @@ public partial class RPG_Weapon : RPG_EquipItem
     /// The weapon type id defining the category of weapon this belongs to.
     /// </summary>
     public int wtypeId { get; set; } = 1;
-    #endregion regular properties
 }
