@@ -1,6 +1,7 @@
 ﻿using JMZ.Crafting.Data;
 using JMZ.Dashboard.Boards.Craft;
-using JMZ.Dashboard.Services;
+using JMZ.Json.Data.Caches;
+using JMZ.Json.Data.Services;
 using JMZ.Sdp.Data;
 
 namespace JMZ.Dashboard.Boards;
@@ -56,7 +57,8 @@ public partial class BaseBoard : Form
 
         // hard-code this for default, but we should probably make this configurable.
         //this.projectPath = @"//192.168.86.35/dev/gaming/rmmz-plugins/project/data";
-        this.projectPath = @"//192.168.86.35/dev/gaming/ca/chef-adventure/data";
+        //this.projectPath = @"//192.168.86.35/dev/gaming/ca/chef-adventure/data";
+        this.projectPath = @"Z:/dev/gaming/ca/chef-adventure/data";
 
         this.RefreshDatabaseCaches();
 
@@ -147,9 +149,9 @@ public partial class BaseBoard : Form
     private void RefreshDatabaseCaches()
     {
         // refresh the various database caches.
-        Caches.Items.Refresh(this.projectPath);
-        Caches.Weapons.Refresh(this.projectPath);
-        Caches.Armors.Refresh(this.projectPath);
+        Items.Refresh(this.projectPath);
+        Weapons.Refresh(this.projectPath);
+        Armors.Refresh(this.projectPath);
     }
     #endregion
 
@@ -258,7 +260,7 @@ public partial class BaseBoard : Form
 
         // relocate the window to where we want it to be.
         var x = this.Right;
-        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height;
+        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height / 2;
         this.sdpBoard.SetDesktopLocation(x, y);
     }
 

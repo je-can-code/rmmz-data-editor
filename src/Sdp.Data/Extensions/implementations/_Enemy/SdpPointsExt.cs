@@ -9,7 +9,7 @@ public static class SdpPointsExt
     /// <summary>
     /// The value that is used to represent "no value" for this tag.
     /// </summary>
-    private const decimal NON_VALUE = -1;
+    private const decimal NON_VALUE = decimal.Zero;
     
     public static decimal GetSdpPoints(this RPG_Enemy enemy)
     {
@@ -19,7 +19,7 @@ public static class SdpPointsExt
     public static void UpdateSdpPoints(this RPG_Enemy enemy, decimal newSdpPoints = NON_VALUE)
     {
         // check if we currently are missing a primary value.
-        var isMissing = enemy.GetFirstNumberByTag(Tags.Points.Name) == NON_VALUE;
+        var isMissing = enemy.GetFirstNumberByTag(Tags.Points.Name, true) == null;
 
         // check if there is no value and was passed a non-value.
         if (isMissing && newSdpPoints == NON_VALUE)
@@ -29,7 +29,7 @@ public static class SdpPointsExt
         }
 
         // check if it became empty but had data previously.
-        if (newSdpPoints == -1)
+        if (newSdpPoints == NON_VALUE)
         {
             // remove the tag data.
             enemy.RemoveNoteData(Tags.Points.Regex);

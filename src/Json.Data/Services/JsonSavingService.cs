@@ -22,6 +22,34 @@ public static class JsonSavingService
     };
     
     /// <summary>
+    /// Saves the current state of skills to the current project path directory.
+    /// </summary>
+    /// <param name="path">The current project path directory.</param>
+    /// <param name="data">The current state of skills.</param>
+    public static async Task SaveSkills(string path, List<RPG_Skill> data)
+    {
+        // build the path.
+        var fullPath = $"{path}/Skills.json";
+
+        // save the data to the designated path.
+        await Save(fullPath, data);
+    }
+    
+    /// <summary>
+    /// Saves the current state of items to the current project path directory.
+    /// </summary>
+    /// <param name="path">The current project path directory.</param>
+    /// <param name="data">The current state of items.</param>
+    public static async Task SaveItems(string path, List<RPG_Item> data)
+    {
+        // build the path.
+        var fullPath = $"{path}/Items.json";
+
+        // save the data to the designated path.
+        await Save(fullPath, data);
+    }
+    
+    /// <summary>
     /// Saves the current state of weapons to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
@@ -50,28 +78,14 @@ public static class JsonSavingService
     }
     
     /// <summary>
-    /// Saves the current state of items to the current project path directory.
+    /// Saves the current state of enemies to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
-    /// <param name="data">The current state of items.</param>
-    public static async Task SaveItems(string path, List<RPG_Item> data)
+    /// <param name="data">The current state of enemies.</param>
+    public static async Task SaveEnemies(string path, List<RPG_Enemy> data)
     {
         // build the path.
-        var fullPath = $"{path}/Items.json";
-
-        // save the data to the designated path.
-        await Save(fullPath, data);
-    }
-
-    /// <summary>
-    /// Saves the current state of skills to the current project path directory.
-    /// </summary>
-    /// <param name="path">The current project path directory.</param>
-    /// <param name="data">The current state of skills.</param>
-    public static async Task SaveSkills(string path, List<RPG_Skill> data)
-    {
-        // build the path.
-        var fullPath = $"{path}/Skills.json";
+        var fullPath = $"{path}/Enemies.json";
 
         // save the data to the designated path.
         await Save(fullPath, data);
@@ -85,7 +99,7 @@ public static class JsonSavingService
     public static async Task SaveStates(string path, List<RPG_State> data)
     {
         // build the path.
-        var fullPath = $"{path}/Skills.json";
+        var fullPath = $"{path}/States.json";
 
         // save the data to the designated path.
         await Save(fullPath, data);

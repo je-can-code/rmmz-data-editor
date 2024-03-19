@@ -36,8 +36,8 @@ namespace JMZ.Dashboard.Boards
             labelId = new Label();
             labelTextId = new Label();
             groupBoxCoreData = new GroupBox();
-            numParamFortune = new NumericUpDown();
-            labelParamFortune = new Label();
+            numParamLuck = new NumericUpDown();
+            labelParamLuck = new Label();
             numParamSpeed = new NumericUpDown();
             labelParamSpeed = new Label();
             numParamResistance = new NumericUpDown();
@@ -72,18 +72,35 @@ namespace JMZ.Dashboard.Boards
             numSdpPoints = new NumericUpDown();
             groupBoxSdpData = new GroupBox();
             groupBoxSdpPanelDrop = new GroupBox();
-            buttonDeleteSdpDrop = new Button();
+            buttonRemoveSdpData = new Button();
+            buttonUpdateSdpData = new Button();
             buttonCloneToSdpDrop = new Button();
-            label4 = new Label();
+            labelSdpItemIdValue = new Label();
             labelSdpItemId = new Label();
             label2 = new Label();
             numSdpChance = new NumericUpDown();
             checkBoxHasPanelDrop = new CheckBox();
             labelSdpKey = new Label();
             textSdpKey = new TextBox();
+            groupBoxJabsData = new GroupBox();
+            numJabsSight = new NumericUpDown();
+            labelJabsSight = new Label();
+            numJabsPursuit = new NumericUpDown();
+            label3 = new Label();
+            numJabsPursuitAlerted = new NumericUpDown();
+            numJabsSightAlerted = new NumericUpDown();
+            labelVisionBase = new Label();
+            labelVisionAlerted = new Label();
+            numAlertDuration = new NumericUpDown();
+            labelAlertDuration = new Label();
+            checkBoxAiTraitHealer = new CheckBox();
+            checkBoxAiTraitCareful = new CheckBox();
+            checkBoxAiTraitFollower = new CheckBox();
+            checkBoxAiTraitLeader = new CheckBox();
+            checkBoxAiTraitReckless = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)weaponBindingSource).BeginInit();
             groupBoxCoreData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numParamFortune).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numParamLuck).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numParamSpeed).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numParamResistance).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numParamForce).BeginInit();
@@ -100,16 +117,23 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpData.SuspendLayout();
             groupBoxSdpPanelDrop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSdpChance).BeginInit();
+            groupBoxJabsData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numJabsSight).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuitAlerted).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsSightAlerted).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numAlertDuration).BeginInit();
             SuspendLayout();
             // 
             // listBoxEnemies
             // 
+            listBoxEnemies.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxEnemies.FormattingEnabled = true;
-            listBoxEnemies.ItemHeight = 32;
+            listBoxEnemies.ItemHeight = 33;
             listBoxEnemies.Location = new Point(22, 26);
             listBoxEnemies.Margin = new Padding(6);
             listBoxEnemies.Name = "listBoxEnemies";
-            listBoxEnemies.Size = new Size(353, 1028);
+            listBoxEnemies.Size = new Size(353, 1027);
             listBoxEnemies.TabIndex = 0;
             // 
             // weaponBindingSource
@@ -138,8 +162,8 @@ namespace JMZ.Dashboard.Boards
             // 
             // groupBoxCoreData
             // 
-            groupBoxCoreData.Controls.Add(numParamFortune);
-            groupBoxCoreData.Controls.Add(labelParamFortune);
+            groupBoxCoreData.Controls.Add(numParamLuck);
+            groupBoxCoreData.Controls.Add(labelParamLuck);
             groupBoxCoreData.Controls.Add(numParamSpeed);
             groupBoxCoreData.Controls.Add(labelParamSpeed);
             groupBoxCoreData.Controls.Add(numParamResistance);
@@ -172,27 +196,27 @@ namespace JMZ.Dashboard.Boards
             groupBoxCoreData.TabStop = false;
             groupBoxCoreData.Text = "Core Data";
             // 
-            // numParamFortune
+            // numParamLuck
             // 
-            numParamFortune.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            numParamFortune.Location = new Point(189, 719);
-            numParamFortune.Margin = new Padding(11, 13, 11, 13);
-            numParamFortune.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            numParamFortune.Name = "numParamFortune";
-            numParamFortune.Size = new Size(195, 39);
-            numParamFortune.TabIndex = 30;
-            numParamFortune.TextAlign = HorizontalAlignment.Center;
+            numParamLuck.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamLuck.Location = new Point(189, 719);
+            numParamLuck.Margin = new Padding(11, 13, 11, 13);
+            numParamLuck.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numParamLuck.Name = "numParamLuck";
+            numParamLuck.Size = new Size(195, 39);
+            numParamLuck.TabIndex = 30;
+            numParamLuck.TextAlign = HorizontalAlignment.Center;
             // 
-            // labelParamFortune
+            // labelParamLuck
             // 
-            labelParamFortune.AutoSize = true;
-            labelParamFortune.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelParamFortune.Location = new Point(81, 726);
-            labelParamFortune.Margin = new Padding(6, 0, 6, 0);
-            labelParamFortune.Name = "labelParamFortune";
-            labelParamFortune.Size = new Size(104, 29);
-            labelParamFortune.TabIndex = 29;
-            labelParamFortune.Text = "Fortune";
+            labelParamLuck.AutoSize = true;
+            labelParamLuck.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamLuck.Location = new Point(81, 726);
+            labelParamLuck.Margin = new Padding(6, 0, 6, 0);
+            labelParamLuck.Name = "labelParamLuck";
+            labelParamLuck.Size = new Size(65, 29);
+            labelParamLuck.TabIndex = 29;
+            labelParamLuck.Text = "Luck";
             // 
             // numParamSpeed
             // 
@@ -309,7 +333,7 @@ namespace JMZ.Dashboard.Boards
             numMaxHp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             numMaxHp.Location = new Point(129, 221);
             numMaxHp.Margin = new Padding(11, 13, 11, 13);
-            numMaxHp.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numMaxHp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numMaxHp.Name = "numMaxHp";
             numMaxHp.Size = new Size(255, 39);
             numMaxHp.TabIndex = 18;
@@ -331,7 +355,7 @@ namespace JMZ.Dashboard.Boards
             numMaxTp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             numMaxTp.Location = new Point(129, 323);
             numMaxTp.Margin = new Padding(11, 13, 11, 13);
-            numMaxTp.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numMaxTp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numMaxTp.Name = "numMaxTp";
             numMaxTp.Size = new Size(255, 39);
             numMaxTp.TabIndex = 16;
@@ -353,7 +377,7 @@ namespace JMZ.Dashboard.Boards
             numMaxMp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             numMaxMp.Location = new Point(129, 271);
             numMaxMp.Margin = new Padding(11, 13, 11, 13);
-            numMaxMp.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numMaxMp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numMaxMp.Name = "numMaxMp";
             numMaxMp.Size = new Size(255, 39);
             numMaxMp.TabIndex = 14;
@@ -567,19 +591,20 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpData.Controls.Add(groupBoxSdpPanelDrop);
             groupBoxSdpData.Controls.Add(labelSdpPoints);
             groupBoxSdpData.Controls.Add(numSdpPoints);
-            groupBoxSdpData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxSdpData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             groupBoxSdpData.Location = new Point(1386, 26);
             groupBoxSdpData.Name = "groupBoxSdpData";
-            groupBoxSdpData.Size = new Size(558, 341);
+            groupBoxSdpData.Size = new Size(558, 397);
             groupBoxSdpData.TabIndex = 57;
             groupBoxSdpData.TabStop = false;
             groupBoxSdpData.Text = "SDP Data";
             // 
             // groupBoxSdpPanelDrop
             // 
-            groupBoxSdpPanelDrop.Controls.Add(buttonDeleteSdpDrop);
+            groupBoxSdpPanelDrop.Controls.Add(buttonRemoveSdpData);
+            groupBoxSdpPanelDrop.Controls.Add(buttonUpdateSdpData);
             groupBoxSdpPanelDrop.Controls.Add(buttonCloneToSdpDrop);
-            groupBoxSdpPanelDrop.Controls.Add(label4);
+            groupBoxSdpPanelDrop.Controls.Add(labelSdpItemIdValue);
             groupBoxSdpPanelDrop.Controls.Add(labelSdpItemId);
             groupBoxSdpPanelDrop.Controls.Add(label2);
             groupBoxSdpPanelDrop.Controls.Add(numSdpChance);
@@ -589,31 +614,45 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpPanelDrop.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             groupBoxSdpPanelDrop.Location = new Point(9, 97);
             groupBoxSdpPanelDrop.Name = "groupBoxSdpPanelDrop";
-            groupBoxSdpPanelDrop.Size = new Size(534, 228);
+            groupBoxSdpPanelDrop.Size = new Size(534, 290);
             groupBoxSdpPanelDrop.TabIndex = 70;
             groupBoxSdpPanelDrop.TabStop = false;
             groupBoxSdpPanelDrop.Text = "Panel Drop Data";
             // 
-            // buttonDeleteSdpDrop
+            // buttonRemoveSdpData
             // 
-            buttonDeleteSdpDrop.FlatStyle = FlatStyle.Popup;
-            buttonDeleteSdpDrop.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonDeleteSdpDrop.ForeColor = Color.Red;
-            buttonDeleteSdpDrop.Location = new Point(452, 129);
-            buttonDeleteSdpDrop.Margin = new Padding(6);
-            buttonDeleteSdpDrop.Name = "buttonDeleteSdpDrop";
-            buttonDeleteSdpDrop.Size = new Size(57, 59);
-            buttonDeleteSdpDrop.TabIndex = 66;
-            buttonDeleteSdpDrop.Text = "❌";
-            buttonDeleteSdpDrop.UseVisualStyleBackColor = true;
-            buttonDeleteSdpDrop.Click += buttonDeleteSdpDrop_Click;
+            buttonRemoveSdpData.FlatStyle = FlatStyle.Popup;
+            buttonRemoveSdpData.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRemoveSdpData.ForeColor = Color.Red;
+            buttonRemoveSdpData.Location = new Point(342, 221);
+            buttonRemoveSdpData.Margin = new Padding(6);
+            buttonRemoveSdpData.Name = "buttonRemoveSdpData";
+            buttonRemoveSdpData.Size = new Size(183, 60);
+            buttonRemoveSdpData.TabIndex = 76;
+            buttonRemoveSdpData.Text = "💥";
+            buttonRemoveSdpData.UseVisualStyleBackColor = true;
+            buttonRemoveSdpData.Click += buttonRemoveSdpData_Click;
+            // 
+            // buttonUpdateSdpData
+            // 
+            buttonUpdateSdpData.FlatStyle = FlatStyle.Popup;
+            buttonUpdateSdpData.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonUpdateSdpData.ForeColor = Color.Lime;
+            buttonUpdateSdpData.Location = new Point(9, 221);
+            buttonUpdateSdpData.Margin = new Padding(6);
+            buttonUpdateSdpData.Name = "buttonUpdateSdpData";
+            buttonUpdateSdpData.Size = new Size(321, 60);
+            buttonUpdateSdpData.TabIndex = 75;
+            buttonUpdateSdpData.Text = "💾";
+            buttonUpdateSdpData.UseVisualStyleBackColor = true;
+            buttonUpdateSdpData.Click += buttonUpdateSdpData_Click;
             // 
             // buttonCloneToSdpDrop
             // 
             buttonCloneToSdpDrop.FlatStyle = FlatStyle.Popup;
             buttonCloneToSdpDrop.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buttonCloneToSdpDrop.ForeColor = Color.Blue;
-            buttonCloneToSdpDrop.Location = new Point(366, 128);
+            buttonCloneToSdpDrop.Location = new Point(407, 124);
             buttonCloneToSdpDrop.Margin = new Padding(6);
             buttonCloneToSdpDrop.Name = "buttonCloneToSdpDrop";
             buttonCloneToSdpDrop.Size = new Size(74, 60);
@@ -622,15 +661,15 @@ namespace JMZ.Dashboard.Boards
             buttonCloneToSdpDrop.UseVisualStyleBackColor = true;
             buttonCloneToSdpDrop.Click += buttonCloneToSdpDrop_Click;
             // 
-            // label4
+            // labelSdpItemIdValue
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(407, 73);
-            label4.Margin = new Padding(6, 0, 6, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(52, 29);
-            label4.TabIndex = 73;
-            label4.Text = "n/a";
+            labelSdpItemIdValue.AutoSize = true;
+            labelSdpItemIdValue.Location = new Point(407, 73);
+            labelSdpItemIdValue.Margin = new Padding(6, 0, 6, 0);
+            labelSdpItemIdValue.Name = "labelSdpItemIdValue";
+            labelSdpItemIdValue.Size = new Size(52, 29);
+            labelSdpItemIdValue.TabIndex = 73;
+            labelSdpItemIdValue.Text = "n/a";
             // 
             // labelSdpItemId
             // 
@@ -698,11 +737,207 @@ namespace JMZ.Dashboard.Boards
             textSdpKey.Size = new Size(241, 33);
             textSdpKey.TabIndex = 68;
             // 
+            // groupBoxJabsData
+            // 
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitReckless);
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitLeader);
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitFollower);
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitCareful);
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitHealer);
+            groupBoxJabsData.Controls.Add(labelAlertDuration);
+            groupBoxJabsData.Controls.Add(numAlertDuration);
+            groupBoxJabsData.Controls.Add(labelVisionAlerted);
+            groupBoxJabsData.Controls.Add(labelVisionBase);
+            groupBoxJabsData.Controls.Add(numJabsPursuitAlerted);
+            groupBoxJabsData.Controls.Add(numJabsSightAlerted);
+            groupBoxJabsData.Controls.Add(numJabsPursuit);
+            groupBoxJabsData.Controls.Add(label3);
+            groupBoxJabsData.Controls.Add(numJabsSight);
+            groupBoxJabsData.Controls.Add(labelJabsSight);
+            groupBoxJabsData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBoxJabsData.Location = new Point(1386, 429);
+            groupBoxJabsData.Name = "groupBoxJabsData";
+            groupBoxJabsData.Size = new Size(558, 624);
+            groupBoxJabsData.TabIndex = 31;
+            groupBoxJabsData.TabStop = false;
+            groupBoxJabsData.Text = "JABS Data";
+            // 
+            // numJabsSight
+            // 
+            numJabsSight.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numJabsSight.Location = new Point(135, 97);
+            numJabsSight.Margin = new Padding(11, 13, 11, 13);
+            numJabsSight.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsSight.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsSight.Name = "numJabsSight";
+            numJabsSight.Size = new Size(143, 39);
+            numJabsSight.TabIndex = 20;
+            numJabsSight.TextAlign = HorizontalAlignment.Center;
+            numJabsSight.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // labelJabsSight
+            // 
+            labelJabsSight.AutoSize = true;
+            labelJabsSight.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelJabsSight.Location = new Point(40, 104);
+            labelJabsSight.Margin = new Padding(6, 0, 6, 0);
+            labelJabsSight.Name = "labelJabsSight";
+            labelJabsSight.Size = new Size(78, 29);
+            labelJabsSight.TabIndex = 19;
+            labelJabsSight.Text = "Sight";
+            // 
+            // numJabsPursuit
+            // 
+            numJabsPursuit.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numJabsPursuit.Location = new Point(135, 162);
+            numJabsPursuit.Margin = new Padding(11, 13, 11, 13);
+            numJabsPursuit.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsPursuit.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsPursuit.Name = "numJabsPursuit";
+            numJabsPursuit.Size = new Size(143, 39);
+            numJabsPursuit.TabIndex = 22;
+            numJabsPursuit.TextAlign = HorizontalAlignment.Center;
+            numJabsPursuit.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(14, 169);
+            label3.Margin = new Padding(6, 0, 6, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(104, 29);
+            label3.TabIndex = 21;
+            label3.Text = "Pursuit";
+            // 
+            // numJabsPursuitAlerted
+            // 
+            numJabsPursuitAlerted.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numJabsPursuitAlerted.Location = new Point(300, 162);
+            numJabsPursuitAlerted.Margin = new Padding(11, 13, 11, 13);
+            numJabsPursuitAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsPursuitAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsPursuitAlerted.Name = "numJabsPursuitAlerted";
+            numJabsPursuitAlerted.Size = new Size(143, 39);
+            numJabsPursuitAlerted.TabIndex = 24;
+            numJabsPursuitAlerted.TextAlign = HorizontalAlignment.Center;
+            numJabsPursuitAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // numJabsSightAlerted
+            // 
+            numJabsSightAlerted.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numJabsSightAlerted.Location = new Point(300, 97);
+            numJabsSightAlerted.Margin = new Padding(11, 13, 11, 13);
+            numJabsSightAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsSightAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsSightAlerted.Name = "numJabsSightAlerted";
+            numJabsSightAlerted.Size = new Size(143, 39);
+            numJabsSightAlerted.TabIndex = 23;
+            numJabsSightAlerted.TextAlign = HorizontalAlignment.Center;
+            numJabsSightAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // labelVisionBase
+            // 
+            labelVisionBase.AutoSize = true;
+            labelVisionBase.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelVisionBase.Location = new Point(156, 55);
+            labelVisionBase.Margin = new Padding(6, 0, 6, 0);
+            labelVisionBase.Name = "labelVisionBase";
+            labelVisionBase.Size = new Size(65, 29);
+            labelVisionBase.TabIndex = 25;
+            labelVisionBase.Text = "Base";
+            // 
+            // labelVisionAlerted
+            // 
+            labelVisionAlerted.AutoSize = true;
+            labelVisionAlerted.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelVisionAlerted.Location = new Point(325, 55);
+            labelVisionAlerted.Margin = new Padding(6, 0, 6, 0);
+            labelVisionAlerted.Name = "labelVisionAlerted";
+            labelVisionAlerted.Size = new Size(104, 29);
+            labelVisionAlerted.TabIndex = 26;
+            labelVisionAlerted.Text = "Alerted";
+            // 
+            // numAlertDuration
+            // 
+            numAlertDuration.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numAlertDuration.Location = new Point(300, 254);
+            numAlertDuration.Margin = new Padding(11, 13, 11, 13);
+            numAlertDuration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numAlertDuration.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numAlertDuration.Name = "numAlertDuration";
+            numAlertDuration.Size = new Size(190, 39);
+            numAlertDuration.TabIndex = 27;
+            numAlertDuration.TextAlign = HorizontalAlignment.Center;
+            numAlertDuration.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // labelAlertDuration
+            // 
+            labelAlertDuration.AutoSize = true;
+            labelAlertDuration.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelAlertDuration.Location = new Point(300, 224);
+            labelAlertDuration.Margin = new Padding(6, 0, 6, 0);
+            labelAlertDuration.Name = "labelAlertDuration";
+            labelAlertDuration.Size = new Size(117, 29);
+            labelAlertDuration.TabIndex = 28;
+            labelAlertDuration.Text = "Duration";
+            // 
+            // checkBoxAiTraitHealer
+            // 
+            checkBoxAiTraitHealer.AutoSize = true;
+            checkBoxAiTraitHealer.Location = new Point(18, 404);
+            checkBoxAiTraitHealer.Name = "checkBoxAiTraitHealer";
+            checkBoxAiTraitHealer.Size = new Size(197, 37);
+            checkBoxAiTraitHealer.TabIndex = 59;
+            checkBoxAiTraitHealer.Text = "AI: Healer";
+            checkBoxAiTraitHealer.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitCareful
+            // 
+            checkBoxAiTraitCareful.AutoSize = true;
+            checkBoxAiTraitCareful.Location = new Point(271, 404);
+            checkBoxAiTraitCareful.Name = "checkBoxAiTraitCareful";
+            checkBoxAiTraitCareful.Size = new Size(212, 37);
+            checkBoxAiTraitCareful.TabIndex = 60;
+            checkBoxAiTraitCareful.Text = "AI: Careful";
+            checkBoxAiTraitCareful.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitFollower
+            // 
+            checkBoxAiTraitFollower.AutoSize = true;
+            checkBoxAiTraitFollower.Location = new Point(18, 447);
+            checkBoxAiTraitFollower.Name = "checkBoxAiTraitFollower";
+            checkBoxAiTraitFollower.Size = new Size(227, 37);
+            checkBoxAiTraitFollower.TabIndex = 61;
+            checkBoxAiTraitFollower.Text = "AI: Follower";
+            checkBoxAiTraitFollower.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitLeader
+            // 
+            checkBoxAiTraitLeader.AutoSize = true;
+            checkBoxAiTraitLeader.Location = new Point(271, 447);
+            checkBoxAiTraitLeader.Name = "checkBoxAiTraitLeader";
+            checkBoxAiTraitLeader.Size = new Size(197, 37);
+            checkBoxAiTraitLeader.TabIndex = 62;
+            checkBoxAiTraitLeader.Text = "AI: Leader";
+            checkBoxAiTraitLeader.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitReckless
+            // 
+            checkBoxAiTraitReckless.AutoSize = true;
+            checkBoxAiTraitReckless.Location = new Point(18, 490);
+            checkBoxAiTraitReckless.Name = "checkBoxAiTraitReckless";
+            checkBoxAiTraitReckless.Size = new Size(197, 37);
+            checkBoxAiTraitReckless.TabIndex = 63;
+            checkBoxAiTraitReckless.Text = "AI: Leader";
+            checkBoxAiTraitReckless.UseVisualStyleBackColor = true;
+            // 
             // EnemiesBoard
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1976, 1074);
+            Controls.Add(groupBoxJabsData);
             Controls.Add(groupBoxSdpData);
             Controls.Add(groupBoxDropData);
             Controls.Add(groupBoxCoreData);
@@ -713,7 +948,7 @@ namespace JMZ.Dashboard.Boards
             ((System.ComponentModel.ISupportInitialize)weaponBindingSource).EndInit();
             groupBoxCoreData.ResumeLayout(false);
             groupBoxCoreData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numParamFortune).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numParamLuck).EndInit();
             ((System.ComponentModel.ISupportInitialize)numParamSpeed).EndInit();
             ((System.ComponentModel.ISupportInitialize)numParamResistance).EndInit();
             ((System.ComponentModel.ISupportInitialize)numParamForce).EndInit();
@@ -733,6 +968,13 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpPanelDrop.ResumeLayout(false);
             groupBoxSdpPanelDrop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numSdpChance).EndInit();
+            groupBoxJabsData.ResumeLayout(false);
+            groupBoxJabsData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numJabsSight).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuitAlerted).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsSightAlerted).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numAlertDuration).EndInit();
             ResumeLayout(false);
         }
 
@@ -772,12 +1014,11 @@ namespace JMZ.Dashboard.Boards
         private Label label2;
         private NumericUpDown numSdpChance;
         private CheckBox checkBoxHasPanelDrop;
-        private Button buttonDeleteSdpDrop;
         private Button buttonCloneToSdpDrop;
-        private Label label4;
+        private Label labelSdpItemIdValue;
         private Label labelSdpItemId;
-        private NumericUpDown numParamFortune;
-        private Label labelParamFortune;
+        private NumericUpDown numParamLuck;
+        private Label labelParamLuck;
         private NumericUpDown numParamSpeed;
         private Label labelParamSpeed;
         private NumericUpDown numParamResistance;
@@ -788,5 +1029,23 @@ namespace JMZ.Dashboard.Boards
         private Label labelParamEndurance;
         private NumericUpDown numParamPower;
         private Label labelParamPower;
+        private Button buttonRemoveSdpData;
+        private Button buttonUpdateSdpData;
+        private GroupBox groupBoxJabsData;
+        private NumericUpDown numJabsPursuit;
+        private Label label3;
+        private NumericUpDown numJabsSight;
+        private Label labelJabsSight;
+        private Label labelVisionAlerted;
+        private Label labelVisionBase;
+        private NumericUpDown numJabsPursuitAlerted;
+        private NumericUpDown numJabsSightAlerted;
+        private Label labelAlertDuration;
+        private NumericUpDown numAlertDuration;
+        private CheckBox checkBoxAiTraitReckless;
+        private CheckBox checkBoxAiTraitLeader;
+        private CheckBox checkBoxAiTraitFollower;
+        private CheckBox checkBoxAiTraitCareful;
+        private CheckBox checkBoxAiTraitHealer;
     }
 }

@@ -72,12 +72,12 @@
             // 
             // listboxRecipes
             // 
-            listboxRecipes.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            listboxRecipes.ItemHeight = 29;
+            listboxRecipes.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listboxRecipes.ItemHeight = 33;
             listboxRecipes.Location = new Point(17, 85);
             listboxRecipes.Margin = new Padding(6);
             listboxRecipes.Name = "listboxRecipes";
-            listboxRecipes.Size = new Size(452, 1135);
+            listboxRecipes.Size = new Size(452, 1126);
             listboxRecipes.TabIndex = 60;
             // 
             // groupBox_coreData
@@ -150,13 +150,13 @@
             // 
             // listBoxCategories
             // 
-            listBoxCategories.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBoxCategories.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxCategories.FormattingEnabled = true;
-            listBoxCategories.ItemHeight = 29;
+            listBoxCategories.ItemHeight = 33;
             listBoxCategories.Location = new Point(948, 97);
             listBoxCategories.Margin = new Padding(6);
             listBoxCategories.Name = "listBoxCategories";
-            listBoxCategories.Size = new Size(332, 236);
+            listBoxCategories.Size = new Size(332, 235);
             listBoxCategories.TabIndex = 70;
             // 
             // labelDescription
@@ -395,13 +395,13 @@
             // 
             // listBoxIngredients
             // 
-            listBoxIngredients.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBoxIngredients.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxIngredients.FormattingEnabled = true;
-            listBoxIngredients.ItemHeight = 29;
+            listBoxIngredients.ItemHeight = 33;
             listBoxIngredients.Location = new Point(11, 75);
             listBoxIngredients.Margin = new Padding(6);
             listBoxIngredients.Name = "listBoxIngredients";
-            listBoxIngredients.Size = new Size(424, 468);
+            listBoxIngredients.Size = new Size(424, 466);
             listBoxIngredients.TabIndex = 65;
             // 
             // buttonDeleteIngredient
@@ -480,24 +480,24 @@
             // 
             // listBoxTools
             // 
-            listBoxTools.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBoxTools.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxTools.FormattingEnabled = true;
-            listBoxTools.ItemHeight = 29;
+            listBoxTools.ItemHeight = 33;
             listBoxTools.Location = new Point(447, 75);
             listBoxTools.Margin = new Padding(6);
             listBoxTools.Name = "listBoxTools";
-            listBoxTools.Size = new Size(422, 468);
+            listBoxTools.Size = new Size(422, 466);
             listBoxTools.TabIndex = 57;
             // 
             // listBoxOutput
             // 
-            listBoxOutput.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBoxOutput.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxOutput.FormattingEnabled = true;
-            listBoxOutput.ItemHeight = 29;
+            listBoxOutput.ItemHeight = 33;
             listBoxOutput.Location = new Point(881, 75);
             listBoxOutput.Margin = new Padding(6);
             listBoxOutput.Name = "listBoxOutput";
-            listBoxOutput.Size = new Size(403, 468);
+            listBoxOutput.Size = new Size(403, 466);
             listBoxOutput.TabIndex = 58;
             // 
             // labelRecipes

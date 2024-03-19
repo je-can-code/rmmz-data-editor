@@ -18,14 +18,14 @@ public static class JsonLoaderService
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
     /// <returns>The full path to the SDP configuration data.</returns>
-    internal static string sdpDataPath(string basePath) => @$"{basePath}\{SdpInitializer.ConfigurationFileName}";
+    public static string sdpDataPath(string basePath) => @$"{basePath}\{SdpInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// A template string for creating the path to the Crafting configuration data.
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
     /// <returns>The full path to the Crafting configuration data.</returns>
-    internal static string craftingDataPath(string basePath) => $"{basePath}/{CraftingInitializer.ConfigurationFileName}";
+    public static string craftingDataPath(string basePath) => $@"{basePath}\{CraftingInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// Loads the items from the json found in the of the current project path directory.
@@ -67,6 +67,21 @@ public static class JsonLoaderService
 
         // load the list of weapons.
         return Load<List<RPG_Armor>>(fullPath);
+    }
+
+    /// <summary>
+    /// Loads the enemies from the json found in the of the current project path directory.
+    /// </summary>
+    /// <param name="path">The current project path directory.</param>
+    /// <returns>The converted enemies.</returns>
+    public static List<RPG_Enemy> LoadEnemies(string path)
+    {
+        // build the path.
+        var fullPath = $"{path}/Enemies.json";
+
+        // load the list of weapons.
+        // return Load<List<RPG_Enemy>>(fullPath);
+        return Load<List<RPG_Enemy>>(fullPath);
     }
 
     /// <summary>

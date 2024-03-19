@@ -30,7 +30,7 @@ public static class DropComponentMapper
         0 => "i",
         1 => "w",
         2 => "a",
-        _ => throw new($"bad kind integer provided {kindInteger}")
+        _ => throw new($"bad kind integer provided: {kindInteger}")
     };
     
     private static int ToKindInteger(string kindString) => kindString.ToLowerInvariant() switch
@@ -38,6 +38,6 @@ public static class DropComponentMapper
         "i" or "item" => 0,
         "w" or "weapon" => 1,
         "a" or "armor" => 2,
-        _ => throw new($"bad kind string provided {kindString}")
+        _ => throw new($"bad kind string provided: {kindString}")
     };
 }

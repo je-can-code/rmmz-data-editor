@@ -59,10 +59,10 @@
             groupBox_coreData.Controls.Add(label_iconIndex);
             groupBox_coreData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox_coreData.Location = new Point(390, 26);
-            groupBox_coreData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_coreData.Margin = new Padding(6);
             groupBox_coreData.Name = "groupBox_coreData";
-            groupBox_coreData.Padding = new Padding(6, 6, 6, 6);
-            groupBox_coreData.Size = new Size(1221, 651);
+            groupBox_coreData.Padding = new Padding(6);
+            groupBox_coreData.Size = new Size(1467, 835);
             groupBox_coreData.TabIndex = 56;
             groupBox_coreData.TabStop = false;
             groupBox_coreData.Text = "Core Data";
@@ -82,10 +82,10 @@
             // 
             textBoxDescription.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxDescription.Location = new Point(11, 282);
-            textBoxDescription.Margin = new Padding(6, 6, 6, 6);
+            textBoxDescription.Margin = new Padding(6);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new Size(1198, 357);
+            textBoxDescription.Size = new Size(1444, 541);
             textBoxDescription.TabIndex = 60;
             // 
             // checkBoxUnlockedByDefault
@@ -93,7 +93,7 @@
             checkBoxUnlockedByDefault.AutoSize = true;
             checkBoxUnlockedByDefault.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxUnlockedByDefault.Location = new Point(500, 81);
-            checkBoxUnlockedByDefault.Margin = new Padding(6, 6, 6, 6);
+            checkBoxUnlockedByDefault.Margin = new Padding(6);
             checkBoxUnlockedByDefault.Name = "checkBoxUnlockedByDefault";
             checkBoxUnlockedByDefault.Size = new Size(292, 33);
             checkBoxUnlockedByDefault.TabIndex = 31;
@@ -105,7 +105,7 @@
             textBoxKey.BorderStyle = BorderStyle.FixedSingle;
             textBoxKey.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxKey.Location = new Point(11, 81);
-            textBoxKey.Margin = new Padding(6, 6, 6, 6);
+            textBoxKey.Margin = new Padding(6);
             textBoxKey.Name = "textBoxKey";
             textBoxKey.Size = new Size(206, 33);
             textBoxKey.TabIndex = 2;
@@ -126,7 +126,7 @@
             textBoxName.BorderStyle = BorderStyle.FixedSingle;
             textBoxName.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxName.Location = new Point(11, 181);
-            textBoxName.Margin = new Padding(6, 6, 6, 6);
+            textBoxName.Margin = new Padding(6);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(425, 33);
             textBoxName.TabIndex = 4;
@@ -146,7 +146,7 @@
             // 
             numIconIndex.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             numIconIndex.Location = new Point(293, 81);
-            numIconIndex.Margin = new Padding(6, 6, 6, 6);
+            numIconIndex.Margin = new Padding(6);
             numIconIndex.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             numIconIndex.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             numIconIndex.Name = "numIconIndex";
@@ -166,12 +166,12 @@
             // 
             // listBoxCategories
             // 
-            listBoxCategories.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            listBoxCategories.ItemHeight = 29;
+            listBoxCategories.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxCategories.ItemHeight = 33;
             listBoxCategories.Location = new Point(22, 85);
-            listBoxCategories.Margin = new Padding(6, 6, 6, 6);
+            listBoxCategories.Margin = new Padding(6);
             listBoxCategories.Name = "listBoxCategories";
-            listBoxCategories.Size = new Size(353, 497);
+            listBoxCategories.Size = new Size(353, 697);
             listBoxCategories.TabIndex = 57;
             // 
             // labelCategories
@@ -189,8 +189,8 @@
             // 
             buttonAddCategory.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             buttonAddCategory.ForeColor = Color.Green;
-            buttonAddCategory.Location = new Point(174, 615);
-            buttonAddCategory.Margin = new Padding(6, 6, 6, 6);
+            buttonAddCategory.Location = new Point(174, 799);
+            buttonAddCategory.Margin = new Padding(6);
             buttonAddCategory.Name = "buttonAddCategory";
             buttonAddCategory.Size = new Size(201, 62);
             buttonAddCategory.TabIndex = 67;
@@ -202,8 +202,8 @@
             // 
             buttonDeleteCategory.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             buttonDeleteCategory.ForeColor = Color.Red;
-            buttonDeleteCategory.Location = new Point(22, 615);
-            buttonDeleteCategory.Margin = new Padding(6, 6, 6, 6);
+            buttonDeleteCategory.Location = new Point(22, 799);
+            buttonDeleteCategory.Margin = new Padding(6);
             buttonDeleteCategory.Name = "buttonDeleteCategory";
             buttonDeleteCategory.Size = new Size(145, 62);
             buttonDeleteCategory.TabIndex = 66;
@@ -215,13 +215,13 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1626, 692);
+            ClientSize = new Size(1872, 876);
             Controls.Add(buttonAddCategory);
             Controls.Add(buttonDeleteCategory);
             Controls.Add(listBoxCategories);
             Controls.Add(labelCategories);
             Controls.Add(groupBox_coreData);
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "CraftCategoryHelper";
             Text = "Crafting Category Helper";
             groupBox_coreData.ResumeLayout(false);

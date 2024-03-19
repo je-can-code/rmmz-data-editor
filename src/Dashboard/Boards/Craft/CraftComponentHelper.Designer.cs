@@ -61,11 +61,12 @@
             // 
             // comboBoxTypes
             // 
+            comboBoxTypes.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             comboBoxTypes.FormattingEnabled = true;
             comboBoxTypes.Location = new Point(11, 73);
-            comboBoxTypes.Margin = new Padding(6, 6, 6, 6);
+            comboBoxTypes.Margin = new Padding(6);
             comboBoxTypes.Name = "comboBoxTypes";
-            comboBoxTypes.Size = new Size(160, 37);
+            comboBoxTypes.Size = new Size(160, 41);
             comboBoxTypes.TabIndex = 2;
             // 
             // labelComponents
@@ -86,12 +87,12 @@
             groupBoxResult.Controls.Add(labelCurrentId);
             groupBoxResult.Controls.Add(labelCurrentType);
             groupBoxResult.Controls.Add(textBoxCurrentType);
-            groupBoxResult.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxResult.Location = new Point(468, 216);
-            groupBoxResult.Margin = new Padding(6, 6, 6, 6);
+            groupBoxResult.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxResult.Location = new Point(37, 15);
+            groupBoxResult.Margin = new Padding(6);
             groupBoxResult.Name = "groupBoxResult";
-            groupBoxResult.Padding = new Padding(6, 6, 6, 6);
-            groupBoxResult.Size = new Size(327, 252);
+            groupBoxResult.Padding = new Padding(6);
+            groupBoxResult.Size = new Size(434, 232);
             groupBoxResult.TabIndex = 5;
             groupBoxResult.TabStop = false;
             groupBoxResult.Text = "Current Component";
@@ -100,21 +101,21 @@
             // 
             textBoxCurrentCount.BorderStyle = BorderStyle.FixedSingle;
             textBoxCurrentCount.Enabled = false;
-            textBoxCurrentCount.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCurrentCount.Location = new Point(113, 173);
-            textBoxCurrentCount.Margin = new Padding(6, 6, 6, 6);
+            textBoxCurrentCount.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxCurrentCount.Location = new Point(113, 175);
+            textBoxCurrentCount.Margin = new Padding(6);
             textBoxCurrentCount.Name = "textBoxCurrentCount";
-            textBoxCurrentCount.Size = new Size(184, 37);
+            textBoxCurrentCount.Size = new Size(184, 46);
             textBoxCurrentCount.TabIndex = 13;
             // 
             // labelCurrentQuantity
             // 
             labelCurrentQuantity.AutoSize = true;
-            labelCurrentQuantity.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCurrentQuantity.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             labelCurrentQuantity.Location = new Point(15, 177);
             labelCurrentQuantity.Margin = new Padding(6, 0, 6, 0);
             labelCurrentQuantity.Name = "labelCurrentQuantity";
-            labelCurrentQuantity.Size = new Size(81, 30);
+            labelCurrentQuantity.Size = new Size(95, 35);
             labelCurrentQuantity.TabIndex = 12;
             labelCurrentQuantity.Text = "Count";
             // 
@@ -122,32 +123,32 @@
             // 
             textBoxCurrentId.BorderStyle = BorderStyle.FixedSingle;
             textBoxCurrentId.Enabled = false;
-            textBoxCurrentId.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCurrentId.Location = new Point(113, 111);
-            textBoxCurrentId.Margin = new Padding(6, 6, 6, 6);
+            textBoxCurrentId.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxCurrentId.Location = new Point(113, 113);
+            textBoxCurrentId.Margin = new Padding(6);
             textBoxCurrentId.Name = "textBoxCurrentId";
-            textBoxCurrentId.Size = new Size(184, 37);
+            textBoxCurrentId.Size = new Size(184, 46);
             textBoxCurrentId.TabIndex = 11;
             // 
             // labelCurrentId
             // 
             labelCurrentId.AutoSize = true;
-            labelCurrentId.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCurrentId.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             labelCurrentId.Location = new Point(59, 115);
             labelCurrentId.Margin = new Padding(6, 0, 6, 0);
             labelCurrentId.Name = "labelCurrentId";
-            labelCurrentId.Size = new Size(33, 30);
+            labelCurrentId.Size = new Size(47, 35);
             labelCurrentId.TabIndex = 10;
             labelCurrentId.Text = "Id";
             // 
             // labelCurrentType
             // 
             labelCurrentType.AutoSize = true;
-            labelCurrentType.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCurrentType.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
             labelCurrentType.Location = new Point(30, 53);
             labelCurrentType.Margin = new Padding(6, 0, 6, 0);
             labelCurrentType.Name = "labelCurrentType";
-            labelCurrentType.Size = new Size(70, 30);
+            labelCurrentType.Size = new Size(79, 35);
             labelCurrentType.TabIndex = 9;
             labelCurrentType.Text = "Type";
             // 
@@ -155,11 +156,11 @@
             // 
             textBoxCurrentType.BorderStyle = BorderStyle.FixedSingle;
             textBoxCurrentType.Enabled = false;
-            textBoxCurrentType.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCurrentType.Location = new Point(113, 49);
-            textBoxCurrentType.Margin = new Padding(6, 6, 6, 6);
+            textBoxCurrentType.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxCurrentType.Location = new Point(113, 51);
+            textBoxCurrentType.Margin = new Padding(6);
             textBoxCurrentType.Name = "textBoxCurrentType";
-            textBoxCurrentType.Size = new Size(184, 37);
+            textBoxCurrentType.Size = new Size(184, 46);
             textBoxCurrentType.TabIndex = 8;
             // 
             // labelQuantity
@@ -168,9 +169,9 @@
             labelQuantity.Location = new Point(215, 34);
             labelQuantity.Margin = new Padding(6, 0, 6, 0);
             labelQuantity.Name = "labelQuantity";
-            labelQuantity.Size = new Size(117, 29);
+            labelQuantity.Size = new Size(182, 29);
             labelQuantity.TabIndex = 6;
-            labelQuantity.Text = "Quantity";
+            labelQuantity.Text = "Amount/Chance";
             // 
             // numQuantity
             // 
@@ -187,21 +188,23 @@
             // 
             // textBoxDataFilter
             // 
+            textBoxDataFilter.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             textBoxDataFilter.Location = new Point(15, 173);
-            textBoxDataFilter.Margin = new Padding(6, 6, 6, 6);
+            textBoxDataFilter.Margin = new Padding(6);
             textBoxDataFilter.Name = "textBoxDataFilter";
-            textBoxDataFilter.Size = new Size(402, 33);
+            textBoxDataFilter.Size = new Size(402, 46);
             textBoxDataFilter.TabIndex = 8;
             // 
             // listBoxComponents
             // 
             listBoxComponents.BorderStyle = BorderStyle.FixedSingle;
+            listBoxComponents.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxComponents.FormattingEnabled = true;
-            listBoxComponents.ItemHeight = 29;
+            listBoxComponents.ItemHeight = 33;
             listBoxComponents.Location = new Point(15, 267);
-            listBoxComponents.Margin = new Padding(6, 6, 6, 6);
+            listBoxComponents.Margin = new Padding(6);
             listBoxComponents.Name = "listBoxComponents";
-            listBoxComponents.Size = new Size(402, 495);
+            listBoxComponents.Size = new Size(402, 959);
             listBoxComponents.TabIndex = 9;
             // 
             // labelDataFilter
@@ -225,11 +228,11 @@
             groupBoxComponents.Controls.Add(comboBoxTypes);
             groupBoxComponents.Controls.Add(labelTypes);
             groupBoxComponents.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxComponents.Location = new Point(22, 26);
-            groupBoxComponents.Margin = new Padding(6, 6, 6, 6);
+            groupBoxComponents.Location = new Point(37, 259);
+            groupBoxComponents.Margin = new Padding(6);
             groupBoxComponents.Name = "groupBoxComponents";
-            groupBoxComponents.Padding = new Padding(6, 6, 6, 6);
-            groupBoxComponents.Size = new Size(434, 780);
+            groupBoxComponents.Padding = new Padding(6);
+            groupBoxComponents.Size = new Size(434, 1243);
             groupBoxComponents.TabIndex = 11;
             groupBoxComponents.TabStop = false;
             groupBoxComponents.Text = "Component Data";
@@ -238,12 +241,12 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(831, 821);
+            ClientSize = new Size(513, 1537);
             Controls.Add(groupBoxComponents);
             Controls.Add(groupBoxResult);
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "CraftComponentHelper";
-            Text = "Crafting Component Helper";
+            Text = "Component Helper";
             groupBoxResult.ResumeLayout(false);
             groupBoxResult.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();

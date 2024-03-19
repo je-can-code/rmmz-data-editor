@@ -1,8 +1,7 @@
 ﻿using JMZ.Crafting.Data.Extensions;
 using JMZ.Crafting.Data.Models;
-using JMZ.Dashboard.Caches;
+using JMZ.Json.Data.Caches;
 using JMZ.Rmmz.Data.Models.db.@base;
-using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.Dashboard.Boards.Craft;
 

@@ -21,7 +21,7 @@ public static class SdpDataExt
         if (!sdpDropData.Any())
         {
             // return an empty set.
-            return new(string.Empty, decimal.One);
+            return new(string.Empty, decimal.MinusOne);
         }
 
         // the string form of the key.

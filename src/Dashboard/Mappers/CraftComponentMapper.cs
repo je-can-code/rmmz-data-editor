@@ -1,5 +1,5 @@
 ﻿using JMZ.Crafting.Data.Models;
-using JMZ.Dashboard.Caches;
+using JMZ.Json.Data.Caches;
 
 namespace JMZ.Dashboard.Mappers;
 

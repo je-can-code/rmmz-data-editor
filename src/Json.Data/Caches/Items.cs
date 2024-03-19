@@ -1,7 +1,7 @@
-﻿using JMZ.Dashboard.Services;
+﻿using JMZ.Json.Data.Services;
 using JMZ.Rmmz.Data.Models.db.implementations;
 
-namespace JMZ.Dashboard.Caches;
+namespace JMZ.Json.Data.Caches;
 
 public static class Items
 {
