@@ -38,7 +38,7 @@ jobs:
     steps:
       # Download your repository to the runner.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install .NET onto the runner.
       - name: Install .NET
