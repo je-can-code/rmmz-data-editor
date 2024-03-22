@@ -469,7 +469,7 @@ public partial class BaseBoard : Form
     private async void button_enemies_Click(object sender, EventArgs e)
     {
         // get the core dataset for this board.
-        var data = JsonLoaderService.LoadEnemies(this.projectPath);
+        var data = await Task.Run(() => JsonLoaderService.LoadEnemies(this.projectPath));
 
         // setup the board.
         this.enemiesBoard.Show();

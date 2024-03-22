@@ -406,7 +406,7 @@ public partial class SkillsBoard : Form
         var (skill, index) = this.GetSkillSelection();
 
         // grab the current value in the input.
-        var hitbox = (Hitbox)this.comboBox_hitbox.SelectedItem;
+        var hitbox = (Hitbox)this.comboBox_hitbox.SelectedItem!;
 
         // update the underlying data.
         skill.UpdateJabsHitbox(hitbox);

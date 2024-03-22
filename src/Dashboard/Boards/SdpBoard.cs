@@ -192,7 +192,7 @@ public partial class SdpBoard : Form
         if (sdp is null) return;
 
         // update with the new value.
-        var rarity = (Rarity)this.comboBox_rarity.SelectedItem;
+        var rarity = (Rarity)this.comboBox_rarity.SelectedItem!;
 
         // cast the rarity as its underlying color index form.
         sdp.Rarity = (int)rarity;
@@ -339,7 +339,7 @@ public partial class SdpBoard : Form
         if (selectedParameter is null) return;
 
         // update with the new value.
-        var longParameter = (LongParameter)this.comboBox_parameter.SelectedItem;
+        var longParameter = (LongParameter)this.comboBox_parameter.SelectedItem!;
 
         // cast the parameterId as its underlying index form.
         selectedParameter.ParameterId = (int)longParameter;
