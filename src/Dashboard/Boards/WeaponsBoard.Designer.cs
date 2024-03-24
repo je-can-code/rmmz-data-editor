@@ -45,19 +45,22 @@ namespace JMZ.Dashboard.Boards
             // 
             // listBoxWeapons
             // 
+            listBoxWeapons.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
             listBoxWeapons.FormattingEnabled = true;
-            listBoxWeapons.ItemHeight = 15;
-            listBoxWeapons.Location = new Point(12, 12);
+            listBoxWeapons.ItemHeight = 33;
+            listBoxWeapons.Location = new Point(22, 26);
+            listBoxWeapons.Margin = new Padding(6, 6, 6, 6);
             listBoxWeapons.Name = "listBoxWeapons";
-            listBoxWeapons.Size = new Size(192, 484);
+            listBoxWeapons.Size = new Size(353, 1027);
             listBoxWeapons.TabIndex = 0;
             // 
             // textBox_weaponName
             // 
             textBox_weaponName.DataBindings.Add(new Binding("Text", weaponBindingSource, "name", true));
-            textBox_weaponName.Location = new Point(210, 57);
+            textBox_weaponName.Location = new Point(390, 122);
+            textBox_weaponName.Margin = new Padding(6, 6, 6, 6);
             textBox_weaponName.Name = "textBox_weaponName";
-            textBox_weaponName.Size = new Size(195, 23);
+            textBox_weaponName.Size = new Size(359, 39);
             textBox_weaponName.TabIndex = 1;
             // 
             // weaponBindingSource
@@ -67,53 +70,58 @@ namespace JMZ.Dashboard.Boards
             // label_weaponName
             // 
             label_weaponName.AutoSize = true;
-            label_weaponName.Location = new Point(210, 39);
+            label_weaponName.Location = new Point(390, 83);
+            label_weaponName.Margin = new Padding(6, 0, 6, 0);
             label_weaponName.Name = "label_weaponName";
-            label_weaponName.Size = new Size(39, 15);
+            label_weaponName.Size = new Size(78, 32);
             label_weaponName.TabIndex = 2;
             label_weaponName.Text = "Name";
             // 
             // label_weaponId
             // 
             label_weaponId.AutoSize = true;
-            label_weaponId.Location = new Point(210, 12);
+            label_weaponId.Location = new Point(390, 26);
+            label_weaponId.Margin = new Padding(6, 0, 6, 0);
             label_weaponId.Name = "label_weaponId";
-            label_weaponId.Size = new Size(17, 15);
+            label_weaponId.Size = new Size(34, 32);
             label_weaponId.TabIndex = 4;
             label_weaponId.Text = "Id";
             // 
             // label_weaponIdValue
             // 
             label_weaponIdValue.AutoSize = true;
-            label_weaponIdValue.Location = new Point(233, 12);
+            label_weaponIdValue.Location = new Point(433, 26);
+            label_weaponIdValue.Margin = new Padding(6, 0, 6, 0);
             label_weaponIdValue.Name = "label_weaponIdValue";
-            label_weaponIdValue.Size = new Size(25, 15);
+            label_weaponIdValue.Size = new Size(49, 32);
             label_weaponIdValue.TabIndex = 5;
             label_weaponIdValue.Text = "n/a";
             // 
             // label_weaponSkillId
             // 
             label_weaponSkillId.AutoSize = true;
-            label_weaponSkillId.Location = new Point(210, 100);
+            label_weaponSkillId.Location = new Point(390, 213);
+            label_weaponSkillId.Margin = new Padding(6, 0, 6, 0);
             label_weaponSkillId.Name = "label_weaponSkillId";
-            label_weaponSkillId.Size = new Size(78, 15);
+            label_weaponSkillId.Size = new Size(157, 32);
             label_weaponSkillId.TabIndex = 6;
             label_weaponSkillId.Text = "Attack Skill Id";
             // 
             // num_weaponSkillId
             // 
-            num_weaponSkillId.Location = new Point(210, 118);
+            num_weaponSkillId.Location = new Point(390, 252);
+            num_weaponSkillId.Margin = new Padding(6, 6, 6, 6);
             num_weaponSkillId.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
             num_weaponSkillId.Name = "num_weaponSkillId";
-            num_weaponSkillId.Size = new Size(78, 23);
+            num_weaponSkillId.Size = new Size(145, 39);
             num_weaponSkillId.TabIndex = 7;
             num_weaponSkillId.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // WeaponsBoard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 511);
+            ClientSize = new Size(1976, 1090);
             Controls.Add(num_weaponSkillId);
             Controls.Add(label_weaponSkillId);
             Controls.Add(label_weaponIdValue);
@@ -121,8 +129,9 @@ namespace JMZ.Dashboard.Boards
             Controls.Add(label_weaponName);
             Controls.Add(textBox_weaponName);
             Controls.Add(listBoxWeapons);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "WeaponsBoard";
-            Text = "WeaponsForm";
+            Text = "Weapon Data";
             ((System.ComponentModel.ISupportInitialize)weaponBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)num_weaponSkillId).EndInit();
             ResumeLayout(false);

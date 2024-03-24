@@ -70,7 +70,7 @@ public static class DataAccessExtensions
             // return null or empty based on parameters.
             return nullIfEmpty
                 ? null
-                : new(0);
+                : [];
         }
         
         // iterate over each of the tags.
@@ -174,7 +174,7 @@ public static class DataAccessExtensions
             // return null or empty based on parameters.
             return nullIfEmpty
                 ? null
-                : new();
+                : [];
         }
         
         // iterate over each of the tags.
@@ -194,5 +194,40 @@ public static class DataAccessExtensions
 
         // return what we found.
         return strings;
+    }
+
+    /// <summary>
+    /// Gets all found strings matching the provided tag name on this database object.
+    /// If no matching tag is found, an empty list will be returned, or null if nullIfEmpty is true.
+    ///
+    /// It is important to note that this method will group each tag's values together, not build them into
+    /// one long running list.
+    /// </summary>
+    public static List<List<string>>? GetAllStringsGroupedByTag(
+        this RPG_Base @base,
+        string tagName,
+        string delimiter = ",",
+        bool nullIfEmpty = false)
+    {
+        // grab the note data to scan.
+        var tags = @base.NoteDataByTagName(tagName);
+        
+        // check if we had any tags on this entry.
+        if (!tags.Any())
+        {
+            // return null or empty based on parameters.
+            return nullIfEmpty
+                ? null
+                : [];
+        }
+
+        // iterate over each of the tags.
+        var tagValuesGrouped = tags
+            // map each one to a list of strings based on the delimiter.
+            .Select(tag => tag.Value.ToStringList(delimiter).ToList())
+            .ToList();
+        
+        // return what we found.
+        return tagValuesGrouped;
     }
 }

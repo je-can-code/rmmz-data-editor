@@ -97,5 +97,5 @@ public abstract class AbstractTag
     /// <summary>
     /// A multi-description for when a single regex maps to multiple fields on the UI.
     /// </summary>
-    public string[] Descriptions { get; } = { };
+    public string[] Descriptions { get; } = [];
 }

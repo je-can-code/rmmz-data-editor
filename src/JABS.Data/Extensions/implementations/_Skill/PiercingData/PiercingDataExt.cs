@@ -10,7 +10,7 @@ internal static class PiercingDataExt
     internal static PiercingDataRecord GetJabsPiercingData(this RPG_Skill skill)
     {
         // grab the number data from the string array.
-        var data = skill.GetAllNumbersByTag(Tags.Pierce.Name) ?? new();
+        var data = skill.GetAllNumbersByTag(Tags.Pierce.Name) ?? [];
 
         // if there are no numbers, then there is no piercing data.
         if (!data.Any())

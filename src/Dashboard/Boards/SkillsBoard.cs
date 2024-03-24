@@ -18,7 +18,7 @@ public partial class SkillsBoard : Form
     /// <summary>
     /// The running list of parsed data including any edits made by the user.
     /// </summary>
-    private List<RPG_Skill> skillsList = new();
+    private List<RPG_Skill> skillsList = [];
 
     /// <summary>
     /// Whether or not this form needs setup.
@@ -406,7 +406,7 @@ public partial class SkillsBoard : Form
         var (skill, index) = this.GetSkillSelection();
 
         // grab the current value in the input.
-        var hitbox = (Hitbox)this.comboBox_hitbox.SelectedItem;
+        var hitbox = (Hitbox)this.comboBox_hitbox.SelectedItem!;
 
         // update the underlying data.
         skill.UpdateJabsHitbox(hitbox);

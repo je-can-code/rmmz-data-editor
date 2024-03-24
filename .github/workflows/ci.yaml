@@ -38,12 +38,12 @@ jobs:
     steps:
       # Download your repository to the runner.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install .NET onto the runner.
       - name: Install .NET
         id: install_dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
           cache: true
@@ -106,7 +106,7 @@ jobs:
 
       # Expose the archive as an artifact for download or use in further jobs.
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: ${{ env.ARTIFACT_FILE }}

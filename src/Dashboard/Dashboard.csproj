@@ -14,17 +14,25 @@
 
     <ItemGroup>
         <PackageReference Include="log4net" Version="$(Log4NetVersion)" />
-        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Json.Data\Json.Data.csproj" />
         <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
 
         <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
+        <ProjectReference Include="..\Drops.Data\Drops.Data.csproj" />
         <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
         <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj" />
+        <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj" />
+        <ProjectReference Include="..\LevelMaster.Data\LevelMaster.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Boards\WeaponsBoard - Copy.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

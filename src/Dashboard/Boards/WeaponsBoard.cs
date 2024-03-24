@@ -8,7 +8,7 @@ public partial class WeaponsBoard : Form
     /// <summary>
     /// The running list of parsed data including any edits made by the user.
     /// </summary>
-    private List<RPG_Weapon> weaponsList = new();
+    private List<RPG_Weapon> weaponsList = [];
 
     /// <summary>
     /// Whether or not this form needs setup.

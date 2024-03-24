@@ -40,12 +40,12 @@ public class TagServiceTests : BaseTests
     /// </summary>
     private static IEnumerable<object[]> GenerateSkillId()
     {
-        yield return new object[] { 0 };
-        yield return new object[] { 1 };
-        yield return new object[] { 7 };
-        yield return new object[] { 13 };
-        yield return new object[] { 25 };
-        yield return new object[] { 128 }; // if we have more than this, its too much.
+        yield return [0];
+        yield return [1];
+        yield return [7];
+        yield return [13];
+        yield return [25];
+        yield return [128]; // if we have more than this, its too much.
     }
     
     [Theory]
@@ -65,9 +65,9 @@ public class TagServiceTests : BaseTests
     /// </summary>
     private static IEnumerable<object[]> GenerateInvalidTag()
     {
-        yield return new object[] { "<foo" };   // needs on end as well.
-        yield return new object[] { "bar>" };   // needs on start as well.
-        yield return new object[] { "foobar" }; // needs on both start and end.
+        yield return ["<foo"];   // needs on end as well.
+        yield return ["bar>"];   // needs on start as well.
+        yield return ["foobar"]; // needs on both start and end.
     }
     
     [Fact]

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net7.0": {
+    "net8.0": {
       "Bogus": {
         "type": "Direct",
         "requested": "[34.0.2, )",
@@ -1047,17 +1047,22 @@
       "extend.data": {
         "type": "Project",
         "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
           "Rmmz.Data": "[1.0.0, )"
         }
       },
       "jabs.data": {
         "type": "Project",
         "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
           "Rmmz.Data": "[1.0.0, )"
         }
       },
       "rmmz.data": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )"
+        }
       }
     }
   }

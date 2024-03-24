@@ -1,5 +1,4 @@
 ﻿using JMZ.Sdp.Data.Models;
-using JMZ.Sdp.Data.Services;
 
 namespace JMZ.Dashboard.Boards;
 
@@ -7,14 +6,14 @@ public partial class SdpBoard : Form
 {
     private ToolTip _toolTip = new();
 
-    private List<StatDistributionPanel> sdpList = new();
+    private List<StatDistributionPanel> sdpList = [];
 
     public bool needsSetup = true;
 
     public SdpBoard()
     {
         InitializeComponent();
-        
+
         this.InitializeDataControls();
         this.InitializeTooltips();
         this.ApplyUpdateEvents();
@@ -121,7 +120,7 @@ public partial class SdpBoard : Form
     {
         // clear the existing list.
         this.sdpList.Clear();
-        
+
         // iterate over the tracked list.
         foreach (var sdp in this.listBox_Sdps.Items)
         {
@@ -193,7 +192,7 @@ public partial class SdpBoard : Form
         if (sdp is null) return;
 
         // update with the new value.
-        var rarity = (Rarity)this.comboBox_rarity.SelectedItem;
+        var rarity = (Rarity)this.comboBox_rarity.SelectedItem!;
 
         // cast the rarity as its underlying color index form.
         sdp.Rarity = (int)rarity;
@@ -340,7 +339,7 @@ public partial class SdpBoard : Form
         if (selectedParameter is null) return;
 
         // update with the new value.
-        var longParameter = (LongParameter)this.comboBox_parameter.SelectedItem;
+        var longParameter = (LongParameter)this.comboBox_parameter.SelectedItem!;
 
         // cast the parameterId as its underlying index form.
         selectedParameter.ParameterId = (int)longParameter;
@@ -636,7 +635,7 @@ public partial class SdpBoard : Form
     {
         // empty the list first.
         this.listBox_Sdps.Items.Clear();
-        
+
         // assign the list of items locally to the form.
         this.sdpList = panels;
 
@@ -666,7 +665,7 @@ public partial class SdpBoard : Form
 
         // define the new parameter.
         var newReward = new SdpReward();
-        
+
         // add the reward to the panel.
         sdp.PanelRewards.Add(newReward);
 
@@ -694,7 +693,7 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_rewards.SelectedIndex;
 
@@ -741,10 +740,10 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // define the new parameter.
         var newParameter = new SdpParameter();
-        
+
         // add the new parameter to the panel.
         sdp.PanelParameters.Add(newParameter);
 
@@ -772,7 +771,7 @@ public partial class SdpBoard : Form
 
         // do not proceed if there is no panel selected for some reason.
         if (sdp is null) return;
-        
+
         // grab the selection the user is considering removing.
         var removalIndex = this.listBox_parameters.SelectedIndex;
 

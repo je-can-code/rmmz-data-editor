@@ -10,7 +10,6 @@ class Program
     ///  The main entry point for the application.
     /// </summary>
     [STAThread]
-    // ReSharper disable once ArrangeTypeMemberModifiers
     static void Main(string[] args)
     {
         ApplicationConfiguration.Initialize();

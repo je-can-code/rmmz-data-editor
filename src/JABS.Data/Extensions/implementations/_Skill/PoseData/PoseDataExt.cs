@@ -10,9 +10,9 @@ internal static class PoseDataExt
     internal static PoseDataRecord GetJabsPoseData(this RPG_Skill skill)
     {
         // retrieve the data points.
-        var poseData = skill.GetAllStringsByTag(Tags.Pose.Name) ?? new List<string>();
+        var poseData = skill.GetAllStringsByTag(Tags.Pose.Name) ?? [];
 
-        // if there are no data points, then there are no poses.
+        // if there are no data points, then there is no data.
         if (!poseData.Any())
         {
             // return an empty set.
@@ -48,12 +48,13 @@ internal static class PoseDataExt
             return;
         }
 
-        // check if the pose suffix became empty but had a suffix previously.
+        // check if it became empty but had data previously.
         if (newPoseSuffix == string.Empty)
         {
+            // remove the tag data.
             skill.RemoveNoteData(Tags.Pose.Regex);
 
-            // do nothing.
+            // stop processing.
             return;
         }
         
