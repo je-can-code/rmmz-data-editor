@@ -97,7 +97,7 @@ public partial class CraftComponentHelper : Form
         this.textBoxCurrentId.Text = this.currentComponent.Id.ToString();
 
         // update the type of the component.
-        this.currentComponent.Type = ((ComponentType)comboBoxTypes.SelectedItem).ToAbbreviation();
+        this.currentComponent.Type = ((ComponentType)comboBoxTypes.SelectedItem!).ToAbbreviation();
         this.textBoxCurrentType.Text = this.currentComponent.Type;
 
         // update the quantity.
