@@ -6,7 +6,7 @@ public partial class SdpBoard : Form
 {
     private ToolTip _toolTip = new();
 
-    private List<StatDistributionPanel> sdpList = new();
+    private List<StatDistributionPanel> sdpList = [];
 
     public bool needsSetup = true;
 

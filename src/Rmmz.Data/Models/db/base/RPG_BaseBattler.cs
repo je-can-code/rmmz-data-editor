@@ -15,5 +15,5 @@ public abstract class RPG_BaseBattler : RPG_Base
     /// <summary>
     /// The name of this database entry.
     /// </summary>
-    public List<RPG_Trait> traits { get; set; } = new();
+    public List<RPG_Trait> traits { get; set; } = [];
 }

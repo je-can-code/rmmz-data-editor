@@ -15,7 +15,7 @@ public static class SdpDataExt
     public static SdpDropData GetSdpData(this RPG_Enemy enemy)
     {
         // retrieve the data points.
-        var sdpDropData = enemy.GetAllStringsByTag(Tags.DropData.Name) ?? new List<string>();
+        var sdpDropData = enemy.GetAllStringsByTag(Tags.DropData.Name) ?? [];
 
         // if there are no data points, then there is no data.
         if (!sdpDropData.Any())

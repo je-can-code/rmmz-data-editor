@@ -6,7 +6,7 @@ using JMZ.Rmmz.Data.Extensions;
 
 namespace JMZ.Extend.Data.Tests.Extensions.implementations._Skill;
 
-[Trait("Category","CoreData")]
+[Trait("Category","SkillData")]
 public class SkillExtensionIdsExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;

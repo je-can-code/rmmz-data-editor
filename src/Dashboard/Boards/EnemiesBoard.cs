@@ -15,7 +15,7 @@ public partial class EnemiesBoard : Form
     /// <summary>
     /// The running list of parsed data including any edits made by the user.
     /// </summary>
-    private List<RPG_Enemy> enemiesList = new();
+    private List<RPG_Enemy> enemiesList = [];
 
     private readonly CraftComponentHelper dropHelper;
 

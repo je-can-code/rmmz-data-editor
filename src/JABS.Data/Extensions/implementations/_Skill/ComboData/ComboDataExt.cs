@@ -10,7 +10,7 @@ internal static class ComboDataExt
     internal static ComboDataRecord GetJabsComboData(this RPG_Skill skill)
     {
         // grab the number data from the combo.
-        var comboData = skill.GetAllNumbersByTag(Tags.Combo.Name) ?? new List<decimal>();
+        var comboData = skill.GetAllNumbersByTag(Tags.Combo.Name) ?? [];
 
         // if there are no numbers, then there are no combos.
         if (!comboData.Any())

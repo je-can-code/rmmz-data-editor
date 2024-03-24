@@ -10,7 +10,7 @@ internal static class PoseDataExt
     internal static PoseDataRecord GetJabsPoseData(this RPG_Skill skill)
     {
         // retrieve the data points.
-        var poseData = skill.GetAllStringsByTag(Tags.Pose.Name) ?? new List<string>();
+        var poseData = skill.GetAllStringsByTag(Tags.Pose.Name) ?? [];
 
         // if there are no data points, then there is no data.
         if (!poseData.Any())

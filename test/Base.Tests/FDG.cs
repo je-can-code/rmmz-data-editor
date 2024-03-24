@@ -1,8 +1,9 @@
 ﻿using Bogus;
+using JMZ.Base.Tests.Utilities;
 using JMZ.JABS.Data.Models;
+using JMZ.Rmmz.Data.Models.db._data;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JabsTags = JMZ.JABS.Data.Models.Tags;
-using ExtendTags = JMZ.Extend.Data.Models.Tags;
 
 namespace JMZ.Base.Tests;
 
@@ -13,6 +14,8 @@ namespace JMZ.Base.Tests;
 public class FDG
 {
     private readonly Random RNG = new(1337);
+
+    private readonly Faker FAKER = new();
 
     public RPG_Weapon GenerateWeapon()
     {
@@ -31,7 +34,25 @@ public class FDG
     {
         return new Faker<RPG_Skill>().Generate();
     }
+    
+    public RPG_DropItem GenerateDropItem()
+    {
+        return new()
+        {
+            kind = RNG.Next(2),
+            dataId = this.RmmzUNumber(),
+            denominator = RNG.Next(1, 101)
+        };
+    }
 
+    public List<RPG_DropItem> GenerateDropItems(int count)
+    {
+        var drops = new List<RPG_DropItem>();
+        count.Times(() => drops.Add(this.GenerateDropItem()));
+        return drops;
+    }
+
+    #region tags
     /// <summary>
     /// Generates a skillId tag with a given skill id, or random skill id if none is provided.
     /// </summary>
@@ -198,6 +219,8 @@ public class FDG
     {
         return JabsTags.FreeCombo.ToBooleanTag();
     }
+    #endregion tags
+    
     #region utility
     /// <summary>
     /// Connects all lines together with a "\n" between each.
@@ -238,6 +261,26 @@ public class FDG
         var right = RmmzUNumber();
         var combined = $"{left}.{right}";
         return decimal.Parse(combined);
+    }
+
+    /// <summary>
+    /// Generates a random whole number between 1 and 100.
+    /// </summary>
+    public int RmmzChance()
+    {
+        return RNG.Next(1, 101);
+    }
+
+    /// <summary>
+    /// Generates a random word or words that has no particular punctuation except maybe a space.
+    /// Used for generating keys in tags, among other things.
+    /// </summary>
+    public string RmmzKey()
+    {
+        return FAKER.Lorem.Random
+            .Word()
+            .Replace(" ", "")
+            .ToLowerInvariant();
     }
 
     /// <summary>

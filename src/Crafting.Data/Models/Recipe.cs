@@ -39,20 +39,20 @@ public class Recipe
     /// <summary>
     /// The category keys that this recipe belongs to.
     /// </summary>
-    public List<string> CategoryKeys { get; set; } = new();
+    public List<string> CategoryKeys { get; set; } = [];
 
     /// <summary>
     /// The list of required tools not consumed but required to execute the recipe.
     /// </summary>
-    public List<Component> Tools { get; set; } = new();
+    public List<Component> Tools { get; set; } = [];
     
     /// <summary>
     /// The list of ingredients that make up this recipe that will be consumed.
     /// </summary>
-    public List<Component> Ingredients { get; set; } = new();
+    public List<Component> Ingredients { get; set; } = [];
     
     /// <summary>
     /// The list of components that will be generated when this recipe is successfully crafted.
     /// </summary>
-    public List<Component> Outputs { get; set; } = new();
+    public List<Component> Outputs { get; set; } = [];
 }

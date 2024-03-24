@@ -9,10 +9,10 @@ public static class ExtraDropsExt
 {
     public static List<RPG_DropItem> GetDropsData(this RPG_Enemy enemy)
     {
-        var dropDatas = enemy.GetAllStringsGroupedByTag(Tags.Drops.Name) ?? new List<List<string>>();
+        var dropDatas = enemy.GetAllStringsGroupedByTag(Tags.Drops.Name) ?? [];
         if (!dropDatas.Any())
         {
-            return new();
+            return [];
         }
 
         var drops = dropDatas

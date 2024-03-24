@@ -70,7 +70,7 @@ public static class DataAccessExtensions
             // return null or empty based on parameters.
             return nullIfEmpty
                 ? null
-                : new(0);
+                : [];
         }
         
         // iterate over each of the tags.
@@ -174,7 +174,7 @@ public static class DataAccessExtensions
             // return null or empty based on parameters.
             return nullIfEmpty
                 ? null
-                : new();
+                : [];
         }
         
         // iterate over each of the tags.
@@ -218,7 +218,7 @@ public static class DataAccessExtensions
             // return null or empty based on parameters.
             return nullIfEmpty
                 ? null
-                : new();
+                : [];
         }
 
         // iterate over each of the tags.

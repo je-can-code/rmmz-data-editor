@@ -6,7 +6,7 @@ public partial class CraftCategoryHelper : Form
 {
     private bool needsSetup = true;
 
-    private List<Category> categories = new();
+    private List<Category> categories = [];
 
     public CraftCategoryHelper()
     {

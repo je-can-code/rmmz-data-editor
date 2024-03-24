@@ -8,7 +8,7 @@ public partial class CraftBoard : Form
 {
     private ToolTip _toolTip = new();
 
-    private List<Recipe> recipeList = new();
+    private List<Recipe> recipeList = [];
 
     private readonly CraftComponentHelper craftComponentHelper;
 
@@ -848,10 +848,10 @@ public partial class CraftBoard : Form
             UnlockedByDefault = selectedItem.UnlockedByDefault,
             
             // cloning by reference takes more work.
-            Ingredients = new(selectedItem.Ingredients),
-            Tools = new(selectedItem.Tools),
-            Outputs = new(selectedItem.Outputs),
-            CategoryKeys = new(selectedItem.CategoryKeys)
+            Ingredients = [..selectedItem.Ingredients],
+            Tools = [..selectedItem.Tools],
+            Outputs = [..selectedItem.Outputs],
+            CategoryKeys = [..selectedItem.CategoryKeys]
         };
 
         // grab the current selection.

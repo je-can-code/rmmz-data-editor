@@ -9,7 +9,7 @@ public static class SdpPointsExt
     /// <summary>
     /// The value that is used to represent "no value" for this tag.
     /// </summary>
-    private const decimal NON_VALUE = decimal.Zero;
+    public const decimal NON_VALUE = decimal.Zero;
     
     public static decimal GetSdpPoints(this RPG_Enemy enemy)
     {

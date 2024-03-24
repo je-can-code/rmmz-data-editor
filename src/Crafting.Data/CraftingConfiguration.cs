@@ -7,7 +7,7 @@ namespace JMZ.Crafting.Data;
 /// </summary>
 public class CraftingConfiguration
 {
-    public List<Recipe> Recipes { get; set; } = new();
+    public List<Recipe> Recipes { get; set; } = [];
 
-    public List<Category> Categories { get; set; } = new();
+    public List<Category> Categories { get; set; } = [];
 }

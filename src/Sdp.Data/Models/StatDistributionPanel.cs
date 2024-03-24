@@ -60,12 +60,12 @@ public class StatDistributionPanel
     /// <summary>
     /// The parameters that grow in some way as a result of this panel ranking up.
     /// </summary>
-    public List<SdpParameter> PanelParameters { get; set; } = new();
+    public List<SdpParameter> PanelParameters { get; set; } = [];
 
     /// <summary>
     /// The rewards that are earned based on the rank.
     /// </summary>
-    public List<SdpReward> PanelRewards { get; set; } = new();
+    public List<SdpReward> PanelRewards { get; set; } = [];
     
     /// <summary>
     /// The rarity of the panel.
