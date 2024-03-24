@@ -277,10 +277,7 @@ public class FDG
     /// </summary>
     public string RmmzKey()
     {
-        return FAKER.Lorem.Random
-            .Word()
-            .Replace(" ", "")
-            .ToLowerInvariant();
+        return FAKER.Lorem.Random.String2(RNG.Next(8,33));
     }
 
     /// <summary>
