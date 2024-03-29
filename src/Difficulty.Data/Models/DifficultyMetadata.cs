@@ -36,17 +36,17 @@ public class DifficultyMetadata
     /// <summary>
     /// The various parameter-related effects applied to actors when this layer is applied.
     /// </summary>
-    public BattlerEffects actorEffects { get; set; } = new();
+    public BattlerEffects ActorEffects { get; set; } = new();
     
     /// <summary>
     /// The various parameter-related effects applied to enemies when this layer is applied.
     /// </summary>
-    public BattlerEffects enemyEffects { get; set; } = new();
+    public BattlerEffects EnemyEffects { get; set; } = new();
 
     /// <summary>
     /// The various reward-related effects applied when this layer is applied.
     /// </summary>
-    public RewardEffects rewards { get; set; } = new();
+    public RewardEffects Rewards { get; set; } = new();
 
     /// <summary>
     /// Whether or not this metadata is enabled by default.

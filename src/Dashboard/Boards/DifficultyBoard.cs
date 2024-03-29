@@ -5,6 +5,7 @@ namespace JMZ.Dashboard.Boards;
 public partial class DifficultyBoard : Form
 {
     private bool needsSetup = true;
+    
     private readonly ToolTip _toolTip = new();
 
     private List<DifficultyMetadata> difficultyList = [];
@@ -33,6 +34,7 @@ public partial class DifficultyBoard : Form
 
         this.InitializeDataControls();
         this.InitializeTooltips();
+        this.ApplyButtonInteractions();
         this.ApplyUpdateEvents();
     }
     
@@ -66,6 +68,14 @@ public partial class DifficultyBoard : Form
             """;
         _toolTip.SetToolTip(this.textboxKey, keyTip);
     }
+
+    private void ApplyButtonInteractions()
+    {
+        this.buttonAddDifficulty.Click += this.AddDifficulty;
+        this.buttonCloneDifficulty.Click += this.CloneDifficulty;
+        this.buttonDeleteDifficulty.Click += this.DeleteDifficulty;
+    }
+
     #endregion
     
     #region refresh
@@ -97,6 +107,7 @@ public partial class DifficultyBoard : Form
         this.checkboxUnlockedByDefault.Checked = selectedItem.UnlockedByDefault;
         this.checkboxEnabledByDefault.Checked = selectedItem.EnabledByDefault;
         this.checkboxHiddenByDefault.Checked = selectedItem.HiddenByDefault;
+        this.numCost.Value = selectedItem.Cost;
     }
 
     private void RefreshBattlerEffectsData()
@@ -104,7 +115,7 @@ public partial class DifficultyBoard : Form
         var selectedItem = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
         if (selectedItem is null) return;
 
-        var actorBattlerEffects = selectedItem.actorEffects;
+        var actorBattlerEffects = selectedItem.ActorEffects;
         
         this.num00MaxLifeActor.Value = actorBattlerEffects.bparams[0];
         this.num01MaxMagiActor.Value = actorBattlerEffects.bparams[1];
@@ -137,7 +148,7 @@ public partial class DifficultyBoard : Form
         this.num08EnvironDamageActor.Value = actorBattlerEffects.sparams[8];
         this.num09ExperienceRateActor.Value = actorBattlerEffects.sparams[9];
         
-        var enemyBattlerEffects = selectedItem.enemyEffects;
+        var enemyBattlerEffects = selectedItem.EnemyEffects;
 
         this.num00MaxLifeEnemy.Value = enemyBattlerEffects.bparams[0];
         this.num01MaxMagiEnemy.Value = enemyBattlerEffects.bparams[1];
@@ -176,7 +187,7 @@ public partial class DifficultyBoard : Form
         var selectedItem = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
         if (selectedItem is null) return;
         
-        var rewards = selectedItem.rewards;
+        var rewards = selectedItem.Rewards;
 
         this.numRewardExperience.Value = rewards.Experience;
         this.numRewardGold.Value = rewards.Gold;
@@ -231,4 +242,135 @@ public partial class DifficultyBoard : Form
         this.needsSetup = false;
     }
     #endregion
+
+    private void AddDifficulty(object? sender, EventArgs e)
+    {
+        var newItem = new DifficultyMetadata();
+
+        var selectedIndex = this.listboxDifficultyLayers.SelectedIndex;
+        
+        // check if there was no current selection.
+        if (selectedIndex == -1 || selectedIndex == this.listboxDifficultyLayers.Items.Count - 1)
+        {
+            // add the item to the list without regard for index.
+            this.listboxDifficultyLayers.Items.Add(newItem);
+        }
+        // we are in the middle somewhere.
+        else
+        {
+            // add it at the given index.
+            this.listboxDifficultyLayers.Items.Insert(selectedIndex, newItem);
+        }
+    }
+    
+    private void DeleteDifficulty(object? sender, EventArgs e)
+    {
+        // grab the selection the user is considering removing.
+        var removalIndex = this.listboxDifficultyLayers.SelectedIndex;
+
+        // check if there is no index selected right now.
+        if (removalIndex == -1)
+        {
+            // do nothing.
+            return;
+        }
+
+        // grab the current panel we're working with.
+        var selectedItem = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // define the prompt.
+        var removalPrompt = $"Are you sure you want to remove the difficulty with key [{selectedItem.Key}]?";
+
+        // show the box with the prompt.
+        var dialogResult = MessageBox.Show(
+            removalPrompt,
+            "Removing a Difficulty",
+            MessageBoxButtons.OKCancel);
+
+        // pivot on the user decisions.
+        switch (dialogResult)
+        {
+            case DialogResult.OK:
+                this.listboxDifficultyLayers.Items.RemoveAt(removalIndex);
+                if (this.listboxDifficultyLayers.Items.Count != 0)
+                {
+                    this.listboxDifficultyLayers.SelectedIndex = 0;
+                }
+
+                break;
+            case DialogResult.Cancel:
+                break;
+        }
+    }
+
+    private void CloneDifficulty(object? sender, EventArgs e)
+    {
+        // grab the currently selected recipe.
+        var selectedItem = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // no cloning if there is no selected item.
+        if (selectedItem is null) return;
+
+        // copying by reference is hard.
+        var copiedRewards = new RewardEffects
+        {
+            Experience = selectedItem.Rewards.Experience,
+            Gold = selectedItem.Rewards.Gold,
+            Drops = selectedItem.Rewards.Drops,
+            Encounters = selectedItem.Rewards.Encounters,
+            SdpPoints = selectedItem.Rewards.SdpPoints
+        };
+
+        // copying by reference is hard.
+        var copiedActorEffects = new BattlerEffects
+        {
+            bparams = [..selectedItem.ActorEffects.bparams],
+            xparams = [..selectedItem.ActorEffects.xparams],
+            sparams = [..selectedItem.ActorEffects.sparams],
+            cparams = [..selectedItem.ActorEffects.cparams]
+        };
+        
+        // copying by reference is hard.
+        var copiedEnemyEffects = new BattlerEffects
+        {
+            bparams = [..selectedItem.EnemyEffects.bparams],
+            xparams = [..selectedItem.EnemyEffects.xparams],
+            sparams = [..selectedItem.EnemyEffects.sparams],
+            cparams = [..selectedItem.EnemyEffects.cparams]
+        };
+
+        // define the new recipe.
+        var clonedItem = new DifficultyMetadata
+        {
+            Name = selectedItem.Name,
+            Key = selectedItem.Key,
+            Description = selectedItem.Description,
+            IconIndex = selectedItem.IconIndex,
+            Cost = selectedItem.Cost,
+            UnlockedByDefault = selectedItem.UnlockedByDefault,
+            EnabledByDefault = selectedItem.EnabledByDefault,
+            HiddenByDefault = selectedItem.HiddenByDefault,
+            
+            // cloning by reference takes more work.
+            Rewards = copiedRewards,
+            ActorEffects = copiedActorEffects,
+            EnemyEffects = copiedEnemyEffects
+        };
+
+        // grab the current selection.
+        var selectedIndex = this.listboxDifficultyLayers.SelectedIndex;
+
+        // check if there was no current selection.
+        if (selectedIndex == -1 || selectedIndex == this.listboxDifficultyLayers.Items.Count - 1)
+        {
+            // add the item to the list without regard for index.
+            this.listboxDifficultyLayers.Items.Add(clonedItem);
+        }
+        // we are in the middle somewhere.
+        else
+        {
+            // add it at the given index.
+            this.listboxDifficultyLayers.Items.Insert(selectedIndex, clonedItem);
+        }
+    }
 }

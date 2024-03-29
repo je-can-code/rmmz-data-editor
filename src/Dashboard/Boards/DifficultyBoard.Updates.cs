@@ -25,6 +25,7 @@ public partial class DifficultyBoard
         this.checkboxUnlockedByDefault.CheckedChanged += this.UpdateUnlockedByDefault;
         this.checkboxEnabledByDefault.CheckedChanged += this.UpdateEnabledByDefault;
         this.checkboxHiddenByDefault.CheckedChanged += this.UpdateHiddenByDefault;
+        this.numCost.ValueChanged += this.UpdateCost;
     }
 
     private void ApplyUpdateEventsForBattlerEffectsData()
@@ -201,6 +202,18 @@ public partial class DifficultyBoard
 
         // update with the new value.
         item.HiddenByDefault = this.checkboxHiddenByDefault.Checked;
+    }
+    
+    private void UpdateCost(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Cost = decimal.ToInt32(this.numCost.Value);
     }
     #endregion
     
@@ -1383,8 +1396,8 @@ public partial class DifficultyBoard
     {
         // determine which battler effects are relevant.
         var battlerEffects = isActor
-            ? difficultyMetadata.actorEffects
-            : difficultyMetadata.enemyEffects;
+            ? difficultyMetadata.ActorEffects
+            : difficultyMetadata.EnemyEffects;
 
         // parse the value into a regular int.
         var value = decimal.ToInt32(rawValue);
