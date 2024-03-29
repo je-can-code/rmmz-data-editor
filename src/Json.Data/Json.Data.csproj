@@ -12,6 +12,7 @@
     <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
     <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj" />
     <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj" />
+    <ProjectReference Include="..\Difficulty.Data\Difficulty.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -54,6 +54,9 @@
             tabPage_difficulties = new TabPage();
             tabPage_proficiencies = new TabPage();
             label_dataPath = new Label();
+            buttonDifficulties = new Button();
+            checkboxSkipDifficultySavePopup = new CheckBox();
+            buttonSaveDifficulties = new Button();
             groupBox_skills.SuspendLayout();
             groupBox_weapons.SuspendLayout();
             tabControl_plugins.SuspendLayout();
@@ -61,11 +64,12 @@
             groupBox_enemies.SuspendLayout();
             tabPage_sdp.SuspendLayout();
             tabPage_crafting.SuspendLayout();
+            tabPage_difficulties.SuspendLayout();
             SuspendLayout();
             // 
             // button_weapons
             // 
-            button_weapons.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_weapons.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_weapons.Location = new Point(11, 47);
             button_weapons.Margin = new Padding(6);
             button_weapons.Name = "button_weapons";
@@ -77,7 +81,7 @@
             // 
             // button_pickDataPath
             // 
-            button_pickDataPath.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_pickDataPath.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_pickDataPath.Location = new Point(22, 130);
             button_pickDataPath.Margin = new Padding(6);
             button_pickDataPath.Name = "button_pickDataPath";
@@ -89,7 +93,7 @@
             // 
             // button_saveWeapons
             // 
-            button_saveWeapons.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_saveWeapons.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_saveWeapons.Location = new Point(587, 47);
             button_saveWeapons.Margin = new Padding(6);
             button_saveWeapons.Name = "button_saveWeapons";
@@ -101,7 +105,7 @@
             // 
             // button_saveSkills
             // 
-            button_saveSkills.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_saveSkills.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_saveSkills.Location = new Point(587, 47);
             button_saveSkills.Margin = new Padding(6);
             button_saveSkills.Name = "button_saveSkills";
@@ -113,7 +117,7 @@
             // 
             // button_skills
             // 
-            button_skills.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_skills.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_skills.Location = new Point(11, 47);
             button_skills.Margin = new Padding(6);
             button_skills.Name = "button_skills";
@@ -176,7 +180,7 @@
             tabControl_plugins.Controls.Add(tabPage_crafting);
             tabControl_plugins.Controls.Add(tabPage_difficulties);
             tabControl_plugins.Controls.Add(tabPage_proficiencies);
-            tabControl_plugins.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            tabControl_plugins.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             tabControl_plugins.Location = new Point(22, 220);
             tabControl_plugins.Margin = new Padding(6);
             tabControl_plugins.Name = "tabControl_plugins";
@@ -213,7 +217,7 @@
             // 
             // button_enemies
             // 
-            button_enemies.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_enemies.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_enemies.Location = new Point(11, 47);
             button_enemies.Margin = new Padding(6);
             button_enemies.Name = "button_enemies";
@@ -225,7 +229,7 @@
             // 
             // button_saveEnemies
             // 
-            button_saveEnemies.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            button_saveEnemies.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             button_saveEnemies.Location = new Point(587, 47);
             button_saveEnemies.Margin = new Padding(6);
             button_saveEnemies.Name = "button_saveEnemies";
@@ -254,7 +258,7 @@
             checkBox_sdpSkipSavePopup.Appearance = Appearance.Button;
             checkBox_sdpSkipSavePopup.AutoSize = true;
             checkBox_sdpSkipSavePopup.FlatStyle = FlatStyle.Popup;
-            checkBox_sdpSkipSavePopup.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            checkBox_sdpSkipSavePopup.Font = new Font("Victor Mono", 10.124999F, FontStyle.Bold);
             checkBox_sdpSkipSavePopup.Location = new Point(238, 544);
             checkBox_sdpSkipSavePopup.Margin = new Padding(6);
             checkBox_sdpSkipSavePopup.Name = "checkBox_sdpSkipSavePopup";
@@ -304,7 +308,7 @@
             checkBoxSkipCraftingSavePopup.Appearance = Appearance.Button;
             checkBoxSkipCraftingSavePopup.AutoSize = true;
             checkBoxSkipCraftingSavePopup.FlatStyle = FlatStyle.Popup;
-            checkBoxSkipCraftingSavePopup.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSkipCraftingSavePopup.Font = new Font("Cascadia Code", 9.75F);
             checkBoxSkipCraftingSavePopup.Location = new Point(234, 529);
             checkBoxSkipCraftingSavePopup.Margin = new Padding(6);
             checkBoxSkipCraftingSavePopup.Name = "checkBoxSkipCraftingSavePopup";
@@ -338,6 +342,9 @@
             // 
             // tabPage_difficulties
             // 
+            tabPage_difficulties.Controls.Add(checkboxSkipDifficultySavePopup);
+            tabPage_difficulties.Controls.Add(buttonSaveDifficulties);
+            tabPage_difficulties.Controls.Add(buttonDifficulties);
             tabPage_difficulties.Location = new Point(8, 47);
             tabPage_difficulties.Margin = new Padding(6);
             tabPage_difficulties.Name = "tabPage_difficulties";
@@ -359,13 +366,47 @@
             // label_dataPath
             // 
             label_dataPath.AutoSize = true;
-            label_dataPath.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            label_dataPath.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             label_dataPath.Location = new Point(22, 73);
             label_dataPath.Margin = new Padding(6, 0, 6, 0);
             label_dataPath.Name = "label_dataPath";
             label_dataPath.Size = new Size(30, 33);
             label_dataPath.TabIndex = 10;
             label_dataPath.Text = "_";
+            // 
+            // buttonDifficulties
+            // 
+            buttonDifficulties.Location = new Point(53, 54);
+            buttonDifficulties.Margin = new Padding(6);
+            buttonDifficulties.Name = "buttonDifficulties";
+            buttonDifficulties.Size = new Size(661, 260);
+            buttonDifficulties.TabIndex = 2;
+            buttonDifficulties.Text = "Configure Difficulty Data";
+            buttonDifficulties.UseVisualStyleBackColor = true;
+            // 
+            // checkboxSkipDifficultySavePopup
+            // 
+            checkboxSkipDifficultySavePopup.Appearance = Appearance.Button;
+            checkboxSkipDifficultySavePopup.AutoSize = true;
+            checkboxSkipDifficultySavePopup.FlatStyle = FlatStyle.Popup;
+            checkboxSkipDifficultySavePopup.Font = new Font("Cascadia Code", 9.75F);
+            checkboxSkipDifficultySavePopup.Location = new Point(230, 715);
+            checkboxSkipDifficultySavePopup.Margin = new Padding(6);
+            checkboxSkipDifficultySavePopup.Name = "checkboxSkipDifficultySavePopup";
+            checkboxSkipDifficultySavePopup.Size = new Size(265, 44);
+            checkboxSkipDifficultySavePopup.TabIndex = 6;
+            checkboxSkipDifficultySavePopup.Text = "Using Save Popup";
+            checkboxSkipDifficultySavePopup.UseVisualStyleBackColor = true;
+            // 
+            // buttonSaveDifficulties
+            // 
+            buttonSaveDifficulties.Location = new Point(122, 574);
+            buttonSaveDifficulties.Margin = new Padding(6);
+            buttonSaveDifficulties.Name = "buttonSaveDifficulties";
+            buttonSaveDifficulties.Size = new Size(522, 128);
+            buttonSaveDifficulties.TabIndex = 5;
+            buttonSaveDifficulties.Text = "Save ALL Difficulty Data";
+            buttonSaveDifficulties.UseVisualStyleBackColor = true;
             // 
             // BaseBoard
             // 
@@ -390,6 +431,8 @@
             tabPage_sdp.PerformLayout();
             tabPage_crafting.ResumeLayout(false);
             tabPage_crafting.PerformLayout();
+            tabPage_difficulties.ResumeLayout(false);
+            tabPage_difficulties.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -422,5 +465,8 @@
         private GroupBox groupBox_enemies;
         private Button button_enemies;
         private Button button_saveEnemies;
+        private CheckBox checkboxSkipDifficultySavePopup;
+        private Button buttonSaveDifficulties;
+        private Button buttonDifficulties;
     }
 }

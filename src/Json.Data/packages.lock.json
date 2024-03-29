@@ -14,6 +14,13 @@
           "Newtonsoft.Json": "[13.0.1, )"
         }
       },
+      "difficulty.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
       "extend.data": {
         "type": "Project",
         "dependencies": {

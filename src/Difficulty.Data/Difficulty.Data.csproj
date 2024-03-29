@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
+    <RootNamespace>$(SolutionNamespace).Difficulty.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Rmmz.Data/Rmmz.Data.csproj" />
+  </ItemGroup>
+</Project>
