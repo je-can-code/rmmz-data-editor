@@ -1,4 +1,6 @@
 using JMZ.Crafting.Data;
+using JMZ.Difficulty.Data;
+using JMZ.Difficulty.Data.Models;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Sdp.Data;
 using JMZ.Sdp.Data.Models;
@@ -14,6 +16,9 @@ namespace JMZ.Json.Data.Services;
 /// </summary>
 public static class JsonSavingService
 {
+    /// <summary>
+    /// The default serialization settings.
+    /// </summary>
     private static readonly JsonSerializerSettings settings = new()
     {
         ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -133,6 +138,20 @@ public static class JsonSavingService
         await Save(fullPath, data);
     }
 
+    /// <summary>
+    /// Saves the current state of Difficulties to the current project path directory.
+    /// </summary>
+    /// <param name="path">The current project path directory.</param>
+    /// <param name="data">The current state of the data.</param>
+    public static async Task SaveDifficulties(string path, List<DifficultyMetadata> data)
+    {
+        // build the path.
+        var fullPath = $"{path}/{DifficultyInitializer.ConfigurationFileName}";
+
+        // save the data to the designated path.
+        await Save(fullPath, data);
+    }
+    
     private static async Task Save<T>(string fullPath, T data)
     {
         // convert the objects to JSON.

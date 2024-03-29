@@ -1,5 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using JMZ.Crafting.Data;
+using JMZ.Difficulty.Data;
+using JMZ.Difficulty.Data.Models;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Sdp.Data;
 using JMZ.Sdp.Data.Models;
@@ -17,15 +19,23 @@ public static class JsonLoaderService
     /// A template string for creating the path to the SDP configuration data.
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
-    /// <returns>The full path to the SDP configuration data.</returns>
+    /// <returns>The full path to the configuration data.</returns>
     public static string sdpDataPath(string basePath) => @$"{basePath}\{SdpInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// A template string for creating the path to the Crafting configuration data.
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
-    /// <returns>The full path to the Crafting configuration data.</returns>
+    /// <returns>The full path to the configuration data.</returns>
     public static string craftingDataPath(string basePath) => $@"{basePath}\{CraftingInitializer.ConfigurationFileName}";
+
+    /// <summary>
+    /// A template string for creating the path to the Difficulty configuration data.
+    /// </summary>
+    /// <param name="basePath">The path that contains the target config file.</param>
+    /// <returns>The full path to the configuration data.</returns>
+    public static string difficultyDataPath(string basePath) =>
+        $@"{basePath}\{DifficultyInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// Loads the items from the json found in the of the current project path directory.
@@ -124,6 +134,15 @@ public static class JsonLoaderService
 
         // load it up as the configuration object.
         return Load<CraftingConfiguration>(fullPath);
+    }
+
+    public static List<DifficultyMetadata> LoadDifficulties(string path)
+    {
+        // determine the path to the crafting config.
+        var fullPath = difficultyDataPath(path);
+
+        // load it up as the configuration object.
+        return Load<List<DifficultyMetadata>>(fullPath);
     }
 
     /// <summary>

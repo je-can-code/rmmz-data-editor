@@ -28,6 +28,9 @@ public partial class BaseBoard : Form
     /// </summary>
     private readonly CraftBoard craftBoard;
 
+    /// <summary>
+    /// The board that primarily handles the enemies and modifications to them.
+    /// </summary>
     private readonly EnemiesBoard enemiesBoard;
 
     /// <summary>
@@ -47,6 +50,11 @@ public partial class BaseBoard : Form
     /// </summary>
     private bool skipCraftingSavePopup;
 
+    /// <summary>
+    /// When true, the prompt raised by trying to save is skipped when saving difficulties. 
+    /// </summary>
+    private bool skipDifficultySavePopup;
+
     public BaseBoard()
     {
         InitializeComponent();
@@ -57,16 +65,16 @@ public partial class BaseBoard : Form
 
         // hard-code this for default, but we should probably make this configurable.
         //this.projectPath = @"//192.168.86.35/dev/gaming/rmmz-plugins/project/data";
-        //this.projectPath = @"//192.168.86.35/dev/gaming/ca/chef-adventure/data";
-        this.projectPath = @"Z:/dev/gaming/ca/chef-adventure/data";
+        this.projectPath = @"Z:/dev/gaming/rmmz-plugins/project/data";
 
         this.RefreshDatabaseCaches();
 
         this.weaponsBoard = new();
         this.skillsBoard = new();
+        this.enemiesBoard = new();
+
         this.sdpBoard = new();
         this.craftBoard = new();
-        this.enemiesBoard = new();
 
         // initialize the boards.
         this.SetupBoards();
@@ -80,11 +88,15 @@ public partial class BaseBoard : Form
         // this.weaponsBoard.Load += SetupWeaponsBoard; // ??
 
         this.weaponsBoard.FormClosing += HideBoard;
-        this.sdpBoard.FormClosing += HideBoard;
         this.skillsBoard.FormClosing += HideBoard;
-        this.craftBoard.FormClosing += HideBoard;
         this.enemiesBoard.FormClosing += HideBoard;
+
+        this.sdpBoard.FormClosing += HideBoard;
+        this.craftBoard.FormClosing += HideBoard;
+        this.SetupDifficultyBoard();
     }
+
+
 
     /// <summary>
     /// An event handler for hiding the boards instead of closing them.
@@ -162,6 +174,7 @@ public partial class BaseBoard : Form
         this.enemiesBoard.FlagForRefresh();
         this.skillsBoard.FlagForRefresh();
         this.enemiesBoard.FlagForRefresh();
+        // this.difficultyBoard.FlagForRefresh();
     }
 
     #region jabs
@@ -433,6 +446,8 @@ public partial class BaseBoard : Form
         this.craftBoard.Show();
     }
     #endregion
+    
+
 
     private async Task<bool> ValidateConfiguration(string configPath, Func<string, Task> initConfigFunc)
     {

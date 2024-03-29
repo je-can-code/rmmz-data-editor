@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using JMZ.Base.Tests;
 using JMZ.Drops.Data.Extensions.implementations._Enemy;
-using JMZ.Rmmz.Data.Models.db._data;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using Xunit;
 

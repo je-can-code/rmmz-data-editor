@@ -374,6 +374,13 @@
           "Newtonsoft.Json": "[13.0.1, )"
         }
       },
+      "difficulty.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
       "drops.data": {
         "type": "Project",
         "dependencies": {
@@ -399,6 +406,7 @@
         "type": "Project",
         "dependencies": {
           "Crafting.Data": "[1.0.0, )",
+          "Difficulty.Data": "[1.0.0, )",
           "Extend.Data": "[1.0.0, )",
           "JABS.Data": "[1.0.0, )",
           "Newtonsoft.Json": "[13.0.1, )",
