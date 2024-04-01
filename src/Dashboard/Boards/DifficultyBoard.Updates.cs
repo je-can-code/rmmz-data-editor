@@ -12,6 +12,7 @@ public partial class DifficultyBoard
     {
         this.ApplyUpdateEventsForCoreData();
         this.ApplyUpdateEventsForBattlerEffectsData();
+        this.ApplyUpdateEventsForRewards();
 
         this.listboxDifficultyLayers.SelectedIndexChanged += this.RefreshForm;
     }
@@ -114,7 +115,16 @@ public partial class DifficultyBoard
         
         this.num28MaxTechEnemy.ValueChanged += this.UpdateBattlerEffectMaxTechEnemy;
     }
-    
+
+    private void ApplyUpdateEventsForRewards()
+    {
+        this.numRewardExperience.ValueChanged += this.UpdateRewardExperience;
+        this.numRewardGold.ValueChanged += this.UpdateRewardGold;
+        this.numRewardDrops.ValueChanged += this.UpdateRewardDrops;
+        this.numRewardEncounters.ValueChanged += this.UpdateRewardEncounters;
+        this.numRewardSdp.ValueChanged += this.UpdateRewardSdp;
+    }
+
     #region update
     #region core updates
     private void UpdateKey(object? sender, EventArgs e)
@@ -1387,6 +1397,68 @@ public partial class DifficultyBoard
     #endregion
     #endregion
 
+    #region reward updates
+    private void UpdateRewardExperience(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Rewards.Experience = decimal.ToInt32(this.numRewardExperience.Value);
+    }
+    
+    private void UpdateRewardGold(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Rewards.Gold = decimal.ToInt32(this.numRewardGold.Value);
+    }
+    
+    private void UpdateRewardDrops(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Rewards.Drops = decimal.ToInt32(this.numRewardDrops.Value);
+    }
+    
+    private void UpdateRewardEncounters(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Rewards.Encounters = decimal.ToInt32(this.numRewardEncounters.Value);
+    }
+    
+    private void UpdateRewardSdp(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (DifficultyMetadata)this.listboxDifficultyLayers.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.Rewards.SdpPoints = decimal.ToInt32(this.numRewardSdp.Value);
+    }
+    #endregion
+    
     private void UpdateBattlerEffect(
         DifficultyMetadata difficultyMetadata,
         BattlerEffectType type,
