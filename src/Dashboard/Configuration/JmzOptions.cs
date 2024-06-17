@@ -2,5 +2,5 @@
 
 public class JmzOptions
 {
-    public string DefaultProjectPath { get; set; }
+    public string DefaultProjectPath { get; set; } = string.Empty;
 }
