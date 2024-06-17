@@ -11,7 +11,7 @@ public class RadiusExtTests : BaseTests
     
     public RadiusExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class RadiusExtTests : BaseTests
     {
         // given
         var expected = -1;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsRadius();
+        var actual = this.modelUnderTest.GetJabsRadius();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class RadiusExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.RadiusTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsRadius();
+        var actual = this.modelUnderTest.GetJabsRadius();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class RadiusExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzDecimal();
-        modelUnderTest.UpdateJabsRadius(fakeTagValue);
+        this.modelUnderTest.UpdateJabsRadius(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsRadius();
+        var actual = this.modelUnderTest.GetJabsRadius();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class RadiusExtTests : BaseTests
         // given
         var expected = -1;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsRadius(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsRadius(-1);
+        this.modelUnderTest.UpdateJabsRadius(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsRadius(-1);
         
         // when
-        var actual = modelUnderTest.GetJabsRadius();
+        var actual = this.modelUnderTest.GetJabsRadius();
         
         // then
         actual.Should().Be(expected);

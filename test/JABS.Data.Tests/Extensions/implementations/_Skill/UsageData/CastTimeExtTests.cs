@@ -11,7 +11,7 @@ public class CastTimeExtTests : BaseTests
     
     public CastTimeExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class CastTimeExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsCastTime();
+        var actual = this.modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class CastTimeExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.CastTimeTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsCastTime();
+        var actual = this.modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class CastTimeExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCastTime(fakeTagValue);
+        this.modelUnderTest.UpdateJabsCastTime(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsCastTime();
+        var actual = this.modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class CastTimeExtTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCastTime(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsCastTime(expected);
+        this.modelUnderTest.UpdateJabsCastTime(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsCastTime(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsCastTime();
+        var actual = this.modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);

@@ -38,7 +38,7 @@ public enum LongParameter
     PhysDmgRate = 24,
     MagiDmgRate = 25,
     LightFooted = 26,
-    ExperienceUP = 27,
+    ExperienceUp = 27,
     
     // custom params
     CritAmp = 28,

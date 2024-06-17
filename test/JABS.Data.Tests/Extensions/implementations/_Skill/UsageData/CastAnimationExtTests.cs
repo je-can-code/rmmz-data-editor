@@ -11,7 +11,7 @@ public class CastAnimationExtTests : BaseTests
     
     public CastAnimationExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class CastAnimationExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsCastAnimation();
+        var actual = this.modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class CastAnimationExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.CastAnimationTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsCastAnimation();
+        var actual = this.modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class CastAnimationExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCastAnimation(fakeTagValue);
+        this.modelUnderTest.UpdateJabsCastAnimation(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsCastAnimation();
+        var actual = this.modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class CastAnimationExtTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCastAnimation(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsCastAnimation(expected);
+        this.modelUnderTest.UpdateJabsCastAnimation(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsCastAnimation(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsCastAnimation();
+        var actual = this.modelUnderTest.GetJabsCastAnimation();
         
         // then
         actual.Should().Be(expected);

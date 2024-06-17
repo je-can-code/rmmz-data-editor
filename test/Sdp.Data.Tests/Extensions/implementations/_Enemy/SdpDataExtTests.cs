@@ -14,7 +14,7 @@ public class SdpDataExtTests : BaseTests
 
     public SdpDataExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -22,10 +22,10 @@ public class SdpDataExtTests : BaseTests
     {
         // given
         var expected = new SdpDropData(string.Empty, decimal.MinusOne);
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
 
         // when
-        var actual = modelUnderTest.GetSdpData();
+        var actual = this.modelUnderTest.GetSdpData();
 
         // then
         actual.Should().Be(expected);
@@ -36,10 +36,10 @@ public class SdpDataExtTests : BaseTests
     {
         // given
         var expected = this.generateSdpDropData();
-        modelUnderTest.UpdateSdpData(expected.Key, expected.DropChance, expected.ItemId);
+        this.modelUnderTest.UpdateSdpData(expected.Key, expected.DropChance, expected.ItemId);
 
         // when
-        var actual = modelUnderTest.GetSdpData();
+        var actual = this.modelUnderTest.GetSdpData();
 
         // then
         actual.Should().Be(expected);
@@ -50,13 +50,13 @@ public class SdpDataExtTests : BaseTests
     {
         // given
         var firstSdp = this.generateSdpDropData();
-        modelUnderTest.UpdateSdpData(firstSdp.Key, firstSdp.DropChance, firstSdp.ItemId);
+        this.modelUnderTest.UpdateSdpData(firstSdp.Key, firstSdp.DropChance, firstSdp.ItemId);
 
         var secondSdp = this.generateSdpDropData();
-        modelUnderTest.UpdateSdpData(secondSdp.Key, secondSdp.DropChance, secondSdp.ItemId);
+        this.modelUnderTest.UpdateSdpData(secondSdp.Key, secondSdp.DropChance, secondSdp.ItemId);
       
         // when
-        var actual = modelUnderTest.GetSdpData();
+        var actual = this.modelUnderTest.GetSdpData();
 
         // then
         actual.Should().NotBe(firstSdp);
@@ -69,12 +69,12 @@ public class SdpDataExtTests : BaseTests
         // given
         var expected = new SdpDropData(string.Empty, decimal.MinusOne);
         var firstSdp = this.generateSdpDropData();
-        modelUnderTest.UpdateSdpData(firstSdp.Key, firstSdp.DropChance, firstSdp.ItemId);
+        this.modelUnderTest.UpdateSdpData(firstSdp.Key, firstSdp.DropChance, firstSdp.ItemId);
 
-        modelUnderTest.UpdateSdpData(string.Empty, decimal.MinusOne, decimal.Zero);
+        this.modelUnderTest.UpdateSdpData(string.Empty, decimal.MinusOne, decimal.Zero);
 
         // when
-        var actual = modelUnderTest.GetSdpData();
+        var actual = this.modelUnderTest.GetSdpData();
 
         // then
         actual.Should().NotBe(firstSdp);

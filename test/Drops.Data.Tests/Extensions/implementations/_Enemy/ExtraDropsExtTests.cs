@@ -13,17 +13,17 @@ public class ExtraDropsExtTests : BaseTests
 
     public ExtraDropsExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
 
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
 
         // when
-        var actual = modelUnderTest.GetDropsData();
+        var actual = this.modelUnderTest.GetDropsData();
 
         // then
         actual.Should().BeEmpty();
@@ -35,10 +35,10 @@ public class ExtraDropsExtTests : BaseTests
         // given
         var fakeDropItemsCount = this.fdg.RmmzUNumber();
         var fakeDropItems = this.fdg.GenerateDropItems(fakeDropItemsCount);
-        modelUnderTest.UpdateDropsData(fakeDropItems);
+        this.modelUnderTest.UpdateDropsData(fakeDropItems);
 
         // when
-        var actual = modelUnderTest.GetDropsData();
+        var actual = this.modelUnderTest.GetDropsData();
 
         // then
         actual.Should().BeEquivalentTo(fakeDropItems);
@@ -50,14 +50,14 @@ public class ExtraDropsExtTests : BaseTests
         // given
         var firstDropItemsCount = this.fdg.RmmzUNumber();
         var firstDropItems = this.fdg.GenerateDropItems(firstDropItemsCount);
-        modelUnderTest.UpdateDropsData(firstDropItems);
+        this.modelUnderTest.UpdateDropsData(firstDropItems);
 
         var secondDropItemsCount = this.fdg.RmmzUNumber();
         var secondDropItems = this.fdg.GenerateDropItems(secondDropItemsCount);
-        modelUnderTest.UpdateDropsData(secondDropItems);
+        this.modelUnderTest.UpdateDropsData(secondDropItems);
         
         // when
-        var actual = modelUnderTest.GetDropsData();
+        var actual = this.modelUnderTest.GetDropsData();
 
         // then
         actual.Should().NotBeEquivalentTo(firstDropItems);
@@ -70,12 +70,12 @@ public class ExtraDropsExtTests : BaseTests
         // given
         var firstDropItemsCount = this.fdg.RmmzUNumber();
         var firstDropItems = this.fdg.GenerateDropItems(firstDropItemsCount);
-        modelUnderTest.UpdateDropsData(firstDropItems);
+        this.modelUnderTest.UpdateDropsData(firstDropItems);
 
-        modelUnderTest.UpdateDropsData([]);
+        this.modelUnderTest.UpdateDropsData([]);
         
         // when
-        var actual = modelUnderTest.GetDropsData();
+        var actual = this.modelUnderTest.GetDropsData();
 
         // then
         actual.Should().NotBeEquivalentTo(firstDropItems);

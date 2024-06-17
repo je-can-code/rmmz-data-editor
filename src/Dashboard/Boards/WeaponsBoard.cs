@@ -20,7 +20,7 @@ public partial class WeaponsBoard : Form
     /// </summary>
     public WeaponsBoard()
     {
-        InitializeComponent();
+        this.InitializeComponent();
         this.listBoxWeapons.DisplayMember = "name";
         this.listBoxWeapons.ValueMember = "id";
         this.listBoxWeapons.SelectedIndexChanged += this.RefreshForm;

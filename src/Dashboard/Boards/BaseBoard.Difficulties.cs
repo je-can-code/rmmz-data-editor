@@ -7,19 +7,25 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     private readonly DifficultyBoard difficultyBoard = new();
+ 
+    /// <summary>
+    /// When true, the prompt raised by trying to save is skipped when saving difficulties. 
+    /// </summary>
+    private bool skipDifficultySavePopup;
     
-    private void SetupDifficultyBoard()
+    private partial void SetupDifficultyBoard()
     {
         this.difficultyBoard.FormClosing += FormUtils.HideBoard;
-        this.buttonDifficulties.Click += OpenDifficultiesClick;
-        this.buttonSaveDifficulties.Click += SaveDifficultiesClick;
-        this.checkboxSkipDifficultySavePopup.CheckedChanged += SaveSkipForDifficultiesCheck;
+        this.buttonDifficulties.Click += this.OpenDifficultiesClick;
+        this.buttonSaveDifficulties.Click += this.SaveDifficultiesClick;
+        this.checkboxSkipDifficultySavePopup.CheckedChanged += this.SaveSkipForDifficultiesCheck;
     }
-    
+
     private async void OpenDifficultiesClick(object? sender, EventArgs e)
     {
         // check if we can load the board based on the required config.
-        var canLoadBoard = await this.ValidateConfiguration(
+        var canLoadBoard = await FormUtils.ValidateConfiguration(
+            this.projectPath,
             JsonLoaderService.difficultyDataPath(this.projectPath),
             DifficultyInitializer.InitializeConfiguration);
 

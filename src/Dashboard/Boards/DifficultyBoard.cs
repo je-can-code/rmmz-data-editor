@@ -30,7 +30,7 @@ public partial class DifficultyBoard : Form
 
     public DifficultyBoard()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.InitializeDataControls();
         this.InitializeTooltips();
@@ -54,11 +54,11 @@ public partial class DifficultyBoard : Form
     /// </summary>
     private void InitializeTooltips()
     {
-        _toolTip.AutoPopDelay = 5000;
-        _toolTip.InitialDelay = 1000;
-        _toolTip.ReshowDelay = 500;
-        _toolTip.ToolTipIcon = ToolTipIcon.Info;
-        _toolTip.ToolTipTitle = "Details and Usage";
+        this._toolTip.AutoPopDelay = 5000;
+        this._toolTip.InitialDelay = 1000;
+        this._toolTip.ReshowDelay = 500;
+        this._toolTip.ToolTipIcon = ToolTipIcon.Info;
+        this._toolTip.ToolTipTitle = "Details and Usage";
 
         var keyTip = """
             The unique identifying key of the difficulty.
@@ -66,7 +66,7 @@ public partial class DifficultyBoard : Form
             
             This is required, and will cause issues if left blank.
             """;
-        _toolTip.SetToolTip(this.textboxKey, keyTip);
+        this._toolTip.SetToolTip(this.textboxKey, keyTip);
     }
 
     private void ApplyButtonInteractions()

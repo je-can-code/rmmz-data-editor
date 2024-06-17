@@ -13,7 +13,7 @@ public class SdpPointsExtTests : BaseTests
 
     public SdpPointsExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -21,10 +21,10 @@ public class SdpPointsExtTests : BaseTests
     {
         // given
         var expected = SdpPointsExt.NON_VALUE;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
 
         // when
-        var actual = modelUnderTest.GetSdpPoints();
+        var actual = this.modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class SdpPointsExtTests : BaseTests
     {
         // given
         var expected = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateSdpPoints(expected);
+        this.modelUnderTest.UpdateSdpPoints(expected);
 
         // when
-        var actual = modelUnderTest.GetSdpPoints();
+        var actual = this.modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().Be(expected);
@@ -49,13 +49,13 @@ public class SdpPointsExtTests : BaseTests
     {
         // given
         var firstPoints = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateSdpPoints(firstPoints);
+        this.modelUnderTest.UpdateSdpPoints(firstPoints);
 
         var secondPoints = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateSdpPoints(secondPoints);
+        this.modelUnderTest.UpdateSdpPoints(secondPoints);
       
         // when
-        var actual = modelUnderTest.GetSdpPoints();
+        var actual = this.modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().NotBe(firstPoints);
@@ -68,12 +68,12 @@ public class SdpPointsExtTests : BaseTests
         // given
         var expected = SdpPointsExt.NON_VALUE;
         var firstPoints = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateSdpPoints(firstPoints);
+        this.modelUnderTest.UpdateSdpPoints(firstPoints);
 
-        modelUnderTest.UpdateSdpPoints();
+        this.modelUnderTest.UpdateSdpPoints();
 
         // when
-        var actual = modelUnderTest.GetSdpPoints();
+        var actual = this.modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().NotBe(firstPoints);

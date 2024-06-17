@@ -12,7 +12,7 @@ public class HitboxExtTests : BaseTests
 
     public HitboxExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -20,10 +20,10 @@ public class HitboxExtTests : BaseTests
     {
         // given
         var expected = Hitbox.None;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsHitbox();
+        var actual = this.modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(expected);
@@ -36,10 +36,10 @@ public class HitboxExtTests : BaseTests
         var fakeTagValue = this.fdg.RandomHitbox();
         var fakeTag = this.fdg.HitboxTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsHitbox();
+        var actual = this.modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -50,10 +50,10 @@ public class HitboxExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RandomHitbox();
-        modelUnderTest.UpdateJabsHitbox(fakeTagValue);
+        this.modelUnderTest.UpdateJabsHitbox(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsHitbox();
+        var actual = this.modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -65,11 +65,11 @@ public class HitboxExtTests : BaseTests
         // given
         var expected = Hitbox.None;
         var fakeTagValue = this.fdg.RandomHitbox();
-        modelUnderTest.UpdateJabsHitbox(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsHitbox(expected);
+        this.modelUnderTest.UpdateJabsHitbox(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsHitbox(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsHitbox();
+        var actual = this.modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(expected);

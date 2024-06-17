@@ -11,7 +11,7 @@ public class SkillIdTests : BaseTests
 
     public SkillIdTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class SkillIdTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsSkillId();
+        var actual = this.modelUnderTest.GetJabsSkillId();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class SkillIdTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.SkillIdTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsSkillId();
+        var actual = this.modelUnderTest.GetJabsSkillId();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class SkillIdTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsSkillId(fakeTagValue);
+        this.modelUnderTest.UpdateJabsSkillId(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsSkillId();
+        var actual = this.modelUnderTest.GetJabsSkillId();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class SkillIdTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsSkillId(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsSkillId(expected);
+        this.modelUnderTest.UpdateJabsSkillId(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsSkillId(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsSkillId();
+        var actual = this.modelUnderTest.GetJabsSkillId();
         
         // then
         actual.Should().Be(expected);

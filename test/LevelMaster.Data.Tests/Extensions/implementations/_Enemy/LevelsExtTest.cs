@@ -13,7 +13,7 @@ public class LevelsExtTest : BaseTests
 
     public LevelsExtTest()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
 
     [Fact]
@@ -21,10 +21,10 @@ public class LevelsExtTest : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
 
         // when
-        var actual = modelUnderTest.GetLevel();
+        var actual = this.modelUnderTest.GetLevel();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class LevelsExtTest : BaseTests
     {
         // given
         var expected = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateLevel(expected);
+        this.modelUnderTest.UpdateLevel(expected);
 
         // when
-        var actual = modelUnderTest.GetLevel();
+        var actual = this.modelUnderTest.GetLevel();
         
         // then
         actual.Should().Be(expected);
@@ -49,13 +49,13 @@ public class LevelsExtTest : BaseTests
     {
         // given
         var firstNumber = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateLevel(firstNumber);
+        this.modelUnderTest.UpdateLevel(firstNumber);
 
         var secondNumber = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateLevel(secondNumber);
+        this.modelUnderTest.UpdateLevel(secondNumber);
 
         // when
-        var actual = modelUnderTest.GetLevel();
+        var actual = this.modelUnderTest.GetLevel();
         
         // then
         actual.Should().Be(secondNumber);
@@ -66,13 +66,13 @@ public class LevelsExtTest : BaseTests
     {
         // given
         var fakeNumber = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateLevel(fakeNumber);
+        this.modelUnderTest.UpdateLevel(fakeNumber);
         
         var numberOfRemoval = decimal.Zero;
-        modelUnderTest.UpdateLevel(numberOfRemoval);
+        this.modelUnderTest.UpdateLevel(numberOfRemoval);
 
         // when
-        var actual = modelUnderTest.GetLevel();
+        var actual = this.modelUnderTest.GetLevel();
         
         // then
         actual.Should().NotBe(fakeNumber);

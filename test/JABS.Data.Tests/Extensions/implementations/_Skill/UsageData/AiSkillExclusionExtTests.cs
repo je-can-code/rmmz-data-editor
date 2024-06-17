@@ -11,17 +11,17 @@ public class AiSkillExclusionExtTests : BaseTests
     
     public AiSkillExclusionExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
         
         // then
         actual.Should().BeFalse();
@@ -33,10 +33,10 @@ public class AiSkillExclusionExtTests : BaseTests
         // given
         var fakeTag = this.fdg.AiSkillExclusionTag();
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
         
         // then
         actual.Should().BeTrue();
@@ -48,11 +48,11 @@ public class AiSkillExclusionExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        modelUnderTest.UpdateJabsAiSkillExclusion(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsAiSkillExclusion(expected);
+        this.modelUnderTest.UpdateJabsAiSkillExclusion(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsAiSkillExclusion(expected);
         
         // when
-        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
         
         // then
         actual.Should().BeFalse();

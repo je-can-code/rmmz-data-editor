@@ -1,7 +1,7 @@
 ﻿namespace JMZ.Sdp.Data.Models;
 
 /**
- * A mapping of panel rarities to their text color index. 
+ * A mapping of panel rarities to their text color index.
  */
 public enum Rarity
 {

@@ -10,7 +10,7 @@ public partial class CraftCategoryHelper : Form
 
     public CraftCategoryHelper()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.InitializeDataControls();
         this.InitializeTooltips();

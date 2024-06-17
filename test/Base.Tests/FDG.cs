@@ -22,10 +22,10 @@ public class FDG
         return new Faker<RPG_Weapon>()
             .RuleFor(weapon => weapon.note, (f, w) =>
             {
-                var fakeSkillIdTag = SkillIdTag();
-                var fakeSpeedBoostTag = SpeedBoostTag();
+                var fakeSkillIdTag = this.SkillIdTag();
+                var fakeSpeedBoostTag = this.SpeedBoostTag();
                 
-                return BuildNoteTag(fakeSkillIdTag, fakeSpeedBoostTag);
+                return this.BuildNoteTag(fakeSkillIdTag, fakeSpeedBoostTag);
             })
             .Generate();
     }
@@ -39,9 +39,9 @@ public class FDG
     {
         return new()
         {
-            kind = RNG.Next(2),
+            kind = this.RNG.Next(2),
             dataId = this.RmmzUNumber(),
-            denominator = RNG.Next(1, 101)
+            denominator = this.RNG.Next(1, 101)
         };
     }
 
@@ -58,7 +58,7 @@ public class FDG
     /// </summary>
     public string SkillIdTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.SkillId.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -68,7 +68,7 @@ public class FDG
     /// </summary>
     public string SpeedBoostTag(int? input = null)
     {
-        var tagValue = input ?? RmmzNumber();
+        var tagValue = input ?? this.RmmzNumber();
         var builtTag = JabsTags.SpeedBoost.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -78,7 +78,7 @@ public class FDG
     /// </summary>
     public string CooldownTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.Cooldown.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -88,7 +88,7 @@ public class FDG
     /// </summary>
     public string CastAnimationTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.CastAnimation.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -98,7 +98,7 @@ public class FDG
     /// </summary>
     public string CastTimeTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.CastTime.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -108,7 +108,7 @@ public class FDG
     /// </summary>
     public string ActionIdTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.ActionId.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -118,7 +118,7 @@ public class FDG
     /// </summary>
     public string DurationTag(int? input = null)
     {
-        var tagValue = input ?? RmmzUNumber();
+        var tagValue = input ?? this.RmmzUNumber();
         var builtTag = JabsTags.Duration.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -154,7 +154,7 @@ public class FDG
     /// </summary>
     public string RadiusTag(decimal? input = null)
     {
-        var tagValue = input ?? RmmzDecimal();
+        var tagValue = input ?? this.RmmzDecimal();
         var builtTag = JabsTags.Radius.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -164,7 +164,7 @@ public class FDG
     /// </summary>
     public string ProximityTag(decimal? input = null)
     {
-        var tagValue = input ?? RmmzDecimal();
+        var tagValue = input ?? this.RmmzDecimal();
         var builtTag = JabsTags.Proximity.ToValueTag(tagValue.ToString());
         return builtTag;
     }
@@ -237,7 +237,7 @@ public class FDG
     /// </summary>
     public int RmmzUNumber()
     {
-        return RNG.Next(1, 501);
+        return this.RNG.Next(1, 501);
     }
 
     /// <summary>
@@ -247,7 +247,7 @@ public class FDG
     /// </summary>
     public int RmmzNumber()
     {
-        return RNG.Next(-500, 501);
+        return this.RNG.Next(-500, 501);
     }
 
     /// <summary>
@@ -257,8 +257,8 @@ public class FDG
     /// </summary>
     public decimal RmmzDecimal()
     {
-        var left = RmmzUNumber();
-        var right = RmmzUNumber();
+        var left = this.RmmzUNumber();
+        var right = this.RmmzUNumber();
         var combined = $"{left}.{right}";
         return decimal.Parse(combined);
     }
@@ -268,7 +268,7 @@ public class FDG
     /// </summary>
     public int RmmzChance()
     {
-        return RNG.Next(1, 101);
+        return this.RNG.Next(1, 101);
     }
 
     /// <summary>
@@ -277,7 +277,7 @@ public class FDG
     /// </summary>
     public string RmmzKey()
     {
-        return FAKER.Lorem.Random.String2(RNG.Next(8,33));
+        return this.FAKER.Lorem.Random.String2(this.RNG.Next(8,33));
     }
 
     /// <summary>
@@ -287,7 +287,7 @@ public class FDG
     public Hitbox RandomHitbox()
     {
         var values = Enum.GetValues<Hitbox>();
-        return values[RNG.Next(1, values.Length)];
+        return values[this.RNG.Next(1, values.Length)];
     }
 
     #endregion utility

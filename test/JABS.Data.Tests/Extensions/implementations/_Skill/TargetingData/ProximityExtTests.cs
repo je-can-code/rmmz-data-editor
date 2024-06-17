@@ -11,7 +11,7 @@ public class ProximityExtTests : BaseTests
     
     public ProximityExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class ProximityExtTests : BaseTests
     {
         // given
         var expected = -1;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsProximity();
+        var actual = this.modelUnderTest.GetJabsProximity();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class ProximityExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.ProximityTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsProximity();
+        var actual = this.modelUnderTest.GetJabsProximity();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class ProximityExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzDecimal();
-        modelUnderTest.UpdateJabsProximity(fakeTagValue);
+        this.modelUnderTest.UpdateJabsProximity(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsProximity();
+        var actual = this.modelUnderTest.GetJabsProximity();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class ProximityExtTests : BaseTests
         // given
         var expected = -1;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsProximity(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsProximity(-1);
+        this.modelUnderTest.UpdateJabsProximity(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsProximity(-1);
         
         // when
-        var actual = modelUnderTest.GetJabsProximity();
+        var actual = this.modelUnderTest.GetJabsProximity();
         
         // then
         actual.Should().Be(expected);
