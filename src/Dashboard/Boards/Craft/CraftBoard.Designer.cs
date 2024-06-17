@@ -72,7 +72,7 @@
             // 
             // listboxRecipes
             // 
-            listboxRecipes.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listboxRecipes.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listboxRecipes.ItemHeight = 33;
             listboxRecipes.Location = new Point(17, 85);
             listboxRecipes.Margin = new Padding(6);
@@ -96,7 +96,7 @@
             groupBox_coreData.Controls.Add(label_name);
             groupBox_coreData.Controls.Add(num_iconIndex);
             groupBox_coreData.Controls.Add(label_iconIndex);
-            groupBox_coreData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox_coreData.Font = new Font("Cascadia Code", 8.25F);
             groupBox_coreData.Location = new Point(481, 19);
             groupBox_coreData.Margin = new Padding(6);
             groupBox_coreData.Name = "groupBox_coreData";
@@ -109,7 +109,7 @@
             // buttonCategoryHelper
             // 
             buttonCategoryHelper.FlatStyle = FlatStyle.Flat;
-            buttonCategoryHelper.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCategoryHelper.Font = new Font("Cascadia Code", 8.25F);
             buttonCategoryHelper.Location = new Point(948, 32);
             buttonCategoryHelper.Margin = new Padding(6);
             buttonCategoryHelper.Name = "buttonCategoryHelper";
@@ -122,7 +122,7 @@
             // buttonDeleteCategory
             // 
             buttonDeleteCategory.FlatStyle = FlatStyle.Popup;
-            buttonDeleteCategory.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteCategory.Font = new Font("Cascadia Code", 8.25F);
             buttonDeleteCategory.ForeColor = Color.Red;
             buttonDeleteCategory.Location = new Point(1204, 349);
             buttonDeleteCategory.Margin = new Padding(6);
@@ -136,7 +136,7 @@
             // buttonAddCategory
             // 
             buttonAddCategory.FlatStyle = FlatStyle.Popup;
-            buttonAddCategory.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAddCategory.Font = new Font("Cascadia Code", 12F);
             buttonAddCategory.ForeColor = Color.CornflowerBlue;
             buttonAddCategory.Location = new Point(948, 349);
             buttonAddCategory.Margin = new Padding(6);
@@ -150,7 +150,7 @@
             // 
             // listBoxCategories
             // 
-            listBoxCategories.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxCategories.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBoxCategories.FormattingEnabled = true;
             listBoxCategories.ItemHeight = 33;
             listBoxCategories.Location = new Point(948, 97);
@@ -162,7 +162,7 @@
             // labelDescription
             // 
             labelDescription.AutoSize = true;
-            labelDescription.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDescription.Font = new Font("Cascadia Code", 8.25F);
             labelDescription.Location = new Point(11, 243);
             labelDescription.Margin = new Padding(6, 0, 6, 0);
             labelDescription.Name = "labelDescription";
@@ -172,7 +172,7 @@
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDescription.Font = new Font("Cascadia Code", 9.75F);
             textBoxDescription.Location = new Point(11, 282);
             textBoxDescription.Margin = new Padding(6);
             textBoxDescription.Multiline = true;
@@ -185,7 +185,7 @@
             checkBox_maskedUntilCrafted.AutoSize = true;
             checkBox_maskedUntilCrafted.Checked = true;
             checkBox_maskedUntilCrafted.CheckState = CheckState.Checked;
-            checkBox_maskedUntilCrafted.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox_maskedUntilCrafted.Font = new Font("Cascadia Code", 8.25F);
             checkBox_maskedUntilCrafted.Location = new Point(514, 216);
             checkBox_maskedUntilCrafted.Margin = new Padding(6);
             checkBox_maskedUntilCrafted.Name = "checkBox_maskedUntilCrafted";
@@ -197,7 +197,7 @@
             // checkBox_unlockedByDefault
             // 
             checkBox_unlockedByDefault.AutoSize = true;
-            checkBox_unlockedByDefault.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox_unlockedByDefault.Font = new Font("Cascadia Code", 8.25F);
             checkBox_unlockedByDefault.Location = new Point(514, 157);
             checkBox_unlockedByDefault.Margin = new Padding(6);
             checkBox_unlockedByDefault.Name = "checkBox_unlockedByDefault";
@@ -209,7 +209,7 @@
             // textBox_key
             // 
             textBox_key.BorderStyle = BorderStyle.FixedSingle;
-            textBox_key.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_key.Font = new Font("Cascadia Code", 8.25F);
             textBox_key.Location = new Point(11, 81);
             textBox_key.Margin = new Padding(6);
             textBox_key.Name = "textBox_key";
@@ -220,7 +220,7 @@
             // label_key
             // 
             label_key.AutoSize = true;
-            label_key.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_key.Font = new Font("Cascadia Code", 8.25F);
             label_key.Location = new Point(11, 43);
             label_key.Margin = new Padding(6, 0, 6, 0);
             label_key.Name = "label_key";
@@ -231,7 +231,7 @@
             // textBox_name
             // 
             textBox_name.BorderStyle = BorderStyle.FixedSingle;
-            textBox_name.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_name.Font = new Font("Cascadia Code", 8.25F);
             textBox_name.Location = new Point(11, 181);
             textBox_name.Margin = new Padding(6);
             textBox_name.Name = "textBox_name";
@@ -242,7 +242,7 @@
             // label_name
             // 
             label_name.AutoSize = true;
-            label_name.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_name.Font = new Font("Cascadia Code", 8.25F);
             label_name.Location = new Point(13, 143);
             label_name.Margin = new Padding(6, 0, 6, 0);
             label_name.Name = "label_name";
@@ -252,7 +252,7 @@
             // 
             // num_iconIndex
             // 
-            num_iconIndex.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            num_iconIndex.Font = new Font("Cascadia Code", 10.125F);
             num_iconIndex.Location = new Point(514, 81);
             num_iconIndex.Margin = new Padding(11, 13, 11, 13);
             num_iconIndex.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
@@ -265,7 +265,7 @@
             // label_iconIndex
             // 
             label_iconIndex.AutoSize = true;
-            label_iconIndex.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_iconIndex.Font = new Font("Cascadia Code", 8.25F);
             label_iconIndex.Location = new Point(514, 39);
             label_iconIndex.Margin = new Padding(6, 0, 6, 0);
             label_iconIndex.Name = "label_iconIndex";
@@ -291,12 +291,12 @@
             groupBoxComponents.Controls.Add(labelIngredients);
             groupBoxComponents.Controls.Add(listBoxTools);
             groupBoxComponents.Controls.Add(listBoxOutput);
-            groupBoxComponents.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxComponents.Font = new Font("Cascadia Code", 8.25F);
             groupBoxComponents.Location = new Point(481, 482);
             groupBoxComponents.Margin = new Padding(6);
             groupBoxComponents.Name = "groupBoxComponents";
             groupBoxComponents.Padding = new Padding(6);
-            groupBoxComponents.Size = new Size(1298, 821);
+            groupBoxComponents.Size = new Size(2097, 821);
             groupBoxComponents.TabIndex = 63;
             groupBoxComponents.TabStop = false;
             groupBoxComponents.Text = "Component Data";
@@ -304,9 +304,9 @@
             // labelHelpOutput
             // 
             labelHelpOutput.AutoSize = true;
-            labelHelpOutput.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelHelpOutput.Font = new Font("Cascadia Code", 9.75F);
             labelHelpOutput.ForeColor = Color.Goldenrod;
-            labelHelpOutput.Location = new Point(1022, 11);
+            labelHelpOutput.Location = new Point(1525, 16);
             labelHelpOutput.Margin = new Padding(6, 0, 6, 0);
             labelHelpOutput.Name = "labelHelpOutput";
             labelHelpOutput.Size = new Size(49, 34);
@@ -316,9 +316,9 @@
             // labelHelpTools
             // 
             labelHelpTools.AutoSize = true;
-            labelHelpTools.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelHelpTools.Font = new Font("Cascadia Code", 9.75F);
             labelHelpTools.ForeColor = Color.Goldenrod;
-            labelHelpTools.Location = new Point(525, 20);
+            labelHelpTools.Location = new Point(795, 14);
             labelHelpTools.Margin = new Padding(6, 0, 6, 0);
             labelHelpTools.Name = "labelHelpTools";
             labelHelpTools.Size = new Size(49, 34);
@@ -328,7 +328,7 @@
             // labelHelpIngredients
             // 
             labelHelpIngredients.AutoSize = true;
-            labelHelpIngredients.Font = new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelHelpIngredients.Font = new Font("Cascadia Code", 9.75F);
             labelHelpIngredients.ForeColor = Color.Goldenrod;
             labelHelpIngredients.Location = new Point(158, 32);
             labelHelpIngredients.Margin = new Padding(6, 0, 6, 0);
@@ -340,12 +340,12 @@
             // buttonDeleteOutput
             // 
             buttonDeleteOutput.FlatStyle = FlatStyle.Popup;
-            buttonDeleteOutput.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteOutput.Font = new Font("Cascadia Code", 12F);
             buttonDeleteOutput.ForeColor = Color.Red;
-            buttonDeleteOutput.Location = new Point(1157, 555);
+            buttonDeleteOutput.Location = new Point(1867, 553);
             buttonDeleteOutput.Margin = new Padding(6);
             buttonDeleteOutput.Name = "buttonDeleteOutput";
-            buttonDeleteOutput.Size = new Size(127, 76);
+            buttonDeleteOutput.Size = new Size(127, 72);
             buttonDeleteOutput.TabIndex = 69;
             buttonDeleteOutput.Text = "❌";
             buttonDeleteOutput.UseVisualStyleBackColor = true;
@@ -354,12 +354,12 @@
             // buttonCloneToOutputs
             // 
             buttonCloneToOutputs.FlatStyle = FlatStyle.Popup;
-            buttonCloneToOutputs.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCloneToOutputs.Font = new Font("Cascadia Code", 12F);
             buttonCloneToOutputs.ForeColor = Color.Blue;
-            buttonCloneToOutputs.Location = new Point(881, 555);
+            buttonCloneToOutputs.Location = new Point(1525, 553);
             buttonCloneToOutputs.Margin = new Padding(6);
             buttonCloneToOutputs.Name = "buttonCloneToOutputs";
-            buttonCloneToOutputs.Size = new Size(266, 76);
+            buttonCloneToOutputs.Size = new Size(330, 72);
             buttonCloneToOutputs.TabIndex = 68;
             buttonCloneToOutputs.Text = "📩";
             buttonCloneToOutputs.UseVisualStyleBackColor = true;
@@ -368,12 +368,12 @@
             // buttonDeleteTool
             // 
             buttonDeleteTool.FlatStyle = FlatStyle.Popup;
-            buttonDeleteTool.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteTool.Font = new Font("Cascadia Code", 8.25F);
             buttonDeleteTool.ForeColor = Color.Red;
-            buttonDeleteTool.Location = new Point(721, 555);
+            buttonDeleteTool.Location = new Point(1180, 555);
             buttonDeleteTool.Margin = new Padding(6);
             buttonDeleteTool.Name = "buttonDeleteTool";
-            buttonDeleteTool.Size = new Size(148, 76);
+            buttonDeleteTool.Size = new Size(148, 72);
             buttonDeleteTool.TabIndex = 67;
             buttonDeleteTool.Text = "❌";
             buttonDeleteTool.UseVisualStyleBackColor = true;
@@ -382,12 +382,12 @@
             // buttonCloneToTools
             // 
             buttonCloneToTools.FlatStyle = FlatStyle.Popup;
-            buttonCloneToTools.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCloneToTools.Font = new Font("Cascadia Code", 12F);
             buttonCloneToTools.ForeColor = Color.Blue;
-            buttonCloneToTools.Location = new Point(445, 553);
+            buttonCloneToTools.Location = new Point(816, 555);
             buttonCloneToTools.Margin = new Padding(6);
             buttonCloneToTools.Name = "buttonCloneToTools";
-            buttonCloneToTools.Size = new Size(262, 78);
+            buttonCloneToTools.Size = new Size(352, 72);
             buttonCloneToTools.TabIndex = 66;
             buttonCloneToTools.Text = "📩";
             buttonCloneToTools.UseVisualStyleBackColor = true;
@@ -395,24 +395,24 @@
             // 
             // listBoxIngredients
             // 
-            listBoxIngredients.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxIngredients.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBoxIngredients.FormattingEnabled = true;
             listBoxIngredients.ItemHeight = 33;
             listBoxIngredients.Location = new Point(11, 75);
             listBoxIngredients.Margin = new Padding(6);
             listBoxIngredients.Name = "listBoxIngredients";
-            listBoxIngredients.Size = new Size(424, 466);
+            listBoxIngredients.Size = new Size(679, 466);
             listBoxIngredients.TabIndex = 65;
             // 
             // buttonDeleteIngredient
             // 
             buttonDeleteIngredient.FlatStyle = FlatStyle.Popup;
-            buttonDeleteIngredient.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteIngredient.Font = new Font("Cascadia Code", 12F);
             buttonDeleteIngredient.ForeColor = Color.Red;
-            buttonDeleteIngredient.Location = new Point(281, 555);
+            buttonDeleteIngredient.Location = new Point(428, 555);
             buttonDeleteIngredient.Margin = new Padding(6);
             buttonDeleteIngredient.Name = "buttonDeleteIngredient";
-            buttonDeleteIngredient.Size = new Size(154, 76);
+            buttonDeleteIngredient.Size = new Size(154, 72);
             buttonDeleteIngredient.TabIndex = 64;
             buttonDeleteIngredient.Text = "❌";
             buttonDeleteIngredient.UseVisualStyleBackColor = true;
@@ -421,12 +421,12 @@
             // buttonCloneToIngredients
             // 
             buttonCloneToIngredients.FlatStyle = FlatStyle.Popup;
-            buttonCloneToIngredients.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCloneToIngredients.Font = new Font("Cascadia Code", 12F);
             buttonCloneToIngredients.ForeColor = Color.Blue;
-            buttonCloneToIngredients.Location = new Point(13, 555);
+            buttonCloneToIngredients.Location = new Point(93, 555);
             buttonCloneToIngredients.Margin = new Padding(6);
             buttonCloneToIngredients.Name = "buttonCloneToIngredients";
-            buttonCloneToIngredients.Size = new Size(256, 76);
+            buttonCloneToIngredients.Size = new Size(323, 72);
             buttonCloneToIngredients.TabIndex = 63;
             buttonCloneToIngredients.Text = "📩";
             buttonCloneToIngredients.UseVisualStyleBackColor = true;
@@ -435,8 +435,8 @@
             // buttonComponentHelper
             // 
             buttonComponentHelper.FlatStyle = FlatStyle.Flat;
-            buttonComponentHelper.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonComponentHelper.Location = new Point(11, 682);
+            buttonComponentHelper.Font = new Font("Cascadia Code", 12F);
+            buttonComponentHelper.Location = new Point(337, 682);
             buttonComponentHelper.Margin = new Padding(6);
             buttonComponentHelper.Name = "buttonComponentHelper";
             buttonComponentHelper.Size = new Size(1275, 127);
@@ -448,8 +448,8 @@
             // labelOutput
             // 
             labelOutput.AutoSize = true;
-            labelOutput.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelOutput.Location = new Point(931, 15);
+            labelOutput.Font = new Font("Cascadia Code", 8.25F);
+            labelOutput.Location = new Point(1434, 20);
             labelOutput.Margin = new Padding(6, 0, 6, 0);
             labelOutput.Name = "labelOutput";
             labelOutput.Size = new Size(91, 29);
@@ -459,8 +459,8 @@
             // labelTools
             // 
             labelTools.AutoSize = true;
-            labelTools.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTools.Location = new Point(445, 20);
+            labelTools.Font = new Font("Cascadia Code", 8.25F);
+            labelTools.Location = new Point(715, 14);
             labelTools.Margin = new Padding(6, 0, 6, 0);
             labelTools.Name = "labelTools";
             labelTools.Size = new Size(78, 29);
@@ -470,7 +470,7 @@
             // labelIngredients
             // 
             labelIngredients.AutoSize = true;
-            labelIngredients.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelIngredients.Font = new Font("Cascadia Code", 8.25F);
             labelIngredients.Location = new Point(11, 36);
             labelIngredients.Margin = new Padding(6, 0, 6, 0);
             labelIngredients.Name = "labelIngredients";
@@ -480,30 +480,30 @@
             // 
             // listBoxTools
             // 
-            listBoxTools.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxTools.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBoxTools.FormattingEnabled = true;
             listBoxTools.ItemHeight = 33;
-            listBoxTools.Location = new Point(447, 75);
+            listBoxTools.Location = new Point(702, 75);
             listBoxTools.Margin = new Padding(6);
             listBoxTools.Name = "listBoxTools";
-            listBoxTools.Size = new Size(422, 466);
+            listBoxTools.Size = new Size(720, 466);
             listBoxTools.TabIndex = 57;
             // 
             // listBoxOutput
             // 
-            listBoxOutput.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxOutput.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBoxOutput.FormattingEnabled = true;
             listBoxOutput.ItemHeight = 33;
-            listBoxOutput.Location = new Point(881, 75);
+            listBoxOutput.Location = new Point(1434, 75);
             listBoxOutput.Margin = new Padding(6);
             listBoxOutput.Name = "listBoxOutput";
-            listBoxOutput.Size = new Size(403, 466);
+            listBoxOutput.Size = new Size(651, 466);
             listBoxOutput.TabIndex = 58;
             // 
             // labelRecipes
             // 
             labelRecipes.AutoSize = true;
-            labelRecipes.Font = new Font("Cascadia Code", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRecipes.Font = new Font("Cascadia Code", 15.75F);
             labelRecipes.Location = new Point(48, 19);
             labelRecipes.Margin = new Padding(6, 0, 6, 0);
             labelRecipes.Name = "labelRecipes";
@@ -513,7 +513,7 @@
             // 
             // buttonAddRecipe
             // 
-            buttonAddRecipe.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAddRecipe.Font = new Font("Cascadia Code", 8.25F);
             buttonAddRecipe.ForeColor = Color.Green;
             buttonAddRecipe.Location = new Point(319, 1227);
             buttonAddRecipe.Margin = new Padding(6);
@@ -526,7 +526,7 @@
             // 
             // buttonDeleteRecipe
             // 
-            buttonDeleteRecipe.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteRecipe.Font = new Font("Cascadia Code", 8.25F);
             buttonDeleteRecipe.ForeColor = Color.Red;
             buttonDeleteRecipe.Location = new Point(17, 1227);
             buttonDeleteRecipe.Margin = new Padding(6);
@@ -539,7 +539,7 @@
             // 
             // buttonCloneRecipe
             // 
-            buttonCloneRecipe.Font = new Font("Cascadia Code", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonCloneRecipe.Font = new Font("Cascadia Code", 9.75F, FontStyle.Bold);
             buttonCloneRecipe.ForeColor = Color.CornflowerBlue;
             buttonCloneRecipe.Location = new Point(138, 1227);
             buttonCloneRecipe.Margin = new Padding(6);
@@ -554,7 +554,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1785, 1318);
+            ClientSize = new Size(2593, 1318);
             Controls.Add(buttonCloneRecipe);
             Controls.Add(buttonAddRecipe);
             Controls.Add(buttonDeleteRecipe);

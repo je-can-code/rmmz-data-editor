@@ -47,10 +47,10 @@ public partial class CraftBoard : Form
 
     public CraftBoard()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
-        craftComponentHelper = new();
-        craftCategoryHelper = new();
+        this.craftComponentHelper = new();
+        this.craftCategoryHelper = new();
         this.SetupBoards();
 
         this.InitializeDataControls();
@@ -109,12 +109,12 @@ public partial class CraftBoard : Form
     /// </summary>
     private void InitializeTooltips()
     {
-        _toolTip = new();
-        _toolTip.AutoPopDelay = 5000;
-        _toolTip.InitialDelay = 1000;
-        _toolTip.ReshowDelay = 500;
-        _toolTip.ToolTipIcon = ToolTipIcon.Info;
-        _toolTip.ToolTipTitle = "Details and Usage";
+        this._toolTip = new();
+        this._toolTip.AutoPopDelay = 5000;
+        this._toolTip.InitialDelay = 1000;
+        this._toolTip.ReshowDelay = 500;
+        this._toolTip.ToolTipIcon = ToolTipIcon.Info;
+        this._toolTip.ToolTipTitle = "Details and Usage";
 
         var keyTip = """
             The unique identifying key of the recipe.
@@ -122,7 +122,7 @@ public partial class CraftBoard : Form
             
             This is required, and will cause issues if left blank.
             """;
-        _toolTip.SetToolTip(this.textBox_key, keyTip);
+        this._toolTip.SetToolTip(this.textBox_key, keyTip);
 
         var nameTip = """
             The name of the recipe.
@@ -130,7 +130,7 @@ public partial class CraftBoard : Form
             This is not required.
             Leave blank to use the first output's name.
             """;
-        _toolTip.SetToolTip(this.textBox_name, nameTip);
+        this._toolTip.SetToolTip(this.textBox_name, nameTip);
 
         var descriptionTip = """
             The description of the recipe.
@@ -138,7 +138,7 @@ public partial class CraftBoard : Form
             This is not required.
             Leave blank to use the first output's name.
             """;
-        _toolTip.SetToolTip(this.textBoxDescription, descriptionTip);
+        this._toolTip.SetToolTip(this.textBoxDescription, descriptionTip);
 
         var iconIndexTip = """
             The icon index for this recipe.
@@ -146,7 +146,7 @@ public partial class CraftBoard : Form
             This is not required.
             Set to -1 to use the first output's icon.
             """;
-        _toolTip.SetToolTip(this.num_iconIndex, iconIndexTip);
+        this._toolTip.SetToolTip(this.num_iconIndex, iconIndexTip);
 
         var unlockedByDefaultTip = """
             Whether or not this recipe is unlocked by default.
@@ -154,7 +154,7 @@ public partial class CraftBoard : Form
             If checked, then this recipe will be available as soon as one of the recipe categories are unlocked.
             If unchecked, then the recipe must be unlocked before it shows up in the list.
             """;
-        _toolTip.SetToolTip(this.checkBox_unlockedByDefault, unlockedByDefaultTip);
+        this._toolTip.SetToolTip(this.checkBox_unlockedByDefault, unlockedByDefaultTip);
 
         var maskedUntilCraftedTip = """
             Whether or not this recipe is masked by default.
@@ -162,28 +162,28 @@ public partial class CraftBoard : Form
             If checked, then this recipe will have various values obfuscated with ?s until it is crafted.
             If unchecked, then the recipe will have all details visible regardless of being crafted or not.
             """;
-        _toolTip.SetToolTip(this.checkBox_maskedUntilCrafted, maskedUntilCraftedTip);
+        this._toolTip.SetToolTip(this.checkBox_maskedUntilCrafted, maskedUntilCraftedTip);
 
         var ingredientsTip = """
             The list of ingredients required to craft this recipe.
             
             Ingredients are crafting components that are consumed when the recipe is crafted.
             """;
-        _toolTip.SetToolTip(this.labelHelpIngredients, ingredientsTip);
+        this._toolTip.SetToolTip(this.labelHelpIngredients, ingredientsTip);
 
         var toolsTip = """
             The list of tools required to craft this recipe.
             
             Tools are crafting components that are NOT consumed when the recipe is crafted.
             """;
-        _toolTip.SetToolTip(this.labelHelpTools, toolsTip);
+        this._toolTip.SetToolTip(this.labelHelpTools, toolsTip);
 
         var outputsTip = """
             The list of outputs created when this recipe is crafted.
             
             Outputs are crafting components that are given to the player when the recipe is crafted.
             """;
-        _toolTip.SetToolTip(this.labelHelpOutput, outputsTip);
+        this._toolTip.SetToolTip(this.labelHelpOutput, outputsTip);
 
         var ingredientsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -191,10 +191,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        _toolTip.SetToolTip(this.buttonCloneToIngredients, ingredientsCloningTip);
+        this._toolTip.SetToolTip(this.buttonCloneToIngredients, ingredientsCloningTip);
 
         var ingredientDeletingTip = "Click to remove the selected ingredient from the list.";
-        _toolTip.SetToolTip(this.buttonDeleteIngredient, ingredientDeletingTip);
+        this._toolTip.SetToolTip(this.buttonDeleteIngredient, ingredientDeletingTip);
 
         var toolsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -202,10 +202,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        _toolTip.SetToolTip(this.buttonCloneToTools, toolsCloningTip);
+        this._toolTip.SetToolTip(this.buttonCloneToTools, toolsCloningTip);
 
         var toolDeletingTip = "Click to remove the selected tool from the list.";
-        _toolTip.SetToolTip(this.buttonDeleteTool, toolDeletingTip);
+        this._toolTip.SetToolTip(this.buttonDeleteTool, toolDeletingTip);
 
         var outputsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -213,10 +213,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        _toolTip.SetToolTip(this.buttonCloneToOutputs, outputsCloningTip);
+        this._toolTip.SetToolTip(this.buttonCloneToOutputs, outputsCloningTip);
 
         var outputDeletingTip = "Click to remove the selected output from the list.";
-        _toolTip.SetToolTip(this.buttonDeleteOutput, outputDeletingTip);
+        this._toolTip.SetToolTip(this.buttonDeleteOutput, outputDeletingTip);
 
         var componentHelperTip = """
             Click to reveal the Crafting Component Helper window.
@@ -224,7 +224,7 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        _toolTip.SetToolTip(this.buttonComponentHelper, componentHelperTip);
+        this._toolTip.SetToolTip(this.buttonComponentHelper, componentHelperTip);
 
         var categoryHelperTip = """
             Click to reveal the Crafting Category Helper window.
@@ -234,19 +234,19 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        _toolTip.SetToolTip(this.buttonComponentHelper, categoryHelperTip);
+        this._toolTip.SetToolTip(this.buttonComponentHelper, categoryHelperTip);
 
         var newRecipeTip = """
             Click to add a new recipe to the list.
             This will generate a mostly-blank recipe.
             """;
-        _toolTip.SetToolTip(this.buttonAddRecipe, newRecipeTip);
+        this._toolTip.SetToolTip(this.buttonAddRecipe, newRecipeTip);
 
         var cloneRecipeTip = "Click to clone the currently-selected recipe into the list at the next index.";
-        _toolTip.SetToolTip(this.buttonCloneRecipe, cloneRecipeTip);
+        this._toolTip.SetToolTip(this.buttonCloneRecipe, cloneRecipeTip);
 
         var deleteRecipeTip = "Click to delete the currently-selected recipe.";
-        _toolTip.SetToolTip(this.buttonDeleteRecipe, deleteRecipeTip);
+        this._toolTip.SetToolTip(this.buttonDeleteRecipe, deleteRecipeTip);
     }
 
     private void ApplyUpdateEvents()
@@ -263,6 +263,7 @@ public partial class CraftBoard : Form
         this.textBoxDescription.TextChanged += this.UpdateDescription;
         this.num_iconIndex.ValueChanged += this.UpdateIconIndex;
         this.checkBox_unlockedByDefault.CheckedChanged += this.UpdateUnlockedByDefault;
+        this.checkBox_maskedUntilCrafted.CheckedChanged += this.UpdateMaskedUntilCrafted;
     }
     #endregion
 
@@ -277,6 +278,9 @@ public partial class CraftBoard : Form
 
         // update with the new value.
         item.Key = this.textBox_key.Text;
+        
+        // the key is special in that it needs to be synced with the list to ensure visual updates apply.
+        this.listboxRecipes.Items[this.listboxRecipes.SelectedIndex] = item;
     }
 
     private void UpdateName(object? sender, EventArgs e)
@@ -289,9 +293,6 @@ public partial class CraftBoard : Form
 
         // update the name with the new value.
         item.Name = this.textBox_name.Text;
-
-        // the name is special in that it needs to be synced with the list to ensure name updates apply.
-        this.listboxRecipes.Items[this.listboxRecipes.SelectedIndex] = item;
     }
 
     private void UpdateDescription(object? sender, EventArgs e)
@@ -328,6 +329,18 @@ public partial class CraftBoard : Form
 
         // update with the new value.
         item.UnlockedByDefault = this.checkBox_unlockedByDefault.Checked;
+    }
+    
+    private void UpdateMaskedUntilCrafted(object? sender, EventArgs e)
+    {
+        // determine the selected item.
+        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+
+        // don't update if it was null.
+        if (item is null) return;
+
+        // update with the new value.
+        item.MaskedUntilCrafted = this.checkBox_maskedUntilCrafted.Checked;
     }
     #endregion
 
@@ -858,7 +871,7 @@ public partial class CraftBoard : Form
         var selectedIndex = this.listboxRecipes.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1 || (selectedIndex == this.listboxRecipes.Items.Count - 1))
+        if (selectedIndex == -1 || selectedIndex == this.listboxRecipes.Items.Count - 1)
         {
             // add the item to the list without regard for index.
             this.listboxRecipes.Items.Add(clonedItem);

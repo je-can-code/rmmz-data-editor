@@ -1,4 +1,5 @@
-﻿using JMZ.Sdp.Data.Models;
+﻿using JMZ.Dashboard.Mappers;
+using JMZ.Sdp.Data.Models;
 
 namespace JMZ.Dashboard.Boards;
 
@@ -12,7 +13,7 @@ public partial class SdpBoard : Form
 
     public SdpBoard()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.InitializeDataControls();
         this.InitializeTooltips();
@@ -37,8 +38,8 @@ public partial class SdpBoard : Form
         this.listBox_rewards.ValueMember = "Effect";
 
         // associate the dropdowns with their appropriate data types.
-        this.comboBox_parameter.DataSource = Enum.GetValues(typeof(LongParameter));
-        this.comboBox_rarity.DataSource = Enum.GetValues(typeof(Rarity));
+        this.comboBox_parameter.DataSource = OrderMapper.ToLongParameters();
+        this.comboBox_rarity.DataSource = OrderMapper.ToRarities();
     }
 
     /// <summary>
@@ -46,12 +47,12 @@ public partial class SdpBoard : Form
     /// </summary>
     private void InitializeTooltips()
     {
-        _toolTip = new();
-        _toolTip.AutoPopDelay = 5000;
-        _toolTip.InitialDelay = 1000;
-        _toolTip.ReshowDelay = 500;
-        _toolTip.ToolTipIcon = ToolTipIcon.Info;
-        _toolTip.ToolTipTitle = "Details and Usage";
+        this._toolTip = new();
+        this._toolTip.AutoPopDelay = 5000;
+        this._toolTip.InitialDelay = 1000;
+        this._toolTip.ReshowDelay = 500;
+        this._toolTip.ToolTipIcon = ToolTipIcon.Info;
+        this._toolTip.ToolTipTitle = "Details and Usage";
 
         // _toolTip.SetToolTip(this.num_radius, JABS.Data.Models.Tags.Radius.Description);
     }
@@ -338,6 +339,7 @@ public partial class SdpBoard : Form
         // don't update if the parameter was null.
         if (selectedParameter is null) return;
 
+        // TODO: properly convert the selected item into the given ID matching the parameter.
         // update with the new value.
         var longParameter = (LongParameter)this.comboBox_parameter.SelectedItem!;
 
@@ -816,7 +818,7 @@ public partial class SdpBoard : Form
         // define the new SDP.
         var newSdp = new StatDistributionPanel
         {
-            Name = "===NEW SDP===",
+            Name = "==NEW SDP==",
             Key = "NEW_0"
         };
 
@@ -835,6 +837,9 @@ public partial class SdpBoard : Form
             // add it at the given index.
             this.listBox_Sdps.Items.Insert(selectedIndex, newSdp);
         }
+
+        // select the newly created panel.
+        this.listBox_Sdps.SelectedIndex -= 1;
     }
 
     private void button_removeSdp_Click(object sender, EventArgs e)
@@ -865,10 +870,13 @@ public partial class SdpBoard : Form
         switch (dialogResult)
         {
             case DialogResult.OK:
+                // remove the designated panel from the list in memory.
                 this.listBox_Sdps.Items.RemoveAt(removalIndex);
+                
+                // 
                 if (this.listBox_Sdps.Items.Count != 0)
                 {
-                    this.listBox_Sdps.SelectedIndex = 0;
+                    this.listBox_Sdps.SelectedIndex = Math.Max(-1, removalIndex - 1);
                 }
 
                 break;

@@ -25,9 +25,9 @@ public partial class CraftComponentHelper : Form
 
     public CraftComponentHelper()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
-        currentComponent = new();
+        this.currentComponent = new();
 
         this.InitializeDataControls();
         this.InitializeTooltips();
@@ -97,11 +97,11 @@ public partial class CraftComponentHelper : Form
         this.textBoxCurrentId.Text = this.currentComponent.Id.ToString();
 
         // update the type of the component.
-        this.currentComponent.Type = ((ComponentType)comboBoxTypes.SelectedItem!).ToAbbreviation();
+        this.currentComponent.Type = ((ComponentType)this.comboBoxTypes.SelectedItem!).ToAbbreviation();
         this.textBoxCurrentType.Text = this.currentComponent.Type;
 
         // update the quantity.
-        this.currentComponent.Count = (int)numQuantity.Value;
+        this.currentComponent.Count = (int)this.numQuantity.Value;
         this.textBoxCurrentCount.Text = this.currentComponent.Count.ToString();
 
         // also update the name for display purposes only.
@@ -110,7 +110,7 @@ public partial class CraftComponentHelper : Form
 
     private void OnFilterText(object? sender, EventArgs e)
     {
-        var currentFilterText = textBoxDataFilter.Text;
+        var currentFilterText = this.textBoxDataFilter.Text;
         if (string.IsNullOrWhiteSpace(currentFilterText))
         {
             this.RefreshComponentData();
@@ -146,7 +146,7 @@ public partial class CraftComponentHelper : Form
     private void OnQuantityChange(object? sender, EventArgs e)
     {
         // determine the new quantity.
-        var quantity = (int)numQuantity.Value;
+        var quantity = (int)this.numQuantity.Value;
 
         // update the component with this quantity.
         this.currentComponent.Count = quantity;

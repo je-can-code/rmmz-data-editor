@@ -1,8 +1,10 @@
 ﻿using JMZ.Crafting.Data.Models;
 using JMZ.Dashboard.Boards.Craft;
 using JMZ.Dashboard.Mappers;
+using JMZ.Dashboard.Utils;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Drops.Data.Extensions.implementations._Enemy;
+using JMZ.JABS.Data.Extensions.implementations._Enemy;
 using JMZ.LevelMaster.Data.Extensions.implementations._Enemy;
 using JMZ.Rmmz.Data.Extensions.db.@base._Base;
 using JMZ.Rmmz.Data.Extensions.db.implementations._Enemy;
@@ -19,7 +21,6 @@ public partial class EnemiesBoard : Form
 
     private readonly CraftComponentHelper dropHelper;
 
-
     /// <summary>
     /// Whether or not this form needs setup.
     /// </summary>
@@ -30,7 +31,7 @@ public partial class EnemiesBoard : Form
     /// </summary>
     public EnemiesBoard()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.dropHelper = new();
         this.SetupBoards();
@@ -42,23 +43,8 @@ public partial class EnemiesBoard : Form
 
     private void SetupBoards()
     {
-        this.dropHelper.FormClosing += HideBoard;
+        this.dropHelper.FormClosing += FormUtils.HideBoard;
         this.dropHelper.Setup();
-    }
-
-    /// <summary>
-    /// An event handler for hiding the boards instead of closing them.
-    /// </summary>
-    private static void HideBoard(object? sender, FormClosingEventArgs e)
-    {
-        // make sure its the user trying to close the window, first.
-        if (e.CloseReason != CloseReason.UserClosing) return;
-
-        // actually don't close and dispose of the window.
-        e.Cancel = true;
-
-        // hide the window instead.
-        ((Form)sender!).Hide();
     }
 
     #region init
@@ -102,6 +88,7 @@ public partial class EnemiesBoard : Form
     private void ApplyUpdateEvents()
     {
         this.ApplyUpdateEventsForCoreData();
+        this.ApplyUpdateEventsForJabsData();
     }
 
     private void ApplyUpdateEventsForCoreData()
@@ -114,8 +101,10 @@ public partial class EnemiesBoard : Form
 
         this.numMaxHp.ValueChanged += this.UpdateParamMaxHp;
         this.numMaxMp.ValueChanged += this.UpdateParamMaxMp;
+        
         // TODO: implement TP updating and retrieval.
         this.numMaxTp.ValueChanged += this.UpdateParamMaxTp;
+        
         this.numParamPower.ValueChanged += this.UpdateParamPower;
         this.numParamEndurance.ValueChanged += this.UpdateParamEndurance;
         this.numParamForce.ValueChanged += this.UpdateParamForce;
@@ -126,11 +115,77 @@ public partial class EnemiesBoard : Form
         this.numSdpPoints.ValueChanged += this.UpdateSdpPoints;
         // SDP data updates are handled with GUI buttons.
     }
+
+    private void ApplyUpdateEventsForJabsData()
+    {
+        this.numJabsSight.ValueChanged += this.UpdateJabsSight;
+        this.numJabsSightAlerted.ValueChanged += this.UpdateJabsSightAlerted;
+        this.numJabsPursuit.ValueChanged += this.UpdateJabsPursuit;
+        this.numJabsPursuitAlerted.ValueChanged += this.UpdateJabsPursuitAlerted;
+    }
     #endregion
 
     public List<RPG_Enemy> Enemies()
     {
         return this.enemiesList;
+    }
+    
+    // TODO: figure out how the clipboard works so we can setup keyboard shortcuts.
+    // protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    // {
+    //     if (this.ActiveControl == this.listBoxEnemies)
+    //     {
+    //         switch (keyData)
+    //         {
+    //             // copy
+    //             case Keys.Control | Keys.C:
+    //                 // this.CloneEnemyToClipboard();
+    //                 return true;
+    //             // pasta
+    //             case Keys.Control | Keys.V:
+    //                 // this.PasteEnemyToListbox();
+    //                 return true;
+    //         }
+    //     }
+    //
+    //     return base.ProcessCmdKey(ref msg, keyData);
+    // }
+
+    private void CloneEnemyToClipboard()
+    {
+        // grab the item from the listbox.
+        var selectedItem = (RPG_Enemy)this.listBoxEnemies.SelectedItem!;
+
+        // if there is no selected item, then don't clone it to the clipboard.
+        if (selectedItem is null) return;
+
+        var data = new DataObject("rpg_enemy", selectedItem);
+        
+        // set the enemy to the clipboard.
+        Clipboard.SetDataObject(data);
+    }
+
+    private void PasteEnemyToListbox()
+    {
+        var clipboardItem = Clipboard.GetDataObject();
+
+        if (clipboardItem?.GetData("rpg_enemy") is not RPG_Enemy copiedEnemy) return;
+        
+        // for user-friendliness, we clone right next to where the cursor is.
+        var selectedIndex = this.listBoxEnemies.SelectedIndex;
+        
+        // check if there was no current selection.
+        if (selectedIndex == -1 || selectedIndex == this.listBoxEnemies.Items.Count - 1)
+        {
+            // add the item to the list without regard for index.
+            this.listBoxEnemies.Items.Add(copiedEnemy);
+        }
+        // we are in the middle somewhere.
+        else
+        {
+            // add it at the given index.
+            this.listBoxEnemies.Items.Insert(selectedIndex, copiedEnemy);
+        }
     }
 
     #region drop helper
@@ -459,13 +514,13 @@ public partial class EnemiesBoard : Form
 
         if (isAlreadyChecked)
         {
-            numSdpChance.Enabled = true;
-            textSdpKey.Enabled = true;
+            this.numSdpChance.Enabled = true;
+            this.textSdpKey.Enabled = true;
         }
         else
         {
-            numSdpChance.Enabled = false;
-            textSdpKey.Enabled = false;
+            this.numSdpChance.Enabled = false;
+            this.textSdpKey.Enabled = false;
         }
     }
 
@@ -503,8 +558,69 @@ public partial class EnemiesBoard : Form
         this.textSdpKey.Enabled = isEnabled;
         this.numSdpChance.Enabled = isEnabled;
     }
-
     #endregion sdp
+    
+    #region jabs
+    private void UpdateJabsSight(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (enemy, index) = this.GetEnemySelection();
+
+        // grab the value out of the field.
+        var value = this.numJabsSight.Value;
+
+        // update the value on the source.
+        enemy.UpdateJabsSight(value);
+
+        // refresh the item in the list.
+        this.UpdateEnemyData(enemy, index);
+    }
+    
+    private void UpdateJabsSightAlerted(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (enemy, index) = this.GetEnemySelection();
+
+        // grab the value out of the field.
+        var value = this.numJabsSightAlerted.Value;
+
+        // update the value on the source.
+        enemy.UpdateJabsAlertedSightBoost(value);
+
+        // refresh the item in the list.
+        this.UpdateEnemyData(enemy, index);
+    }
+    
+    private void UpdateJabsPursuit(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (enemy, index) = this.GetEnemySelection();
+
+        // grab the value out of the field.
+        var value = this.numJabsPursuit.Value;
+
+        // update the value on the source.
+        enemy.UpdateJabsPursuit(value);
+
+        // refresh the item in the list.
+        this.UpdateEnemyData(enemy, index);
+    }
+    
+    private void UpdateJabsPursuitAlerted(object? sender, EventArgs e)
+    {
+        // get the data of the selected item.
+        var (enemy, index) = this.GetEnemySelection();
+
+        // grab the value out of the field.
+        var value = this.numJabsPursuitAlerted.Value;
+
+        // update the value on the source.
+        enemy.UpdateJabsAlertedPursuitBoost(value);
+
+        // refresh the item in the list.
+        this.UpdateEnemyData(enemy, index);
+    }
+    #endregion jabs
 
     #region refresh
     private void RefreshForm(object? sender, EventArgs e)
@@ -516,15 +632,41 @@ public partial class EnemiesBoard : Form
     {
         this.RefreshEnemies();
 
+        this.RefreshParameters();
+
         this.RefreshDrops();
 
         this.RefreshSdp();
 
-        this.RefreshParameters();
+        this.RefreshJabs();
 
         // update other data in form here.
     }
 
+    private void RefreshParameters()
+    {
+        var selectedEnemy = (RPG_Enemy?)this.listBoxEnemies.SelectedItem;
+        if (selectedEnemy is null) return;
+
+        this.numLevel.Value = selectedEnemy.GetLevel();
+
+        this.numMaxHp.Value = selectedEnemy.GetBaseParamMaxHp();
+        this.numMaxMp.Value = selectedEnemy.GetBaseParamMaxMp();
+
+        // TODO: implement tp retrieval.
+        // this.numMaxTp.Value = selectedEnemy.GetBaseParamMaxTp();
+
+        this.numParamPower.Value = selectedEnemy.GetBaseParamPower();
+        this.numParamEndurance.Value = selectedEnemy.GetBaseParamEndurance();
+        this.numParamForce.Value = selectedEnemy.GetBaseParamForce();
+        this.numParamResistance.Value = selectedEnemy.GetBaseParamResistance();
+        this.numParamSpeed.Value = selectedEnemy.GetBaseParamSpeed();
+        this.numParamLuck.Value = selectedEnemy.GetBaseParamLuck();
+
+        this.numExperience.Value = selectedEnemy.GetExperience();
+        this.numGold.Value = selectedEnemy.GetGold();
+    }
+    
     private void RefreshEnemies()
     {
         var selectedEnemy = (RPG_Enemy?)this.listBoxEnemies.SelectedItem;
@@ -570,30 +712,16 @@ public partial class EnemiesBoard : Form
         this.numSdpPoints.Value = selectedEnemy.GetSdpPoints();
     }
 
-    private void RefreshParameters()
+    private void RefreshJabs()
     {
         var selectedEnemy = (RPG_Enemy?)this.listBoxEnemies.SelectedItem;
         if (selectedEnemy is null) return;
 
-        this.numLevel.Value = selectedEnemy.GetLevel();
-
-        this.numMaxHp.Value = selectedEnemy.GetBaseParamMaxHp();
-        this.numMaxMp.Value = selectedEnemy.GetBaseParamMaxMp();
-
-        // TODO: implement tp retrieval.
-        // this.numMaxTp.Value = selectedEnemy.GetBaseParamMaxTp();
-
-        this.numParamPower.Value = selectedEnemy.GetBaseParamPower();
-        this.numParamEndurance.Value = selectedEnemy.GetBaseParamEndurance();
-        this.numParamForce.Value = selectedEnemy.GetBaseParamForce();
-        this.numParamResistance.Value = selectedEnemy.GetBaseParamResistance();
-        this.numParamSpeed.Value = selectedEnemy.GetBaseParamSpeed();
-        this.numParamLuck.Value = selectedEnemy.GetBaseParamLuck();
-
-        this.numExperience.Value = selectedEnemy.GetExperience();
-        this.numGold.Value = selectedEnemy.GetGold();
+        this.numJabsSight.Value = selectedEnemy.GetJabsSight();
+        this.numJabsSightAlerted.Value = selectedEnemy.GetJabsAlertedSightBoost();
+        this.numJabsPursuit.Value = selectedEnemy.GetJabsPursuit();
+        this.numJabsPursuitAlerted.Value = selectedEnemy.GetJabsAlertedPursuitBoost();
     }
-
     #endregion
 
     #region setup

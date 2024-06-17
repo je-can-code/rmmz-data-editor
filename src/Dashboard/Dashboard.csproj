@@ -31,14 +31,32 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Boards\WeaponsBoard - Copy.cs">
-        <SubType>Form</SubType>
-      </Compile>
       <Compile Update="Boards\DifficultyBoard.Updates.cs">
         <DependentUpon>DifficultyBoard.cs</DependentUpon>
       </Compile>
       <Compile Update="Boards\BaseBoard.Difficulties.cs">
         <DependentUpon>BaseBoard.cs</DependentUpon>
       </Compile>
+      <Compile Update="Boards\BaseBoard.Enemies.cs">
+        <DependentUpon>BaseBoard.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Boards\BaseBoard.Crafting.cs">
+        <DependentUpon>BaseBoard.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Boards\BaseBoard.Sdp.cs">
+        <DependentUpon>BaseBoard.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Boards\BaseBoard.Weapons.cs">
+        <DependentUpon>BaseBoard.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Boards\BaseBoard.Skills.cs">
+        <DependentUpon>BaseBoard.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 </Project>

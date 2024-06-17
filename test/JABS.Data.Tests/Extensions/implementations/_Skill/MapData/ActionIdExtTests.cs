@@ -11,7 +11,7 @@ public class ActionIdExtTests : BaseTests
     
     public ActionIdExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class ActionIdExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsActionId();
+        var actual = this.modelUnderTest.GetJabsActionId();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class ActionIdExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.ActionIdTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsActionId();
+        var actual = this.modelUnderTest.GetJabsActionId();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class ActionIdExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsActionId(fakeTagValue);
+        this.modelUnderTest.UpdateJabsActionId(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsActionId();
+        var actual = this.modelUnderTest.GetJabsActionId();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class ActionIdExtTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsActionId(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsActionId(expected);
+        this.modelUnderTest.UpdateJabsActionId(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsActionId(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsActionId();
+        var actual = this.modelUnderTest.GetJabsActionId();
         
         // then
         actual.Should().Be(expected);

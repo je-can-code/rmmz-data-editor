@@ -91,20 +91,20 @@
             // 
             // listBox_Sdps
             // 
-            listBox_Sdps.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBox_Sdps.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBox_Sdps.ItemHeight = 33;
             listBox_Sdps.Location = new Point(22, 26);
-            listBox_Sdps.Margin = new Padding(6, 6, 6, 6);
+            listBox_Sdps.Margin = new Padding(6);
             listBox_Sdps.Name = "listBox_Sdps";
-            listBox_Sdps.Size = new Size(353, 730);
+            listBox_Sdps.Size = new Size(469, 730);
             listBox_Sdps.TabIndex = 1;
             // 
             // textBox_key
             // 
             textBox_key.BorderStyle = BorderStyle.FixedSingle;
-            textBox_key.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_key.Font = new Font("Cascadia Code", 8.25F);
             textBox_key.Location = new Point(134, 32);
-            textBox_key.Margin = new Padding(6, 6, 6, 6);
+            textBox_key.Margin = new Padding(6);
             textBox_key.Name = "textBox_key";
             textBox_key.Size = new Size(206, 33);
             textBox_key.TabIndex = 2;
@@ -112,7 +112,7 @@
             // label_key
             // 
             label_key.AutoSize = true;
-            label_key.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_key.Font = new Font("Cascadia Code", 8.25F);
             label_key.Location = new Point(74, 38);
             label_key.Margin = new Padding(6, 0, 6, 0);
             label_key.Name = "label_key";
@@ -123,7 +123,7 @@
             // label_name
             // 
             label_name.AutoSize = true;
-            label_name.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_name.Font = new Font("Cascadia Code", 8.25F);
             label_name.Location = new Point(11, 100);
             label_name.Margin = new Padding(6, 0, 6, 0);
             label_name.Name = "label_name";
@@ -134,18 +134,18 @@
             // textBox_name
             // 
             textBox_name.BorderStyle = BorderStyle.FixedSingle;
-            textBox_name.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_name.Font = new Font("Cascadia Code", 8.25F);
             textBox_name.Location = new Point(74, 94);
-            textBox_name.Margin = new Padding(6, 6, 6, 6);
+            textBox_name.Margin = new Padding(6);
             textBox_name.Name = "textBox_name";
             textBox_name.Size = new Size(266, 33);
             textBox_name.TabIndex = 4;
             // 
             // num_iconIndex
             // 
-            num_iconIndex.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_iconIndex.Font = new Font("Cascadia Code", 8.25F);
             num_iconIndex.Location = new Point(162, 156);
-            num_iconIndex.Margin = new Padding(6, 6, 6, 6);
+            num_iconIndex.Margin = new Padding(6);
             num_iconIndex.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             num_iconIndex.Name = "num_iconIndex";
             num_iconIndex.Size = new Size(180, 33);
@@ -154,7 +154,7 @@
             // label_iconIndex
             // 
             label_iconIndex.AutoSize = true;
-            label_iconIndex.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_iconIndex.Font = new Font("Cascadia Code", 8.25F);
             label_iconIndex.Location = new Point(7, 160);
             label_iconIndex.Margin = new Padding(6, 0, 6, 0);
             label_iconIndex.Name = "label_iconIndex";
@@ -165,9 +165,9 @@
             // checkBox_unlockedByDefault
             // 
             checkBox_unlockedByDefault.AutoSize = true;
-            checkBox_unlockedByDefault.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox_unlockedByDefault.Font = new Font("Cascadia Code", 8.25F);
             checkBox_unlockedByDefault.Location = new Point(11, 218);
-            checkBox_unlockedByDefault.Margin = new Padding(6, 6, 6, 6);
+            checkBox_unlockedByDefault.Margin = new Padding(6);
             checkBox_unlockedByDefault.Name = "checkBox_unlockedByDefault";
             checkBox_unlockedByDefault.Size = new Size(292, 33);
             checkBox_unlockedByDefault.TabIndex = 31;
@@ -177,7 +177,7 @@
             // label_maxRank
             // 
             label_maxRank.AutoSize = true;
-            label_maxRank.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_maxRank.Font = new Font("Cascadia Code", 8.25F);
             label_maxRank.Location = new Point(50, 51);
             label_maxRank.Margin = new Padding(6, 0, 6, 0);
             label_maxRank.Name = "label_maxRank";
@@ -187,20 +187,20 @@
             // 
             // num_maxRank
             // 
-            num_maxRank.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_maxRank.Font = new Font("Cascadia Code", 8.25F);
             num_maxRank.Location = new Point(178, 47);
-            num_maxRank.Margin = new Padding(6, 6, 6, 6);
+            num_maxRank.Margin = new Padding(6);
             num_maxRank.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             num_maxRank.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             num_maxRank.Name = "num_maxRank";
-            num_maxRank.Size = new Size(98, 33);
+            num_maxRank.Size = new Size(186, 33);
             num_maxRank.TabIndex = 32;
             num_maxRank.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label_flatGrowth
             // 
             label_flatGrowth.AutoSize = true;
-            label_flatGrowth.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_flatGrowth.Font = new Font("Cascadia Code", 8.25F);
             label_flatGrowth.Location = new Point(102, 224);
             label_flatGrowth.Margin = new Padding(6, 0, 6, 0);
             label_flatGrowth.Name = "label_flatGrowth";
@@ -210,10 +210,10 @@
             // 
             // num_flatGrowth
             // 
-            num_flatGrowth.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_flatGrowth.Font = new Font("Cascadia Code", 8.25F);
             num_flatGrowth.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             num_flatGrowth.Location = new Point(178, 220);
-            num_flatGrowth.Margin = new Padding(6, 6, 6, 6);
+            num_flatGrowth.Margin = new Padding(6);
             num_flatGrowth.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             num_flatGrowth.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             num_flatGrowth.Name = "num_flatGrowth";
@@ -224,7 +224,7 @@
             // label_multGrowth
             // 
             label_multGrowth.AutoSize = true;
-            label_multGrowth.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_multGrowth.Font = new Font("Cascadia Code", 8.25F);
             label_multGrowth.Location = new Point(24, 290);
             label_multGrowth.Margin = new Padding(6, 0, 6, 0);
             label_multGrowth.Name = "label_multGrowth";
@@ -235,10 +235,10 @@
             // num_multGrowth
             // 
             num_multGrowth.DecimalPlaces = 2;
-            num_multGrowth.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_multGrowth.Font = new Font("Cascadia Code", 8.25F);
             num_multGrowth.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             num_multGrowth.Location = new Point(178, 286);
-            num_multGrowth.Margin = new Padding(6, 6, 6, 6);
+            num_multGrowth.Margin = new Padding(6);
             num_multGrowth.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             num_multGrowth.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             num_multGrowth.Name = "num_multGrowth";
@@ -249,7 +249,7 @@
             // label_description
             // 
             label_description.AutoSize = true;
-            label_description.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_description.Font = new Font("Cascadia Code", 8.25F);
             label_description.Location = new Point(4, 247);
             label_description.Margin = new Padding(6, 0, 6, 0);
             label_description.Name = "label_description";
@@ -259,9 +259,9 @@
             // 
             // textBox_description
             // 
-            textBox_description.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_description.Font = new Font("Cascadia Code", 8.25F);
             textBox_description.Location = new Point(11, 290);
-            textBox_description.Margin = new Padding(6, 6, 6, 6);
+            textBox_description.Margin = new Padding(6);
             textBox_description.Multiline = true;
             textBox_description.Name = "textBox_description";
             textBox_description.Size = new Size(756, 217);
@@ -270,7 +270,7 @@
             // label_flavorText
             // 
             label_flavorText.AutoSize = true;
-            label_flavorText.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_flavorText.Font = new Font("Cascadia Code", 8.25F);
             label_flavorText.Location = new Point(11, 34);
             label_flavorText.Margin = new Padding(6, 0, 6, 0);
             label_flavorText.Name = "label_flavorText";
@@ -280,9 +280,9 @@
             // 
             // textBox_flavorText
             // 
-            textBox_flavorText.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_flavorText.Font = new Font("Cascadia Code", 8.25F);
             textBox_flavorText.Location = new Point(11, 73);
-            textBox_flavorText.Margin = new Padding(6, 6, 6, 6);
+            textBox_flavorText.Margin = new Padding(6);
             textBox_flavorText.Multiline = true;
             textBox_flavorText.Name = "textBox_flavorText";
             textBox_flavorText.Size = new Size(756, 164);
@@ -290,24 +290,24 @@
             // 
             // listBox_parameters
             // 
-            listBox_parameters.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBox_parameters.Font = new Font("Cascadia Code", 8.25F);
             listBox_parameters.FormattingEnabled = true;
             listBox_parameters.ItemHeight = 29;
             listBox_parameters.Location = new Point(11, 53);
-            listBox_parameters.Margin = new Padding(6, 6, 6, 6);
+            listBox_parameters.Margin = new Padding(6);
             listBox_parameters.Name = "listBox_parameters";
-            listBox_parameters.Size = new Size(219, 323);
+            listBox_parameters.Size = new Size(300, 323);
             listBox_parameters.TabIndex = 42;
             // 
             // listBox_rewards
             // 
-            listBox_rewards.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            listBox_rewards.Font = new Font("Cascadia Code", 8.25F);
             listBox_rewards.FormattingEnabled = true;
             listBox_rewards.ItemHeight = 29;
             listBox_rewards.Location = new Point(11, 47);
-            listBox_rewards.Margin = new Padding(6, 6, 6, 6);
+            listBox_rewards.Margin = new Padding(6);
             listBox_rewards.Name = "listBox_rewards";
-            listBox_rewards.Size = new Size(335, 149);
+            listBox_rewards.Size = new Size(367, 149);
             listBox_rewards.TabIndex = 43;
             // 
             // groupBox_parameterData
@@ -321,22 +321,22 @@
             groupBox_parameterData.Controls.Add(button_addParameter);
             groupBox_parameterData.Controls.Add(button_removeParameter);
             groupBox_parameterData.Controls.Add(listBox_parameters);
-            groupBox_parameterData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_parameterData.Location = new Point(390, 395);
-            groupBox_parameterData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_parameterData.Font = new Font("Cascadia Code", 8.25F);
+            groupBox_parameterData.Location = new Point(503, 399);
+            groupBox_parameterData.Margin = new Padding(6);
             groupBox_parameterData.Name = "groupBox_parameterData";
-            groupBox_parameterData.Padding = new Padding(6, 6, 6, 6);
-            groupBox_parameterData.Size = new Size(531, 482);
+            groupBox_parameterData.Padding = new Padding(6);
+            groupBox_parameterData.Size = new Size(667, 482);
             groupBox_parameterData.TabIndex = 44;
             groupBox_parameterData.TabStop = false;
             groupBox_parameterData.Text = "Parameter Data";
             // 
             // comboBox_parameter
             // 
-            comboBox_parameter.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox_parameter.Font = new Font("Cascadia Code", 8.25F);
             comboBox_parameter.FormattingEnabled = true;
-            comboBox_parameter.Location = new Point(245, 378);
-            comboBox_parameter.Margin = new Padding(6, 6, 6, 6);
+            comboBox_parameter.Location = new Point(323, 339);
+            comboBox_parameter.Margin = new Padding(6);
             comboBox_parameter.Name = "comboBox_parameter";
             comboBox_parameter.Size = new Size(271, 37);
             comboBox_parameter.TabIndex = 57;
@@ -344,8 +344,8 @@
             // label_parameter
             // 
             label_parameter.AutoSize = true;
-            label_parameter.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label_parameter.Location = new Point(245, 337);
+            label_parameter.Font = new Font("Cascadia Code", 8.25F);
+            label_parameter.Location = new Point(323, 298);
             label_parameter.Margin = new Padding(6, 0, 6, 0);
             label_parameter.Name = "label_parameter";
             label_parameter.Size = new Size(130, 29);
@@ -355,36 +355,36 @@
             // checkBox_isCore
             // 
             checkBox_isCore.Appearance = Appearance.Button;
-            checkBox_isCore.AutoSize = true;
             checkBox_isCore.FlatStyle = FlatStyle.Flat;
-            checkBox_isCore.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox_isCore.Location = new Point(245, 32);
-            checkBox_isCore.Margin = new Padding(6, 6, 6, 6);
+            checkBox_isCore.Font = new Font("Cascadia Code", 8.25F);
+            checkBox_isCore.Location = new Point(323, 38);
+            checkBox_isCore.Margin = new Padding(6);
             checkBox_isCore.Name = "checkBox_isCore";
-            checkBox_isCore.Size = new Size(244, 39);
+            checkBox_isCore.Size = new Size(332, 39);
             checkBox_isCore.TabIndex = 55;
             checkBox_isCore.Text = "Is Core Parameter";
+            checkBox_isCore.TextAlign = ContentAlignment.MiddleCenter;
             checkBox_isCore.UseVisualStyleBackColor = false;
             // 
             // checkBox_isFlat
             // 
             checkBox_isFlat.Appearance = Appearance.Button;
-            checkBox_isFlat.AutoSize = true;
             checkBox_isFlat.FlatStyle = FlatStyle.Flat;
-            checkBox_isFlat.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox_isFlat.Location = new Point(245, 100);
-            checkBox_isFlat.Margin = new Padding(6, 6, 6, 6);
+            checkBox_isFlat.Font = new Font("Cascadia Code", 8.25F);
+            checkBox_isFlat.Location = new Point(323, 99);
+            checkBox_isFlat.Margin = new Padding(6);
             checkBox_isFlat.Name = "checkBox_isFlat";
-            checkBox_isFlat.Size = new Size(244, 39);
+            checkBox_isFlat.Size = new Size(332, 39);
             checkBox_isFlat.TabIndex = 54;
             checkBox_isFlat.Text = "Is Percent Growth";
+            checkBox_isFlat.TextAlign = ContentAlignment.MiddleCenter;
             checkBox_isFlat.UseVisualStyleBackColor = false;
             // 
             // label_
             // 
             label_.AutoSize = true;
-            label_.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label_.Location = new Point(245, 205);
+            label_.Font = new Font("Cascadia Code", 8.25F);
+            label_.Location = new Point(323, 166);
             label_.Margin = new Padding(6, 0, 6, 0);
             label_.Name = "label_";
             label_.Size = new Size(208, 29);
@@ -394,10 +394,10 @@
             // num_paramGrowthPerRank
             // 
             num_paramGrowthPerRank.DecimalPlaces = 2;
-            num_paramGrowthPerRank.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_paramGrowthPerRank.Font = new Font("Cascadia Code", 8.25F);
             num_paramGrowthPerRank.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            num_paramGrowthPerRank.Location = new Point(245, 245);
-            num_paramGrowthPerRank.Margin = new Padding(6, 6, 6, 6);
+            num_paramGrowthPerRank.Location = new Point(323, 206);
+            num_paramGrowthPerRank.Margin = new Padding(6);
             num_paramGrowthPerRank.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             num_paramGrowthPerRank.Minimum = new decimal(new int[] { 9999, 0, 0, int.MinValue });
             num_paramGrowthPerRank.Name = "num_paramGrowthPerRank";
@@ -406,25 +406,27 @@
             // 
             // button_addParameter
             // 
-            button_addParameter.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button_addParameter.Location = new Point(104, 422);
-            button_addParameter.Margin = new Padding(6, 6, 6, 6);
+            button_addParameter.Font = new Font("Cascadia Code", 8.25F);
+            button_addParameter.ForeColor = Color.Green;
+            button_addParameter.Location = new Point(162, 420);
+            button_addParameter.Margin = new Padding(6);
             button_addParameter.Name = "button_addParameter";
-            button_addParameter.Size = new Size(130, 49);
+            button_addParameter.Size = new Size(149, 49);
             button_addParameter.TabIndex = 51;
-            button_addParameter.Text = "+";
+            button_addParameter.Text = "✨";
             button_addParameter.UseVisualStyleBackColor = true;
             button_addParameter.Click += button_addParameter_Click;
             // 
             // button_removeParameter
             // 
-            button_removeParameter.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button_removeParameter.Location = new Point(11, 422);
-            button_removeParameter.Margin = new Padding(6, 6, 6, 6);
+            button_removeParameter.Font = new Font("Cascadia Code", 8.25F);
+            button_removeParameter.ForeColor = Color.Red;
+            button_removeParameter.Location = new Point(12, 420);
+            button_removeParameter.Margin = new Padding(6);
             button_removeParameter.Name = "button_removeParameter";
-            button_removeParameter.Size = new Size(82, 49);
+            button_removeParameter.Size = new Size(138, 49);
             button_removeParameter.TabIndex = 50;
-            button_removeParameter.Text = "-";
+            button_removeParameter.Text = "❌";
             button_removeParameter.UseVisualStyleBackColor = true;
             button_removeParameter.Click += button_removeParameter_Click;
             // 
@@ -439,21 +441,21 @@
             groupBox_rewardData.Controls.Add(label_rankRequiredForReward);
             groupBox_rewardData.Controls.Add(num_rewardRankRequired);
             groupBox_rewardData.Controls.Add(listBox_rewards);
-            groupBox_rewardData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_rewardData.Location = new Point(932, 559);
-            groupBox_rewardData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_rewardData.Font = new Font("Cascadia Code", 8.25F);
+            groupBox_rewardData.Location = new Point(1182, 563);
+            groupBox_rewardData.Margin = new Padding(6);
             groupBox_rewardData.Name = "groupBox_rewardData";
-            groupBox_rewardData.Padding = new Padding(6, 6, 6, 6);
-            groupBox_rewardData.Size = new Size(1021, 318);
+            groupBox_rewardData.Padding = new Padding(6);
+            groupBox_rewardData.Size = new Size(1049, 318);
             groupBox_rewardData.TabIndex = 43;
             groupBox_rewardData.TabStop = false;
             groupBox_rewardData.Text = "Reward Data";
             // 
             // textBox_rewardName
             // 
-            textBox_rewardName.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_rewardName.Location = new Point(436, 34);
-            textBox_rewardName.Margin = new Padding(6, 6, 6, 6);
+            textBox_rewardName.Font = new Font("Cascadia Code", 8.25F);
+            textBox_rewardName.Location = new Point(466, 36);
+            textBox_rewardName.Margin = new Padding(6);
             textBox_rewardName.Name = "textBox_rewardName";
             textBox_rewardName.Size = new Size(377, 33);
             textBox_rewardName.TabIndex = 50;
@@ -461,8 +463,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(360, 47);
+            label1.Font = new Font("Cascadia Code", 8.25F);
+            label1.Location = new Point(390, 49);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
             label1.Size = new Size(65, 29);
@@ -471,33 +473,35 @@
             // 
             // button_addReward
             // 
-            button_addReward.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button_addReward.Location = new Point(150, 256);
-            button_addReward.Margin = new Padding(6, 6, 6, 6);
+            button_addReward.Font = new Font("Cascadia Code", 8.25F);
+            button_addReward.ForeColor = Color.Green;
+            button_addReward.Location = new Point(179, 257);
+            button_addReward.Margin = new Padding(6);
             button_addReward.Name = "button_addReward";
             button_addReward.Size = new Size(199, 49);
             button_addReward.TabIndex = 49;
-            button_addReward.Text = "+";
+            button_addReward.Text = "✨";
             button_addReward.UseVisualStyleBackColor = true;
             button_addReward.Click += button_addReward_Click;
             // 
             // button_removeReward
             // 
-            button_removeReward.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button_removeReward.Font = new Font("Cascadia Code", 8.25F);
+            button_removeReward.ForeColor = Color.Red;
             button_removeReward.Location = new Point(11, 256);
-            button_removeReward.Margin = new Padding(6, 6, 6, 6);
+            button_removeReward.Margin = new Padding(6);
             button_removeReward.Name = "button_removeReward";
-            button_removeReward.Size = new Size(128, 49);
+            button_removeReward.Size = new Size(156, 49);
             button_removeReward.TabIndex = 48;
-            button_removeReward.Text = "-";
+            button_removeReward.Text = "❌";
             button_removeReward.UseVisualStyleBackColor = true;
             button_removeReward.Click += button_removeReward_Click;
             // 
             // textBox_rewardEffect
             // 
-            textBox_rewardEffect.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_rewardEffect.Location = new Point(360, 128);
-            textBox_rewardEffect.Margin = new Padding(6, 6, 6, 6);
+            textBox_rewardEffect.Font = new Font("Cascadia Code", 8.25F);
+            textBox_rewardEffect.Location = new Point(390, 132);
+            textBox_rewardEffect.Margin = new Padding(6);
             textBox_rewardEffect.Multiline = true;
             textBox_rewardEffect.Name = "textBox_rewardEffect";
             textBox_rewardEffect.Size = new Size(647, 173);
@@ -506,8 +510,8 @@
             // label_rewardEffect
             // 
             label_rewardEffect.AutoSize = true;
-            label_rewardEffect.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label_rewardEffect.Location = new Point(360, 87);
+            label_rewardEffect.Font = new Font("Cascadia Code", 8.25F);
+            label_rewardEffect.Location = new Point(390, 89);
             label_rewardEffect.Margin = new Padding(6, 0, 6, 0);
             label_rewardEffect.Name = "label_rewardEffect";
             label_rewardEffect.Size = new Size(91, 29);
@@ -517,8 +521,8 @@
             // label_rankRequiredForReward
             // 
             label_rankRequiredForReward.AutoSize = true;
-            label_rankRequiredForReward.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label_rankRequiredForReward.Location = new Point(828, 21);
+            label_rankRequiredForReward.Font = new Font("Cascadia Code", 8.25F);
+            label_rankRequiredForReward.Location = new Point(858, 23);
             label_rankRequiredForReward.Margin = new Padding(6, 0, 6, 0);
             label_rankRequiredForReward.Name = "label_rankRequiredForReward";
             label_rankRequiredForReward.Size = new Size(182, 29);
@@ -527,9 +531,9 @@
             // 
             // num_rewardRankRequired
             // 
-            num_rewardRankRequired.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            num_rewardRankRequired.Location = new Point(828, 60);
-            num_rewardRankRequired.Margin = new Padding(6, 6, 6, 6);
+            num_rewardRankRequired.Font = new Font("Cascadia Code", 8.25F);
+            num_rewardRankRequired.Location = new Point(858, 62);
+            num_rewardRankRequired.Margin = new Padding(6);
             num_rewardRankRequired.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             num_rewardRankRequired.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             num_rewardRankRequired.Name = "num_rewardRankRequired";
@@ -538,25 +542,27 @@
             // 
             // button_addSdp
             // 
-            button_addSdp.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button_addSdp.Location = new Point(178, 815);
-            button_addSdp.Margin = new Padding(6, 6, 6, 6);
+            button_addSdp.Font = new Font("Cascadia Code", 8.25F);
+            button_addSdp.ForeColor = Color.Green;
+            button_addSdp.Location = new Point(328, 819);
+            button_addSdp.Margin = new Padding(6);
             button_addSdp.Name = "button_addSdp";
-            button_addSdp.Size = new Size(201, 62);
+            button_addSdp.Size = new Size(163, 62);
             button_addSdp.TabIndex = 53;
-            button_addSdp.Text = "+";
+            button_addSdp.Text = "✨";
             button_addSdp.UseVisualStyleBackColor = true;
             button_addSdp.Click += button_addSdp_Click;
             // 
             // button_removeSdp
             // 
-            button_removeSdp.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button_removeSdp.Location = new Point(22, 815);
-            button_removeSdp.Margin = new Padding(6, 6, 6, 6);
+            button_removeSdp.Font = new Font("Cascadia Code", 8.25F);
+            button_removeSdp.ForeColor = Color.Red;
+            button_removeSdp.Location = new Point(15, 819);
+            button_removeSdp.Margin = new Padding(6);
             button_removeSdp.Name = "button_removeSdp";
-            button_removeSdp.Size = new Size(145, 62);
+            button_removeSdp.Size = new Size(119, 62);
             button_removeSdp.TabIndex = 52;
-            button_removeSdp.Text = "-";
+            button_removeSdp.Text = "❌";
             button_removeSdp.UseVisualStyleBackColor = true;
             button_removeSdp.Click += button_removeSdp_Click;
             // 
@@ -571,11 +577,11 @@
             groupBox_coreData.Controls.Add(label_name);
             groupBox_coreData.Controls.Add(num_iconIndex);
             groupBox_coreData.Controls.Add(label_iconIndex);
-            groupBox_coreData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_coreData.Location = new Point(390, 26);
-            groupBox_coreData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_coreData.Font = new Font("Cascadia Code", 8.25F);
+            groupBox_coreData.Location = new Point(503, 31);
+            groupBox_coreData.Margin = new Padding(6);
             groupBox_coreData.Name = "groupBox_coreData";
-            groupBox_coreData.Padding = new Padding(6, 6, 6, 6);
+            groupBox_coreData.Padding = new Padding(6);
             groupBox_coreData.Size = new Size(353, 356);
             groupBox_coreData.TabIndex = 54;
             groupBox_coreData.TabStop = false;
@@ -583,10 +589,10 @@
             // 
             // comboBox_rarity
             // 
-            comboBox_rarity.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox_rarity.Font = new Font("Cascadia Code", 8.25F);
             comboBox_rarity.FormattingEnabled = true;
             comboBox_rarity.Location = new Point(113, 279);
-            comboBox_rarity.Margin = new Padding(6, 6, 6, 6);
+            comboBox_rarity.Margin = new Padding(6);
             comboBox_rarity.Name = "comboBox_rarity";
             comboBox_rarity.Size = new Size(225, 37);
             comboBox_rarity.TabIndex = 58;
@@ -594,7 +600,7 @@
             // label_rarity
             // 
             label_rarity.AutoSize = true;
-            label_rarity.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_rarity.Font = new Font("Cascadia Code", 8.25F);
             label_rarity.Location = new Point(11, 286);
             label_rarity.Margin = new Padding(6, 0, 6, 0);
             label_rarity.Name = "label_rarity";
@@ -612,22 +618,22 @@
             groupBox_costData.Controls.Add(num_flatGrowth);
             groupBox_costData.Controls.Add(label_flatGrowth);
             groupBox_costData.Controls.Add(label_multGrowth);
-            groupBox_costData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_costData.Location = new Point(754, 26);
-            groupBox_costData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_costData.Font = new Font("Cascadia Code", 8.25F);
+            groupBox_costData.Location = new Point(915, 26);
+            groupBox_costData.Margin = new Padding(6);
             groupBox_costData.Name = "groupBox_costData";
-            groupBox_costData.Padding = new Padding(6, 6, 6, 6);
-            groupBox_costData.Size = new Size(379, 356);
+            groupBox_costData.Padding = new Padding(6);
+            groupBox_costData.Size = new Size(378, 356);
             groupBox_costData.TabIndex = 58;
             groupBox_costData.TabStop = false;
             groupBox_costData.Text = "Cost Data";
             // 
             // num_baseCost
             // 
-            num_baseCost.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            num_baseCost.Font = new Font("Cascadia Code", 8.25F);
             num_baseCost.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             num_baseCost.Location = new Point(178, 151);
-            num_baseCost.Margin = new Padding(6, 6, 6, 6);
+            num_baseCost.Margin = new Padding(6);
             num_baseCost.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
             num_baseCost.Name = "num_baseCost";
             num_baseCost.Size = new Size(186, 33);
@@ -637,7 +643,7 @@
             // label_baseCost
             // 
             label_baseCost.AutoSize = true;
-            label_baseCost.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label_baseCost.Font = new Font("Cascadia Code", 8.25F);
             label_baseCost.Location = new Point(102, 156);
             label_baseCost.Margin = new Padding(6, 0, 6, 0);
             label_baseCost.Name = "label_baseCost";
@@ -651,12 +657,12 @@
             groupBox_descriptionData.Controls.Add(label_flavorText);
             groupBox_descriptionData.Controls.Add(textBox_description);
             groupBox_descriptionData.Controls.Add(label_description);
-            groupBox_descriptionData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_descriptionData.Location = new Point(1161, 26);
-            groupBox_descriptionData.Margin = new Padding(6, 6, 6, 6);
+            groupBox_descriptionData.Font = new Font("Cascadia Code", 8.25F);
+            groupBox_descriptionData.Location = new Point(1305, 26);
+            groupBox_descriptionData.Margin = new Padding(6);
             groupBox_descriptionData.Name = "groupBox_descriptionData";
-            groupBox_descriptionData.Padding = new Padding(6, 6, 6, 6);
-            groupBox_descriptionData.Size = new Size(782, 523);
+            groupBox_descriptionData.Padding = new Padding(6);
+            groupBox_descriptionData.Size = new Size(926, 523);
             groupBox_descriptionData.TabIndex = 59;
             groupBox_descriptionData.TabStop = false;
             groupBox_descriptionData.Text = "Description Data";
@@ -665,7 +671,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1976, 896);
+            ClientSize = new Size(2246, 896);
             Controls.Add(groupBox_descriptionData);
             Controls.Add(groupBox_costData);
             Controls.Add(groupBox_coreData);
@@ -674,7 +680,7 @@
             Controls.Add(groupBox_rewardData);
             Controls.Add(groupBox_parameterData);
             Controls.Add(listBox_Sdps);
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "SdpBoard";
             Text = "SDP Configuration";
             ((System.ComponentModel.ISupportInitialize)num_iconIndex).EndInit();

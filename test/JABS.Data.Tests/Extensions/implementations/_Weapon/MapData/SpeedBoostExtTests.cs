@@ -11,7 +11,7 @@ public class SpeedBoostExtTests : BaseTests
 
     public SpeedBoostExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class SpeedBoostExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsSpeedBoost();
+        var actual = this.modelUnderTest.GetJabsSpeedBoost();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class SpeedBoostExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzNumber();
         var fakeTag = this.fdg.SpeedBoostTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsSpeedBoost();
+        var actual = this.modelUnderTest.GetJabsSpeedBoost();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class SpeedBoostExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();
-        modelUnderTest.UpdateJabsSpeedBoost(fakeTagValue);
+        this.modelUnderTest.UpdateJabsSpeedBoost(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsSpeedBoost();
+        var actual = this.modelUnderTest.GetJabsSpeedBoost();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -63,11 +63,11 @@ public class SpeedBoostExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzNumber();
-        modelUnderTest.UpdateJabsSpeedBoost(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsSpeedBoost(decimal.Zero);
+        this.modelUnderTest.UpdateJabsSpeedBoost(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsSpeedBoost(decimal.Zero);
         
         // when
-        var actual = modelUnderTest.GetJabsSpeedBoost();
+        var actual = this.modelUnderTest.GetJabsSpeedBoost();
         
         // then
         actual.Should().Be(fakeTagValue);

@@ -11,7 +11,7 @@ public class CooldownExtTests : BaseTests
     
     public CooldownExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class CooldownExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsCooldown();
+        var actual = this.modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(expected);
@@ -35,10 +35,10 @@ public class CooldownExtTests : BaseTests
         var fakeTagValue = this.fdg.RmmzUNumber();
         var fakeTag = this.fdg.CooldownTag(fakeTagValue);
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsCooldown();
+        var actual = this.modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,10 +49,10 @@ public class CooldownExtTests : BaseTests
     {
         // given
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCooldown(fakeTagValue);
+        this.modelUnderTest.UpdateJabsCooldown(fakeTagValue);
         
         // when
-        var actual = modelUnderTest.GetJabsCooldown();
+        var actual = this.modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,11 +64,11 @@ public class CooldownExtTests : BaseTests
         // given
         var expected = decimal.Zero;
         var fakeTagValue = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsCooldown(fakeTagValue); // update with valid value.
-        modelUnderTest.UpdateJabsCooldown(expected);
+        this.modelUnderTest.UpdateJabsCooldown(fakeTagValue); // update with valid value.
+        this.modelUnderTest.UpdateJabsCooldown(expected);
         
         // when
-        var actual = modelUnderTest.GetJabsCooldown();
+        var actual = this.modelUnderTest.GetJabsCooldown();
         
         // then
         actual.Should().Be(expected);

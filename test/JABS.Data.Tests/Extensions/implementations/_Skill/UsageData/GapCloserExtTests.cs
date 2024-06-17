@@ -11,17 +11,17 @@ public class GapCloserExtTests : BaseTests
     
     public GapCloserExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.HasJabsGapCloser();
+        var actual = this.modelUnderTest.HasJabsGapCloser();
         
         // then
         actual.Should().BeFalse();
@@ -33,10 +33,10 @@ public class GapCloserExtTests : BaseTests
         // given
         var fakeTag = this.fdg.GapCloserTag();
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.HasJabsGapCloser();
+        var actual = this.modelUnderTest.HasJabsGapCloser();
         
         // then
         actual.Should().BeTrue();
@@ -48,11 +48,11 @@ public class GapCloserExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        modelUnderTest.UpdateJabsGapCloser(fakeTagValue);
-        modelUnderTest.UpdateJabsGapCloser(expected);
+        this.modelUnderTest.UpdateJabsGapCloser(fakeTagValue);
+        this.modelUnderTest.UpdateJabsGapCloser(expected);
         
         // when
-        var actual = modelUnderTest.HasJabsGapCloser();
+        var actual = this.modelUnderTest.HasJabsGapCloser();
         
         // then
         actual.Should().BeFalse();

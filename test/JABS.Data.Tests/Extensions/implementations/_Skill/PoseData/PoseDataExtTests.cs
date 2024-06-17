@@ -11,7 +11,7 @@ public class PoseDataExtTests : BaseTests
     
     public PoseDataExtTests()
     {
-        modelUnderTest = new();
+        this.modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class PoseDataExtTests : BaseTests
     {
         // given
         var expected = new Models.PoseData(string.Empty);
-        modelUnderTest.note = string.Empty;
+        this.modelUnderTest.note = string.Empty;
         
         // when
-        var actual = modelUnderTest.GetJabsPoseData();
+        var actual = this.modelUnderTest.GetJabsPoseData();
         
         // then
         actual.Should().Be(expected);
@@ -34,10 +34,10 @@ public class PoseDataExtTests : BaseTests
         // given
         var fakeTag = this.fdg.PoseDataTag();
         var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        modelUnderTest.note = fakeNote;
+        this.modelUnderTest.note = fakeNote;
         
         // when
-        var actual = modelUnderTest.GetJabsPoseData();
+        var actual = this.modelUnderTest.GetJabsPoseData();
         var (poseSuffix, poseIndex, poseDuration) = actual;
 
         // then
@@ -53,10 +53,10 @@ public class PoseDataExtTests : BaseTests
         var testPoseSuffix = "-atk";
         var testPoseIndex = this.fdg.RmmzUNumber();
         var testPoseDuration = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsPoseData(testPoseSuffix, testPoseIndex, testPoseDuration);
+        this.modelUnderTest.UpdateJabsPoseData(testPoseSuffix, testPoseIndex, testPoseDuration);
         
         // when
-        var actual = modelUnderTest.GetJabsPoseData();
+        var actual = this.modelUnderTest.GetJabsPoseData();
 
         // then
         actual.PoseSuffix.Should().Be(testPoseSuffix);
@@ -72,11 +72,11 @@ public class PoseDataExtTests : BaseTests
         var testPoseSuffix = "-atk";
         var testPoseIndex = this.fdg.RmmzUNumber();
         var testPoseDuration = this.fdg.RmmzUNumber();
-        modelUnderTest.UpdateJabsPoseData(testPoseSuffix, testPoseIndex, testPoseDuration);
-        modelUnderTest.UpdateJabsPoseData(string.Empty);
+        this.modelUnderTest.UpdateJabsPoseData(testPoseSuffix, testPoseIndex, testPoseDuration);
+        this.modelUnderTest.UpdateJabsPoseData(string.Empty);
         
         // when
-        var actual = modelUnderTest.GetJabsPoseData();
+        var actual = this.modelUnderTest.GetJabsPoseData();
 
         // then
         actual.Should().Be(expected);

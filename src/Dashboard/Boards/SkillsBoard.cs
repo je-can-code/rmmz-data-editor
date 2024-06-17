@@ -51,34 +51,34 @@ public partial class SkillsBoard : Form
 
     private void InitializeTooltips()
     {
-        _toolTip = new();
-        _toolTip.AutoPopDelay = 5000;
-        _toolTip.InitialDelay = 1000;
-        _toolTip.ReshowDelay = 500;
-        _toolTip.ToolTipIcon = ToolTipIcon.Info;
-        _toolTip.ToolTipTitle = "Details and Usage";
+        this._toolTip = new();
+        this._toolTip.AutoPopDelay = 5000;
+        this._toolTip.InitialDelay = 1000;
+        this._toolTip.ReshowDelay = 500;
+        this._toolTip.ToolTipIcon = ToolTipIcon.Info;
+        this._toolTip.ToolTipTitle = "Details and Usage";
 
-        _toolTip.SetToolTip(this.num_radius, JABS.Data.Models.Tags.Radius.Description);
-        _toolTip.SetToolTip(this.num_proximity, JABS.Data.Models.Tags.Proximity.Description);
-        _toolTip.SetToolTip(this.comboBox_hitbox, JABS.Data.Models.Tags.Hitbox.Description);
+        this._toolTip.SetToolTip(this.num_radius, Tags.Radius.Description);
+        this._toolTip.SetToolTip(this.num_proximity, Tags.Proximity.Description);
+        this._toolTip.SetToolTip(this.comboBox_hitbox, Tags.Hitbox.Description);
 
-        _toolTip.SetToolTip(this.num_comboSkill, JABS.Data.Models.Tags.Combo.Descriptions[0]);
-        _toolTip.SetToolTip(this.num_comboDelay, JABS.Data.Models.Tags.Combo.Descriptions[1]);
-        _toolTip.SetToolTip(this.checkBox_comboStarter, JABS.Data.Models.Tags.AiComboStarter.Description);
-        _toolTip.SetToolTip(this.checkBox_freeCombo, JABS.Data.Models.Tags.FreeCombo.Description);
+        this._toolTip.SetToolTip(this.num_comboSkill, Tags.Combo.Descriptions[0]);
+        this._toolTip.SetToolTip(this.num_comboDelay, Tags.Combo.Descriptions[1]);
+        this._toolTip.SetToolTip(this.checkBox_comboStarter, Tags.AiComboStarter.Description);
+        this._toolTip.SetToolTip(this.checkBox_freeCombo, Tags.FreeCombo.Description);
 
-        _toolTip.SetToolTip(this.num_piercingCount, JABS.Data.Models.Tags.Pierce.Description);
-        _toolTip.SetToolTip(this.num_piercingDelay, JABS.Data.Models.Tags.Pierce.Description);
+        this._toolTip.SetToolTip(this.num_piercingCount, Tags.Pierce.Description);
+        this._toolTip.SetToolTip(this.num_piercingDelay, Tags.Pierce.Description);
 
-        _toolTip.SetToolTip(this.num_actionId, JABS.Data.Models.Tags.ActionId.Description);
-        _toolTip.SetToolTip(this.num_duration, JABS.Data.Models.Tags.Duration.Description);
+        this._toolTip.SetToolTip(this.num_actionId, Tags.ActionId.Description);
+        this._toolTip.SetToolTip(this.num_duration, Tags.Duration.Description);
 
-        _toolTip.SetToolTip(this.num_cooldown, JABS.Data.Models.Tags.Cooldown.Description);
-        _toolTip.SetToolTip(this.num_castAnimation, JABS.Data.Models.Tags.CastAnimation.Description);
+        this._toolTip.SetToolTip(this.num_cooldown, Tags.Cooldown.Description);
+        this._toolTip.SetToolTip(this.num_castAnimation, Tags.CastAnimation.Description);
 
-        _toolTip.SetToolTip(this.textBox_poseSuffix, JABS.Data.Models.Tags.Pose.Description);
-        _toolTip.SetToolTip(this.num_poseIndex, JABS.Data.Models.Tags.Pose.Description);
-        _toolTip.SetToolTip(this.num_poseDuration, JABS.Data.Models.Tags.Pose.Description);
+        this._toolTip.SetToolTip(this.textBox_poseSuffix, Tags.Pose.Description);
+        this._toolTip.SetToolTip(this.num_poseIndex, Tags.Pose.Description);
+        this._toolTip.SetToolTip(this.num_poseDuration, Tags.Pose.Description);
     }
 
     /// <summary>

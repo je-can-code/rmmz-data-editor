@@ -30,7 +30,7 @@
         {
             button_weapons = new Button();
             button_pickDataPath = new Button();
-            folderDialog_dataPath = new FolderBrowserDialog();
+            folderDialogDataPath = new FolderBrowserDialog();
             button_saveWeapons = new Button();
             button_saveSkills = new Button();
             button_skills = new Button();
@@ -440,7 +440,7 @@
         #endregion
 
         private Button button_pickDataPath;
-        private FolderBrowserDialog folderDialog_dataPath;
+        private FolderBrowserDialog folderDialogDataPath;
         private Button button_weapons;
         private Button button_saveWeapons;
         private Button button_saveSkills;

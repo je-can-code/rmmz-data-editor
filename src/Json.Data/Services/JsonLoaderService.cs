@@ -175,6 +175,6 @@ public static class JsonLoaderService
 
         // deserialize the json into the designated type.
         return JsonConvert.DeserializeObject<T>(rawJson)
-               ?? throw new SerializationException("could not deserialize into target class.");
+            ?? throw new SerializationException("could not deserialize into target class.");
     }
 }

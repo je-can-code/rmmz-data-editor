@@ -15,11 +15,16 @@ public static class Tags
     public static Tag Duration { get; }
     public static Tag ActionId { get; }
     
-    
     public static Tag Direct { get; }
     public static Tag Radius { get; }
     public static Tag Proximity { get; }
     public static Tag Hitbox { get; }
+    
+    public static Tag Sight { get; }
+    public static Tag AlertedSightBoost { get; }
+    public static Tag Pursuit { get; }
+    public static Tag AlertedPursuitBoost { get; }
+    
     
     public static Tag Cooldown { get; }
     public static Tag CastAnimation { get; }
@@ -52,6 +57,11 @@ public static class Tags
         
         Duration = new("duration", @"<duration:[ ]?(\d+)>");
         ActionId = new("actionId", @"<actionId:[ ]?(\d+)>");
+
+        Sight = sight();
+        AlertedSightBoost = alertedSightBoost();
+        Pursuit = pursuit();
+        AlertedPursuitBoost = alertedPursuitBoost();
         
         Cooldown = new("cooldown", @"<cooldown:[ ]?(\d+)>");
         CastAnimation = new("castAnimation", @"<castAnimation:[ ]?(\d+)>");
@@ -172,6 +182,58 @@ public static class Tags
             "The speedboost provides a literal percent boost to the battler's movespeed on the map.\n" +
             "\n" +
             "Set this to 0.0 to remove the tag.";
+        return new(tag, regex, description);
+    }
+
+    private static Tag sight()
+    {
+        var tag = "sight";
+        var regex = @"<sight:[ ]?((0|([1-9][0-9]*))(\.[0-9]+)?)>";
+        var description = 
+            "The sight of this battler.\n" +
+            "Sight represents the distance in tiles a particular battler can see.\n" +
+            "Obstructions are not considered.\n" +
+            "\n" +
+            "When this is set to a negative value, the tag will be removed.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag alertedSightBoost()
+    {
+        var tag = "alertedSightBoost";
+        var regex = @"<alertedSightBoost:[ ]?((0|([1-9][0-9]*))(\.[0-9]+)?)>";
+        var description = 
+            "The sight bonus when this battler is alerted.\n" +
+            "Sight Alerted represents the bonus a battler gets when they are not in combat but notice an enemy.\n" +
+            "Obstructions are not considered.\n" +
+            "\n" +
+            "When this is set to a negative value, the tag will be removed.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag pursuit()
+    {
+        var tag = "pursuit";
+        var regex = @"<pursuit:[ ]?((0|([1-9][0-9]*))(\.[0-9]+)?)>";
+        var description = 
+            "The pursuit of this battler.\n" +
+            "Pursuit effectively replaces Sight once a battler is engaged in combat.\n" +
+            "Obstructions are not considered.\n" +
+            "\n" +
+            "When this is set to a negative value, the tag will be removed.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag alertedPursuitBoost()
+    {
+        var tag = "alertedPursuitBoost";
+        var regex = @"<alertedPursuitBoost:[ ]?((0|([1-9][0-9]*))(\.[0-9]+)?)>";
+        var description = 
+            "The pursuit of this battler.\n" +
+            "Pursuit effectively replaces Sight once a battler is engaged in combat.\n" +
+            "Obstructions are not considered.\n" +
+            "\n" +
+            "When this is set to a negative value, the tag will be removed.";
         return new(tag, regex, description);
     }
 }
