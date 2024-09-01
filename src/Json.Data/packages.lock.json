@@ -35,6 +35,13 @@
           "Rmmz.Data": "[1.0.0, )"
         }
       },
+      "quest.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
       "rmmz.data": {
         "type": "Project",
         "dependencies": {

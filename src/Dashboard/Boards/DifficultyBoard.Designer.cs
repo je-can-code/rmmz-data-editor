@@ -33,14 +33,14 @@
             buttonAddDifficulty = new Button();
             buttonDeleteDifficulty = new Button();
             groupboxCoreData = new GroupBox();
-            checkboxHiddenByDefault = new CheckBox();
-            checkboxEnabledByDefault = new CheckBox();
+            checkBoxHiddenByDefault = new CheckBox();
+            checkBoxEnabledByDefault = new CheckBox();
             labelDescription = new Label();
-            checkboxUnlockedByDefault = new CheckBox();
-            textboxKey = new TextBox();
+            checkBoxUnlockedByDefault = new CheckBox();
+            textBoxKey = new TextBox();
             textBoxDescription = new TextBox();
             label_key = new Label();
-            textboxName = new TextBox();
+            textBoxName = new TextBox();
             label_name = new Label();
             numIconIndex = new NumericUpDown();
             label_iconIndex = new Label();
@@ -271,14 +271,14 @@
             // 
             groupboxCoreData.Controls.Add(numCost);
             groupboxCoreData.Controls.Add(labelCost);
-            groupboxCoreData.Controls.Add(checkboxHiddenByDefault);
-            groupboxCoreData.Controls.Add(checkboxEnabledByDefault);
+            groupboxCoreData.Controls.Add(checkBoxHiddenByDefault);
+            groupboxCoreData.Controls.Add(checkBoxEnabledByDefault);
             groupboxCoreData.Controls.Add(labelDescription);
-            groupboxCoreData.Controls.Add(checkboxUnlockedByDefault);
-            groupboxCoreData.Controls.Add(textboxKey);
+            groupboxCoreData.Controls.Add(checkBoxUnlockedByDefault);
+            groupboxCoreData.Controls.Add(textBoxKey);
             groupboxCoreData.Controls.Add(textBoxDescription);
             groupboxCoreData.Controls.Add(label_key);
-            groupboxCoreData.Controls.Add(textboxName);
+            groupboxCoreData.Controls.Add(textBoxName);
             groupboxCoreData.Controls.Add(label_name);
             groupboxCoreData.Controls.Add(numIconIndex);
             groupboxCoreData.Controls.Add(label_iconIndex);
@@ -294,27 +294,27 @@
             // 
             // checkboxHiddenByDefault
             // 
-            checkboxHiddenByDefault.AutoSize = true;
-            checkboxHiddenByDefault.Font = new Font("Cascadia Code", 8.25F);
-            checkboxHiddenByDefault.Location = new Point(499, 157);
-            checkboxHiddenByDefault.Margin = new Padding(6);
-            checkboxHiddenByDefault.Name = "checkboxHiddenByDefault";
-            checkboxHiddenByDefault.Size = new Size(266, 33);
-            checkboxHiddenByDefault.TabIndex = 63;
-            checkboxHiddenByDefault.Text = "Hidden By Default";
-            checkboxHiddenByDefault.UseVisualStyleBackColor = false;
+            checkBoxHiddenByDefault.AutoSize = true;
+            checkBoxHiddenByDefault.Font = new Font("Cascadia Code", 8.25F);
+            checkBoxHiddenByDefault.Location = new Point(499, 157);
+            checkBoxHiddenByDefault.Margin = new Padding(6);
+            checkBoxHiddenByDefault.Name = "checkBoxHiddenByDefault";
+            checkBoxHiddenByDefault.Size = new Size(266, 33);
+            checkBoxHiddenByDefault.TabIndex = 63;
+            checkBoxHiddenByDefault.Text = "Hidden By Default";
+            checkBoxHiddenByDefault.UseVisualStyleBackColor = false;
             // 
             // checkboxEnabledByDefault
             // 
-            checkboxEnabledByDefault.AutoSize = true;
-            checkboxEnabledByDefault.Font = new Font("Cascadia Code", 8.25F);
-            checkboxEnabledByDefault.Location = new Point(499, 112);
-            checkboxEnabledByDefault.Margin = new Padding(6);
-            checkboxEnabledByDefault.Name = "checkboxEnabledByDefault";
-            checkboxEnabledByDefault.Size = new Size(279, 33);
-            checkboxEnabledByDefault.TabIndex = 62;
-            checkboxEnabledByDefault.Text = "Enabled By Default";
-            checkboxEnabledByDefault.UseVisualStyleBackColor = false;
+            checkBoxEnabledByDefault.AutoSize = true;
+            checkBoxEnabledByDefault.Font = new Font("Cascadia Code", 8.25F);
+            checkBoxEnabledByDefault.Location = new Point(499, 112);
+            checkBoxEnabledByDefault.Margin = new Padding(6);
+            checkBoxEnabledByDefault.Name = "checkBoxEnabledByDefault";
+            checkBoxEnabledByDefault.Size = new Size(279, 33);
+            checkBoxEnabledByDefault.TabIndex = 62;
+            checkBoxEnabledByDefault.Text = "Enabled By Default";
+            checkBoxEnabledByDefault.UseVisualStyleBackColor = false;
             // 
             // labelDescription
             // 
@@ -329,25 +329,25 @@
             // 
             // checkboxUnlockedByDefault
             // 
-            checkboxUnlockedByDefault.AutoSize = true;
-            checkboxUnlockedByDefault.Font = new Font("Cascadia Code", 8.25F);
-            checkboxUnlockedByDefault.Location = new Point(499, 67);
-            checkboxUnlockedByDefault.Margin = new Padding(6);
-            checkboxUnlockedByDefault.Name = "checkboxUnlockedByDefault";
-            checkboxUnlockedByDefault.Size = new Size(292, 33);
-            checkboxUnlockedByDefault.TabIndex = 31;
-            checkboxUnlockedByDefault.Text = "Unlocked By Default";
-            checkboxUnlockedByDefault.UseVisualStyleBackColor = false;
+            checkBoxUnlockedByDefault.AutoSize = true;
+            checkBoxUnlockedByDefault.Font = new Font("Cascadia Code", 8.25F);
+            checkBoxUnlockedByDefault.Location = new Point(499, 67);
+            checkBoxUnlockedByDefault.Margin = new Padding(6);
+            checkBoxUnlockedByDefault.Name = "checkBoxUnlockedByDefault";
+            checkBoxUnlockedByDefault.Size = new Size(292, 33);
+            checkBoxUnlockedByDefault.TabIndex = 31;
+            checkBoxUnlockedByDefault.Text = "Unlocked By Default";
+            checkBoxUnlockedByDefault.UseVisualStyleBackColor = false;
             // 
             // textboxKey
             // 
-            textboxKey.BorderStyle = BorderStyle.FixedSingle;
-            textboxKey.Font = new Font("Cascadia Code", 8.25F);
-            textboxKey.Location = new Point(15, 81);
-            textboxKey.Margin = new Padding(6);
-            textboxKey.Name = "textboxKey";
-            textboxKey.Size = new Size(420, 33);
-            textboxKey.TabIndex = 2;
+            textBoxKey.BorderStyle = BorderStyle.FixedSingle;
+            textBoxKey.Font = new Font("Cascadia Code", 8.25F);
+            textBoxKey.Location = new Point(15, 81);
+            textBoxKey.Margin = new Padding(6);
+            textBoxKey.Name = "textBoxKey";
+            textBoxKey.Size = new Size(420, 33);
+            textBoxKey.TabIndex = 2;
             // 
             // textBoxDescription
             // 
@@ -372,13 +372,13 @@
             // 
             // textboxName
             // 
-            textboxName.BorderStyle = BorderStyle.FixedSingle;
-            textboxName.Font = new Font("Cascadia Code", 8.25F);
-            textboxName.Location = new Point(15, 160);
-            textboxName.Margin = new Padding(6);
-            textboxName.Name = "textboxName";
-            textboxName.Size = new Size(420, 33);
-            textboxName.TabIndex = 4;
+            textBoxName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxName.Font = new Font("Cascadia Code", 8.25F);
+            textBoxName.Location = new Point(15, 160);
+            textBoxName.Margin = new Padding(6);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(420, 33);
+            textBoxName.TabIndex = 4;
             // 
             // label_name
             // 
@@ -1885,15 +1885,15 @@
         private GroupBox groupboxCoreData;
         private Label labelDescription;
         private TextBox textBoxDescription;
-        private CheckBox checkboxUnlockedByDefault;
-        private TextBox textboxKey;
+        private CheckBox checkBoxUnlockedByDefault;
+        private TextBox textBoxKey;
         private Label label_key;
-        private TextBox textboxName;
+        private TextBox textBoxName;
         private Label label_name;
         private NumericUpDown numIconIndex;
         private Label label_iconIndex;
-        private CheckBox checkboxHiddenByDefault;
-        private CheckBox checkboxEnabledByDefault;
+        private CheckBox checkBoxHiddenByDefault;
+        private CheckBox checkBoxEnabledByDefault;
         private GroupBox groupboxEffects;
         private NumericUpDown num01MaxMagiActor;
         private Label label01MaxMagi;

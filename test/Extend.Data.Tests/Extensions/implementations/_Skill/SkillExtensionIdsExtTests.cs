@@ -13,7 +13,7 @@ public class SkillExtensionIdsExtTests : BaseTests
     
     public SkillExtensionIdsExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -21,10 +21,10 @@ public class SkillExtensionIdsExtTests : BaseTests
     {
         // given
         var expected = string.Empty;
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
 
         // when
-        var actual = this.modelUnderTest.GetSkillExtendIds();
+        var actual = modelUnderTest.GetSkillExtendIds();
         
         // then
         actual.Should().Be(expected);
@@ -34,12 +34,12 @@ public class SkillExtensionIdsExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTagValueList = this.generateRandomRmmzUNumberList().ToArray();
+        var fakeTagValueList = generateRandomRmmzUNumberList().ToArray();
         var fakeTagValueStringList = string.Join(",", fakeTagValueList);
-        this.modelUnderTest.UpdateSkillExtendIds(fakeTagValueStringList);
+        modelUnderTest.UpdateSkillExtendIds(fakeTagValueStringList);
         
         // when
-        var actual = this.modelUnderTest.GetSkillExtendIds().ToDecimalList();
+        var actual = modelUnderTest.GetSkillExtendIds().ToDecimalList();
         
         // then
         actual.Should().BeEquivalentTo(fakeTagValueList);
@@ -49,13 +49,13 @@ public class SkillExtensionIdsExtTests : BaseTests
     public void whenUpdated_returnsUpdatedValue()
     {
         // given
-        var fakeTagValueList = this.generateRandomRmmzUNumberList().ToArray();
-        var fakeSecondTagValueList = this.generateRandomRmmzUNumberList().ToArray();
-        this.modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeTagValueList));
-        this.modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeSecondTagValueList));
+        var fakeTagValueList = generateRandomRmmzUNumberList().ToArray();
+        var fakeSecondTagValueList = generateRandomRmmzUNumberList().ToArray();
+        modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeTagValueList));
+        modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeSecondTagValueList));
         
         // when
-        var actual = this.modelUnderTest.GetSkillExtendIds().ToDecimalList();
+        var actual = modelUnderTest.GetSkillExtendIds().ToDecimalList();
         
         // then
         actual.Should().BeEquivalentTo(fakeSecondTagValueList);
@@ -66,12 +66,12 @@ public class SkillExtensionIdsExtTests : BaseTests
     {
         // given
         var expected = string.Empty;
-        var fakeTagValueList = this.generateRandomRmmzUNumberList().ToArray();
-        this.modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeTagValueList));
-        this.modelUnderTest.UpdateSkillExtendIds(string.Empty);
+        var fakeTagValueList = generateRandomRmmzUNumberList().ToArray();
+        modelUnderTest.UpdateSkillExtendIds(string.Join(",", fakeTagValueList));
+        modelUnderTest.UpdateSkillExtendIds(string.Empty);
         
         // when
-        var actual = this.modelUnderTest.GetSkillExtendIds();
+        var actual = modelUnderTest.GetSkillExtendIds();
         
         // then
         actual.Should().BeEquivalentTo(expected);
@@ -79,9 +79,9 @@ public class SkillExtensionIdsExtTests : BaseTests
 
     private IEnumerable<int> generateRandomRmmzUNumberList()
     {
-        var fakeTagValueCount = this.fdg.RmmzUNumber();
+        var fakeTagValueCount = fdg.RmmzUNumber();
         var fakeTagValueList = new List<int>();
-        fakeTagValueCount.Times(() => fakeTagValueList.Add(this.fdg.RmmzUNumber()));
+        fakeTagValueCount.Times(() => fakeTagValueList.Add(fdg.RmmzUNumber()));
         return fakeTagValueList;
     }
 }

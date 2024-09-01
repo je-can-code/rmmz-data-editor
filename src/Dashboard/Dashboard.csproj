@@ -16,10 +16,12 @@
         <PackageReference Include="log4net" Version="$(Log4NetVersion)" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Json.Data\Json.Data.csproj" />
+        <ProjectReference Include="..\Quest.Data\Quest.Data.csproj" />
         <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
 
         <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
@@ -52,10 +54,13 @@
       <Compile Update="Boards\BaseBoard.Skills.cs">
         <DependentUpon>BaseBoard.cs</DependentUpon>
       </Compile>
+      <Compile Update="Boards\QuestBoard.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="appsettings.json">
+      <None Update="configuration.yaml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

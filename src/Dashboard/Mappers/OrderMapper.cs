@@ -1,4 +1,5 @@
-﻿using JMZ.Sdp.Data.Models;
+﻿using JMZ.Quest.Data.Enums;
+using JMZ.Sdp.Data.Models;
 
 namespace JMZ.Dashboard.Mappers;
 
@@ -106,5 +107,15 @@ public static class OrderMapper
         //     LongParameter.MoveBoost,
         //     LongParameter.ProficiencyBoost,
         // ];
+    }
+
+    public static OmniObjectiveFetchType[] ToOmniObjectiveFetchTypes()
+    {
+        return
+        [
+            OmniObjectiveFetchType.Item,
+            OmniObjectiveFetchType.Weapon,
+            OmniObjectiveFetchType.Armor
+        ];
     }
 }

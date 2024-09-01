@@ -5,7 +5,7 @@ namespace JMZ.Rmmz.Data.Models.db.implementations;
 /// <summary>
 /// A data model representing a single RMMZ armor.
 /// </summary>
-public partial class RPG_Armor : RPG_EquipItem
+public class RPG_Armor : RPG_EquipItem
 {
     /// <summary>
     /// The type of armor this is.

@@ -18,52 +18,52 @@ public partial class CraftBoard : Form
 
     public List<Recipe> Recipes()
     {
-        return this.recipeList;
+        return recipeList;
     }
 
     public List<Category> Categories()
     {
-        return this.craftCategoryHelper.Categories();
+        return craftCategoryHelper.Categories();
     }
 
     public void TrackedToSavedRecipes()
     {
         // clear the existing list.
-        this.recipeList.Clear();
+        recipeList.Clear();
 
         // iterate over the tracked list.
-        foreach (var recipe in this.listboxRecipes.Items)
+        foreach (var recipe in listboxRecipes.Items)
         {
             // add each item from the tracked list into the list to be saved.
-            this.recipeList.Add((Recipe)recipe);
+            recipeList.Add((Recipe)recipe);
         }
     }
     
     public void TrackedToSavedCategories()
     {
         // command the owning category list owner to update their categories for saving.
-        this.craftCategoryHelper.TrackedToSavedCategories();
+        craftCategoryHelper.TrackedToSavedCategories();
     }
 
     public CraftBoard()
     {
-        this.InitializeComponent();
+        InitializeComponent();
 
-        this.craftComponentHelper = new();
-        this.craftCategoryHelper = new();
-        this.SetupBoards();
+        craftComponentHelper = new();
+        craftCategoryHelper = new();
+        SetupBoards();
 
-        this.InitializeDataControls();
-        this.InitializeTooltips();
-        this.ApplyUpdateEvents();
+        InitializeDataControls();
+        InitializeTooltips();
+        ApplyUpdateEvents();
     }
 
     private void SetupBoards()
     {
-        this.craftComponentHelper.FormClosing += HideBoard;
-        this.craftComponentHelper.Setup();
+        craftComponentHelper.FormClosing += HideBoard;
+        craftComponentHelper.Setup();
 
-        this.craftCategoryHelper.FormClosing += HideBoard;
+        craftCategoryHelper.FormClosing += HideBoard;
     }
 
     /// <summary>
@@ -88,20 +88,20 @@ public partial class CraftBoard : Form
     private void InitializeDataControls()
     {
         // setup the main list box of SDPs.
-        this.listboxRecipes.DisplayMember = "Key";
-        this.listboxRecipes.ValueMember = "Name";
+        listboxRecipes.DisplayMember = "Key";
+        listboxRecipes.ValueMember = "Name";
 
-        this.listBoxIngredients.DisplayMember = "Name";
-        this.listBoxIngredients.ValueMember = "Id";
+        listBoxIngredients.DisplayMember = "Name";
+        listBoxIngredients.ValueMember = "Id";
 
-        this.listBoxTools.DisplayMember = "Name";
-        this.listBoxTools.ValueMember = "Id";
+        listBoxTools.DisplayMember = "Name";
+        listBoxTools.ValueMember = "Id";
 
-        this.listBoxOutput.DisplayMember = "Name";
-        this.listBoxOutput.ValueMember = "Id";
+        listBoxOutput.DisplayMember = "Name";
+        listBoxOutput.ValueMember = "Id";
 
-        this.listBoxCategories.DisplayMember = "Name";
-        this.listBoxCategories.ValueMember = "Key";
+        listBoxCategories.DisplayMember = "Name";
+        listBoxCategories.ValueMember = "Key";
     }
 
     /// <summary>
@@ -109,12 +109,12 @@ public partial class CraftBoard : Form
     /// </summary>
     private void InitializeTooltips()
     {
-        this._toolTip = new();
-        this._toolTip.AutoPopDelay = 5000;
-        this._toolTip.InitialDelay = 1000;
-        this._toolTip.ReshowDelay = 500;
-        this._toolTip.ToolTipIcon = ToolTipIcon.Info;
-        this._toolTip.ToolTipTitle = "Details and Usage";
+        _toolTip = new();
+        _toolTip.AutoPopDelay = 5000;
+        _toolTip.InitialDelay = 1000;
+        _toolTip.ReshowDelay = 500;
+        _toolTip.ToolTipIcon = ToolTipIcon.Info;
+        _toolTip.ToolTipTitle = "Details and Usage";
 
         var keyTip = """
             The unique identifying key of the recipe.
@@ -122,7 +122,7 @@ public partial class CraftBoard : Form
             
             This is required, and will cause issues if left blank.
             """;
-        this._toolTip.SetToolTip(this.textBox_key, keyTip);
+        _toolTip.SetToolTip(textBox_key, keyTip);
 
         var nameTip = """
             The name of the recipe.
@@ -130,7 +130,7 @@ public partial class CraftBoard : Form
             This is not required.
             Leave blank to use the first output's name.
             """;
-        this._toolTip.SetToolTip(this.textBox_name, nameTip);
+        _toolTip.SetToolTip(textBox_name, nameTip);
 
         var descriptionTip = """
             The description of the recipe.
@@ -138,7 +138,7 @@ public partial class CraftBoard : Form
             This is not required.
             Leave blank to use the first output's name.
             """;
-        this._toolTip.SetToolTip(this.textBoxDescription, descriptionTip);
+        _toolTip.SetToolTip(textBoxDescription, descriptionTip);
 
         var iconIndexTip = """
             The icon index for this recipe.
@@ -146,7 +146,7 @@ public partial class CraftBoard : Form
             This is not required.
             Set to -1 to use the first output's icon.
             """;
-        this._toolTip.SetToolTip(this.num_iconIndex, iconIndexTip);
+        _toolTip.SetToolTip(num_iconIndex, iconIndexTip);
 
         var unlockedByDefaultTip = """
             Whether or not this recipe is unlocked by default.
@@ -154,7 +154,7 @@ public partial class CraftBoard : Form
             If checked, then this recipe will be available as soon as one of the recipe categories are unlocked.
             If unchecked, then the recipe must be unlocked before it shows up in the list.
             """;
-        this._toolTip.SetToolTip(this.checkBox_unlockedByDefault, unlockedByDefaultTip);
+        _toolTip.SetToolTip(checkBox_unlockedByDefault, unlockedByDefaultTip);
 
         var maskedUntilCraftedTip = """
             Whether or not this recipe is masked by default.
@@ -162,28 +162,28 @@ public partial class CraftBoard : Form
             If checked, then this recipe will have various values obfuscated with ?s until it is crafted.
             If unchecked, then the recipe will have all details visible regardless of being crafted or not.
             """;
-        this._toolTip.SetToolTip(this.checkBox_maskedUntilCrafted, maskedUntilCraftedTip);
+        _toolTip.SetToolTip(checkBox_maskedUntilCrafted, maskedUntilCraftedTip);
 
         var ingredientsTip = """
             The list of ingredients required to craft this recipe.
             
             Ingredients are crafting components that are consumed when the recipe is crafted.
             """;
-        this._toolTip.SetToolTip(this.labelHelpIngredients, ingredientsTip);
+        _toolTip.SetToolTip(labelHelpIngredients, ingredientsTip);
 
         var toolsTip = """
             The list of tools required to craft this recipe.
             
             Tools are crafting components that are NOT consumed when the recipe is crafted.
             """;
-        this._toolTip.SetToolTip(this.labelHelpTools, toolsTip);
+        _toolTip.SetToolTip(labelHelpTools, toolsTip);
 
         var outputsTip = """
             The list of outputs created when this recipe is crafted.
             
             Outputs are crafting components that are given to the player when the recipe is crafted.
             """;
-        this._toolTip.SetToolTip(this.labelHelpOutput, outputsTip);
+        _toolTip.SetToolTip(labelHelpOutput, outputsTip);
 
         var ingredientsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -191,10 +191,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        this._toolTip.SetToolTip(this.buttonCloneToIngredients, ingredientsCloningTip);
+        _toolTip.SetToolTip(buttonCloneToIngredients, ingredientsCloningTip);
 
         var ingredientDeletingTip = "Click to remove the selected ingredient from the list.";
-        this._toolTip.SetToolTip(this.buttonDeleteIngredient, ingredientDeletingTip);
+        _toolTip.SetToolTip(buttonDeleteIngredient, ingredientDeletingTip);
 
         var toolsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -202,10 +202,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        this._toolTip.SetToolTip(this.buttonCloneToTools, toolsCloningTip);
+        _toolTip.SetToolTip(buttonCloneToTools, toolsCloningTip);
 
         var toolDeletingTip = "Click to remove the selected tool from the list.";
-        this._toolTip.SetToolTip(this.buttonDeleteTool, toolDeletingTip);
+        _toolTip.SetToolTip(buttonDeleteTool, toolDeletingTip);
 
         var outputsCloningTip = """
             Click to clone the currently-selected crafting component
@@ -213,10 +213,10 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        this._toolTip.SetToolTip(this.buttonCloneToOutputs, outputsCloningTip);
+        _toolTip.SetToolTip(buttonCloneToOutputs, outputsCloningTip);
 
         var outputDeletingTip = "Click to remove the selected output from the list.";
-        this._toolTip.SetToolTip(this.buttonDeleteOutput, outputDeletingTip);
+        _toolTip.SetToolTip(buttonDeleteOutput, outputDeletingTip);
 
         var componentHelperTip = """
             Click to reveal the Crafting Component Helper window.
@@ -224,7 +224,7 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        this._toolTip.SetToolTip(this.buttonComponentHelper, componentHelperTip);
+        _toolTip.SetToolTip(buttonComponentHelper, componentHelperTip);
 
         var categoryHelperTip = """
             Click to reveal the Crafting Category Helper window.
@@ -234,36 +234,36 @@ public partial class CraftBoard : Form
             
             It is recommended to keep the helper window open if creating new recipes.
             """;
-        this._toolTip.SetToolTip(this.buttonComponentHelper, categoryHelperTip);
+        _toolTip.SetToolTip(buttonComponentHelper, categoryHelperTip);
 
         var newRecipeTip = """
             Click to add a new recipe to the list.
             This will generate a mostly-blank recipe.
             """;
-        this._toolTip.SetToolTip(this.buttonAddRecipe, newRecipeTip);
+        _toolTip.SetToolTip(buttonAddRecipe, newRecipeTip);
 
         var cloneRecipeTip = "Click to clone the currently-selected recipe into the list at the next index.";
-        this._toolTip.SetToolTip(this.buttonCloneRecipe, cloneRecipeTip);
+        _toolTip.SetToolTip(buttonCloneRecipe, cloneRecipeTip);
 
         var deleteRecipeTip = "Click to delete the currently-selected recipe.";
-        this._toolTip.SetToolTip(this.buttonDeleteRecipe, deleteRecipeTip);
+        _toolTip.SetToolTip(buttonDeleteRecipe, deleteRecipeTip);
     }
 
     private void ApplyUpdateEvents()
     {
-        this.ApplyUpdateEventsForCoreData();
+        ApplyUpdateEventsForCoreData();
 
-        this.listboxRecipes.SelectedIndexChanged += this.RefreshForm;
+        listboxRecipes.SelectedIndexChanged += RefreshForm;
     }
 
     private void ApplyUpdateEventsForCoreData()
     {
-        this.textBox_key.TextChanged += this.UpdateKey;
-        this.textBox_name.TextChanged += this.UpdateName;
-        this.textBoxDescription.TextChanged += this.UpdateDescription;
-        this.num_iconIndex.ValueChanged += this.UpdateIconIndex;
-        this.checkBox_unlockedByDefault.CheckedChanged += this.UpdateUnlockedByDefault;
-        this.checkBox_maskedUntilCrafted.CheckedChanged += this.UpdateMaskedUntilCrafted;
+        textBox_key.TextChanged += UpdateKey;
+        textBox_name.TextChanged += UpdateName;
+        textBoxDescription.TextChanged += UpdateDescription;
+        num_iconIndex.ValueChanged += UpdateIconIndex;
+        checkBox_unlockedByDefault.CheckedChanged += UpdateUnlockedByDefault;
+        checkBox_maskedUntilCrafted.CheckedChanged += UpdateMaskedUntilCrafted;
     }
     #endregion
 
@@ -271,115 +271,115 @@ public partial class CraftBoard : Form
     private void UpdateKey(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update with the new value.
-        item.Key = this.textBox_key.Text;
+        item.Key = textBox_key.Text;
         
         // the key is special in that it needs to be synced with the list to ensure visual updates apply.
-        this.listboxRecipes.Items[this.listboxRecipes.SelectedIndex] = item;
+        listboxRecipes.Items[listboxRecipes.SelectedIndex] = item;
     }
 
     private void UpdateName(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update the name with the new value.
-        item.Name = this.textBox_name.Text;
+        item.Name = textBox_name.Text;
     }
 
     private void UpdateDescription(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update the name with the new value.
-        item.Description = this.textBoxDescription.Text;
+        item.Description = textBoxDescription.Text;
     }
 
     private void UpdateIconIndex(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update with the new value.
-        item.IconIndex = (int)this.num_iconIndex.Value;
+        item.IconIndex = (int)num_iconIndex.Value;
     }
 
     private void UpdateUnlockedByDefault(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update with the new value.
-        item.UnlockedByDefault = this.checkBox_unlockedByDefault.Checked;
+        item.UnlockedByDefault = checkBox_unlockedByDefault.Checked;
     }
     
     private void UpdateMaskedUntilCrafted(object? sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
         // update with the new value.
-        item.MaskedUntilCrafted = this.checkBox_maskedUntilCrafted.Checked;
+        item.MaskedUntilCrafted = checkBox_maskedUntilCrafted.Checked;
     }
     #endregion
 
     #region refresh
     private void RefreshForm(object? sender, EventArgs e)
     {
-        this._RefreshForm();
+        _RefreshForm();
     }
 
     private void _RefreshForm()
     {
         // refresh recipe data.
-        this.RefreshRecipes();
+        RefreshRecipes();
 
-        this.RenderCategories();
-        this.RenderIngredients();
-        this.RenderTools();
-        this.RenderOutputs();
+        RenderCategories();
+        RenderIngredients();
+        RenderTools();
+        RenderOutputs();
     }
 
     private void RefreshRecipes()
     {
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
         if (selectedItem == null) return;
 
         // core data
-        this.textBox_key.Text = selectedItem.Key;
-        this.textBox_name.Text = selectedItem.Name;
-        this.textBoxDescription.Text = selectedItem.Description;
-        this.num_iconIndex.Value = selectedItem.IconIndex;
-        this.checkBox_unlockedByDefault.Checked = selectedItem.UnlockedByDefault;
-        this.checkBox_maskedUntilCrafted.Checked = selectedItem.MaskedUntilCrafted;
+        textBox_key.Text = selectedItem.Key;
+        textBox_name.Text = selectedItem.Name;
+        textBoxDescription.Text = selectedItem.Description;
+        num_iconIndex.Value = selectedItem.IconIndex;
+        checkBox_unlockedByDefault.Checked = selectedItem.UnlockedByDefault;
+        checkBox_maskedUntilCrafted.Checked = selectedItem.MaskedUntilCrafted;
     }
 
     private void RenderCategories()
     {
-        this.listBoxCategories.Items.Clear();
+        listBoxCategories.Items.Clear();
 
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // check to make sure we have an item to work with.
         if (selectedItem == null)
@@ -392,15 +392,15 @@ public partial class CraftBoard : Form
 
         selectedItem.CategoryKeys.ForEach(category =>
         {
-            this.listBoxCategories.Items.Add(category);
+            listBoxCategories.Items.Add(category);
         });
     }
 
     private void RenderIngredients()
     {
-        this.listBoxIngredients.Items.Clear();
+        listBoxIngredients.Items.Clear();
 
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // check to make sure we have an item to work with.
         if (selectedItem is null) return;
@@ -413,15 +413,15 @@ public partial class CraftBoard : Form
                 ingredient.Name = ingredient.GetDisplayName();
             }
 
-            this.listBoxIngredients.Items.Add(ingredient);
+            listBoxIngredients.Items.Add(ingredient);
         });
     }
 
     private void RenderTools()
     {
-        this.listBoxTools.Items.Clear();
+        listBoxTools.Items.Clear();
 
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // check to make sure we have an item to work with.
         if (selectedItem == null)
@@ -439,15 +439,15 @@ public partial class CraftBoard : Form
                 ingredient.Name = ingredient.GetDisplayName();
             }
 
-            this.listBoxTools.Items.Add(ingredient);
+            listBoxTools.Items.Add(ingredient);
         });
     }
 
     private void RenderOutputs()
     {
-        this.listBoxOutput.Items.Clear();
+        listBoxOutput.Items.Clear();
 
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // check to make sure we have an item to work with.
         if (selectedItem == null)
@@ -465,7 +465,7 @@ public partial class CraftBoard : Form
                 ingredient.Name = ingredient.GetDisplayName();
             }
 
-            this.listBoxOutput.Items.Add(ingredient);
+            listBoxOutput.Items.Add(ingredient);
         });
     }
     #endregion
@@ -474,79 +474,79 @@ public partial class CraftBoard : Form
     public void Setup(CraftingConfiguration craftingConfiguration)
     {
         // check to make sure we need to run the setup before running it.
-        if (!this.needsSetup) return;
+        if (!needsSetup) return;
 
         // populate the list.
-        this.PopulateRecipeList(craftingConfiguration.Recipes);
+        PopulateRecipeList(craftingConfiguration.Recipes);
 
         // populate the list.
-        this.PopulateCategoryList(craftingConfiguration.Categories);
+        PopulateCategoryList(craftingConfiguration.Categories);
 
         // check if we need to autopick an index.
-        if (this.listboxRecipes.SelectedIndex == -1 && this.listboxRecipes.Items.Count > 0)
+        if (listboxRecipes.SelectedIndex == -1 && listboxRecipes.Items.Count > 0)
         {
             // set the index to the first item.
-            this.listboxRecipes.SelectedIndex = 0;
+            listboxRecipes.SelectedIndex = 0;
         }
 
         // let this form know we've finished setup.
-        this.SetupComplete();
+        SetupComplete();
     }
 
     private void PopulateRecipeList(List<Recipe> recipes)
     {
         // empty the list first.
-        this.listboxRecipes.Items.Clear();
+        listboxRecipes.Items.Clear();
 
         // assign the list of items locally to the form.
-        this.recipeList = recipes;
+        recipeList = recipes;
 
         // iterate over each of the entries in the list.
-        this.recipeList.ForEach(recipe =>
+        recipeList.ForEach(recipe =>
         {
             // if any entry is null somehow, skip it.
             if (recipe is null) return;
 
             // add the entry to the running list.
-            this.listboxRecipes.Items.Add(recipe);
+            listboxRecipes.Items.Add(recipe);
         });
     }
 
     private void PopulateCategoryList(List<Category> categories)
     {
         // empty the list first.
-        this.listBoxCategories.Items.Clear();
+        listBoxCategories.Items.Clear();
 
         // also setup the category helper.
-        this.craftCategoryHelper.Setup(categories);
+        craftCategoryHelper.Setup(categories);
     }
 
     private void SetupComplete()
     {
-        this.needsSetup = false;
+        needsSetup = false;
     }
     #endregion
 
     #region component helper
     private void buttonComponentHelper_Click(object sender, EventArgs e)
     {
-        this.craftComponentHelper.Show();
+        craftComponentHelper.Show();
     }
 
 
     private void buttonCloneToIngredients_Click(object sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
         
         // grab the current state of the component from the helper.
-        var helperComponent = this.craftComponentHelper.CurrentComponent();
+        var helperComponent = craftComponentHelper.CurrentComponent();
 
         // insert that item into the ingredients list.
-        this.listBoxIngredients.Items.Add(helperComponent);
+        listBoxIngredients.Items.Add(helperComponent);
         
         // add the ingredient to the recipe, too.
         item.Ingredients.Add(helperComponent);
@@ -555,13 +555,13 @@ public partial class CraftBoard : Form
     private void buttonDeleteIngredient_Click(object sender, EventArgs e)
     {
         // grab the currently selected item.
-        var currentRecipe = (Recipe)this.listboxRecipes.SelectedItem!;
+        var currentRecipe = (Recipe)listboxRecipes.SelectedItem!;
 
         // if there is no item selected, don't delete anything.
         if (currentRecipe is null) return;
 
         // shorthand the listbox for variablizing.
-        var listbox = this.listBoxIngredients;
+        var listbox = listBoxIngredients;
 
         // grab the selection the user is considering removing.
         var removalIndex = listbox.SelectedIndex;
@@ -588,16 +588,16 @@ public partial class CraftBoard : Form
     private void buttonCloneToTools_Click(object sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
         
         // grab the current state of the component from the helper.
-        var helperComponent = this.craftComponentHelper.CurrentComponent();
+        var helperComponent = craftComponentHelper.CurrentComponent();
 
         // insert that item into the ingredients list.
-        this.listBoxTools.Items.Add(helperComponent);
+        listBoxTools.Items.Add(helperComponent);
         
         // add the ingredient to the recipe, too.
         item.Tools.Add(helperComponent);
@@ -606,13 +606,13 @@ public partial class CraftBoard : Form
     private void buttonDeleteTool_Click(object sender, EventArgs e)
     {
         // grab the currently selected item.
-        var currentRecipe = (Recipe)this.listboxRecipes.SelectedItem!;
+        var currentRecipe = (Recipe)listboxRecipes.SelectedItem!;
 
         // if there is no item selected, don't delete anything.
         if (currentRecipe is null) return;
 
         // shorthand the listbox for variablizing.
-        var listbox = this.listBoxTools;
+        var listbox = listBoxTools;
 
         // grab the selection the user is considering removing.
         var removalIndex = listbox.SelectedIndex;
@@ -639,16 +639,16 @@ public partial class CraftBoard : Form
     private void buttonCloneToOutputs_Click(object sender, EventArgs e)
     {
         // determine the selected item.
-        var item = (Recipe)this.listboxRecipes.SelectedItem!;
+        var item = (Recipe)listboxRecipes.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
         
         // grab the current state of the component from the helper.
-        var helperComponent = this.craftComponentHelper.CurrentComponent();
+        var helperComponent = craftComponentHelper.CurrentComponent();
 
         // insert that item into the ingredients list.
-        this.listBoxOutput.Items.Add(helperComponent);
+        listBoxOutput.Items.Add(helperComponent);
         
         // add the ingredient to the recipe, too.
         item.Outputs.Add(helperComponent);
@@ -657,13 +657,13 @@ public partial class CraftBoard : Form
     private void buttonDeleteOutput_Click(object sender, EventArgs e)
     {
         // grab the currently selected item.
-        var currentRecipe = (Recipe)this.listboxRecipes.SelectedItem!;
+        var currentRecipe = (Recipe)listboxRecipes.SelectedItem!;
 
         // if there is no item selected, don't delete anything.
         if (currentRecipe is null) return;
 
         // shorthand the listbox for variablizing.
-        var listbox = this.listBoxOutput;
+        var listbox = listBoxOutput;
 
         // grab the selection the user is considering removing.
         var removalIndex = listbox.SelectedIndex;
@@ -690,25 +690,25 @@ public partial class CraftBoard : Form
     #region category helper
     private void buttonCategoryHelper_Click(object sender, EventArgs e)
     {
-        this.craftCategoryHelper.Show();
+        craftCategoryHelper.Show();
     }
 
     private void buttonAddCategory_Click(object sender, EventArgs e)
     {
         // grab the current state of the component from the helper.
-        var helperCategory = this.craftCategoryHelper.CurrentCategory();
+        var helperCategory = craftCategoryHelper.CurrentCategory();
 
         // do nothing if the category is null/unselected.
         if (helperCategory is null) return;
 
         // grab the currently selected item.
-        var currentRecipe = (Recipe)this.listboxRecipes.SelectedItem!;
+        var currentRecipe = (Recipe)listboxRecipes.SelectedItem!;
 
         // if there is no item selected, don't delete anything.
         if (currentRecipe is null) return;
 
         // check if the category already exists in the recipe.
-        var alreadyHasCategory = this.listBoxCategories.Items.Contains(helperCategory.Key) ||
+        var alreadyHasCategory = listBoxCategories.Items.Contains(helperCategory.Key) ||
             currentRecipe.CategoryKeys.Contains(helperCategory.Key);
 
         // pivot on whether or not the category already exists.
@@ -719,7 +719,7 @@ public partial class CraftBoard : Form
         }
 
         // insert that item into the ingredients list.
-        this.listBoxCategories.Items.Add(helperCategory.Key);
+        listBoxCategories.Items.Add(helperCategory.Key);
 
         // add the category to the recipe, too.
         currentRecipe.CategoryKeys.Add(helperCategory.Key);
@@ -728,13 +728,13 @@ public partial class CraftBoard : Form
     private void buttonDeleteCategory_Click(object sender, EventArgs e)
     {
         // grab the currently selected item.
-        var currentRecipe = (Recipe)this.listboxRecipes.SelectedItem!;
+        var currentRecipe = (Recipe)listboxRecipes.SelectedItem!;
 
         // if there is no item selected, don't delete anything.
         if (currentRecipe is null) return;
 
         // shorthand the listbox for variablizing.
-        var listbox = this.listBoxCategories;
+        var listbox = listBoxCategories;
 
         // grab the selection the user is considering removing.
         var removalIndex = listbox.SelectedIndex;
@@ -786,26 +786,26 @@ public partial class CraftBoard : Form
         };
 
         // grab the current selection.
-        var selectedIndex = this.listboxRecipes.SelectedIndex;
+        var selectedIndex = listboxRecipes.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1 || (selectedIndex == this.listboxRecipes.Items.Count - 1))
+        if (selectedIndex == -1 || (selectedIndex == listboxRecipes.Items.Count - 1))
         {
             // add the item to the list without regard for index.
-            this.listboxRecipes.Items.Add(newItem);
+            listboxRecipes.Items.Add(newItem);
         }
         // we are in the middle somewhere.
         else
         {
             // add it at the given index.
-            this.listboxRecipes.Items.Insert(selectedIndex, newItem);
+            listboxRecipes.Items.Insert(selectedIndex, newItem);
         }
     }
 
     private void buttonDeleteRecipe_Click(object sender, EventArgs e)
     {
         // grab the selection the user is considering removing.
-        var removalIndex = this.listboxRecipes.SelectedIndex;
+        var removalIndex = listboxRecipes.SelectedIndex;
 
         // check if there is no index selected right now.
         if (removalIndex == -1)
@@ -815,7 +815,7 @@ public partial class CraftBoard : Form
         }
 
         // grab the current panel we're working with.
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // define the prompt.
         var removalPrompt = $"Are you sure you want to remove the recipe with key [{selectedItem.Key}]?";
@@ -830,10 +830,10 @@ public partial class CraftBoard : Form
         switch (dialogResult)
         {
             case DialogResult.OK:
-                this.listboxRecipes.Items.RemoveAt(removalIndex);
-                if (this.listboxRecipes.Items.Count != 0)
+                listboxRecipes.Items.RemoveAt(removalIndex);
+                if (listboxRecipes.Items.Count != 0)
                 {
-                    this.listboxRecipes.SelectedIndex = 0;
+                    listboxRecipes.SelectedIndex = 0;
                 }
 
                 break;
@@ -845,7 +845,7 @@ public partial class CraftBoard : Form
     private void buttonCloneRecipe_Click(object sender, EventArgs e)
     {
         // grab the currently selected recipe.
-        var selectedItem = (Recipe)this.listboxRecipes.SelectedItem!;
+        var selectedItem = (Recipe)listboxRecipes.SelectedItem!;
 
         // no cloning if there is no selected item.
         if (selectedItem is null) return;
@@ -868,19 +868,19 @@ public partial class CraftBoard : Form
         };
 
         // grab the current selection.
-        var selectedIndex = this.listboxRecipes.SelectedIndex;
+        var selectedIndex = listboxRecipes.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1 || selectedIndex == this.listboxRecipes.Items.Count - 1)
+        if (selectedIndex == -1 || selectedIndex == listboxRecipes.Items.Count - 1)
         {
             // add the item to the list without regard for index.
-            this.listboxRecipes.Items.Add(clonedItem);
+            listboxRecipes.Items.Add(clonedItem);
         }
         // we are in the middle somewhere.
         else
         {
             // add it at the given index.
-            this.listboxRecipes.Items.Insert(selectedIndex, clonedItem);
+            listboxRecipes.Items.Insert(selectedIndex, clonedItem);
         }
     }
 }

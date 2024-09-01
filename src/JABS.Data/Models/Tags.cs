@@ -37,6 +37,13 @@ public static class Tags
     public static Tag AiSkillExclusion { get; }
     
     public static Tag SpeedBoost { get; }
+    
+    public static Tag AiTraitCareful { get; }
+    public static Tag AiTraitExecutor { get; }
+    public static Tag AiTraitReckless { get; }
+    public static Tag AiTraitHealer { get; }
+    public static Tag AiTraitLeader { get; }
+    public static Tag AiTraitFollower { get; }
 
     static Tags()
     {
@@ -74,6 +81,13 @@ public static class Tags
         AiSkillExclusion = new("aiSkillExclusion");
 
         SpeedBoost = speedBoost();
+
+        AiTraitCareful = aiTraitCareful();
+        AiTraitExecutor = aiTraitExecutor();
+        AiTraitReckless = aiTraitReckless();
+        AiTraitHealer = aiTraitHealer();
+        AiTraitLeader = aiTraitLeader();
+        AiTraitFollower = aiTraitFollower();
     }
 
     private static Tag skillId()
@@ -234,6 +248,60 @@ public static class Tags
             "Obstructions are not considered.\n" +
             "\n" +
             "When this is set to a negative value, the tag will be removed.";
+        return new(tag, regex, description);
+    }
+
+    private static Tag aiTraitCareful()
+    {
+        var tag = "aiTrait:careful";
+        var regex = @"<aiTrait:[ ]?careful>";
+        var description =
+            "Whether or not this battler has the AI trait of 'careful'.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag aiTraitExecutor()
+    {
+        var tag = "aiTrait:executor";
+        var regex = @"<aiTrait:[ ]?executor>";
+        var description =
+            "Whether or not this battler has the AI trait of 'executor'.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag aiTraitReckless()
+    {
+        var tag = "aiTrait:reckless";
+        var regex = @"<aiTrait:[ ]?reckless>";
+        var description =
+            "Whether or not this battler has the AI trait of 'reckless'.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag aiTraitHealer()
+    {
+        var tag = "aiTrait:healer";
+        var regex = @"<aiTrait:[ ]?healer>";
+        var description =
+            "Whether or not this battler has the AI trait of 'healer'.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag aiTraitLeader()
+    {
+        var tag = "aiTrait:leader";
+        var regex = @"<aiTrait:[ ]?leader>";
+        var description =
+            "Whether or not this battler has the AI trait of 'leader'.";
+        return new(tag, regex, description);
+    }
+    
+    private static Tag aiTraitFollower()
+    {
+        var tag = "aiTrait:follower";
+        var regex = @"<aiTrait:[ ]?follower>";
+        var description =
+            "Whether or not this battler has the AI trait of 'follower'.";
         return new(tag, regex, description);
     }
 }

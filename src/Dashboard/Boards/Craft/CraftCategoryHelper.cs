@@ -10,11 +10,11 @@ public partial class CraftCategoryHelper : Form
 
     public CraftCategoryHelper()
     {
-        this.InitializeComponent();
+        InitializeComponent();
 
-        this.InitializeDataControls();
-        this.InitializeTooltips();
-        this.ApplyUpdateEvents();
+        InitializeDataControls();
+        InitializeTooltips();
+        ApplyUpdateEvents();
     }
 
     /// <summary>
@@ -23,24 +23,24 @@ public partial class CraftCategoryHelper : Form
     /// <returns></returns>
     public Category CurrentCategory()
     {
-        return (Category)this.listBoxCategories.SelectedItem!;
+        return (Category)listBoxCategories.SelectedItem!;
     }
 
     public List<Category> Categories()
     {
-        return this.categories;
+        return categories;
     }
 
     public void TrackedToSavedCategories()
     {
         // clear the existing list.
-        this.categories.Clear();
+        categories.Clear();
 
         // iterate over the tracked list.
-        foreach (var category in this.listBoxCategories.Items)
+        foreach (var category in listBoxCategories.Items)
         {
             // add each item from the tracked list into the list to be saved.
-            this.categories.Add((Category)category);
+            categories.Add((Category)category);
         }
     }
 
@@ -51,8 +51,8 @@ public partial class CraftCategoryHelper : Form
     private void InitializeDataControls()
     {
         // setup the list of categories.
-        this.listBoxCategories.DisplayMember = "Name";
-        this.listBoxCategories.ValueMember = "Key";
+        listBoxCategories.DisplayMember = "Name";
+        listBoxCategories.ValueMember = "Key";
     }
 
     /// <summary>
@@ -73,73 +73,73 @@ public partial class CraftCategoryHelper : Form
     private void ApplyUpdateEvents()
     {
         // if the category changes, refresh all of the form.
-        this.listBoxCategories.SelectedIndexChanged += this.RefreshForm;
+        listBoxCategories.SelectedIndexChanged += RefreshForm;
 
         // if the key changes, update it.
-        this.textBoxKey.TextChanged += this.UpdateKey;
+        textBoxKey.TextChanged += UpdateKey;
 
         // if the name changes, update it.
-        this.textBoxName.TextChanged += this.UpdateName;
+        textBoxName.TextChanged += UpdateName;
 
         // if the quantity changes, update it.
-        this.textBoxDescription.TextChanged += this.UpdateDescription;
+        textBoxDescription.TextChanged += UpdateDescription;
 
         // if the icon index changes, update it.
-        this.numIconIndex.ValueChanged += this.UpdateIconIndex;
+        numIconIndex.ValueChanged += UpdateIconIndex;
 
         // if the unlocked by default changes, update it.
-        this.checkBoxUnlockedByDefault.CheckedChanged += this.UpdateUnlockedByDefault;
+        checkBoxUnlockedByDefault.CheckedChanged += UpdateUnlockedByDefault;
     }
     #endregion
 
     #region update
     private void UpdateKey(object? sender, EventArgs e)
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        selectedItem.Key = this.textBoxKey.Text;
+        selectedItem.Key = textBoxKey.Text;
 
-        this.listBoxCategories.Items[this.listBoxCategories.SelectedIndex] = selectedItem;
+        listBoxCategories.Items[listBoxCategories.SelectedIndex] = selectedItem;
     }
 
     private void UpdateName(object? sender, EventArgs e)
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        selectedItem.Name = this.textBoxName.Text;
+        selectedItem.Name = textBoxName.Text;
         
-        this.listBoxCategories.Items[this.listBoxCategories.SelectedIndex] = selectedItem;
+        listBoxCategories.Items[listBoxCategories.SelectedIndex] = selectedItem;
     }
 
     private void UpdateDescription(object? sender, EventArgs e)
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        selectedItem.Description = this.textBoxDescription.Text;
+        selectedItem.Description = textBoxDescription.Text;
     }
 
     private void UpdateIconIndex(object? sender, EventArgs e)
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        selectedItem.IconIndex = (int)this.numIconIndex.Value;
+        selectedItem.IconIndex = (int)numIconIndex.Value;
     }
 
     private void UpdateUnlockedByDefault(object? sender, EventArgs e)
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        selectedItem.UnlockedByDefault = this.checkBoxUnlockedByDefault.Checked;
+        selectedItem.UnlockedByDefault = checkBoxUnlockedByDefault.Checked;
     }
     #endregion
 
@@ -149,26 +149,26 @@ public partial class CraftCategoryHelper : Form
         var newItem = Category.NEW;
 
         // grab the current selection.
-        var selectedIndex = this.listBoxCategories.SelectedIndex;
+        var selectedIndex = listBoxCategories.SelectedIndex;
 
         // check if there was no current selection.
-        if (selectedIndex == -1 || (selectedIndex == this.listBoxCategories.Items.Count - 1))
+        if (selectedIndex == -1 || (selectedIndex == listBoxCategories.Items.Count - 1))
         {
             // add the item to the list without regard for index.
-            this.listBoxCategories.Items.Add(newItem);
+            listBoxCategories.Items.Add(newItem);
         }
         // we are in the middle somewhere.
         else
         {
             // add it at the given index.
-            this.listBoxCategories.Items.Insert(selectedIndex, newItem);
+            listBoxCategories.Items.Insert(selectedIndex, newItem);
         }
     }
 
     private void buttonDeleteCategory_Click(object sender, EventArgs e)
     {
         // grab the selection the user is considering removing.
-        var removalIndex = this.listBoxCategories.SelectedIndex;
+        var removalIndex = listBoxCategories.SelectedIndex;
 
         // check if there is no index selected right now.
         if (removalIndex == -1)
@@ -178,7 +178,7 @@ public partial class CraftCategoryHelper : Form
         }
 
         // grab the current panel we're working with.
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         // define the prompt.
         var removalPrompt = $"Are you sure you want to remove the category with key [{selectedItem.Key}]?";
@@ -193,10 +193,10 @@ public partial class CraftCategoryHelper : Form
         switch (dialogResult)
         {
             case DialogResult.OK:
-                this.listBoxCategories.Items.RemoveAt(removalIndex);
-                if (this.listBoxCategories.Items.Count != 0)
+                listBoxCategories.Items.RemoveAt(removalIndex);
+                if (listBoxCategories.Items.Count != 0)
                 {
-                    this.listBoxCategories.SelectedIndex = 0;
+                    listBoxCategories.SelectedIndex = 0;
                 }
 
                 break;
@@ -208,36 +208,36 @@ public partial class CraftCategoryHelper : Form
     #region refresh
     private void RefreshForm(object? sender, EventArgs e)
     {
-        this._RefreshForm();
+        _RefreshForm();
     }
 
     private void _RefreshForm()
     {
         // refresh recipe data.
-        this.RenderCategoryData();
+        RenderCategoryData();
     }
 
     private void RenderCategoryData()
     {
-        var selectedItem = (Category)this.listBoxCategories.SelectedItem!;
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
 
         if (selectedItem is null) return;
 
-        this.textBoxKey.Text = selectedItem.Key;
-        this.textBoxName.Text = selectedItem.Name;
-        this.textBoxDescription.Text = selectedItem.Description;
-        this.numIconIndex.Value = selectedItem.IconIndex;
+        textBoxKey.Text = selectedItem.Key;
+        textBoxName.Text = selectedItem.Name;
+        textBoxDescription.Text = selectedItem.Description;
+        numIconIndex.Value = selectedItem.IconIndex;
     }
 
     private void RefreshCategoryData()
     {
-        this.listBoxCategories.Items.Clear();
+        listBoxCategories.Items.Clear();
 
-        this.categories.ForEach(category =>
+        categories.ForEach(category =>
         {
             if (category is null) return;
 
-            this.listBoxCategories.Items.Add(category);
+            listBoxCategories.Items.Add(category);
         });
     }
 
@@ -247,13 +247,13 @@ public partial class CraftCategoryHelper : Form
 
     public void Setup(List<Category> data)
     {
-        if (!this.needsSetup) return;
+        if (!needsSetup) return;
 
-        this.categories = data;
+        categories = data;
 
-        this.RefreshCategoryData();
+        RefreshCategoryData();
 
-        this.needsSetup = false;
+        needsSetup = false;
     }
     #endregion
 }

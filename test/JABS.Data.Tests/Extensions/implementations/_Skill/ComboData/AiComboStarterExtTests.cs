@@ -10,17 +10,17 @@ public class AiComboStarterExtTests : BaseTests
     
     public AiComboStarterExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.HasJabsAiComboStarter();
+        var actual = modelUnderTest.HasJabsAiComboStarter();
         
         // then
         actual.Should().BeFalse();
@@ -30,12 +30,12 @@ public class AiComboStarterExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.AiComboStarterTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTag = fdg.AiComboStarterTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.HasJabsAiComboStarter();
+        var actual = modelUnderTest.HasJabsAiComboStarter();
         
         // then
         actual.Should().BeTrue();
@@ -47,11 +47,11 @@ public class AiComboStarterExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        this.modelUnderTest.UpdateJabsAiComboStarter(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsAiComboStarter(expected);
+        modelUnderTest.UpdateJabsAiComboStarter(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsAiComboStarter(expected);
         
         // when
-        var actual = this.modelUnderTest.HasJabsAiComboStarter();
+        var actual = modelUnderTest.HasJabsAiComboStarter();
         
         // then
         actual.Should().BeFalse();

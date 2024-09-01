@@ -10,17 +10,17 @@ public class HideFromQuickMenuExtTests : BaseTests
     
     public HideFromQuickMenuExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
         
         // then
         actual.Should().BeFalse();
@@ -30,12 +30,12 @@ public class HideFromQuickMenuExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.HideFromQuickMenuTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTag = fdg.HideFromQuickMenuTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
         
         // then
         actual.Should().BeTrue();
@@ -47,11 +47,11 @@ public class HideFromQuickMenuExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        this.modelUnderTest.UpdateJabsHideFromQuickMenu(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsHideFromQuickMenu(expected);
+        modelUnderTest.UpdateJabsHideFromQuickMenu(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsHideFromQuickMenu(expected);
         
         // when
-        var actual = this.modelUnderTest.HasJabsHideFromQuickMenu();
+        var actual = modelUnderTest.HasJabsHideFromQuickMenu();
         
         // then
         actual.Should().BeFalse();

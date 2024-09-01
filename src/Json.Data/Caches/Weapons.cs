@@ -7,11 +7,11 @@ public static class Weapons
 {
     public static readonly Dictionary<int, RPG_Weapon> Cache = new();
     
-    public static void Refresh(string projectPath)
+    public static async Task Refresh(string projectPath)
     {
         Cache.Clear();
 
-        var weapons = JsonLoaderService.LoadWeapons(projectPath);
+        var weapons = await JsonLoaderService.LoadWeapons(projectPath);
         
         weapons.ForEach(weapon =>
         {

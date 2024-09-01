@@ -1,5 +1,6 @@
 using JMZ.Dashboard.Boards;
 using JMZ.Dashboard.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -21,11 +22,17 @@ internal static class Program
 
         CurrentHost = Host
             .CreateDefaultBuilder()
+            .ConfigureAppConfiguration(builder =>
+            {
+                builder.AddYamlFile("configuration.yaml", false, true);
+            })
             .ConfigureServices((context, services) =>
             {
                 services.AddOptions<JmzOptions>()
                     .Bind(context.Configuration)
                     .ValidateOnStart();
+                
+                // TODO: add DI and make services use DI.
 
                 services.AddScoped<BaseBoard>();
             })

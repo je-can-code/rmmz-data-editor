@@ -50,7 +50,7 @@ public class Tag : AbstractTag
     /// <returns>The output that will show up in the RMMZ note field.</returns>
     public string ToBooleanTag()
     {
-        return $"<{this.Name}>";
+        return $"<{Name}>";
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public class Tag : AbstractTag
     /// <returns>The output that will show up in the RMMZ note field.</returns>
     public string ToValueTag(string parameter)
     {
-        return $"<{this.Name}:{parameter}>";
+        return $"<{Name}:{parameter}>";
     }
 
     /// <summary>
@@ -70,6 +70,6 @@ public class Tag : AbstractTag
     /// <returns>The output that will show up in the RMMZ note field.</returns>
     public string ToArrayTag(params string[] parameters)
     {
-        return $"<{this.Name}:[{string.Join(',', parameters)}]>";
+        return $"<{Name}:[{string.Join(',', parameters)}]>";
     }
 }

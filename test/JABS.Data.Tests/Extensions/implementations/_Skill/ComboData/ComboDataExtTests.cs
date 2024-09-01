@@ -11,7 +11,7 @@ public class ComboDataExtTests : BaseTests
     
     public ComboDataExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class ComboDataExtTests : BaseTests
     {
         // given
         var expected = new Models.ComboData();
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.GetJabsComboData();
+        var actual = modelUnderTest.GetJabsComboData();
         
         // then
         actual.Should().Be(expected);
@@ -32,14 +32,14 @@ public class ComboDataExtTests : BaseTests
     public void whenAdded_returnsData()
     {
         // given
-        var testComboSkill = this.fdg.RmmzUNumber();
-        var testComboDelay = this.fdg.RmmzUNumber();
-        var fakeTag = this.fdg.ComboDataTag(testComboSkill, testComboDelay);
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var testComboSkill = fdg.RmmzUNumber();
+        var testComboDelay = fdg.RmmzUNumber();
+        var fakeTag = fdg.ComboDataTag(testComboSkill, testComboDelay);
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.GetJabsComboData();
+        var actual = modelUnderTest.GetJabsComboData();
         var (comboSkill, comboDelay) = actual;
 
         // then
@@ -51,12 +51,12 @@ public class ComboDataExtTests : BaseTests
     public void whenUpdated_returnsData()
     {
         // given
-        var testComboSkill = this.fdg.RmmzUNumber();
-        var testComboDelay = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsComboData(testComboSkill, testComboDelay);
+        var testComboSkill = fdg.RmmzUNumber();
+        var testComboDelay = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsComboData(testComboSkill, testComboDelay);
         
         // when
-        var actual = this.modelUnderTest.GetJabsComboData();
+        var actual = modelUnderTest.GetJabsComboData();
 
         // then
         actual.ComboSkill.Should().Be(testComboSkill);
@@ -68,13 +68,13 @@ public class ComboDataExtTests : BaseTests
     {
         // given
         var expected = new Models.ComboData();
-        var testComboSkill = this.fdg.RmmzUNumber();
-        var testComboDelay = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsComboData(testComboSkill, testComboDelay);
-        this.modelUnderTest.UpdateJabsComboData(decimal.Zero, decimal.Zero);
+        var testComboSkill = fdg.RmmzUNumber();
+        var testComboDelay = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsComboData(testComboSkill, testComboDelay);
+        modelUnderTest.UpdateJabsComboData(decimal.Zero, decimal.Zero);
         
         // when
-        var actual = this.modelUnderTest.GetJabsComboData();
+        var actual = modelUnderTest.GetJabsComboData();
 
         // then
         actual.Should().Be(expected);

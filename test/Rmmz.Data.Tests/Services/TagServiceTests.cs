@@ -10,7 +10,7 @@ public class TagServiceTests : BaseTests
     public void translateTags_withSingleTag_translates()
     {
         // given
-        var testSingleTag = this.fdg.SkillIdTag();
+        var testSingleTag = fdg.SkillIdTag();
         
         // when
         var actual = TagService.translateTags(testSingleTag);
@@ -25,8 +25,8 @@ public class TagServiceTests : BaseTests
     {
         // given
         var tag = new List<string>();
-        tagCount.Times(() => tag.Add(this.fdg.SkillIdTag()));
-        var testMultipleTags = this.fdg.BuildNoteTag(tag.ToArray());
+        tagCount.Times(() => tag.Add(fdg.SkillIdTag()));
+        var testMultipleTags = fdg.BuildNoteTag(tag.ToArray());
 
         // when
         var actual = TagService.translateTags(testMultipleTags);
@@ -74,7 +74,7 @@ public class TagServiceTests : BaseTests
     public void translateTags_withSingleTag_translatesBoolean()
     {
         // given
-        var testSingleTag = this.fdg.DirectTargetingTag();
+        var testSingleTag = fdg.DirectTargetingTag();
         
         // when
         var actual = TagService.translateTags(testSingleTag);

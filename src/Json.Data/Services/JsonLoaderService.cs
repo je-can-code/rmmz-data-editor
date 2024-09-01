@@ -2,6 +2,7 @@
 using JMZ.Crafting.Data;
 using JMZ.Difficulty.Data;
 using JMZ.Difficulty.Data.Models;
+using JMZ.Quest.Data;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Sdp.Data;
 using JMZ.Sdp.Data.Models;
@@ -20,22 +21,25 @@ public static class JsonLoaderService
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
     /// <returns>The full path to the configuration data.</returns>
-    public static string sdpDataPath(string basePath) => @$"{basePath}\{SdpInitializer.ConfigurationFileName}";
+    public static string SdpDataPath(string basePath) => @$"{basePath}\{SdpInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// A template string for creating the path to the Crafting configuration data.
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
     /// <returns>The full path to the configuration data.</returns>
-    public static string craftingDataPath(string basePath) => $@"{basePath}\{CraftingInitializer.ConfigurationFileName}";
+    public static string CraftingDataPath(string basePath) => $@"{basePath}\{CraftingInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// A template string for creating the path to the Difficulty configuration data.
     /// </summary>
     /// <param name="basePath">The path that contains the target config file.</param>
     /// <returns>The full path to the configuration data.</returns>
-    public static string difficultyDataPath(string basePath) =>
+    public static string DifficultyDataPath(string basePath) =>
         $@"{basePath}\{DifficultyInitializer.ConfigurationFileName}";
+
+    public static string QuestDataPath(string basePath) =>
+        $@"{basePath}\{QuestInitializer.ConfigurationFileName}";
 
     /// <summary>
     /// Loads the items from the json found in the of the current project path directory.
@@ -56,13 +60,13 @@ public static class JsonLoaderService
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <returns>The converted weapons.</returns>
-    public static List<RPG_Weapon> LoadWeapons(string path)
+    public static async Task<List<RPG_Weapon>> LoadWeapons(string path)
     {
         // build the path.
         var fullPath = $"{path}/Weapons.json";
 
         // load the list of weapons.
-        return Load<List<RPG_Weapon>>(fullPath);
+        return await LoadAsync<List<RPG_Weapon>>(fullPath);
     }
 
     /// <summary>
@@ -116,7 +120,7 @@ public static class JsonLoaderService
     public static List<StatDistributionPanel> LoadSdps(string path)
     {
         // build the path.
-        var fullPath = sdpDataPath(path);
+        var fullPath = SdpDataPath(path);
 
         // load it up as the list of panels.
         return Load<List<StatDistributionPanel>>(fullPath);
@@ -130,7 +134,7 @@ public static class JsonLoaderService
     public static CraftingConfiguration LoadCrafting(string path)
     {
         // determine the path to the crafting config.
-        var fullPath = craftingDataPath(path);
+        var fullPath = CraftingDataPath(path);
 
         // load it up as the configuration object.
         return Load<CraftingConfiguration>(fullPath);
@@ -139,10 +143,16 @@ public static class JsonLoaderService
     public static List<DifficultyMetadata> LoadDifficulties(string path)
     {
         // determine the path to the crafting config.
-        var fullPath = difficultyDataPath(path);
+        var fullPath = DifficultyDataPath(path);
 
         // load it up as the configuration object.
         return Load<List<DifficultyMetadata>>(fullPath);
+    }
+
+    public static async Task<QuestConfiguration> LoadQuests(string path)
+    {
+        var fullPath = QuestDataPath(path);
+        return await LoadAsync<QuestConfiguration>(fullPath);
     }
 
     /// <summary>
@@ -163,15 +173,32 @@ public static class JsonLoaderService
     /// <typeparam name="T">The type to deserialize the json into.</typeparam>
     private static T Load<T>(string path)
     {
-        // read the file as json.
-        var rawJson = File.ReadAllText(path);
-
         // validate the file requested is present.
-        if (!IsConfigPresent(path))
+        if (!File.Exists(path))
         {
             // throw up violently if the file is missing.
             throw new FileNotFoundException(path);
         }
+        
+        // read the file as json.
+        var rawJson = File.ReadAllText(path);
+
+        // deserialize the json into the designated type.
+        return JsonConvert.DeserializeObject<T>(rawJson)
+            ?? throw new SerializationException("could not deserialize into target class.");
+    }
+
+    private static async Task<T> LoadAsync<T>(string path)
+    {
+        // validate the file requested is present.
+        if (!File.Exists(path))
+        {
+            // throw up violently if the file is missing.
+            throw new FileNotFoundException(path);
+        }
+        
+        // read the file as json.
+        var rawJson = await File.ReadAllTextAsync(path);
 
         // deserialize the json into the designated type.
         return JsonConvert.DeserializeObject<T>(rawJson)

@@ -10,17 +10,17 @@ public class FreeComboExtTests : BaseTests
     
     public FreeComboExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.HasJabsFreeCombo();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeFalse();
@@ -30,12 +30,12 @@ public class FreeComboExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.FreeComboTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTag = fdg.FreeComboTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.HasJabsFreeCombo();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeTrue();
@@ -47,11 +47,11 @@ public class FreeComboExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        this.modelUnderTest.UpdateJabsFreeCombo(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsFreeCombo(expected);
+        modelUnderTest.UpdateJabsFreeCombo(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsFreeCombo(expected);
         
         // when
-        var actual = this.modelUnderTest.HasJabsFreeCombo();
+        var actual = modelUnderTest.HasJabsFreeCombo();
         
         // then
         actual.Should().BeFalse();

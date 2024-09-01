@@ -1,6 +1,7 @@
 using JMZ.Crafting.Data;
 using JMZ.Difficulty.Data;
 using JMZ.Difficulty.Data.Models;
+using JMZ.Quest.Data;
 using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Sdp.Data;
 using JMZ.Sdp.Data.Models;
@@ -151,7 +152,13 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
+    public static async Task SaveQuests(string path, QuestConfiguration data)
+    {
+        var fullPath = $"{path}/{QuestInitializer.ConfigurationFileName}";
+        await Save(fullPath, data);
+    }
+
     private static async Task Save<T>(string fullPath, T data)
     {
         // convert the objects to JSON.

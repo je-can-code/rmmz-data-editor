@@ -14,13 +14,13 @@ public abstract class AbstractTag
     protected AbstractTag(string name)
     {
         // assign the name.
-        this.Name = name;
+        Name = name;
         
         // default to a boolean tag.
-        this.Regex = $"<{name}>";
+        Regex = $"<{name}>";
 
         // default to generic description.
-        this.Description = "A description for this tag has yet to be defined.";
+        Description = "A description for this tag has yet to be defined.";
     }
 
     /// <summary>
@@ -31,13 +31,13 @@ public abstract class AbstractTag
     protected AbstractTag(string name, string regex)
     {
         // assign the name.
-        this.Name = name;
+        Name = name;
         
         // update the regex as given.
-        this.Regex = regex;
+        Regex = regex;
         
         // default to generic description.
-        this.Description = NO_DESCRIPTION;
+        Description = NO_DESCRIPTION;
     }
 
     /// <summary>
@@ -49,13 +49,13 @@ public abstract class AbstractTag
     protected AbstractTag(string name, string regex, string description)
     {
         // assign the name.
-        this.Name = name;
+        Name = name;
         
         // update the regex as given.
-        this.Regex = regex;
+        Regex = regex;
         
         // define the literal description.
-        this.Description = description;
+        Description = description;
     }
 
     /// <summary>
@@ -67,16 +67,16 @@ public abstract class AbstractTag
     protected AbstractTag(string name, string regex, params string[] descriptions)
     {
         // assign the name.
-        this.Name = name;
+        Name = name;
         
         // update the regex as given.
-        this.Regex = regex;
+        Regex = regex;
         
         // define the literal description.
-        this.Description = descriptions.FirstOrDefault() ?? NO_DESCRIPTION;
+        Description = descriptions.FirstOrDefault() ?? NO_DESCRIPTION;
 
         // define a multi-tag description, such as combo data or pose data.
-        this.Descriptions = descriptions;
+        Descriptions = descriptions;
     }
 
     /// <summary>

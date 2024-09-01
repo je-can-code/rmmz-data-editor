@@ -15,17 +15,17 @@ public partial class BaseBoard
 
     private partial void SetupEnemiesBoard()
     {
-        this.enemiesBoard.FormClosing += FormUtils.HideBoard;
+        enemiesBoard.FormClosing += FormUtils.HideBoard;
     }
 
     private async void button_enemies_Click(object sender, EventArgs e)
     {
         // get the core dataset for this board.
-        var data = await Task.Run(() => JsonLoaderService.LoadEnemies(this.projectPath));
+        var data = await Task.Run(() => JsonLoaderService.LoadEnemies(_projectPath));
 
         // setup the board.
-        this.enemiesBoard.Show();
-        this.enemiesBoard.Setup(data);
+        enemiesBoard.Show();
+        enemiesBoard.Setup(data);
     }
 
     private async void button_saveEnemies_Click(object sender, EventArgs e)
@@ -37,16 +37,16 @@ public partial class BaseBoard
         if (dialogResult == DialogResult.OK)
         {
             // these are updated by reference.
-            var updated = this.enemiesBoard.Enemies();
+            var updated = enemiesBoard.Enemies();
 
             // execute the save.
-            await JsonSavingService.SaveEnemies(this.projectPath, updated);
+            await JsonSavingService.SaveEnemies(_projectPath, updated);
 
             // upon completion, show the success.
             MessageBox.Show("Saving has completed successfully.");
 
             // process the event.
-            this.OnDatabaseSave();
+            await OnDatabaseSave();
         }
         // they decided not to save.
         else

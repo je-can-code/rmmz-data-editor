@@ -11,7 +11,7 @@ public class CastTimeExtTests : BaseTests
     
     public CastTimeExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class CastTimeExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.GetJabsCastTime();
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);
@@ -32,13 +32,13 @@ public class CastTimeExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RmmzUNumber();
-        var fakeTag = this.fdg.CastTimeTag(fakeTagValue);
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTagValue = fdg.RmmzUNumber();
+        var fakeTag = fdg.CastTimeTag(fakeTagValue);
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.GetJabsCastTime();
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -48,11 +48,11 @@ public class CastTimeExtTests : BaseTests
     public void whenUpdated_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsCastTime(fakeTagValue);
+        var fakeTagValue = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsCastTime(fakeTagValue);
         
         // when
-        var actual = this.modelUnderTest.GetJabsCastTime();
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -63,12 +63,12 @@ public class CastTimeExtTests : BaseTests
     {
         // given
         var expected = decimal.Zero;
-        var fakeTagValue = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsCastTime(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsCastTime(expected);
+        var fakeTagValue = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsCastTime(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsCastTime(expected);
         
         // when
-        var actual = this.modelUnderTest.GetJabsCastTime();
+        var actual = modelUnderTest.GetJabsCastTime();
         
         // then
         actual.Should().Be(expected);

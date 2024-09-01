@@ -44,13 +44,13 @@ public static class StringExtensions
     /// <param name="input">The string to be converted.</param>
     /// <param name="delimiter">The delimiter character(s); defaults to a single comma.</param>
     /// <returns>A conversion of the string into a list of decimals.</returns>
-    public static IEnumerable<string> ToStringList(this string input, string delimiter = ",")
+    public static IEnumerable<string> ToStringList(this string? input, string delimiter = ",")
     {
         // check if the input is invalid.
         if (input == null)
         {
             // return an empty list.
-            return Enumerable.Empty<string>();
+            return [];
         }
 
         // unwrap the input from its hard brackets.

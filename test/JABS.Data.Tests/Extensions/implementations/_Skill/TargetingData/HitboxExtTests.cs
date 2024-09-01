@@ -12,7 +12,7 @@ public class HitboxExtTests : BaseTests
 
     public HitboxExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -20,10 +20,10 @@ public class HitboxExtTests : BaseTests
     {
         // given
         var expected = Hitbox.None;
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.GetJabsHitbox();
+        var actual = modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(expected);
@@ -33,13 +33,13 @@ public class HitboxExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RandomHitbox();
-        var fakeTag = this.fdg.HitboxTag(fakeTagValue);
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTagValue = fdg.RandomHitbox();
+        var fakeTag = fdg.HitboxTag(fakeTagValue);
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.GetJabsHitbox();
+        var actual = modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -49,11 +49,11 @@ public class HitboxExtTests : BaseTests
     public void whenUpdated_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RandomHitbox();
-        this.modelUnderTest.UpdateJabsHitbox(fakeTagValue);
+        var fakeTagValue = fdg.RandomHitbox();
+        modelUnderTest.UpdateJabsHitbox(fakeTagValue);
         
         // when
-        var actual = this.modelUnderTest.GetJabsHitbox();
+        var actual = modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(fakeTagValue);
@@ -64,12 +64,12 @@ public class HitboxExtTests : BaseTests
     {
         // given
         var expected = Hitbox.None;
-        var fakeTagValue = this.fdg.RandomHitbox();
-        this.modelUnderTest.UpdateJabsHitbox(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsHitbox(expected);
+        var fakeTagValue = fdg.RandomHitbox();
+        modelUnderTest.UpdateJabsHitbox(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsHitbox(expected);
         
         // when
-        var actual = this.modelUnderTest.GetJabsHitbox();
+        var actual = modelUnderTest.GetJabsHitbox();
         
         // then
         actual.Should().Be(expected);

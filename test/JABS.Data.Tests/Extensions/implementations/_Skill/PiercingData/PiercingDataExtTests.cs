@@ -11,7 +11,7 @@ public class PiercingDataExtTests : BaseTests
     
     public PiercingDataExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -19,10 +19,10 @@ public class PiercingDataExtTests : BaseTests
     {
         // given
         var expected = new Models.PiercingData();
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.GetJabsPiercingData();
+        var actual = modelUnderTest.GetJabsPiercingData();
         
         // then
         actual.Should().Be(expected);
@@ -32,12 +32,12 @@ public class PiercingDataExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.PiercingDataTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTag = fdg.PiercingDataTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.GetJabsPiercingData();
+        var actual = modelUnderTest.GetJabsPiercingData();
         var (pierceCount, pierceDelay) = actual;
 
         // then
@@ -49,12 +49,12 @@ public class PiercingDataExtTests : BaseTests
     public void whenUpdated_returnsData()
     {
         // given
-        var testPierceCount = this.fdg.RmmzUNumber();
-        var testPierceDelay = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsPiercingData(testPierceCount, testPierceDelay);
+        var testPierceCount = fdg.RmmzUNumber();
+        var testPierceDelay = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsPiercingData(testPierceCount, testPierceDelay);
         
         // when
-        var actual = this.modelUnderTest.GetJabsPiercingData();
+        var actual = modelUnderTest.GetJabsPiercingData();
 
         // then
         actual.PierceCount.Should().Be(testPierceCount);
@@ -66,13 +66,13 @@ public class PiercingDataExtTests : BaseTests
     {
         // given
         var expected = new Models.PiercingData();
-        var testPierceCount = this.fdg.RmmzUNumber();
-        var testPierceDelay = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsPiercingData(testPierceCount, testPierceDelay);
-        this.modelUnderTest.UpdateJabsPiercingData(decimal.Zero, decimal.Zero);
+        var testPierceCount = fdg.RmmzUNumber();
+        var testPierceDelay = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsPiercingData(testPierceCount, testPierceDelay);
+        modelUnderTest.UpdateJabsPiercingData(decimal.Zero, decimal.Zero);
         
         // when
-        var actual = this.modelUnderTest.GetJabsPiercingData();
+        var actual = modelUnderTest.GetJabsPiercingData();
 
         // then
         actual.Should().Be(expected);

@@ -11,17 +11,17 @@ public class DirectTargetingExtTests : BaseTests
     
     public DirectTargetingExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
         
         // when
-        var actual = this.modelUnderTest.HasJabsDirectTargeting();
+        var actual = modelUnderTest.HasJabsDirectTargeting();
         
         // then
         actual.Should().BeFalse();
@@ -31,12 +31,12 @@ public class DirectTargetingExtTests : BaseTests
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.DirectTargetingTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
+        var fakeTag = fdg.DirectTargetingTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
         
         // when
-        var actual = this.modelUnderTest.HasJabsDirectTargeting();
+        var actual = modelUnderTest.HasJabsDirectTargeting();
         
         // then
         actual.Should().BeTrue();
@@ -48,11 +48,11 @@ public class DirectTargetingExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        this.modelUnderTest.UpdateJabsDirectTargeting(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsDirectTargeting(expected);
+        modelUnderTest.UpdateJabsDirectTargeting(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsDirectTargeting(expected);
         
         // when
-        var actual = this.modelUnderTest.HasJabsDirectTargeting();
+        var actual = modelUnderTest.HasJabsDirectTargeting();
         
         // then
         actual.Should().BeFalse();

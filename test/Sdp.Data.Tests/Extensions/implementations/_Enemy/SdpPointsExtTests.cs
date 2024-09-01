@@ -13,7 +13,7 @@ public class SdpPointsExtTests : BaseTests
 
     public SdpPointsExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
     
     [Fact]
@@ -21,10 +21,10 @@ public class SdpPointsExtTests : BaseTests
     {
         // given
         var expected = SdpPointsExt.NON_VALUE;
-        this.modelUnderTest.note = string.Empty;
+        modelUnderTest.note = string.Empty;
 
         // when
-        var actual = this.modelUnderTest.GetSdpPoints();
+        var actual = modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().Be(expected);
@@ -34,11 +34,11 @@ public class SdpPointsExtTests : BaseTests
     public void whenAdded_returnsData()
     {
         // given
-        var expected = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateSdpPoints(expected);
+        var expected = fdg.RmmzUNumber();
+        modelUnderTest.UpdateSdpPoints(expected);
 
         // when
-        var actual = this.modelUnderTest.GetSdpPoints();
+        var actual = modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().Be(expected);
@@ -48,14 +48,14 @@ public class SdpPointsExtTests : BaseTests
     public void whenUpdated_returnsUpdatedData()
     {
         // given
-        var firstPoints = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateSdpPoints(firstPoints);
+        var firstPoints = fdg.RmmzUNumber();
+        modelUnderTest.UpdateSdpPoints(firstPoints);
 
-        var secondPoints = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateSdpPoints(secondPoints);
+        var secondPoints = fdg.RmmzUNumber();
+        modelUnderTest.UpdateSdpPoints(secondPoints);
       
         // when
-        var actual = this.modelUnderTest.GetSdpPoints();
+        var actual = modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().NotBe(firstPoints);
@@ -67,13 +67,13 @@ public class SdpPointsExtTests : BaseTests
     {
         // given
         var expected = SdpPointsExt.NON_VALUE;
-        var firstPoints = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateSdpPoints(firstPoints);
+        var firstPoints = fdg.RmmzUNumber();
+        modelUnderTest.UpdateSdpPoints(firstPoints);
 
-        this.modelUnderTest.UpdateSdpPoints();
+        modelUnderTest.UpdateSdpPoints();
 
         // when
-        var actual = this.modelUnderTest.GetSdpPoints();
+        var actual = modelUnderTest.GetSdpPoints();
 
         // then
         actual.Should().NotBe(firstPoints);

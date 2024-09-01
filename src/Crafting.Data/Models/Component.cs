@@ -18,7 +18,7 @@ public class Component
     /// True if this component is missing a display name, false otherwise.
     /// </summary>
     [JsonIgnore]
-    public bool MissingDisplayName => string.IsNullOrWhiteSpace(this._Name);
+    public bool MissingDisplayName => string.IsNullOrWhiteSpace(_Name);
     
     /// <summary>
     /// The name of the component; used for display purposes only.
@@ -26,8 +26,8 @@ public class Component
     [JsonIgnore]
     public string Name
     {
-        get => $"{this.Type} : {this.Id} : {this._Name} : x{this.Count}";
-        set => this._Name = value;
+        get => $"{Type} : {Id} : {_Name} : x{Count}";
+        set => _Name = value;
     }
     
     /// <summary>
@@ -37,8 +37,8 @@ public class Component
     [JsonIgnore]
     public string DropChanceName
     {
-        get => $"{this.Type} : {this.Id} : {this._Name} : {this.Count}%";
-        set => this._Name = value;
+        get => $"{Type} : {Id} : {_Name} : {Count}%";
+        set => _Name = value;
     }
     
     /// <summary>
@@ -64,10 +64,10 @@ public class Component
     {
         return new()
         {
-            Count = this.Count,
-            Id = this.Id,
-            Name = this._Name,
-            Type = this.Type
+            Count = Count,
+            Id = Id,
+            Name = _Name,
+            Type = Type
         };
     }
 }
