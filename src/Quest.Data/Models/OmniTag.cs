@@ -8,7 +8,12 @@
 /// <param name="IconIndex">The index of the icon for the tag.</param>
 public record OmniTag(string Key, string Name, int IconIndex = 0)
 {
-    public string Key { get; } = Key;
-    public string Name { get; } = Name;
-    public int IconIndex { get; } = IconIndex;
+    public static OmniTag DefaultTemplate()
+    {
+        return new("ch-1", "Chapter 1");
+    }
+
+    public string Key { get; set; } = Key;
+    public string Name { get; set; } = Name;
+    public int IconIndex { get; set; } = IconIndex;
 }

@@ -31,13 +31,34 @@ partial class QuestBoard
     /// </summary>
     private void InitializeComponent()
     {
-        tabControl1 = new TabControl();
+        tabControlQuestBoard = new TabControl();
         tabQuest = new TabPage();
+        labelQuests = new Label();
+        buttonDeleteQuest = new Button();
+        buttonAddQuest = new Button();
+        listBoxQuests = new ListBox();
+        groupBoxObjectiveData = new GroupBox();
+        groupBoxObjectiveLogs = new GroupBox();
+        labelLogMissed = new Label();
+        textBoxLogMissed = new TextBox();
+        labelLogFailed = new Label();
+        textBoxLogFailed = new TextBox();
+        labelLogCompleted = new Label();
+        textBoxLogCompleted = new TextBox();
+        labelLogActive = new Label();
+        textBoxLogActive = new TextBox();
+        labelLogInactive = new Label();
+        textBoxLogInactive = new TextBox();
+        buttonDeleteObjective = new Button();
+        buttonAddObjective = new Button();
         groupBoxFulfillmentData = new GroupBox();
-        labelObjectiveType = new Label();
-        labelObjectiveQuestKeys = new Label();
-        comboBoxObjectiveType = new ComboBox();
+        groupBoxQuestData = new GroupBox();
         textBoxObjectiveQuestData = new TextBox();
+        labelObjectiveQuestKeys = new Label();
+        labelObjectiveType = new Label();
+        comboBoxObjectiveType = new ComboBox();
+        groupBoxIndiscriminateData = new GroupBox();
+        textBoxIndiscriminateData = new TextBox();
         groupBoxFetchData = new GroupBox();
         labelFetchAmount = new Label();
         numFetchAmount = new NumericUpDown();
@@ -61,25 +82,6 @@ partial class QuestBoard
         labelSlayAmount = new Label();
         numSlayEnemyId = new NumericUpDown();
         numSlayAmount = new NumericUpDown();
-        buttonDeleteQuest = new Button();
-        buttonAddQuest = new Button();
-        listBoxQuests = new ListBox();
-        groupBoxObjectiveData = new GroupBox();
-        groupBoxObjectiveLogs = new GroupBox();
-        labelLogMissed = new Label();
-        textBoxLogMissed = new TextBox();
-        labelLogFailed = new Label();
-        textBoxLogFailed = new TextBox();
-        labelLogCompleted = new Label();
-        textBoxLogCompleted = new TextBox();
-        labelLogActive = new Label();
-        textBoxLogActive = new TextBox();
-        labelLogInactive = new Label();
-        textBoxLogInactive = new TextBox();
-        buttonDeleteObjective = new Button();
-        buttonAddObjective = new Button();
-        groupBoxIndiscriminateData = new GroupBox();
-        textBoxIndiscriminateData = new TextBox();
         labelObjectiveId = new Label();
         numObjectiveId = new NumericUpDown();
         labelObjectiveDescription = new Label();
@@ -92,7 +94,7 @@ partial class QuestBoard
         numRecommendedLevel = new NumericUpDown();
         textBoxOverview = new TextBox();
         labelCategory = new Label();
-        listBoxTags = new ListBox();
+        listBoxQuestTags = new ListBox();
         comboBoxCategory = new ComboBox();
         labelTags = new Label();
         labelIconIndex = new Label();
@@ -105,10 +107,34 @@ partial class QuestBoard
         textBoxName = new TextBox();
         labelKey = new Label();
         tabCategories = new TabPage();
+        buttonDeleteCategory = new Button();
+        buttonAddCategory = new Button();
+        textBoxCategoryKey = new TextBox();
+        labelCategoryKey = new Label();
+        textBoxCategoryName = new TextBox();
+        labelCategoryName = new Label();
+        labelCategories = new Label();
+        listBoxCategories = new ListBox();
         tabTags = new TabPage();
-        tabControl1.SuspendLayout();
+        buttonDeleteTag = new Button();
+        buttonAddTag = new Button();
+        textBoxTagKey = new TextBox();
+        labelTagKey = new Label();
+        textBoxTagName = new TextBox();
+        labelTagName = new Label();
+        labelTagList = new Label();
+        listBoxTags = new ListBox();
+        labelCategoryIconIndex = new Label();
+        numCategoryIconIndex = new NumericUpDown();
+        labelTagIconIndex = new Label();
+        numTagIconIndex = new NumericUpDown();
+        tabControlQuestBoard.SuspendLayout();
         tabQuest.SuspendLayout();
+        groupBoxObjectiveData.SuspendLayout();
+        groupBoxObjectiveLogs.SuspendLayout();
         groupBoxFulfillmentData.SuspendLayout();
+        groupBoxQuestData.SuspendLayout();
+        groupBoxIndiscriminateData.SuspendLayout();
         groupBoxFetchData.SuspendLayout();
         ((ISupportInitialize)numFetchAmount).BeginInit();
         ((ISupportInitialize)numFetchId).BeginInit();
@@ -121,356 +147,63 @@ partial class QuestBoard
         groupBoxSlayData.SuspendLayout();
         ((ISupportInitialize)numSlayEnemyId).BeginInit();
         ((ISupportInitialize)numSlayAmount).BeginInit();
-        groupBoxObjectiveData.SuspendLayout();
-        groupBoxObjectiveLogs.SuspendLayout();
-        groupBoxIndiscriminateData.SuspendLayout();
         ((ISupportInitialize)numObjectiveId).BeginInit();
         groupBoxCoreData.SuspendLayout();
         ((ISupportInitialize)numRecommendedLevel).BeginInit();
         ((ISupportInitialize)numIconIndex).BeginInit();
+        tabCategories.SuspendLayout();
+        tabTags.SuspendLayout();
+        ((ISupportInitialize)numCategoryIconIndex).BeginInit();
+        ((ISupportInitialize)numTagIconIndex).BeginInit();
         SuspendLayout();
         // 
-        // tabControl1
+        // tabControlQuestBoard
         // 
-        tabControl1.Controls.Add(tabQuest);
-        tabControl1.Controls.Add(tabCategories);
-        tabControl1.Controls.Add(tabTags);
-        tabControl1.Font = new Font("Victor Mono", 7.874999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        tabControl1.Location = new Point(0, 0);
-        tabControl1.Name = "tabControl1";
-        tabControl1.SelectedIndex = 0;
-        tabControl1.Size = new Size(2358, 1314);
-        tabControl1.TabIndex = 0;
+        tabControlQuestBoard.Controls.Add(tabQuest);
+        tabControlQuestBoard.Controls.Add(tabCategories);
+        tabControlQuestBoard.Controls.Add(tabTags);
+        tabControlQuestBoard.Font = new Font("Victor Mono", 7.874999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        tabControlQuestBoard.Location = new Point(0, 0);
+        tabControlQuestBoard.Margin = new Padding(2, 1, 2, 1);
+        tabControlQuestBoard.Name = "tabControlQuestBoard";
+        tabControlQuestBoard.SelectedIndex = 0;
+        tabControlQuestBoard.Size = new Size(1586, 863);
+        tabControlQuestBoard.TabIndex = 0;
         // 
         // tabQuest
         // 
-        tabQuest.Controls.Add(groupBoxFulfillmentData);
+        tabQuest.Controls.Add(labelQuests);
         tabQuest.Controls.Add(buttonDeleteQuest);
         tabQuest.Controls.Add(buttonAddQuest);
         tabQuest.Controls.Add(listBoxQuests);
         tabQuest.Controls.Add(groupBoxObjectiveData);
         tabQuest.Controls.Add(groupBoxCoreData);
-        tabQuest.Location = new Point(8, 40);
+        tabQuest.Location = new Point(4, 21);
+        tabQuest.Margin = new Padding(2, 1, 2, 1);
         tabQuest.Name = "tabQuest";
-        tabQuest.Padding = new Padding(3);
-        tabQuest.Size = new Size(2342, 1266);
+        tabQuest.Padding = new Padding(2, 1, 2, 1);
+        tabQuest.Size = new Size(1578, 838);
         tabQuest.TabIndex = 1;
         tabQuest.Text = "Quests";
         tabQuest.UseVisualStyleBackColor = true;
         // 
-        // groupBoxFulfillmentData
+        // labelQuests
         // 
-        groupBoxFulfillmentData.Controls.Add(labelObjectiveType);
-        groupBoxFulfillmentData.Controls.Add(labelObjectiveQuestKeys);
-        groupBoxFulfillmentData.Controls.Add(comboBoxObjectiveType);
-        groupBoxFulfillmentData.Controls.Add(textBoxObjectiveQuestData);
-        groupBoxFulfillmentData.Controls.Add(groupBoxFetchData);
-        groupBoxFulfillmentData.Controls.Add(groupBoxDestinationData);
-        groupBoxFulfillmentData.Controls.Add(groupBoxSlayData);
-        groupBoxFulfillmentData.Location = new Point(1629, 660);
-        groupBoxFulfillmentData.Name = "groupBoxFulfillmentData";
-        groupBoxFulfillmentData.Size = new Size(697, 582);
-        groupBoxFulfillmentData.TabIndex = 69;
-        groupBoxFulfillmentData.TabStop = false;
-        groupBoxFulfillmentData.Text = "Fulfillment Data";
-        // 
-        // labelObjectiveType
-        // 
-        labelObjectiveType.AutoSize = true;
-        labelObjectiveType.Font = new Font("Victor Mono", 7.874999F);
-        labelObjectiveType.Location = new Point(6, 33);
-        labelObjectiveType.Name = "labelObjectiveType";
-        labelObjectiveType.Size = new Size(56, 26);
-        labelObjectiveType.TabIndex = 22;
-        labelObjectiveType.Text = "Type";
-        // 
-        // labelObjectiveQuestKeys
-        // 
-        labelObjectiveQuestKeys.AutoSize = true;
-        labelObjectiveQuestKeys.Font = new Font("Victor Mono", 7.874999F);
-        labelObjectiveQuestKeys.Location = new Point(19, 291);
-        labelObjectiveQuestKeys.Name = "labelObjectiveQuestKeys";
-        labelObjectiveQuestKeys.Size = new Size(122, 26);
-        labelObjectiveQuestKeys.TabIndex = 69;
-        labelObjectiveQuestKeys.Text = "Quest Keys";
-        // 
-        // comboBoxObjectiveType
-        // 
-        comboBoxObjectiveType.Font = new Font("Victor Mono", 7.874999F);
-        comboBoxObjectiveType.FormattingEnabled = true;
-        comboBoxObjectiveType.Location = new Point(6, 62);
-        comboBoxObjectiveType.Name = "comboBoxObjectiveType";
-        comboBoxObjectiveType.Size = new Size(147, 34);
-        comboBoxObjectiveType.TabIndex = 21;
-        // 
-        // textBoxObjectiveQuestData
-        // 
-        textBoxObjectiveQuestData.Font = new Font("Victor Mono", 7.874999F);
-        textBoxObjectiveQuestData.Location = new Point(6, 319);
-        textBoxObjectiveQuestData.Multiline = true;
-        textBoxObjectiveQuestData.Name = "textBoxObjectiveQuestData";
-        textBoxObjectiveQuestData.Size = new Size(408, 244);
-        textBoxObjectiveQuestData.TabIndex = 68;
-        // 
-        // groupBoxFetchData
-        // 
-        groupBoxFetchData.Controls.Add(labelFetchAmount);
-        groupBoxFetchData.Controls.Add(numFetchAmount);
-        groupBoxFetchData.Controls.Add(labelFetchId);
-        groupBoxFetchData.Controls.Add(numFetchId);
-        groupBoxFetchData.Controls.Add(comboBoxFetchType);
-        groupBoxFetchData.Controls.Add(labelFetchType);
-        groupBoxFetchData.Location = new Point(174, 36);
-        groupBoxFetchData.Name = "groupBoxFetchData";
-        groupBoxFetchData.Size = new Size(240, 242);
-        groupBoxFetchData.TabIndex = 33;
-        groupBoxFetchData.TabStop = false;
-        groupBoxFetchData.Text = "Fetch Data";
-        // 
-        // labelFetchAmount
-        // 
-        labelFetchAmount.AutoSize = true;
-        labelFetchAmount.Font = new Font("Victor Mono", 7.874999F);
-        labelFetchAmount.Location = new Point(12, 188);
-        labelFetchAmount.Name = "labelFetchAmount";
-        labelFetchAmount.Size = new Size(78, 26);
-        labelFetchAmount.TabIndex = 36;
-        labelFetchAmount.Text = "Amount";
-        // 
-        // numFetchAmount
-        // 
-        numFetchAmount.Font = new Font("Victor Mono", 7.874999F);
-        numFetchAmount.Location = new Point(96, 186);
-        numFetchAmount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-        numFetchAmount.Name = "numFetchAmount";
-        numFetchAmount.Size = new Size(124, 37);
-        numFetchAmount.TabIndex = 35;
-        numFetchAmount.TextAlign = HorizontalAlignment.Center;
-        // 
-        // labelFetchId
-        // 
-        labelFetchId.AutoSize = true;
-        labelFetchId.Font = new Font("Victor Mono", 7.874999F);
-        labelFetchId.Location = new Point(56, 124);
-        labelFetchId.Name = "labelFetchId";
-        labelFetchId.Size = new Size(34, 26);
-        labelFetchId.TabIndex = 34;
-        labelFetchId.Text = "Id";
-        // 
-        // numFetchId
-        // 
-        numFetchId.Font = new Font("Victor Mono", 7.874999F);
-        numFetchId.Location = new Point(96, 122);
-        numFetchId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-        numFetchId.Name = "numFetchId";
-        numFetchId.Size = new Size(124, 37);
-        numFetchId.TabIndex = 33;
-        numFetchId.TextAlign = HorizontalAlignment.Center;
-        // 
-        // comboBoxFetchType
-        // 
-        comboBoxFetchType.FormattingEnabled = true;
-        comboBoxFetchType.Location = new Point(6, 59);
-        comboBoxFetchType.Name = "comboBoxFetchType";
-        comboBoxFetchType.Size = new Size(224, 34);
-        comboBoxFetchType.TabIndex = 1;
-        // 
-        // labelFetchType
-        // 
-        labelFetchType.AutoSize = true;
-        labelFetchType.Location = new Point(6, 30);
-        labelFetchType.Name = "labelFetchType";
-        labelFetchType.Size = new Size(122, 26);
-        labelFetchType.TabIndex = 0;
-        labelFetchType.Text = "Fetch Type";
-        // 
-        // groupBoxDestinationData
-        // 
-        groupBoxDestinationData.Controls.Add(labelDestinationY2);
-        groupBoxDestinationData.Controls.Add(numDestinationY2);
-        groupBoxDestinationData.Controls.Add(labelDestinationX2);
-        groupBoxDestinationData.Controls.Add(numDestinationX2);
-        groupBoxDestinationData.Controls.Add(labelDestinationY1);
-        groupBoxDestinationData.Controls.Add(numDestinationY1);
-        groupBoxDestinationData.Controls.Add(labelDestinationX1);
-        groupBoxDestinationData.Controls.Add(numDestinationX1);
-        groupBoxDestinationData.Controls.Add(labelDestinationMapId);
-        groupBoxDestinationData.Controls.Add(numDestinationMapId);
-        groupBoxDestinationData.Location = new Point(420, 199);
-        groupBoxDestinationData.Name = "groupBoxDestinationData";
-        groupBoxDestinationData.Size = new Size(260, 317);
-        groupBoxDestinationData.TabIndex = 1;
-        groupBoxDestinationData.TabStop = false;
-        groupBoxDestinationData.Text = "Destination Data";
-        // 
-        // labelDestinationY2
-        // 
-        labelDestinationY2.AutoSize = true;
-        labelDestinationY2.Font = new Font("Victor Mono", 7.874999F);
-        labelDestinationY2.Location = new Point(65, 266);
-        labelDestinationY2.Name = "labelDestinationY2";
-        labelDestinationY2.Size = new Size(34, 26);
-        labelDestinationY2.TabIndex = 36;
-        labelDestinationY2.Text = "Y2";
-        // 
-        // numDestinationY2
-        // 
-        numDestinationY2.Font = new Font("Victor Mono", 7.874999F);
-        numDestinationY2.Location = new Point(105, 264);
-        numDestinationY2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-        numDestinationY2.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numDestinationY2.Name = "numDestinationY2";
-        numDestinationY2.Size = new Size(124, 37);
-        numDestinationY2.TabIndex = 35;
-        numDestinationY2.TextAlign = HorizontalAlignment.Center;
-        // 
-        // labelDestinationX2
-        // 
-        labelDestinationX2.AutoSize = true;
-        labelDestinationX2.Font = new Font("Victor Mono", 7.874999F);
-        labelDestinationX2.Location = new Point(65, 223);
-        labelDestinationX2.Name = "labelDestinationX2";
-        labelDestinationX2.Size = new Size(34, 26);
-        labelDestinationX2.TabIndex = 34;
-        labelDestinationX2.Text = "X2";
-        // 
-        // numDestinationX2
-        // 
-        numDestinationX2.Font = new Font("Victor Mono", 7.874999F);
-        numDestinationX2.Location = new Point(105, 221);
-        numDestinationX2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-        numDestinationX2.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numDestinationX2.Name = "numDestinationX2";
-        numDestinationX2.Size = new Size(124, 37);
-        numDestinationX2.TabIndex = 33;
-        numDestinationX2.TextAlign = HorizontalAlignment.Center;
-        // 
-        // labelDestinationY1
-        // 
-        labelDestinationY1.AutoSize = true;
-        labelDestinationY1.Font = new Font("Victor Mono", 7.874999F);
-        labelDestinationY1.Location = new Point(65, 155);
-        labelDestinationY1.Name = "labelDestinationY1";
-        labelDestinationY1.Size = new Size(34, 26);
-        labelDestinationY1.TabIndex = 32;
-        labelDestinationY1.Text = "Y1";
-        // 
-        // numDestinationY1
-        // 
-        numDestinationY1.Font = new Font("Victor Mono", 7.874999F);
-        numDestinationY1.Location = new Point(105, 153);
-        numDestinationY1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-        numDestinationY1.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numDestinationY1.Name = "numDestinationY1";
-        numDestinationY1.Size = new Size(124, 37);
-        numDestinationY1.TabIndex = 31;
-        numDestinationY1.TextAlign = HorizontalAlignment.Center;
-        // 
-        // labelDestinationX1
-        // 
-        labelDestinationX1.AutoSize = true;
-        labelDestinationX1.Font = new Font("Victor Mono", 7.874999F);
-        labelDestinationX1.Location = new Point(65, 112);
-        labelDestinationX1.Name = "labelDestinationX1";
-        labelDestinationX1.Size = new Size(34, 26);
-        labelDestinationX1.TabIndex = 30;
-        labelDestinationX1.Text = "X1";
-        // 
-        // numDestinationX1
-        // 
-        numDestinationX1.Font = new Font("Victor Mono", 7.874999F);
-        numDestinationX1.Location = new Point(105, 110);
-        numDestinationX1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-        numDestinationX1.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numDestinationX1.Name = "numDestinationX1";
-        numDestinationX1.Size = new Size(124, 37);
-        numDestinationX1.TabIndex = 29;
-        numDestinationX1.TextAlign = HorizontalAlignment.Center;
-        // 
-        // labelDestinationMapId
-        // 
-        labelDestinationMapId.AutoSize = true;
-        labelDestinationMapId.Font = new Font("Victor Mono", 7.874999F);
-        labelDestinationMapId.Location = new Point(21, 37);
-        labelDestinationMapId.Name = "labelDestinationMapId";
-        labelDestinationMapId.Size = new Size(78, 26);
-        labelDestinationMapId.TabIndex = 28;
-        labelDestinationMapId.Text = "Map Id";
-        // 
-        // numDestinationMapId
-        // 
-        numDestinationMapId.Font = new Font("Victor Mono", 7.874999F);
-        numDestinationMapId.Location = new Point(105, 35);
-        numDestinationMapId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-        numDestinationMapId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numDestinationMapId.Name = "numDestinationMapId";
-        numDestinationMapId.Size = new Size(124, 37);
-        numDestinationMapId.TabIndex = 27;
-        numDestinationMapId.TextAlign = HorizontalAlignment.Center;
-        // 
-        // groupBoxSlayData
-        // 
-        groupBoxSlayData.Controls.Add(labelSlayEnemyId);
-        groupBoxSlayData.Controls.Add(labelSlayAmount);
-        groupBoxSlayData.Controls.Add(numSlayEnemyId);
-        groupBoxSlayData.Controls.Add(numSlayAmount);
-        groupBoxSlayData.Location = new Point(420, 36);
-        groupBoxSlayData.Name = "groupBoxSlayData";
-        groupBoxSlayData.Size = new Size(260, 157);
-        groupBoxSlayData.TabIndex = 38;
-        groupBoxSlayData.TabStop = false;
-        groupBoxSlayData.Text = "Slay Data";
-        // 
-        // labelSlayEnemyId
-        // 
-        labelSlayEnemyId.AutoSize = true;
-        labelSlayEnemyId.Font = new Font("Victor Mono", 7.874999F);
-        labelSlayEnemyId.Location = new Point(19, 52);
-        labelSlayEnemyId.Name = "labelSlayEnemyId";
-        labelSlayEnemyId.Size = new Size(100, 26);
-        labelSlayEnemyId.TabIndex = 32;
-        labelSlayEnemyId.Text = "Enemy Id";
-        // 
-        // labelSlayAmount
-        // 
-        labelSlayAmount.AutoSize = true;
-        labelSlayAmount.Font = new Font("Victor Mono", 7.874999F);
-        labelSlayAmount.Location = new Point(41, 112);
-        labelSlayAmount.Name = "labelSlayAmount";
-        labelSlayAmount.Size = new Size(78, 26);
-        labelSlayAmount.TabIndex = 32;
-        labelSlayAmount.Text = "Amount";
-        // 
-        // numSlayEnemyId
-        // 
-        numSlayEnemyId.Font = new Font("Victor Mono", 7.874999F);
-        numSlayEnemyId.Location = new Point(125, 50);
-        numSlayEnemyId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-        numSlayEnemyId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numSlayEnemyId.Name = "numSlayEnemyId";
-        numSlayEnemyId.Size = new Size(124, 37);
-        numSlayEnemyId.TabIndex = 31;
-        numSlayEnemyId.TextAlign = HorizontalAlignment.Center;
-        // 
-        // numSlayAmount
-        // 
-        numSlayAmount.Font = new Font("Victor Mono", 7.874999F);
-        numSlayAmount.Location = new Point(125, 106);
-        numSlayAmount.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-        numSlayAmount.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-        numSlayAmount.Name = "numSlayAmount";
-        numSlayAmount.Size = new Size(124, 37);
-        numSlayAmount.TabIndex = 31;
-        numSlayAmount.TextAlign = HorizontalAlignment.Center;
+        labelQuests.AutoSize = true;
+        labelQuests.Font = new Font("Victor Mono", 15.7499981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+        labelQuests.Location = new Point(5, 7);
+        labelQuests.Name = "labelQuests";
+        labelQuests.Size = new Size(78, 26);
+        labelQuests.TabIndex = 70;
+        labelQuests.Text = "Quests";
         // 
         // buttonDeleteQuest
         // 
         buttonDeleteQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
         buttonDeleteQuest.ForeColor = Color.Red;
-        buttonDeleteQuest.Location = new Point(9, 1165);
-        buttonDeleteQuest.Margin = new Padding(6);
+        buttonDeleteQuest.Location = new Point(9, 785);
         buttonDeleteQuest.Name = "buttonDeleteQuest";
-        buttonDeleteQuest.Size = new Size(172, 92);
+        buttonDeleteQuest.Size = new Size(93, 43);
         buttonDeleteQuest.TabIndex = 68;
         buttonDeleteQuest.Text = "❌";
         buttonDeleteQuest.UseVisualStyleBackColor = true;
@@ -479,10 +212,9 @@ partial class QuestBoard
         // 
         buttonAddQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
         buttonAddQuest.ForeColor = Color.Green;
-        buttonAddQuest.Location = new Point(316, 1163);
-        buttonAddQuest.Margin = new Padding(6);
+        buttonAddQuest.Location = new Point(173, 785);
         buttonAddQuest.Name = "buttonAddQuest";
-        buttonAddQuest.Size = new Size(166, 97);
+        buttonAddQuest.Size = new Size(89, 43);
         buttonAddQuest.TabIndex = 67;
         buttonAddQuest.Text = "✨";
         buttonAddQuest.UseVisualStyleBackColor = true;
@@ -491,10 +223,11 @@ partial class QuestBoard
         // 
         listBoxQuests.Font = new Font("Victor Mono", 7.874999F);
         listBoxQuests.FormattingEnabled = true;
-        listBoxQuests.ItemHeight = 26;
-        listBoxQuests.Location = new Point(6, 6);
+        listBoxQuests.ItemHeight = 12;
+        listBoxQuests.Location = new Point(9, 40);
+        listBoxQuests.Margin = new Padding(2, 1, 2, 1);
         listBoxQuests.Name = "listBoxQuests";
-        listBoxQuests.Size = new Size(476, 1148);
+        listBoxQuests.Size = new Size(253, 736);
         listBoxQuests.TabIndex = 13;
         // 
         // groupBoxObjectiveData
@@ -502,7 +235,7 @@ partial class QuestBoard
         groupBoxObjectiveData.Controls.Add(groupBoxObjectiveLogs);
         groupBoxObjectiveData.Controls.Add(buttonDeleteObjective);
         groupBoxObjectiveData.Controls.Add(buttonAddObjective);
-        groupBoxObjectiveData.Controls.Add(groupBoxIndiscriminateData);
+        groupBoxObjectiveData.Controls.Add(groupBoxFulfillmentData);
         groupBoxObjectiveData.Controls.Add(labelObjectiveId);
         groupBoxObjectiveData.Controls.Add(numObjectiveId);
         groupBoxObjectiveData.Controls.Add(labelObjectiveDescription);
@@ -511,9 +244,11 @@ partial class QuestBoard
         groupBoxObjectiveData.Controls.Add(checkBoxHiddenByDefault);
         groupBoxObjectiveData.Controls.Add(checkBoxIsOptional);
         groupBoxObjectiveData.Font = new Font("Victor Mono", 7.874999F);
-        groupBoxObjectiveData.Location = new Point(488, 15);
+        groupBoxObjectiveData.Location = new Point(266, 240);
+        groupBoxObjectiveData.Margin = new Padding(2, 1, 2, 1);
         groupBoxObjectiveData.Name = "groupBoxObjectiveData";
-        groupBoxObjectiveData.Size = new Size(1838, 624);
+        groupBoxObjectiveData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxObjectiveData.Size = new Size(1058, 588);
         groupBoxObjectiveData.TabIndex = 19;
         groupBoxObjectiveData.TabStop = false;
         groupBoxObjectiveData.Text = "Objective Data";
@@ -530,9 +265,11 @@ partial class QuestBoard
         groupBoxObjectiveLogs.Controls.Add(textBoxLogActive);
         groupBoxObjectiveLogs.Controls.Add(labelLogInactive);
         groupBoxObjectiveLogs.Controls.Add(textBoxLogInactive);
-        groupBoxObjectiveLogs.Location = new Point(84, 206);
+        groupBoxObjectiveLogs.Location = new Point(5, 368);
+        groupBoxObjectiveLogs.Margin = new Padding(2, 1, 2, 1);
         groupBoxObjectiveLogs.Name = "groupBoxObjectiveLogs";
-        groupBoxObjectiveLogs.Size = new Size(1748, 318);
+        groupBoxObjectiveLogs.Padding = new Padding(2, 1, 2, 1);
+        groupBoxObjectiveLogs.Size = new Size(746, 149);
         groupBoxObjectiveLogs.TabIndex = 70;
         groupBoxObjectiveLogs.TabStop = false;
         groupBoxObjectiveLogs.Text = "Logs";
@@ -540,96 +277,105 @@ partial class QuestBoard
         // labelLogMissed
         // 
         labelLogMissed.AutoSize = true;
-        labelLogMissed.Location = new Point(49, 260);
+        labelLogMissed.Location = new Point(26, 122);
+        labelLogMissed.Margin = new Padding(2, 0, 2, 0);
         labelLogMissed.Name = "labelLogMissed";
-        labelLogMissed.Size = new Size(78, 26);
+        labelLogMissed.Size = new Size(43, 13);
         labelLogMissed.TabIndex = 17;
         labelLogMissed.Text = "Missed";
         // 
         // textBoxLogMissed
         // 
         textBoxLogMissed.Font = new Font("Victor Mono", 7.874999F);
-        textBoxLogMissed.Location = new Point(133, 257);
+        textBoxLogMissed.Location = new Point(72, 120);
+        textBoxLogMissed.Margin = new Padding(2, 1, 2, 1);
         textBoxLogMissed.Name = "textBoxLogMissed";
-        textBoxLogMissed.Size = new Size(1604, 37);
+        textBoxLogMissed.Size = new Size(649, 22);
         textBoxLogMissed.TabIndex = 16;
         // 
         // labelLogFailed
         // 
         labelLogFailed.AutoSize = true;
-        labelLogFailed.Location = new Point(49, 197);
+        labelLogFailed.Location = new Point(26, 92);
+        labelLogFailed.Margin = new Padding(2, 0, 2, 0);
         labelLogFailed.Name = "labelLogFailed";
-        labelLogFailed.Size = new Size(78, 26);
+        labelLogFailed.Size = new Size(43, 13);
         labelLogFailed.TabIndex = 15;
         labelLogFailed.Text = "Failed";
         // 
         // textBoxLogFailed
         // 
         textBoxLogFailed.Font = new Font("Victor Mono", 7.874999F);
-        textBoxLogFailed.Location = new Point(133, 194);
+        textBoxLogFailed.Location = new Point(72, 91);
+        textBoxLogFailed.Margin = new Padding(2, 1, 2, 1);
         textBoxLogFailed.Name = "textBoxLogFailed";
-        textBoxLogFailed.Size = new Size(1604, 37);
+        textBoxLogFailed.Size = new Size(649, 22);
         textBoxLogFailed.TabIndex = 14;
         // 
         // labelLogCompleted
         // 
         labelLogCompleted.AutoSize = true;
-        labelLogCompleted.Location = new Point(16, 139);
+        labelLogCompleted.Location = new Point(9, 65);
+        labelLogCompleted.Margin = new Padding(2, 0, 2, 0);
         labelLogCompleted.Name = "labelLogCompleted";
-        labelLogCompleted.Size = new Size(111, 26);
+        labelLogCompleted.Size = new Size(61, 13);
         labelLogCompleted.TabIndex = 13;
         labelLogCompleted.Text = "Completed";
         // 
         // textBoxLogCompleted
         // 
         textBoxLogCompleted.Font = new Font("Victor Mono", 7.874999F);
-        textBoxLogCompleted.Location = new Point(133, 136);
+        textBoxLogCompleted.Location = new Point(72, 64);
+        textBoxLogCompleted.Margin = new Padding(2, 1, 2, 1);
         textBoxLogCompleted.Name = "textBoxLogCompleted";
-        textBoxLogCompleted.Size = new Size(1604, 37);
+        textBoxLogCompleted.Size = new Size(649, 22);
         textBoxLogCompleted.TabIndex = 12;
         // 
         // labelLogActive
         // 
         labelLogActive.AutoSize = true;
-        labelLogActive.Location = new Point(49, 85);
+        labelLogActive.Location = new Point(26, 40);
+        labelLogActive.Margin = new Padding(2, 0, 2, 0);
         labelLogActive.Name = "labelLogActive";
-        labelLogActive.Size = new Size(78, 26);
+        labelLogActive.Size = new Size(43, 13);
         labelLogActive.TabIndex = 11;
         labelLogActive.Text = "Active";
         // 
         // textBoxLogActive
         // 
         textBoxLogActive.Font = new Font("Victor Mono", 7.874999F);
-        textBoxLogActive.Location = new Point(133, 82);
+        textBoxLogActive.Location = new Point(72, 38);
+        textBoxLogActive.Margin = new Padding(2, 1, 2, 1);
         textBoxLogActive.Name = "textBoxLogActive";
-        textBoxLogActive.Size = new Size(1604, 37);
+        textBoxLogActive.Size = new Size(649, 22);
         textBoxLogActive.TabIndex = 10;
         // 
         // labelLogInactive
         // 
         labelLogInactive.AutoSize = true;
-        labelLogInactive.Location = new Point(27, 37);
+        labelLogInactive.Location = new Point(15, 17);
+        labelLogInactive.Margin = new Padding(2, 0, 2, 0);
         labelLogInactive.Name = "labelLogInactive";
-        labelLogInactive.Size = new Size(100, 26);
+        labelLogInactive.Size = new Size(55, 13);
         labelLogInactive.TabIndex = 9;
         labelLogInactive.Text = "Inactive";
         // 
         // textBoxLogInactive
         // 
         textBoxLogInactive.Font = new Font("Victor Mono", 7.874999F);
-        textBoxLogInactive.Location = new Point(133, 26);
+        textBoxLogInactive.Location = new Point(72, 12);
+        textBoxLogInactive.Margin = new Padding(2, 1, 2, 1);
         textBoxLogInactive.Name = "textBoxLogInactive";
-        textBoxLogInactive.Size = new Size(1604, 37);
+        textBoxLogInactive.Size = new Size(649, 22);
         textBoxLogInactive.TabIndex = 8;
         // 
         // buttonDeleteObjective
         // 
         buttonDeleteObjective.Font = new Font("Cascadia Code", 8.25F);
         buttonDeleteObjective.ForeColor = Color.Red;
-        buttonDeleteObjective.Location = new Point(9, 463);
-        buttonDeleteObjective.Margin = new Padding(6);
+        buttonDeleteObjective.Location = new Point(5, 217);
         buttonDeleteObjective.Name = "buttonDeleteObjective";
-        buttonDeleteObjective.Size = new Size(70, 62);
+        buttonDeleteObjective.Size = new Size(38, 29);
         buttonDeleteObjective.TabIndex = 67;
         buttonDeleteObjective.Text = "❌";
         buttonDeleteObjective.UseVisualStyleBackColor = true;
@@ -638,20 +384,92 @@ partial class QuestBoard
         // 
         buttonAddObjective.Font = new Font("Cascadia Code", 8.25F);
         buttonAddObjective.ForeColor = Color.Green;
-        buttonAddObjective.Location = new Point(9, 389);
-        buttonAddObjective.Margin = new Padding(6);
+        buttonAddObjective.Location = new Point(5, 182);
         buttonAddObjective.Name = "buttonAddObjective";
-        buttonAddObjective.Size = new Size(70, 62);
+        buttonAddObjective.Size = new Size(38, 29);
         buttonAddObjective.TabIndex = 66;
         buttonAddObjective.Text = "✨";
         buttonAddObjective.UseVisualStyleBackColor = true;
         // 
+        // groupBoxFulfillmentData
+        // 
+        groupBoxFulfillmentData.Controls.Add(groupBoxQuestData);
+        groupBoxFulfillmentData.Controls.Add(labelObjectiveType);
+        groupBoxFulfillmentData.Controls.Add(comboBoxObjectiveType);
+        groupBoxFulfillmentData.Controls.Add(groupBoxIndiscriminateData);
+        groupBoxFulfillmentData.Controls.Add(groupBoxFetchData);
+        groupBoxFulfillmentData.Controls.Add(groupBoxDestinationData);
+        groupBoxFulfillmentData.Controls.Add(groupBoxSlayData);
+        groupBoxFulfillmentData.Location = new Point(48, 105);
+        groupBoxFulfillmentData.Margin = new Padding(2, 1, 2, 1);
+        groupBoxFulfillmentData.Name = "groupBoxFulfillmentData";
+        groupBoxFulfillmentData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxFulfillmentData.Size = new Size(935, 273);
+        groupBoxFulfillmentData.TabIndex = 69;
+        groupBoxFulfillmentData.TabStop = false;
+        groupBoxFulfillmentData.Text = "Fulfillment Data";
+        // 
+        // groupBoxQuestData
+        // 
+        groupBoxQuestData.Controls.Add(textBoxObjectiveQuestData);
+        groupBoxQuestData.Controls.Add(labelObjectiveQuestKeys);
+        groupBoxQuestData.Location = new Point(571, 15);
+        groupBoxQuestData.Name = "groupBoxQuestData";
+        groupBoxQuestData.Size = new Size(235, 151);
+        groupBoxQuestData.TabIndex = 70;
+        groupBoxQuestData.TabStop = false;
+        groupBoxQuestData.Text = "Quest Data";
+        // 
+        // textBoxObjectiveQuestData
+        // 
+        textBoxObjectiveQuestData.Font = new Font("Victor Mono", 7.874999F);
+        textBoxObjectiveQuestData.Location = new Point(5, 30);
+        textBoxObjectiveQuestData.Margin = new Padding(2, 1, 2, 1);
+        textBoxObjectiveQuestData.Multiline = true;
+        textBoxObjectiveQuestData.Name = "textBoxObjectiveQuestData";
+        textBoxObjectiveQuestData.Size = new Size(222, 116);
+        textBoxObjectiveQuestData.TabIndex = 68;
+        // 
+        // labelObjectiveQuestKeys
+        // 
+        labelObjectiveQuestKeys.AutoSize = true;
+        labelObjectiveQuestKeys.Font = new Font("Victor Mono", 7.874999F);
+        labelObjectiveQuestKeys.Location = new Point(5, 16);
+        labelObjectiveQuestKeys.Margin = new Padding(2, 0, 2, 0);
+        labelObjectiveQuestKeys.Name = "labelObjectiveQuestKeys";
+        labelObjectiveQuestKeys.Size = new Size(31, 13);
+        labelObjectiveQuestKeys.TabIndex = 69;
+        labelObjectiveQuestKeys.Text = "Keys";
+        // 
+        // labelObjectiveType
+        // 
+        labelObjectiveType.AutoSize = true;
+        labelObjectiveType.Font = new Font("Victor Mono", 7.874999F);
+        labelObjectiveType.Location = new Point(3, 15);
+        labelObjectiveType.Margin = new Padding(2, 0, 2, 0);
+        labelObjectiveType.Name = "labelObjectiveType";
+        labelObjectiveType.Size = new Size(31, 13);
+        labelObjectiveType.TabIndex = 22;
+        labelObjectiveType.Text = "Type";
+        // 
+        // comboBoxObjectiveType
+        // 
+        comboBoxObjectiveType.Font = new Font("Victor Mono", 7.874999F);
+        comboBoxObjectiveType.FormattingEnabled = true;
+        comboBoxObjectiveType.Location = new Point(3, 29);
+        comboBoxObjectiveType.Margin = new Padding(2, 1, 2, 1);
+        comboBoxObjectiveType.Name = "comboBoxObjectiveType";
+        comboBoxObjectiveType.Size = new Size(81, 20);
+        comboBoxObjectiveType.TabIndex = 21;
+        // 
         // groupBoxIndiscriminateData
         // 
         groupBoxIndiscriminateData.Controls.Add(textBoxIndiscriminateData);
-        groupBoxIndiscriminateData.Location = new Point(9, 530);
+        groupBoxIndiscriminateData.Location = new Point(4, 218);
+        groupBoxIndiscriminateData.Margin = new Padding(2, 1, 2, 1);
         groupBoxIndiscriminateData.Name = "groupBoxIndiscriminateData";
-        groupBoxIndiscriminateData.Size = new Size(1823, 92);
+        groupBoxIndiscriminateData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxIndiscriminateData.Size = new Size(927, 43);
         groupBoxIndiscriminateData.TabIndex = 37;
         groupBoxIndiscriminateData.TabStop = false;
         groupBoxIndiscriminateData.Text = "Indiscriminate Data";
@@ -659,27 +477,307 @@ partial class QuestBoard
         // textBoxIndiscriminateData
         // 
         textBoxIndiscriminateData.Font = new Font("Victor Mono", 7.874999F);
-        textBoxIndiscriminateData.Location = new Point(18, 36);
+        textBoxIndiscriminateData.Location = new Point(10, 17);
+        textBoxIndiscriminateData.Margin = new Padding(2, 1, 2, 1);
         textBoxIndiscriminateData.Name = "textBoxIndiscriminateData";
-        textBoxIndiscriminateData.Size = new Size(1794, 37);
+        textBoxIndiscriminateData.Size = new Size(913, 22);
         textBoxIndiscriminateData.TabIndex = 25;
+        // 
+        // groupBoxFetchData
+        // 
+        groupBoxFetchData.Controls.Add(labelFetchAmount);
+        groupBoxFetchData.Controls.Add(numFetchAmount);
+        groupBoxFetchData.Controls.Add(labelFetchId);
+        groupBoxFetchData.Controls.Add(numFetchId);
+        groupBoxFetchData.Controls.Add(comboBoxFetchType);
+        groupBoxFetchData.Controls.Add(labelFetchType);
+        groupBoxFetchData.Location = new Point(293, 15);
+        groupBoxFetchData.Margin = new Padding(2, 1, 2, 1);
+        groupBoxFetchData.Name = "groupBoxFetchData";
+        groupBoxFetchData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxFetchData.Size = new Size(129, 113);
+        groupBoxFetchData.TabIndex = 33;
+        groupBoxFetchData.TabStop = false;
+        groupBoxFetchData.Text = "Fetch Data";
+        // 
+        // labelFetchAmount
+        // 
+        labelFetchAmount.AutoSize = true;
+        labelFetchAmount.Font = new Font("Victor Mono", 7.874999F);
+        labelFetchAmount.Location = new Point(6, 88);
+        labelFetchAmount.Margin = new Padding(2, 0, 2, 0);
+        labelFetchAmount.Name = "labelFetchAmount";
+        labelFetchAmount.Size = new Size(43, 13);
+        labelFetchAmount.TabIndex = 36;
+        labelFetchAmount.Text = "Amount";
+        // 
+        // numFetchAmount
+        // 
+        numFetchAmount.Font = new Font("Victor Mono", 7.874999F);
+        numFetchAmount.Location = new Point(52, 87);
+        numFetchAmount.Margin = new Padding(2, 1, 2, 1);
+        numFetchAmount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+        numFetchAmount.Name = "numFetchAmount";
+        numFetchAmount.Size = new Size(67, 22);
+        numFetchAmount.TabIndex = 35;
+        numFetchAmount.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelFetchId
+        // 
+        labelFetchId.AutoSize = true;
+        labelFetchId.Font = new Font("Victor Mono", 7.874999F);
+        labelFetchId.Location = new Point(30, 58);
+        labelFetchId.Margin = new Padding(2, 0, 2, 0);
+        labelFetchId.Name = "labelFetchId";
+        labelFetchId.Size = new Size(19, 13);
+        labelFetchId.TabIndex = 34;
+        labelFetchId.Text = "Id";
+        // 
+        // numFetchId
+        // 
+        numFetchId.Font = new Font("Victor Mono", 7.874999F);
+        numFetchId.Location = new Point(52, 57);
+        numFetchId.Margin = new Padding(2, 1, 2, 1);
+        numFetchId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+        numFetchId.Name = "numFetchId";
+        numFetchId.Size = new Size(67, 22);
+        numFetchId.TabIndex = 33;
+        numFetchId.TextAlign = HorizontalAlignment.Center;
+        // 
+        // comboBoxFetchType
+        // 
+        comboBoxFetchType.FormattingEnabled = true;
+        comboBoxFetchType.Location = new Point(3, 28);
+        comboBoxFetchType.Margin = new Padding(2, 1, 2, 1);
+        comboBoxFetchType.Name = "comboBoxFetchType";
+        comboBoxFetchType.Size = new Size(122, 20);
+        comboBoxFetchType.TabIndex = 1;
+        // 
+        // labelFetchType
+        // 
+        labelFetchType.AutoSize = true;
+        labelFetchType.Location = new Point(3, 14);
+        labelFetchType.Margin = new Padding(2, 0, 2, 0);
+        labelFetchType.Name = "labelFetchType";
+        labelFetchType.Size = new Size(67, 13);
+        labelFetchType.TabIndex = 0;
+        labelFetchType.Text = "Fetch Type";
+        // 
+        // groupBoxDestinationData
+        // 
+        groupBoxDestinationData.Controls.Add(labelDestinationY2);
+        groupBoxDestinationData.Controls.Add(numDestinationY2);
+        groupBoxDestinationData.Controls.Add(labelDestinationX2);
+        groupBoxDestinationData.Controls.Add(numDestinationX2);
+        groupBoxDestinationData.Controls.Add(labelDestinationY1);
+        groupBoxDestinationData.Controls.Add(numDestinationY1);
+        groupBoxDestinationData.Controls.Add(labelDestinationX1);
+        groupBoxDestinationData.Controls.Add(numDestinationX1);
+        groupBoxDestinationData.Controls.Add(labelDestinationMapId);
+        groupBoxDestinationData.Controls.Add(numDestinationMapId);
+        groupBoxDestinationData.Location = new Point(149, 17);
+        groupBoxDestinationData.Margin = new Padding(2, 1, 2, 1);
+        groupBoxDestinationData.Name = "groupBoxDestinationData";
+        groupBoxDestinationData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxDestinationData.Size = new Size(140, 149);
+        groupBoxDestinationData.TabIndex = 1;
+        groupBoxDestinationData.TabStop = false;
+        groupBoxDestinationData.Text = "Destination Data";
+        // 
+        // labelDestinationY2
+        // 
+        labelDestinationY2.AutoSize = true;
+        labelDestinationY2.Font = new Font("Victor Mono", 7.874999F);
+        labelDestinationY2.Location = new Point(35, 125);
+        labelDestinationY2.Margin = new Padding(2, 0, 2, 0);
+        labelDestinationY2.Name = "labelDestinationY2";
+        labelDestinationY2.Size = new Size(19, 13);
+        labelDestinationY2.TabIndex = 36;
+        labelDestinationY2.Text = "Y2";
+        // 
+        // numDestinationY2
+        // 
+        numDestinationY2.Font = new Font("Victor Mono", 7.874999F);
+        numDestinationY2.Location = new Point(57, 124);
+        numDestinationY2.Margin = new Padding(2, 1, 2, 1);
+        numDestinationY2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        numDestinationY2.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numDestinationY2.Name = "numDestinationY2";
+        numDestinationY2.Size = new Size(67, 22);
+        numDestinationY2.TabIndex = 35;
+        numDestinationY2.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelDestinationX2
+        // 
+        labelDestinationX2.AutoSize = true;
+        labelDestinationX2.Font = new Font("Victor Mono", 7.874999F);
+        labelDestinationX2.Location = new Point(35, 105);
+        labelDestinationX2.Margin = new Padding(2, 0, 2, 0);
+        labelDestinationX2.Name = "labelDestinationX2";
+        labelDestinationX2.Size = new Size(19, 13);
+        labelDestinationX2.TabIndex = 34;
+        labelDestinationX2.Text = "X2";
+        // 
+        // numDestinationX2
+        // 
+        numDestinationX2.Font = new Font("Victor Mono", 7.874999F);
+        numDestinationX2.Location = new Point(57, 104);
+        numDestinationX2.Margin = new Padding(2, 1, 2, 1);
+        numDestinationX2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        numDestinationX2.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numDestinationX2.Name = "numDestinationX2";
+        numDestinationX2.Size = new Size(67, 22);
+        numDestinationX2.TabIndex = 33;
+        numDestinationX2.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelDestinationY1
+        // 
+        labelDestinationY1.AutoSize = true;
+        labelDestinationY1.Font = new Font("Victor Mono", 7.874999F);
+        labelDestinationY1.Location = new Point(35, 73);
+        labelDestinationY1.Margin = new Padding(2, 0, 2, 0);
+        labelDestinationY1.Name = "labelDestinationY1";
+        labelDestinationY1.Size = new Size(19, 13);
+        labelDestinationY1.TabIndex = 32;
+        labelDestinationY1.Text = "Y1";
+        // 
+        // numDestinationY1
+        // 
+        numDestinationY1.Font = new Font("Victor Mono", 7.874999F);
+        numDestinationY1.Location = new Point(57, 72);
+        numDestinationY1.Margin = new Padding(2, 1, 2, 1);
+        numDestinationY1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        numDestinationY1.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numDestinationY1.Name = "numDestinationY1";
+        numDestinationY1.Size = new Size(67, 22);
+        numDestinationY1.TabIndex = 31;
+        numDestinationY1.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelDestinationX1
+        // 
+        labelDestinationX1.AutoSize = true;
+        labelDestinationX1.Font = new Font("Victor Mono", 7.874999F);
+        labelDestinationX1.Location = new Point(35, 52);
+        labelDestinationX1.Margin = new Padding(2, 0, 2, 0);
+        labelDestinationX1.Name = "labelDestinationX1";
+        labelDestinationX1.Size = new Size(19, 13);
+        labelDestinationX1.TabIndex = 30;
+        labelDestinationX1.Text = "X1";
+        // 
+        // numDestinationX1
+        // 
+        numDestinationX1.Font = new Font("Victor Mono", 7.874999F);
+        numDestinationX1.Location = new Point(57, 52);
+        numDestinationX1.Margin = new Padding(2, 1, 2, 1);
+        numDestinationX1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+        numDestinationX1.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numDestinationX1.Name = "numDestinationX1";
+        numDestinationX1.Size = new Size(67, 22);
+        numDestinationX1.TabIndex = 29;
+        numDestinationX1.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelDestinationMapId
+        // 
+        labelDestinationMapId.AutoSize = true;
+        labelDestinationMapId.Font = new Font("Victor Mono", 7.874999F);
+        labelDestinationMapId.Location = new Point(11, 17);
+        labelDestinationMapId.Margin = new Padding(2, 0, 2, 0);
+        labelDestinationMapId.Name = "labelDestinationMapId";
+        labelDestinationMapId.Size = new Size(43, 13);
+        labelDestinationMapId.TabIndex = 28;
+        labelDestinationMapId.Text = "Map Id";
+        // 
+        // numDestinationMapId
+        // 
+        numDestinationMapId.Font = new Font("Victor Mono", 7.874999F);
+        numDestinationMapId.Location = new Point(57, 16);
+        numDestinationMapId.Margin = new Padding(2, 1, 2, 1);
+        numDestinationMapId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+        numDestinationMapId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numDestinationMapId.Name = "numDestinationMapId";
+        numDestinationMapId.Size = new Size(67, 22);
+        numDestinationMapId.TabIndex = 27;
+        numDestinationMapId.TextAlign = HorizontalAlignment.Center;
+        // 
+        // groupBoxSlayData
+        // 
+        groupBoxSlayData.Controls.Add(labelSlayEnemyId);
+        groupBoxSlayData.Controls.Add(labelSlayAmount);
+        groupBoxSlayData.Controls.Add(numSlayEnemyId);
+        groupBoxSlayData.Controls.Add(numSlayAmount);
+        groupBoxSlayData.Location = new Point(426, 15);
+        groupBoxSlayData.Margin = new Padding(2, 1, 2, 1);
+        groupBoxSlayData.Name = "groupBoxSlayData";
+        groupBoxSlayData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxSlayData.Size = new Size(140, 74);
+        groupBoxSlayData.TabIndex = 38;
+        groupBoxSlayData.TabStop = false;
+        groupBoxSlayData.Text = "Slay Data";
+        // 
+        // labelSlayEnemyId
+        // 
+        labelSlayEnemyId.AutoSize = true;
+        labelSlayEnemyId.Font = new Font("Victor Mono", 7.874999F);
+        labelSlayEnemyId.Location = new Point(10, 24);
+        labelSlayEnemyId.Margin = new Padding(2, 0, 2, 0);
+        labelSlayEnemyId.Name = "labelSlayEnemyId";
+        labelSlayEnemyId.Size = new Size(55, 13);
+        labelSlayEnemyId.TabIndex = 32;
+        labelSlayEnemyId.Text = "Enemy Id";
+        // 
+        // labelSlayAmount
+        // 
+        labelSlayAmount.AutoSize = true;
+        labelSlayAmount.Font = new Font("Victor Mono", 7.874999F);
+        labelSlayAmount.Location = new Point(22, 52);
+        labelSlayAmount.Margin = new Padding(2, 0, 2, 0);
+        labelSlayAmount.Name = "labelSlayAmount";
+        labelSlayAmount.Size = new Size(43, 13);
+        labelSlayAmount.TabIndex = 32;
+        labelSlayAmount.Text = "Amount";
+        // 
+        // numSlayEnemyId
+        // 
+        numSlayEnemyId.Font = new Font("Victor Mono", 7.874999F);
+        numSlayEnemyId.Location = new Point(67, 23);
+        numSlayEnemyId.Margin = new Padding(2, 1, 2, 1);
+        numSlayEnemyId.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+        numSlayEnemyId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numSlayEnemyId.Name = "numSlayEnemyId";
+        numSlayEnemyId.Size = new Size(67, 22);
+        numSlayEnemyId.TabIndex = 31;
+        numSlayEnemyId.TextAlign = HorizontalAlignment.Center;
+        // 
+        // numSlayAmount
+        // 
+        numSlayAmount.Font = new Font("Victor Mono", 7.874999F);
+        numSlayAmount.Location = new Point(67, 50);
+        numSlayAmount.Margin = new Padding(2, 1, 2, 1);
+        numSlayAmount.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+        numSlayAmount.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numSlayAmount.Name = "numSlayAmount";
+        numSlayAmount.Size = new Size(67, 22);
+        numSlayAmount.TabIndex = 31;
+        numSlayAmount.TextAlign = HorizontalAlignment.Center;
         // 
         // labelObjectiveId
         // 
         labelObjectiveId.AutoSize = true;
         labelObjectiveId.Font = new Font("Victor Mono", 7.874999F);
-        labelObjectiveId.Location = new Point(85, 36);
+        labelObjectiveId.Location = new Point(46, 17);
+        labelObjectiveId.Margin = new Padding(2, 0, 2, 0);
         labelObjectiveId.Name = "labelObjectiveId";
-        labelObjectiveId.Size = new Size(34, 26);
+        labelObjectiveId.Size = new Size(19, 13);
         labelObjectiveId.TabIndex = 26;
         labelObjectiveId.Text = "Id";
         // 
         // numObjectiveId
         // 
         numObjectiveId.Font = new Font("Victor Mono", 7.874999F);
-        numObjectiveId.Location = new Point(85, 71);
+        numObjectiveId.Location = new Point(46, 33);
+        numObjectiveId.Margin = new Padding(2, 1, 2, 1);
         numObjectiveId.Name = "numObjectiveId";
-        numObjectiveId.Size = new Size(124, 37);
+        numObjectiveId.Size = new Size(67, 22);
         numObjectiveId.TabIndex = 25;
         numObjectiveId.TextAlign = HorizontalAlignment.Center;
         // 
@@ -687,28 +785,31 @@ partial class QuestBoard
         // 
         labelObjectiveDescription.AutoSize = true;
         labelObjectiveDescription.Font = new Font("Victor Mono", 7.874999F);
-        labelObjectiveDescription.Location = new Point(85, 120);
+        labelObjectiveDescription.Location = new Point(46, 56);
+        labelObjectiveDescription.Margin = new Padding(2, 0, 2, 0);
         labelObjectiveDescription.Name = "labelObjectiveDescription";
-        labelObjectiveDescription.Size = new Size(133, 26);
+        labelObjectiveDescription.Size = new Size(73, 13);
         labelObjectiveDescription.TabIndex = 24;
         labelObjectiveDescription.Text = "Description";
         // 
         // textBoxObjectiveDescription
         // 
         textBoxObjectiveDescription.Font = new Font("Victor Mono", 7.874999F);
-        textBoxObjectiveDescription.Location = new Point(85, 154);
+        textBoxObjectiveDescription.Location = new Point(46, 72);
+        textBoxObjectiveDescription.Margin = new Padding(2, 1, 2, 1);
         textBoxObjectiveDescription.Name = "textBoxObjectiveDescription";
-        textBoxObjectiveDescription.Size = new Size(1736, 37);
+        textBoxObjectiveDescription.Size = new Size(937, 22);
         textBoxObjectiveDescription.TabIndex = 23;
         // 
         // listBoxObjectives
         // 
         listBoxObjectives.Font = new Font("Victor Mono", 7.874999F);
         listBoxObjectives.FormattingEnabled = true;
-        listBoxObjectives.ItemHeight = 26;
-        listBoxObjectives.Location = new Point(6, 38);
+        listBoxObjectives.ItemHeight = 12;
+        listBoxObjectives.Location = new Point(3, 18);
+        listBoxObjectives.Margin = new Padding(2, 1, 2, 1);
         listBoxObjectives.Name = "listBoxObjectives";
-        listBoxObjectives.Size = new Size(73, 342);
+        listBoxObjectives.Size = new Size(41, 160);
         listBoxObjectives.TabIndex = 20;
         // 
         // checkBoxHiddenByDefault
@@ -717,9 +818,10 @@ partial class QuestBoard
         checkBoxHiddenByDefault.Checked = true;
         checkBoxHiddenByDefault.CheckState = CheckState.Checked;
         checkBoxHiddenByDefault.Font = new Font("Victor Mono", 7.874999F);
-        checkBoxHiddenByDefault.Location = new Point(291, 54);
+        checkBoxHiddenByDefault.Location = new Point(157, 25);
+        checkBoxHiddenByDefault.Margin = new Padding(2, 1, 2, 1);
         checkBoxHiddenByDefault.Name = "checkBoxHiddenByDefault";
-        checkBoxHiddenByDefault.Size = new Size(231, 30);
+        checkBoxHiddenByDefault.Size = new Size(128, 17);
         checkBoxHiddenByDefault.TabIndex = 11;
         checkBoxHiddenByDefault.Text = "Hidden By Default";
         checkBoxHiddenByDefault.UseVisualStyleBackColor = true;
@@ -728,9 +830,10 @@ partial class QuestBoard
         // 
         checkBoxIsOptional.AutoSize = true;
         checkBoxIsOptional.Font = new Font("Victor Mono", 7.874999F);
-        checkBoxIsOptional.Location = new Point(291, 90);
+        checkBoxIsOptional.Location = new Point(157, 42);
+        checkBoxIsOptional.Margin = new Padding(2, 1, 2, 1);
         checkBoxIsOptional.Name = "checkBoxIsOptional";
-        checkBoxIsOptional.Size = new Size(165, 30);
+        checkBoxIsOptional.Size = new Size(92, 17);
         checkBoxIsOptional.TabIndex = 12;
         checkBoxIsOptional.Text = "Is Optional";
         checkBoxIsOptional.UseVisualStyleBackColor = true;
@@ -741,7 +844,7 @@ partial class QuestBoard
         groupBoxCoreData.Controls.Add(numRecommendedLevel);
         groupBoxCoreData.Controls.Add(textBoxOverview);
         groupBoxCoreData.Controls.Add(labelCategory);
-        groupBoxCoreData.Controls.Add(listBoxTags);
+        groupBoxCoreData.Controls.Add(listBoxQuestTags);
         groupBoxCoreData.Controls.Add(comboBoxCategory);
         groupBoxCoreData.Controls.Add(labelTags);
         groupBoxCoreData.Controls.Add(labelIconIndex);
@@ -754,9 +857,11 @@ partial class QuestBoard
         groupBoxCoreData.Controls.Add(textBoxName);
         groupBoxCoreData.Controls.Add(labelKey);
         groupBoxCoreData.Font = new Font("Victor Mono", 7.874999F);
-        groupBoxCoreData.Location = new Point(494, 645);
+        groupBoxCoreData.Location = new Point(266, 40);
+        groupBoxCoreData.Margin = new Padding(2, 1, 2, 1);
         groupBoxCoreData.Name = "groupBoxCoreData";
-        groupBoxCoreData.Size = new Size(1109, 605);
+        groupBoxCoreData.Padding = new Padding(2, 1, 2, 1);
+        groupBoxCoreData.Size = new Size(1058, 194);
         groupBoxCoreData.TabIndex = 18;
         groupBoxCoreData.TabStop = false;
         groupBoxCoreData.Text = "Core Data";
@@ -765,69 +870,76 @@ partial class QuestBoard
         // 
         labelRecommendedLevel.AutoSize = true;
         labelRecommendedLevel.Font = new Font("Victor Mono", 7.874999F);
-        labelRecommendedLevel.Location = new Point(6, 163);
+        labelRecommendedLevel.Location = new Point(4, 94);
+        labelRecommendedLevel.Margin = new Padding(2, 0, 2, 0);
         labelRecommendedLevel.Name = "labelRecommendedLevel";
-        labelRecommendedLevel.Size = new Size(199, 26);
+        labelRecommendedLevel.Size = new Size(109, 13);
         labelRecommendedLevel.TabIndex = 19;
         labelRecommendedLevel.Text = "Recommended Level";
         // 
         // numRecommendedLevel
         // 
         numRecommendedLevel.Font = new Font("Victor Mono", 7.874999F);
-        numRecommendedLevel.Location = new Point(211, 164);
+        numRecommendedLevel.Location = new Point(4, 108);
+        numRecommendedLevel.Margin = new Padding(2, 1, 2, 1);
         numRecommendedLevel.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
         numRecommendedLevel.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         numRecommendedLevel.Name = "numRecommendedLevel";
-        numRecommendedLevel.Size = new Size(122, 37);
+        numRecommendedLevel.Size = new Size(66, 22);
         numRecommendedLevel.TabIndex = 18;
         numRecommendedLevel.TextAlign = HorizontalAlignment.Center;
         // 
         // textBoxOverview
         // 
         textBoxOverview.Font = new Font("Victor Mono", 7.874999F);
-        textBoxOverview.Location = new Point(6, 354);
+        textBoxOverview.Location = new Point(460, 70);
+        textBoxOverview.Margin = new Padding(2, 1, 2, 1);
         textBoxOverview.Multiline = true;
         textBoxOverview.Name = "textBoxOverview";
-        textBoxOverview.Size = new Size(1082, 243);
+        textBoxOverview.Size = new Size(584, 116);
         textBoxOverview.TabIndex = 5;
         // 
         // labelCategory
         // 
         labelCategory.AutoSize = true;
         labelCategory.Font = new Font("Victor Mono", 7.874999F);
-        labelCategory.Location = new Point(277, 81);
+        labelCategory.Location = new Point(149, 38);
+        labelCategory.Margin = new Padding(2, 0, 2, 0);
         labelCategory.Name = "labelCategory";
-        labelCategory.Size = new Size(100, 26);
+        labelCategory.Size = new Size(55, 13);
         labelCategory.TabIndex = 14;
         labelCategory.Text = "Category";
         // 
-        // listBoxTags
+        // listBoxQuestTags
         // 
-        listBoxTags.Font = new Font("Victor Mono", 7.874999F);
-        listBoxTags.FormattingEnabled = true;
-        listBoxTags.ItemHeight = 26;
-        listBoxTags.Location = new Point(848, 62);
-        listBoxTags.Name = "listBoxTags";
-        listBoxTags.SelectionMode = SelectionMode.MultiExtended;
-        listBoxTags.Size = new Size(240, 186);
-        listBoxTags.TabIndex = 17;
+        listBoxQuestTags.Font = new Font("Victor Mono", 7.874999F);
+        listBoxQuestTags.FormattingEnabled = true;
+        listBoxQuestTags.ItemHeight = 12;
+        listBoxQuestTags.Location = new Point(197, 73);
+        listBoxQuestTags.Margin = new Padding(2, 1, 2, 1);
+        listBoxQuestTags.Name = "listBoxQuestTags";
+        listBoxQuestTags.SelectionMode = SelectionMode.MultiExtended;
+        listBoxQuestTags.Size = new Size(131, 112);
+        listBoxQuestTags.TabIndex = 17;
         // 
         // comboBoxCategory
         // 
         comboBoxCategory.Font = new Font("Victor Mono", 7.874999F);
         comboBoxCategory.FormattingEnabled = true;
-        comboBoxCategory.Location = new Point(383, 77);
+        comboBoxCategory.Location = new Point(206, 36);
+        comboBoxCategory.Margin = new Padding(2, 1, 2, 1);
         comboBoxCategory.Name = "comboBoxCategory";
-        comboBoxCategory.Size = new Size(329, 34);
+        comboBoxCategory.Size = new Size(179, 20);
         comboBoxCategory.TabIndex = 13;
         // 
         // labelTags
         // 
         labelTags.AutoSize = true;
         labelTags.Font = new Font("Victor Mono", 7.874999F);
-        labelTags.Location = new Point(848, 30);
+        labelTags.Location = new Point(197, 58);
+        labelTags.Margin = new Padding(2, 0, 2, 0);
         labelTags.Name = "labelTags";
-        labelTags.Size = new Size(56, 26);
+        labelTags.Size = new Size(31, 13);
         labelTags.TabIndex = 16;
         labelTags.Text = "Tags";
         // 
@@ -835,20 +947,22 @@ partial class QuestBoard
         // 
         labelIconIndex.AutoSize = true;
         labelIconIndex.Font = new Font("Victor Mono", 7.874999F);
-        labelIconIndex.Location = new Point(6, 81);
+        labelIconIndex.Location = new Point(3, 54);
+        labelIconIndex.Margin = new Padding(2, 0, 2, 0);
         labelIconIndex.Name = "labelIconIndex";
-        labelIconIndex.Size = new Size(122, 26);
+        labelIconIndex.Size = new Size(67, 13);
         labelIconIndex.TabIndex = 10;
         labelIconIndex.Text = "Icon Index";
         // 
         // numIconIndex
         // 
         numIconIndex.Font = new Font("Victor Mono", 7.874999F);
-        numIconIndex.Location = new Point(134, 79);
+        numIconIndex.Location = new Point(5, 68);
+        numIconIndex.Margin = new Padding(2, 1, 2, 1);
         numIconIndex.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
         numIconIndex.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         numIconIndex.Name = "numIconIndex";
-        numIconIndex.Size = new Size(122, 37);
+        numIconIndex.Size = new Size(66, 22);
         numIconIndex.TabIndex = 9;
         numIconIndex.TextAlign = HorizontalAlignment.Center;
         // 
@@ -856,9 +970,10 @@ partial class QuestBoard
         // 
         labelUnknownHint.AutoSize = true;
         labelUnknownHint.Font = new Font("Victor Mono", 7.874999F);
-        labelUnknownHint.Location = new Point(6, 233);
+        labelUnknownHint.Location = new Point(460, 13);
+        labelUnknownHint.Margin = new Padding(2, 0, 2, 0);
         labelUnknownHint.Name = "labelUnknownHint";
-        labelUnknownHint.Size = new Size(144, 26);
+        labelUnknownHint.Size = new Size(79, 13);
         labelUnknownHint.TabIndex = 8;
         labelUnknownHint.Text = "Unknown Hint";
         // 
@@ -866,86 +981,324 @@ partial class QuestBoard
         // 
         labelOverview.AutoSize = true;
         labelOverview.Font = new Font("Victor Mono", 7.874999F);
-        labelOverview.Location = new Point(6, 319);
+        labelOverview.Location = new Point(460, 54);
+        labelOverview.Margin = new Padding(2, 0, 2, 0);
         labelOverview.Name = "labelOverview";
-        labelOverview.Size = new Size(100, 26);
+        labelOverview.Size = new Size(55, 13);
         labelOverview.TabIndex = 6;
         labelOverview.Text = "Overview";
         // 
         // textBoxUnknownHint
         // 
         textBoxUnknownHint.Font = new Font("Victor Mono", 7.874999F);
-        textBoxUnknownHint.Location = new Point(6, 268);
+        textBoxUnknownHint.Location = new Point(460, 30);
+        textBoxUnknownHint.Margin = new Padding(2, 1, 2, 1);
         textBoxUnknownHint.Name = "textBoxUnknownHint";
-        textBoxUnknownHint.Size = new Size(1082, 37);
+        textBoxUnknownHint.Size = new Size(584, 22);
         textBoxUnknownHint.TabIndex = 7;
         // 
         // labelName
         // 
         labelName.AutoSize = true;
         labelName.Font = new Font("Victor Mono", 7.874999F);
-        labelName.Location = new Point(277, 30);
+        labelName.Location = new Point(149, 14);
+        labelName.Margin = new Padding(2, 0, 2, 0);
         labelName.Name = "labelName";
-        labelName.Size = new Size(56, 26);
+        labelName.Size = new Size(31, 13);
         labelName.TabIndex = 4;
         labelName.Text = "Name";
         // 
         // textBoxKey
         // 
         textBoxKey.Font = new Font("Victor Mono", 7.874999F);
-        textBoxKey.Location = new Point(57, 30);
+        textBoxKey.Location = new Point(31, 14);
+        textBoxKey.Margin = new Padding(2, 1, 2, 1);
         textBoxKey.Name = "textBoxKey";
-        textBoxKey.Size = new Size(200, 37);
+        textBoxKey.Size = new Size(110, 22);
         textBoxKey.TabIndex = 1;
         // 
         // textBoxName
         // 
         textBoxName.Font = new Font("Victor Mono", 7.874999F);
-        textBoxName.Location = new Point(339, 27);
+        textBoxName.Location = new Point(183, 13);
+        textBoxName.Margin = new Padding(2, 1, 2, 1);
         textBoxName.Name = "textBoxName";
-        textBoxName.Size = new Size(494, 37);
+        textBoxName.Size = new Size(268, 22);
         textBoxName.TabIndex = 3;
         // 
         // labelKey
         // 
         labelKey.AutoSize = true;
         labelKey.Font = new Font("Victor Mono", 7.874999F);
-        labelKey.Location = new Point(6, 30);
+        labelKey.Location = new Point(3, 14);
+        labelKey.Margin = new Padding(2, 0, 2, 0);
         labelKey.Name = "labelKey";
-        labelKey.Size = new Size(45, 26);
+        labelKey.Size = new Size(25, 13);
         labelKey.TabIndex = 2;
         labelKey.Text = "Key";
         // 
         // tabCategories
         // 
-        tabCategories.Location = new Point(8, 40);
+        tabCategories.Controls.Add(labelCategoryIconIndex);
+        tabCategories.Controls.Add(numCategoryIconIndex);
+        tabCategories.Controls.Add(buttonDeleteCategory);
+        tabCategories.Controls.Add(buttonAddCategory);
+        tabCategories.Controls.Add(textBoxCategoryKey);
+        tabCategories.Controls.Add(labelCategoryKey);
+        tabCategories.Controls.Add(textBoxCategoryName);
+        tabCategories.Controls.Add(labelCategoryName);
+        tabCategories.Controls.Add(labelCategories);
+        tabCategories.Controls.Add(listBoxCategories);
+        tabCategories.Location = new Point(4, 21);
+        tabCategories.Margin = new Padding(2, 1, 2, 1);
         tabCategories.Name = "tabCategories";
-        tabCategories.Size = new Size(2342, 1266);
+        tabCategories.Size = new Size(1578, 838);
         tabCategories.TabIndex = 2;
         tabCategories.Text = "Categories";
         tabCategories.UseVisualStyleBackColor = true;
         // 
+        // buttonDeleteCategory
+        // 
+        buttonDeleteCategory.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonDeleteCategory.ForeColor = Color.Red;
+        buttonDeleteCategory.Location = new Point(8, 527);
+        buttonDeleteCategory.Name = "buttonDeleteCategory";
+        buttonDeleteCategory.Size = new Size(76, 43);
+        buttonDeleteCategory.TabIndex = 70;
+        buttonDeleteCategory.Text = "❌";
+        buttonDeleteCategory.UseVisualStyleBackColor = true;
+        // 
+        // buttonAddCategory
+        // 
+        buttonAddCategory.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonAddCategory.ForeColor = Color.Green;
+        buttonAddCategory.Location = new Point(106, 527);
+        buttonAddCategory.Name = "buttonAddCategory";
+        buttonAddCategory.Size = new Size(75, 45);
+        buttonAddCategory.TabIndex = 69;
+        buttonAddCategory.Text = "✨";
+        buttonAddCategory.UseVisualStyleBackColor = true;
+        // 
+        // textBoxCategoryKey
+        // 
+        textBoxCategoryKey.Location = new Point(187, 110);
+        textBoxCategoryKey.Name = "textBoxCategoryKey";
+        textBoxCategoryKey.Size = new Size(99, 22);
+        textBoxCategoryKey.TabIndex = 30;
+        // 
+        // labelCategoryKey
+        // 
+        labelCategoryKey.AutoSize = true;
+        labelCategoryKey.Font = new Font("Victor Mono", 7.874999F);
+        labelCategoryKey.Location = new Point(186, 94);
+        labelCategoryKey.Margin = new Padding(2, 0, 2, 0);
+        labelCategoryKey.Name = "labelCategoryKey";
+        labelCategoryKey.Size = new Size(25, 13);
+        labelCategoryKey.TabIndex = 29;
+        labelCategoryKey.Text = "Key";
+        // 
+        // textBoxCategoryName
+        // 
+        textBoxCategoryName.Location = new Point(187, 52);
+        textBoxCategoryName.Name = "textBoxCategoryName";
+        textBoxCategoryName.Size = new Size(214, 22);
+        textBoxCategoryName.TabIndex = 28;
+        // 
+        // labelCategoryName
+        // 
+        labelCategoryName.AutoSize = true;
+        labelCategoryName.Font = new Font("Victor Mono", 7.874999F);
+        labelCategoryName.Location = new Point(186, 36);
+        labelCategoryName.Margin = new Padding(2, 0, 2, 0);
+        labelCategoryName.Name = "labelCategoryName";
+        labelCategoryName.Size = new Size(31, 13);
+        labelCategoryName.TabIndex = 27;
+        labelCategoryName.Text = "Name";
+        // 
+        // labelCategories
+        // 
+        labelCategories.AutoSize = true;
+        labelCategories.Font = new Font("Victor Mono", 15.7499981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+        labelCategories.Location = new Point(8, 7);
+        labelCategories.Name = "labelCategories";
+        labelCategories.Size = new Size(122, 26);
+        labelCategories.TabIndex = 1;
+        labelCategories.Text = "Categories";
+        // 
+        // listBoxCategories
+        // 
+        listBoxCategories.FormattingEnabled = true;
+        listBoxCategories.ItemHeight = 12;
+        listBoxCategories.Location = new Point(8, 36);
+        listBoxCategories.Name = "listBoxCategories";
+        listBoxCategories.Size = new Size(173, 484);
+        listBoxCategories.TabIndex = 0;
+        // 
         // tabTags
         // 
-        tabTags.Location = new Point(8, 40);
+        tabTags.Controls.Add(labelTagIconIndex);
+        tabTags.Controls.Add(numTagIconIndex);
+        tabTags.Controls.Add(buttonDeleteTag);
+        tabTags.Controls.Add(buttonAddTag);
+        tabTags.Controls.Add(textBoxTagKey);
+        tabTags.Controls.Add(labelTagKey);
+        tabTags.Controls.Add(textBoxTagName);
+        tabTags.Controls.Add(labelTagName);
+        tabTags.Controls.Add(labelTagList);
+        tabTags.Controls.Add(listBoxTags);
+        tabTags.Location = new Point(4, 21);
+        tabTags.Margin = new Padding(2, 1, 2, 1);
         tabTags.Name = "tabTags";
-        tabTags.Size = new Size(2342, 1266);
+        tabTags.Size = new Size(1578, 838);
         tabTags.TabIndex = 3;
         tabTags.Text = "Tags";
         tabTags.UseVisualStyleBackColor = true;
         // 
+        // buttonDeleteTag
+        // 
+        buttonDeleteTag.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonDeleteTag.ForeColor = Color.Red;
+        buttonDeleteTag.Location = new Point(8, 527);
+        buttonDeleteTag.Name = "buttonDeleteTag";
+        buttonDeleteTag.Size = new Size(76, 43);
+        buttonDeleteTag.TabIndex = 72;
+        buttonDeleteTag.Text = "❌";
+        buttonDeleteTag.UseVisualStyleBackColor = true;
+        // 
+        // buttonAddTag
+        // 
+        buttonAddTag.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonAddTag.ForeColor = Color.Green;
+        buttonAddTag.Location = new Point(106, 527);
+        buttonAddTag.Name = "buttonAddTag";
+        buttonAddTag.Size = new Size(75, 45);
+        buttonAddTag.TabIndex = 71;
+        buttonAddTag.Text = "✨";
+        buttonAddTag.UseVisualStyleBackColor = true;
+        // 
+        // textBoxTagKey
+        // 
+        textBoxTagKey.Location = new Point(187, 111);
+        textBoxTagKey.Name = "textBoxTagKey";
+        textBoxTagKey.Size = new Size(99, 22);
+        textBoxTagKey.TabIndex = 36;
+        // 
+        // labelTagKey
+        // 
+        labelTagKey.AutoSize = true;
+        labelTagKey.Font = new Font("Victor Mono", 7.874999F);
+        labelTagKey.Location = new Point(186, 95);
+        labelTagKey.Margin = new Padding(2, 0, 2, 0);
+        labelTagKey.Name = "labelTagKey";
+        labelTagKey.Size = new Size(25, 13);
+        labelTagKey.TabIndex = 35;
+        labelTagKey.Text = "Key";
+        // 
+        // textBoxTagName
+        // 
+        textBoxTagName.Location = new Point(187, 53);
+        textBoxTagName.Name = "textBoxTagName";
+        textBoxTagName.Size = new Size(214, 22);
+        textBoxTagName.TabIndex = 34;
+        // 
+        // labelTagName
+        // 
+        labelTagName.AutoSize = true;
+        labelTagName.Font = new Font("Victor Mono", 7.874999F);
+        labelTagName.Location = new Point(186, 37);
+        labelTagName.Margin = new Padding(2, 0, 2, 0);
+        labelTagName.Name = "labelTagName";
+        labelTagName.Size = new Size(31, 13);
+        labelTagName.TabIndex = 33;
+        labelTagName.Text = "Name";
+        // 
+        // labelTagList
+        // 
+        labelTagList.AutoSize = true;
+        labelTagList.Font = new Font("Victor Mono", 15.7499981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+        labelTagList.Location = new Point(8, 8);
+        labelTagList.Name = "labelTagList";
+        labelTagList.Size = new Size(56, 26);
+        labelTagList.TabIndex = 32;
+        labelTagList.Text = "Tags";
+        // 
+        // listBoxTags
+        // 
+        listBoxTags.FormattingEnabled = true;
+        listBoxTags.ItemHeight = 12;
+        listBoxTags.Location = new Point(8, 37);
+        listBoxTags.Name = "listBoxTags";
+        listBoxTags.Size = new Size(173, 484);
+        listBoxTags.TabIndex = 31;
+        // 
+        // labelCategoryIconIndex
+        // 
+        labelCategoryIconIndex.AutoSize = true;
+        labelCategoryIconIndex.Font = new Font("Victor Mono", 7.874999F);
+        labelCategoryIconIndex.Location = new Point(186, 165);
+        labelCategoryIconIndex.Margin = new Padding(2, 0, 2, 0);
+        labelCategoryIconIndex.Name = "labelCategoryIconIndex";
+        labelCategoryIconIndex.Size = new Size(67, 13);
+        labelCategoryIconIndex.TabIndex = 72;
+        labelCategoryIconIndex.Text = "Icon Index";
+        // 
+        // numCategoryIconIndex
+        // 
+        numCategoryIconIndex.Font = new Font("Victor Mono", 7.874999F);
+        numCategoryIconIndex.Location = new Point(188, 179);
+        numCategoryIconIndex.Margin = new Padding(2, 1, 2, 1);
+        numCategoryIconIndex.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+        numCategoryIconIndex.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numCategoryIconIndex.Name = "numCategoryIconIndex";
+        numCategoryIconIndex.Size = new Size(66, 22);
+        numCategoryIconIndex.TabIndex = 71;
+        numCategoryIconIndex.TextAlign = HorizontalAlignment.Center;
+        // 
+        // labelTagIconIndex
+        // 
+        labelTagIconIndex.AutoSize = true;
+        labelTagIconIndex.Font = new Font("Victor Mono", 7.874999F);
+        labelTagIconIndex.Location = new Point(187, 158);
+        labelTagIconIndex.Margin = new Padding(2, 0, 2, 0);
+        labelTagIconIndex.Name = "labelTagIconIndex";
+        labelTagIconIndex.Size = new Size(67, 13);
+        labelTagIconIndex.TabIndex = 74;
+        labelTagIconIndex.Text = "Icon Index";
+        // 
+        // numTagIconIndex
+        // 
+        numTagIconIndex.Font = new Font("Victor Mono", 7.874999F);
+        numTagIconIndex.Location = new Point(189, 172);
+        numTagIconIndex.Margin = new Padding(2, 1, 2, 1);
+        numTagIconIndex.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+        numTagIconIndex.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+        numTagIconIndex.Name = "numTagIconIndex";
+        numTagIconIndex.Size = new Size(66, 22);
+        numTagIconIndex.TabIndex = 73;
+        numTagIconIndex.TextAlign = HorizontalAlignment.Center;
+        // 
         // QuestBoard
         // 
-        AutoScaleDimensions = new SizeF(13F, 32F);
+        AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(2367, 1320);
-        Controls.Add(tabControl1);
+        ClientSize = new Size(1584, 861);
+        Controls.Add(tabControlQuestBoard);
+        Margin = new Padding(2, 1, 2, 1);
         Name = "QuestBoard";
         Text = "QuestBoard";
-        tabControl1.ResumeLayout(false);
+        tabControlQuestBoard.ResumeLayout(false);
         tabQuest.ResumeLayout(false);
+        tabQuest.PerformLayout();
+        groupBoxObjectiveData.ResumeLayout(false);
+        groupBoxObjectiveData.PerformLayout();
+        groupBoxObjectiveLogs.ResumeLayout(false);
+        groupBoxObjectiveLogs.PerformLayout();
         groupBoxFulfillmentData.ResumeLayout(false);
         groupBoxFulfillmentData.PerformLayout();
+        groupBoxQuestData.ResumeLayout(false);
+        groupBoxQuestData.PerformLayout();
+        groupBoxIndiscriminateData.ResumeLayout(false);
+        groupBoxIndiscriminateData.PerformLayout();
         groupBoxFetchData.ResumeLayout(false);
         groupBoxFetchData.PerformLayout();
         ((ISupportInitialize)numFetchAmount).EndInit();
@@ -961,23 +1314,23 @@ partial class QuestBoard
         groupBoxSlayData.PerformLayout();
         ((ISupportInitialize)numSlayEnemyId).EndInit();
         ((ISupportInitialize)numSlayAmount).EndInit();
-        groupBoxObjectiveData.ResumeLayout(false);
-        groupBoxObjectiveData.PerformLayout();
-        groupBoxObjectiveLogs.ResumeLayout(false);
-        groupBoxObjectiveLogs.PerformLayout();
-        groupBoxIndiscriminateData.ResumeLayout(false);
-        groupBoxIndiscriminateData.PerformLayout();
         ((ISupportInitialize)numObjectiveId).EndInit();
         groupBoxCoreData.ResumeLayout(false);
         groupBoxCoreData.PerformLayout();
         ((ISupportInitialize)numRecommendedLevel).EndInit();
         ((ISupportInitialize)numIconIndex).EndInit();
+        tabCategories.ResumeLayout(false);
+        tabCategories.PerformLayout();
+        tabTags.ResumeLayout(false);
+        tabTags.PerformLayout();
+        ((ISupportInitialize)numCategoryIconIndex).EndInit();
+        ((ISupportInitialize)numTagIconIndex).EndInit();
         ResumeLayout(false);
     }
 
     #endregion
 
-    private TabControl tabControl1;
+    private TabControl tabControlQuestBoard;
     private TabPage tabQuest;
     private TabPage tabCategories;
     private TabPage tabTags;
@@ -996,7 +1349,7 @@ partial class QuestBoard
     private Label labelCategory;
     private ComboBox comboBoxCategory;
     private Label labelTags;
-    private ListBox listBoxTags;
+    private ListBox listBoxQuestTags;
     private GroupBox groupBoxCoreData;
     private GroupBox groupBoxObjectiveData;
     private ListBox listBoxQuests;
@@ -1052,4 +1405,26 @@ partial class QuestBoard
     private GroupBox groupBoxFulfillmentData;
     private Label labelRecommendedLevel;
     private NumericUpDown numRecommendedLevel;
+    private Label labelCategories;
+    private ListBox listBoxCategories;
+    private Label labelQuests;
+    private TextBox textBoxCategoryKey;
+    private Label labelCategoryKey;
+    private TextBox textBoxCategoryName;
+    private Label labelCategoryName;
+    private TextBox textBoxTagKey;
+    private Label labelTagKey;
+    private TextBox textBoxTagName;
+    private Label labelTagName;
+    private Label labelTagList;
+    private ListBox listBoxTags;
+    private Button buttonDeleteCategory;
+    private Button buttonAddCategory;
+    private Button buttonDeleteTag;
+    private Button buttonAddTag;
+    private GroupBox groupBoxQuestData;
+    private Label labelCategoryIconIndex;
+    private NumericUpDown numCategoryIconIndex;
+    private Label labelTagIconIndex;
+    private NumericUpDown numTagIconIndex;
 }

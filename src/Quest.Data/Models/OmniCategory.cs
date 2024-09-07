@@ -8,7 +8,13 @@
 /// <param name="IconIndex">The index of the icon for the category.</param>
 public record OmniCategory(string Key, string Name, int IconIndex = 0)
 {
-    public string Key { get; } = Key;
-    public string Name { get; } = Name;
-    public int IconIndex { get; } = IconIndex;
+
+    public static OmniCategory DefaultTemplate()
+    {
+        return new("main", "Progression");
+    }
+
+    public string Key { get; set; } = Key;
+    public string Name { get; set; } = Name;
+    public int IconIndex { get; set; } = IconIndex;
 }
