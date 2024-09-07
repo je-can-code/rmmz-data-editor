@@ -4,12 +4,12 @@ using JMZ.Json.Data.Services;
 namespace JMZ.Dashboard.Boards;
 
 /// <summary>
-/// This portion of the BaseBoard is to encapsulate logic explicitly associated with the enemies board.
+///     This portion of the BaseBoard is to encapsulate logic explicitly associated with the enemies board.
 /// </summary>
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles the enemies and modifications to them.
+    ///     The board that primarily handles the enemies and modifications to them.
     /// </summary>
     private readonly EnemiesBoard enemiesBoard = new();
 

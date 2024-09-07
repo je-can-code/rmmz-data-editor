@@ -4,30 +4,31 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.UsageData;
 
-[Trait("Category","UsageData")]
+[Trait("Category", "UsageData")]
 public class CooldownExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public CooldownExtTests()
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.GetJabsCooldown();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -36,12 +37,13 @@ public class CooldownExtTests : BaseTests
         var fakeTag = fdg.CooldownTag(fakeTagValue);
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.GetJabsCooldown();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -50,12 +52,13 @@ public class CooldownExtTests : BaseTests
         // given
         var fakeTagValue = fdg.RmmzUNumber();
         modelUnderTest.UpdateJabsCooldown(fakeTagValue);
-        
+
         // when
         var actual = modelUnderTest.GetJabsCooldown();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -66,11 +69,12 @@ public class CooldownExtTests : BaseTests
         var fakeTagValue = fdg.RmmzUNumber();
         modelUnderTest.UpdateJabsCooldown(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsCooldown(expected);
-        
+
         // when
         var actual = modelUnderTest.GetJabsCooldown();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
 }

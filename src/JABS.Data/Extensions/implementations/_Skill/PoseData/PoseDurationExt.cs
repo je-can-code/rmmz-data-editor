@@ -6,6 +6,7 @@ public static class PoseDurationExt
 {
     public static decimal GetJabsPoseDuration(this RPG_Skill skill)
     {
-        return  skill.GetJabsPoseData().PoseDuration;
+        return skill.GetJabsPoseData()
+            .PoseDuration;
     }
 }

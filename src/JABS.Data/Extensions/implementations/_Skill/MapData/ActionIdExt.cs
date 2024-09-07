@@ -8,9 +8,9 @@ public static class ActionIdExt
 {
     public static decimal GetJabsActionId(this RPG_Skill skill)
     {
-        return skill.GetFirstNumberByTag(Tags.ActionId.Name)  ?? decimal.Zero;
+        return skill.GetFirstNumberByTag(Tags.ActionId.Name) ?? decimal.Zero;
     }
-    
+
     public static void UpdateJabsActionId(this RPG_Skill skill, decimal actionId)
     {
         // determine if this skill currently has actionId on it.
@@ -28,7 +28,7 @@ public static class ActionIdExt
         {
             // remove the tag entirely, zero is an invalid actionId.
             skill.RemoveNoteData(Tags.ActionId.Regex);
-            
+
             // stop processing.
             return;
         }

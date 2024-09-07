@@ -4,29 +4,30 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.UsageData;
 
-[Trait("Category","UsageData")]
+[Trait("Category", "UsageData")]
 public class AiSkillExclusionExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public AiSkillExclusionExtTests()
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.HasJabsAiSkillExclusion();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -34,12 +35,13 @@ public class AiSkillExclusionExtTests : BaseTests
         var fakeTag = fdg.AiSkillExclusionTag();
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.HasJabsAiSkillExclusion();
-        
+
         // then
-        actual.Should().BeTrue();
+        actual.Should()
+            .BeTrue();
     }
 
     [Fact]
@@ -50,11 +52,12 @@ public class AiSkillExclusionExtTests : BaseTests
         var fakeTagValue = true;
         modelUnderTest.UpdateJabsAiSkillExclusion(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsAiSkillExclusion(expected);
-        
+
         // when
         var actual = modelUnderTest.HasJabsAiSkillExclusion();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
 }

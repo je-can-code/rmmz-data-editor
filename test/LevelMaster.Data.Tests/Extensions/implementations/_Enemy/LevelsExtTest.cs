@@ -6,7 +6,7 @@ using Xunit;
 
 namespace JMZ.LevelMaster.Data.Tests.Extensions.implementations._Enemy;
 
-[Trait("Category","EnemyData")]
+[Trait("Category", "EnemyData")]
 public class LevelsExtTest : BaseTests
 {
     private readonly RPG_Enemy modelUnderTest;
@@ -25,11 +25,12 @@ public class LevelsExtTest : BaseTests
 
         // when
         var actual = modelUnderTest.GetLevel();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -39,11 +40,12 @@ public class LevelsExtTest : BaseTests
 
         // when
         var actual = modelUnderTest.GetLevel();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenUpdated_returnsUpdatedValue()
     {
@@ -56,26 +58,29 @@ public class LevelsExtTest : BaseTests
 
         // when
         var actual = modelUnderTest.GetLevel();
-        
+
         // then
-        actual.Should().Be(secondNumber);
+        actual.Should()
+            .Be(secondNumber);
     }
-    
+
     [Fact]
     public void whenRemoved_returnsDefault()
     {
         // given
         var fakeNumber = fdg.RmmzUNumber();
         modelUnderTest.UpdateLevel(fakeNumber);
-        
+
         var numberOfRemoval = decimal.Zero;
         modelUnderTest.UpdateLevel(numberOfRemoval);
 
         // when
         var actual = modelUnderTest.GetLevel();
-        
+
         // then
-        actual.Should().NotBe(fakeNumber);
-        actual.Should().Be(decimal.Zero);
+        actual.Should()
+            .NotBe(fakeNumber);
+        actual.Should()
+            .Be(decimal.Zero);
     }
 }

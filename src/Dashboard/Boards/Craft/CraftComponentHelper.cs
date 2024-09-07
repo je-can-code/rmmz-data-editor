@@ -6,22 +6,12 @@ using JMZ.Rmmz.Data.Models.db.@base;
 namespace JMZ.Dashboard.Boards.Craft;
 
 /// <summary>
-/// A helper form for conveniently managing components for recipes.
+///     A helper form for conveniently managing components for recipes.
 /// </summary>
 public partial class CraftComponentHelper : Form
 {
-    private bool needsSetup = true;
-
     private readonly Component currentComponent;
-
-    /// <summary>
-    /// Gets the component from the helper in its current state.
-    /// </summary>
-    /// <returns></returns>
-    public Component CurrentComponent()
-    {
-        return currentComponent.Clone();
-    }
+    private bool needsSetup = true;
 
     public CraftComponentHelper()
     {
@@ -34,9 +24,31 @@ public partial class CraftComponentHelper : Form
         ApplyUpdateEvents();
     }
 
+    /// <summary>
+    ///     Gets the component from the helper in its current state.
+    /// </summary>
+    /// <returns></returns>
+    public Component CurrentComponent()
+    {
+        return currentComponent.Clone();
+    }
+
+    #region setup
+    public void Setup()
+    {
+        if (!needsSetup) return;
+
+        comboBoxTypes.DataSource = Enum.GetValues(typeof(ComponentType));
+
+        RefreshComponentData();
+
+        needsSetup = false;
+    }
+    #endregion
+
     #region init
     /// <summary>
-    /// Initializes the data-binding of components to arbitrary values.
+    ///     Initializes the data-binding of components to arbitrary values.
     /// </summary>
     private void InitializeDataControls()
     {
@@ -50,7 +62,7 @@ public partial class CraftComponentHelper : Form
     }
 
     /// <summary>
-    /// Initializes all tooltips associated with this board.
+    ///     Initializes all tooltips associated with this board.
     /// </summary>
     private void InitializeTooltips()
     {
@@ -136,8 +148,10 @@ public partial class CraftComponentHelper : Form
 
             listBoxComponents.Items.Clear();
 
-            items
-                .Where(item => item.name.ToLower().Contains(currentFilterText))
+            items.Where(
+                    item => item.name
+                        .ToLower()
+                        .Contains(currentFilterText))
                 .ToList()
                 .ForEach(item => listBoxComponents.Items.Add(item));
         }
@@ -154,7 +168,6 @@ public partial class CraftComponentHelper : Form
         // update the visual indicator.
         textBoxCurrentCount.Text = quantity.ToString();
     }
-
     #endregion
 
     #region refresh
@@ -203,9 +216,6 @@ public partial class CraftComponentHelper : Form
                 currentComponent.Name = "SDP";
                 currentComponent.Id = 0;
                 break;
-            default:
-                // do nothing if not implemented.
-                break;
         }
 
         RefreshCurrentComponentVisual();
@@ -219,19 +229,21 @@ public partial class CraftComponentHelper : Form
     }
 
     /// <summary>
-    /// Populates the list of components based on the provided cache.
+    ///     Populates the list of components based on the provided cache.
     /// </summary>
     private void PopulateComponentsWithCache<T>(IEnumerable<T> cache)
     {
         // iterate over the cache dictionary.
-        cache.ToList().ForEach(value =>
-        {
-            // just in case there is null, don't process it.
-            if (value is null) return;
+        cache.ToList()
+            .ForEach(
+                value =>
+                {
+                    // just in case there is null, don't process it.
+                    if (value is null) return;
 
-            // add the cached item to the collection.
-            listBoxComponents.Items.Add(value);
-        });
+                    // add the cached item to the collection.
+                    listBoxComponents.Items.Add(value);
+                });
 
         // check if we have any items after adding the cache.
         if (listBoxComponents.Items.Count > 0)
@@ -239,20 +251,6 @@ public partial class CraftComponentHelper : Form
             // select the first item in the list.
             listBoxComponents.SelectedIndex = 0;
         }
-    }
-
-    #endregion
-
-    #region setup
-    public void Setup()
-    {
-        if (!needsSetup) return;
-
-        comboBoxTypes.DataSource = Enum.GetValues(typeof(ComponentType));
-
-        RefreshComponentData();
-
-        needsSetup = false;
     }
     #endregion
 }

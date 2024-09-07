@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
-    <RootNamespace>$(SolutionNamespace).Rmmz.Data.Tests</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
+        <RootNamespace>$(SolutionNamespace).Rmmz.Data.Tests</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj" />
-    
-    <ProjectReference Include="..\..\test\Base.Tests\Base.Tests.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Rmmz.Data\Rmmz.Data.csproj"/>
+
+        <ProjectReference Include="..\..\test\Base.Tests\Base.Tests.csproj"/>
+    </ItemGroup>
 
 </Project>

@@ -46,7 +46,7 @@ public static class ProximityExt
         else
         {
             // update the actual note.
-            skill.UpdateNoteData(Tags.Proximity.Regex, updatedNote);   
+            skill.UpdateNoteData(Tags.Proximity.Regex, updatedNote);
         }
     }
 }

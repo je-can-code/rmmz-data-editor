@@ -7,12 +7,12 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     private readonly DifficultyBoard difficultyBoard = new();
- 
+
     /// <summary>
-    /// When true, the prompt raised by trying to save is skipped when saving difficulties. 
+    ///     When true, the prompt raised by trying to save is skipped when saving difficulties.
     /// </summary>
     private bool skipDifficultySavePopup;
-    
+
     private partial void SetupDifficultyBoard()
     {
         difficultyBoard.FormClosing += FormUtils.HideBoard;
@@ -49,7 +49,7 @@ public partial class BaseBoard
             await SaveCrafting();
             return;
         }
-        
+
         // ask the user if they are sure they want to do it.
         var dialogResult = MessageBox.Show("Are you sure you want to save difficulties?");
 

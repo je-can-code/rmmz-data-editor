@@ -6,6 +6,7 @@ public static class PierceDelayExt
 {
     public static decimal GetJabsPiercingDelay(this RPG_Skill skill)
     {
-        return skill.GetJabsPiercingData().PierceDelay;
+        return skill.GetJabsPiercingData()
+            .PierceDelay;
     }
 }

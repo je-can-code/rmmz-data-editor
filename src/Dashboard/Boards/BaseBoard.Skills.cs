@@ -6,7 +6,7 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles skill modifications.
+    ///     The board that primarily handles skill modifications.
     /// </summary>
     private readonly SkillsBoard skillsBoard = new();
 

@@ -10,7 +10,7 @@ public static class GapCloserExt
     {
         return skill.HasBooleanTag(Tags.GapCloser.Name);
     }
-    
+
     public static void UpdateJabsGapCloser(this RPG_Skill skill, bool canGapClose)
     {
         // check what our current state is.

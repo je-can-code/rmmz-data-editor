@@ -4,7 +4,7 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Weapon.Coredata;
 
-[Trait("Category","CoreData")]
+[Trait("Category", "CoreData")]
 public class SkillIdTests : BaseTests
 {
     private readonly RPG_Weapon modelUnderTest;
@@ -13,21 +13,22 @@ public class SkillIdTests : BaseTests
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         var expected = decimal.Zero;
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.GetJabsSkillId();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenSetExplicitly_explicitValueIsReturned()
     {
@@ -36,12 +37,13 @@ public class SkillIdTests : BaseTests
         var fakeTag = fdg.SkillIdTag(fakeTagValue);
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.GetJabsSkillId();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -50,12 +52,13 @@ public class SkillIdTests : BaseTests
         // given
         var fakeTagValue = fdg.RmmzUNumber();
         modelUnderTest.UpdateJabsSkillId(fakeTagValue);
-        
+
         // when
         var actual = modelUnderTest.GetJabsSkillId();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -66,11 +69,12 @@ public class SkillIdTests : BaseTests
         var fakeTagValue = fdg.RmmzUNumber();
         modelUnderTest.UpdateJabsSkillId(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsSkillId(expected);
-        
+
         // when
         var actual = modelUnderTest.GetJabsSkillId();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
 }

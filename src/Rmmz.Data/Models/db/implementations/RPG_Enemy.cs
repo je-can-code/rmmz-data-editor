@@ -14,6 +14,6 @@ public class RPG_Enemy : RPG_BaseBattler
     public int exp { get; set; } = 0;
 
     public int gold { get; set; } = 0;
-    
+
     public int[] @params { get; set; } = [1, 0, 0, 0, 0, 0, 0, 0];
 }

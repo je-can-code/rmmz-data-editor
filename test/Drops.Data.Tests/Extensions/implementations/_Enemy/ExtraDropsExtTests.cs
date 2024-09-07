@@ -6,7 +6,7 @@ using Xunit;
 
 namespace JMZ.Drops.Data.Tests.Extensions.implementations._Enemy;
 
-[Trait("Category","EnemyData")]
+[Trait("Category", "EnemyData")]
 public class ExtraDropsExtTests : BaseTests
 {
     private readonly RPG_Enemy modelUnderTest;
@@ -26,9 +26,10 @@ public class ExtraDropsExtTests : BaseTests
         var actual = modelUnderTest.GetDropsData();
 
         // then
-        actual.Should().BeEmpty();
+        actual.Should()
+            .BeEmpty();
     }
-    
+
     [Fact]
     public void whenAdded_returnsDrops()
     {
@@ -41,9 +42,10 @@ public class ExtraDropsExtTests : BaseTests
         var actual = modelUnderTest.GetDropsData();
 
         // then
-        actual.Should().BeEquivalentTo(fakeDropItems);
+        actual.Should()
+            .BeEquivalentTo(fakeDropItems);
     }
-    
+
     [Fact]
     public void whenUpdated_returnsUpdatedDrops()
     {
@@ -55,15 +57,17 @@ public class ExtraDropsExtTests : BaseTests
         var secondDropItemsCount = fdg.RmmzUNumber();
         var secondDropItems = fdg.GenerateDropItems(secondDropItemsCount);
         modelUnderTest.UpdateDropsData(secondDropItems);
-        
+
         // when
         var actual = modelUnderTest.GetDropsData();
 
         // then
-        actual.Should().NotBeEquivalentTo(firstDropItems);
-        actual.Should().BeEquivalentTo(secondDropItems);
+        actual.Should()
+            .NotBeEquivalentTo(firstDropItems);
+        actual.Should()
+            .BeEquivalentTo(secondDropItems);
     }
-    
+
     [Fact]
     public void whenRemoved_returnsDefault()
     {
@@ -73,12 +77,14 @@ public class ExtraDropsExtTests : BaseTests
         modelUnderTest.UpdateDropsData(firstDropItems);
 
         modelUnderTest.UpdateDropsData([]);
-        
+
         // when
         var actual = modelUnderTest.GetDropsData();
 
         // then
-        actual.Should().NotBeEquivalentTo(firstDropItems);
-        actual.Should().BeEmpty();
+        actual.Should()
+            .NotBeEquivalentTo(firstDropItems);
+        actual.Should()
+            .BeEmpty();
     }
 }

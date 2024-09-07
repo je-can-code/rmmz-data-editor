@@ -6,6 +6,7 @@ public static class SdpDropChanceExt
 {
     public static decimal GetSdpDropChance(this RPG_Enemy enemy)
     {
-        return  enemy.GetSdpData().DropChance;
+        return enemy.GetSdpData()
+            .DropChance;
     }
 }

@@ -2,32 +2,32 @@
 using JMZ.Dashboard.Boards.Craft;
 using JMZ.Dashboard.Mappers;
 using JMZ.Dashboard.Utils;
-using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Drops.Data.Extensions.implementations._Enemy;
 using JMZ.JABS.Data.Extensions.implementations._Enemy;
 using JMZ.LevelMaster.Data.Extensions.implementations._Enemy;
 using JMZ.Rmmz.Data.Extensions.db.@base._Base;
 using JMZ.Rmmz.Data.Extensions.db.implementations._Enemy;
+using JMZ.Rmmz.Data.Models.db.implementations;
 using JMZ.Sdp.Data.Extensions.implementations._Enemy;
 
 namespace JMZ.Dashboard.Boards;
 
 public partial class EnemiesBoard : Form
 {
-    /// <summary>
-    /// The running list of parsed data including any edits made by the user.
-    /// </summary>
-    private List<RPG_Enemy> enemiesList = [];
-
     private readonly CraftComponentHelper dropHelper;
 
     /// <summary>
-    /// Whether or not this form needs setup.
+    ///     The running list of parsed data including any edits made by the user.
+    /// </summary>
+    private List<RPG_Enemy> enemiesList = [];
+
+    /// <summary>
+    ///     Whether or not this form needs setup.
     /// </summary>
     private bool needsSetup = true;
 
     /// <summary>
-    /// Constructor.
+    ///     Constructor.
     /// </summary>
     public EnemiesBoard()
     {
@@ -47,9 +47,94 @@ public partial class EnemiesBoard : Form
         dropHelper.Setup();
     }
 
+    public List<RPG_Enemy> Enemies()
+    {
+        return enemiesList;
+    }
+
+    // TODO: figure out how the clipboard works so we can setup keyboard shortcuts.
+    // protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    // {
+    //     if (this.ActiveControl == this.listBoxEnemies)
+    //     {
+    //         switch (keyData)
+    //         {
+    //             // copy
+    //             case Keys.Control | Keys.C:
+    //                 // this.CloneEnemyToClipboard();
+    //                 return true;
+    //             // pasta
+    //             case Keys.Control | Keys.V:
+    //                 // this.PasteEnemyToListbox();
+    //                 return true;
+    //         }
+    //     }
+    //
+    //     return base.ProcessCmdKey(ref msg, keyData);
+    // }
+
+    private void CloneEnemyToClipboard()
+    {
+        // grab the item from the listbox.
+        var selectedItem = (RPG_Enemy)listBoxEnemies.SelectedItem!;
+
+        // if there is no selected item, then don't clone it to the clipboard.
+        if (selectedItem is null) return;
+
+        var data = new DataObject("rpg_enemy", selectedItem);
+
+        // set the enemy to the clipboard.
+        Clipboard.SetDataObject(data);
+    }
+
+    private void PasteEnemyToListbox()
+    {
+        var clipboardItem = Clipboard.GetDataObject();
+
+        if (clipboardItem?.GetData("rpg_enemy") is not RPG_Enemy copiedEnemy) return;
+
+        // for user-friendliness, we clone right next to where the cursor is.
+        var selectedIndex = listBoxEnemies.SelectedIndex;
+
+        // check if there was no current selection.
+        if (selectedIndex == -1 || selectedIndex == listBoxEnemies.Items.Count - 1)
+        {
+            // add the item to the list without regard for index.
+            listBoxEnemies.Items.Add(copiedEnemy);
+        }
+        // we are in the middle somewhere.
+        else
+        {
+            // add it at the given index.
+            listBoxEnemies.Items.Insert(selectedIndex, copiedEnemy);
+        }
+    }
+
+    private (RPG_Enemy enemy, int index) GetEnemySelection()
+    {
+        // determine the selection.
+        var selectedItem = (RPG_Enemy?)listBoxEnemies.SelectedItem;
+
+        if (selectedItem == null)
+        {
+            throw new IndexOutOfRangeException("could not find the current selection for some reason");
+        }
+
+        // find the index of the selection in our local list.
+        var index = enemiesList.FindIndex(data => data != null && data.id == selectedItem.id);
+
+        // return both data points.
+        return new(selectedItem, index);
+    }
+
+    private void UpdateEnemyData(RPG_Enemy enemy, int index)
+    {
+        listBoxEnemies.Items[index - 1] = enemy;
+    }
+
     #region init
     /// <summary>
-    /// Initializes the data-binding of components to arbitrary values.
+    ///     Initializes the data-binding of components to arbitrary values.
     /// </summary>
     private void InitializeDataControls()
     {
@@ -63,7 +148,7 @@ public partial class EnemiesBoard : Form
     }
 
     /// <summary>
-    /// Initializes all tooltips associated with this board.
+    ///     Initializes all tooltips associated with this board.
     /// </summary>
     private void InitializeTooltips()
     {
@@ -101,10 +186,10 @@ public partial class EnemiesBoard : Form
 
         numMaxHp.ValueChanged += UpdateParamMaxHp;
         numMaxMp.ValueChanged += UpdateParamMaxMp;
-        
+
         // TODO: implement TP updating and retrieval.
         numMaxTp.ValueChanged += UpdateParamMaxTp;
-        
+
         numParamPower.ValueChanged += UpdateParamPower;
         numParamEndurance.ValueChanged += UpdateParamEndurance;
         numParamForce.ValueChanged += UpdateParamForce;
@@ -131,69 +216,6 @@ public partial class EnemiesBoard : Form
         checkBoxAiTraitFollower.CheckedChanged += UpdateJabsAiTraitFollower;
     }
     #endregion
-
-    public List<RPG_Enemy> Enemies()
-    {
-        return enemiesList;
-    }
-    
-    // TODO: figure out how the clipboard works so we can setup keyboard shortcuts.
-    // protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-    // {
-    //     if (this.ActiveControl == this.listBoxEnemies)
-    //     {
-    //         switch (keyData)
-    //         {
-    //             // copy
-    //             case Keys.Control | Keys.C:
-    //                 // this.CloneEnemyToClipboard();
-    //                 return true;
-    //             // pasta
-    //             case Keys.Control | Keys.V:
-    //                 // this.PasteEnemyToListbox();
-    //                 return true;
-    //         }
-    //     }
-    //
-    //     return base.ProcessCmdKey(ref msg, keyData);
-    // }
-
-    private void CloneEnemyToClipboard()
-    {
-        // grab the item from the listbox.
-        var selectedItem = (RPG_Enemy)listBoxEnemies.SelectedItem!;
-
-        // if there is no selected item, then don't clone it to the clipboard.
-        if (selectedItem is null) return;
-
-        var data = new DataObject("rpg_enemy", selectedItem);
-        
-        // set the enemy to the clipboard.
-        Clipboard.SetDataObject(data);
-    }
-
-    private void PasteEnemyToListbox()
-    {
-        var clipboardItem = Clipboard.GetDataObject();
-
-        if (clipboardItem?.GetData("rpg_enemy") is not RPG_Enemy copiedEnemy) return;
-        
-        // for user-friendliness, we clone right next to where the cursor is.
-        var selectedIndex = listBoxEnemies.SelectedIndex;
-        
-        // check if there was no current selection.
-        if (selectedIndex == -1 || selectedIndex == listBoxEnemies.Items.Count - 1)
-        {
-            // add the item to the list without regard for index.
-            listBoxEnemies.Items.Add(copiedEnemy);
-        }
-        // we are in the middle somewhere.
-        else
-        {
-            // add it at the given index.
-            listBoxEnemies.Items.Insert(selectedIndex, copiedEnemy);
-        }
-    }
 
     #region drop helper
     private void buttonDropHelper_Click(object sender, EventArgs e)
@@ -254,25 +276,6 @@ public partial class EnemiesBoard : Form
         selectedEnemy.UpdateDropsData(dropList);
     }
     #endregion
-
-    private (RPG_Enemy enemy, int index) GetEnemySelection()
-    {
-        // determine the selection.
-        var selectedItem = (RPG_Enemy?)listBoxEnemies.SelectedItem;
-
-        if (selectedItem == null) throw new IndexOutOfRangeException("could not find the current selection for some reason");
-
-        // find the index of the selection in our local list.
-        var index = enemiesList.FindIndex(data => data != null && data.id == selectedItem.id);
-
-        // return both data points.
-        return new(selectedItem, index);
-    }
-
-    private void UpdateEnemyData(RPG_Enemy enemy, int index)
-    {
-        listBoxEnemies.Items[index - 1] = enemy;
-    }
 
     #region parameters
     private void UpdateName(object? sender, EventArgs e)
@@ -500,7 +503,7 @@ public partial class EnemiesBoard : Form
             var key = textSdpKey.Text;
             var chance = numSdpChance.Value;
             var itemId = labelSdpItemIdValue.Text;
-        
+
             // update the SDP data.
             enemy.UpdateSdpData(key, chance, decimal.Parse(itemId));
         }
@@ -510,7 +513,7 @@ public partial class EnemiesBoard : Form
             // remove the SDP data.
             enemy.UpdateSdpData(string.Empty, 0, 0);
         }
-        
+
         // and update the data in the list.
         UpdateEnemyData(enemy, index);
     }
@@ -545,7 +548,7 @@ public partial class EnemiesBoard : Form
         // update the label with the selection from the helper.
         labelSdpItemIdValue.Text = helperComponent.Id.ToString();
     }
-    
+
     private void buttonUpdateSdpData_Click(object sender, EventArgs e)
     {
         UpdateSdpData();
@@ -566,7 +569,7 @@ public partial class EnemiesBoard : Form
         numSdpChance.Enabled = isEnabled;
     }
     #endregion sdp
-    
+
     #region jabs
     private void UpdateJabsSight(object? sender, EventArgs e)
     {
@@ -582,7 +585,7 @@ public partial class EnemiesBoard : Form
         // refresh the item in the list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsSightAlerted(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -597,7 +600,7 @@ public partial class EnemiesBoard : Form
         // refresh the item in the list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsPursuit(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -612,7 +615,7 @@ public partial class EnemiesBoard : Form
         // refresh the item in the list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsPursuitAlerted(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -627,7 +630,7 @@ public partial class EnemiesBoard : Form
         // refresh the item in the list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitCareful(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -639,7 +642,7 @@ public partial class EnemiesBoard : Form
         // update the running list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitExecutor(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -651,7 +654,7 @@ public partial class EnemiesBoard : Form
         // update the running list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitReckless(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -663,7 +666,7 @@ public partial class EnemiesBoard : Form
         // update the running list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitHealer(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -675,7 +678,7 @@ public partial class EnemiesBoard : Form
         // update the running list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitLeader(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -687,7 +690,7 @@ public partial class EnemiesBoard : Form
         // update the running list.
         UpdateEnemyData(enemy, index);
     }
-    
+
     private void UpdateJabsAiTraitFollower(object? sender, EventArgs e)
     {
         // get the data of the selected item.
@@ -745,7 +748,7 @@ public partial class EnemiesBoard : Form
         numExperience.Value = selectedEnemy.GetExperience();
         numGold.Value = selectedEnemy.GetGold();
     }
-    
+
     private void RefreshEnemies()
     {
         var selectedEnemy = (RPG_Enemy?)listBoxEnemies.SelectedItem;
@@ -765,13 +768,14 @@ public partial class EnemiesBoard : Form
         var extraDrops = selectedEnemy.GetDropsData();
         if (!extraDrops.Any()) return;
 
-        extraDrops.ForEach(extraDrop =>
-        {
-            var extraComponent = extraDrop.ToComponent();
-            extraComponent.Name = extraComponent.GetDisplayName();
+        extraDrops.ForEach(
+            extraDrop =>
+            {
+                var extraComponent = extraDrop.ToComponent();
+                extraComponent.Name = extraComponent.GetDisplayName();
 
-            listBoxDrops.Items.Add(extraComponent);
-        });
+                listBoxDrops.Items.Add(extraComponent);
+            });
     }
 
     private void RefreshSdp()
@@ -782,7 +786,8 @@ public partial class EnemiesBoard : Form
         var sdpKey = selectedEnemy.GetSdpKey();
         textSdpKey.Text = sdpKey;
         numSdpChance.Value = selectedEnemy.GetSdpDropChance();
-        labelSdpItemIdValue.Text = selectedEnemy.GetSdpItemId().ToString();
+        labelSdpItemIdValue.Text = selectedEnemy.GetSdpItemId()
+            .ToString();
 
         // no key means no SDP drop on this enemy.
         var hasSdp = !string.IsNullOrWhiteSpace(sdpKey);
@@ -842,15 +847,16 @@ public partial class EnemiesBoard : Form
         enemiesList = enemies;
 
         // iterate over each of the weapons in the list 
-        enemiesList.ForEach(enemy =>
-        {
-            // the first weapon in the list is always null, so accommodate.
-            if (enemy != null)
+        enemiesList.ForEach(
+            enemy =>
             {
-                // add the weapon to the running list.
-                listBoxEnemies.Items.Add(enemy);
-            }
-        });
+                // the first weapon in the list is always null, so accommodate.
+                if (enemy != null)
+                {
+                    // add the weapon to the running list.
+                    listBoxEnemies.Items.Add(enemy);
+                }
+            });
 
         // let this form know we've finished setup.
         SetupComplete();

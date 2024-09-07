@@ -1,28 +1,43 @@
 ﻿namespace JMZ.Quest.Data.Models;
 
 /// <summary>
-/// A data structure representing the shape of a single quest and its details.
+///     A data structure representing the shape of a single quest and its details.
 /// </summary>
 public record OmniQuest
 {
+    public static OmniQuest DefaultTemplate()
+    {
+        return new(
+            "neo-9999",
+            "The Journey Continues",
+            0,
+            string.Empty,
+            [],
+            "The old man at the Raevula Waterfront has a crazy idea for a heroic quest.",
+            "A new quest for brave adventurers to undertake the journey of a lifetime.",
+            1,
+            [OmniObjective.DefaultTemplate()]
+        );
+    }
+
     public string Key { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
-    public int IconIndex { get; set; } = 0;
-    
+    public int IconIndex { get; set; }
+
     public string CategoryKey { get; set; } = string.Empty;
-    
-    public string[] TagKeys { get; set; } = [];
-    
+
+    public List<string> TagKeys { get; set; } = [];
+
     public string UnknownHint { get; set; } = string.Empty;
-    
+
     public string Overview { get; set; } = string.Empty;
 
-    public int RecommendedLevel { get; set; } = 0;
-    
-    public OmniObjective[] Objectives { get; } = [];
-    
+    public int RecommendedLevel { get; set; }
+
+    public List<OmniObjective> Objectives { get; } = [];
+
     /// <summary>
-    /// Constructor.
+    ///     Constructor.
     /// </summary>
     /// <param name="key">The key of the quest.</param>
     /// <param name="name">The name of the quest.</param>
@@ -38,11 +53,11 @@ public record OmniQuest
         string name,
         int iconIndex,
         string categoryKey,
-        string[] tagKeys,
+        List<string> tagKeys,
         string unknownHint,
         string overview,
         int recommendedLevel,
-        OmniObjective[] objectives)
+        List<OmniObjective> objectives)
     {
         Key = key;
         Name = name;

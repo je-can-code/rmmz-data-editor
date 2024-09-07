@@ -8,16 +8,16 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles Crafting design.
+    ///     The board that primarily handles Crafting design.
     /// </summary>
     private readonly CraftBoard craftBoard = new();
 
     /// <summary>
-    /// When true, the prompt for skipping the prompt when saving crafting data.
-    /// When false, the confirmation popup will show.
+    ///     When true, the prompt for skipping the prompt when saving crafting data.
+    ///     When false, the confirmation popup will show.
     /// </summary>
     private bool skipCraftingSavePopup;
-    
+
     private partial void SetupCraftingBoard()
     {
         craftBoard.FormClosing += FormUtils.HideBoard;

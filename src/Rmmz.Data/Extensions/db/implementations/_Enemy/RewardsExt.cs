@@ -11,16 +11,16 @@ public static class RewardsExt
 
     public static void UpdateExperience(this RPG_Enemy enemy, decimal newExperience)
     {
-        enemy.exp = (int) newExperience;
+        enemy.exp = (int)newExperience;
     }
 
     public static int GetGold(this RPG_Enemy enemy)
     {
         return enemy.gold;
     }
-    
+
     public static void UpdateGold(this RPG_Enemy enemy, decimal newGold)
     {
-        enemy.gold = (int) newGold;
+        enemy.gold = (int)newGold;
     }
 }

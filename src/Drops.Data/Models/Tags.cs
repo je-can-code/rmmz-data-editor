@@ -5,9 +5,9 @@ namespace JMZ.Drops.Data.Models;
 internal static class Tags
 {
     public static Tag Drops { get; }
-    
+
     public static Tag DropMultiplier { get; }
-    
+
     public static Tag GoldMultiplier { get; }
 
     static Tags()
@@ -22,10 +22,10 @@ internal static class Tags
         return new(
             "drops",
             @"<drops:[ ]?(\[(i|item|w|weapon|a|armor),[ ]?(\d+),[ ]?(\d+)])>",
-            "The comma-delimited list of drops that this enemy can drop.\n" +
-            "This extends their existing in-database drops.");
+            "The comma-delimited list of drops that this enemy can drop.\n"
+            + "This extends their existing in-database drops.");
     }
-    
+
     private static Tag dropMultiplier()
     {
         return new(
@@ -33,7 +33,7 @@ internal static class Tags
             @"<dropMultiplier:[ ]?(-?\d+)>",
             "The percentage modifier applied against drops dropping.");
     }
-    
+
     private static Tag goldMultiplier()
     {
         return new(

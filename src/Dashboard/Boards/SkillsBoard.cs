@@ -16,17 +16,17 @@ public partial class SkillsBoard : Form
     private ToolTip _toolTip = new();
 
     /// <summary>
-    /// The running list of parsed data including any edits made by the user.
-    /// </summary>
-    private List<RPG_Skill> skillsList = [];
-
-    /// <summary>
-    /// Whether or not this form needs setup.
+    ///     Whether or not this form needs setup.
     /// </summary>
     private bool needsSetup = true;
 
     /// <summary>
-    /// Constructor.
+    ///     The running list of parsed data including any edits made by the user.
+    /// </summary>
+    private List<RPG_Skill> skillsList = [];
+
+    /// <summary>
+    ///     Constructor.
     /// </summary>
     public SkillsBoard()
     {
@@ -39,7 +39,7 @@ public partial class SkillsBoard : Form
     }
 
     /// <summary>
-    /// Initializes the data-binding of components to arbitrary values.
+    ///     Initializes the data-binding of components to arbitrary values.
     /// </summary>
     private void InitializeDataControls()
     {
@@ -82,7 +82,7 @@ public partial class SkillsBoard : Form
     }
 
     /// <summary>
-    /// Binds the update of the various controls across this form.
+    ///     Binds the update of the various controls across this form.
     /// </summary>
     private void ApplyUpdateEvents()
     {
@@ -156,7 +156,7 @@ public partial class SkillsBoard : Form
     }
 
     /// <summary>
-    /// Gets the current state of skills.
+    ///     Gets the current state of skills.
     /// </summary>
     /// <returns>The skill data including any edits.</returns>
     public List<RPG_Skill> Skills()
@@ -164,10 +164,72 @@ public partial class SkillsBoard : Form
         return skillsList;
     }
 
-    #region updates
+    /// <summary>
+    ///     Refreshes the form on-demand, repopulating all data points with the latest.
+    /// </summary>
+    private void RefreshForm(object? sender, EventArgs e)
+    {
+        _RefreshForm();
+    }
 
     /// <summary>
-    /// Gets the currently selected item and also the index of that item.
+    ///     Refreshes the form on-demand, repopulating all data points with the latest.
+    /// </summary>
+    private void _RefreshForm()
+    {
+        var selectedItem = (RPG_Skill)listboxSkills.SelectedItem!;
+
+        if (selectedItem == null) return;
+
+        // core data
+        label_skillIdValue.Text = selectedItem.id.ToString();
+        textBox_skillName.Text = selectedItem.name;
+        checkBox_hideFromJabsMenu.Checked = selectedItem.HasJabsHideFromQuickMenu();
+
+        // targeting data
+        checkBox_direct.Checked = selectedItem.HasJabsDirectTargeting();
+        num_radius.Value = selectedItem.GetJabsRadius();
+        num_proximity.Value = selectedItem.GetJabsProximity();
+        var hitboxIndex = comboBox_hitbox.FindString(
+            selectedItem.GetJabsHitbox()
+                .ToString());
+        if (hitboxIndex != -1)
+        {
+            comboBox_hitbox.SelectedIndex = hitboxIndex;
+        }
+
+        textBox_skillExtend.Text = selectedItem.GetSkillExtendIds();
+
+        // combo data
+        num_comboSkill.Value = selectedItem.GetJabsComboSkillId();
+        num_comboDelay.Value = selectedItem.GetJabsComboDelay();
+        checkBox_freeCombo.Checked = selectedItem.HasJabsFreeCombo();
+        checkBox_comboStarter.Checked = selectedItem.HasJabsAiComboStarter();
+
+        // map data
+        num_actionId.Value = selectedItem.GetJabsActionId();
+        num_duration.Value = selectedItem.GetJabsDuration();
+
+        // piercing data
+        num_piercingCount.Value = selectedItem.GetJabsPiercingCount();
+        num_piercingDelay.Value = selectedItem.GetJabsPiercingDelay();
+
+        // usage data
+        num_cooldown.Value = selectedItem.GetJabsCooldown();
+        num_castAnimation.Value = selectedItem.GetJabsCastAnimation();
+        num_castTime.Value = selectedItem.GetJabsCastTime();
+        checkBox_aiSkillExclude.Checked = selectedItem.HasJabsAiSkillExclusion();
+        checkBox_canGapClose.Checked = selectedItem.HasJabsGapCloser();
+
+        // pose data
+        textBox_poseSuffix.Text = selectedItem.GetJabsPoseSuffix();
+        num_poseIndex.Value = selectedItem.GetJabsPoseIndex();
+        num_poseDuration.Value = selectedItem.GetJabsPoseDuration();
+    }
+
+    #region updates
+    /// <summary>
+    ///     Gets the currently selected item and also the index of that item.
     /// </summary>
     /// <returns>A pair of skill and its index in the list of skills.</returns>
     private (RPG_Skill skill, int index) GetSkillSelection()
@@ -183,7 +245,7 @@ public partial class SkillsBoard : Form
     }
 
     /// <summary>
-    /// Updates the 
+    ///     Updates the
     /// </summary>
     /// <param name="skill"></param>
     /// <param name="index"></param>
@@ -473,67 +535,6 @@ public partial class SkillsBoard : Form
     }
     #endregion updates
 
-    /// <summary>
-    /// Refreshes the form on-demand, repopulating all data points with the latest.
-    /// </summary>
-    private void RefreshForm(object? sender, EventArgs e)
-    {
-        _RefreshForm();
-    }
-
-    /// <summary>
-    /// Refreshes the form on-demand, repopulating all data points with the latest.
-    /// </summary>
-    private void _RefreshForm()
-    {
-        var selectedItem = (RPG_Skill)listboxSkills.SelectedItem!;
-
-        if (selectedItem == null) return;
-
-        // core data
-        label_skillIdValue.Text = selectedItem.id.ToString();
-        textBox_skillName.Text = selectedItem.name;
-        checkBox_hideFromJabsMenu.Checked = selectedItem.HasJabsHideFromQuickMenu();
-
-        // targeting data
-        checkBox_direct.Checked = selectedItem.HasJabsDirectTargeting();
-        num_radius.Value = selectedItem.GetJabsRadius();
-        num_proximity.Value = selectedItem.GetJabsProximity();
-        var hitboxIndex = comboBox_hitbox.FindString(selectedItem.GetJabsHitbox().ToString());
-        if (hitboxIndex != -1)
-        {
-            comboBox_hitbox.SelectedIndex = hitboxIndex;
-        }
-
-        textBox_skillExtend.Text = selectedItem.GetSkillExtendIds();
-
-        // combo data
-        num_comboSkill.Value = selectedItem.GetJabsComboSkillId();
-        num_comboDelay.Value = selectedItem.GetJabsComboDelay();
-        checkBox_freeCombo.Checked = selectedItem.HasJabsFreeCombo();
-        checkBox_comboStarter.Checked = selectedItem.HasJabsAiComboStarter();
-
-        // map data
-        num_actionId.Value = selectedItem.GetJabsActionId();
-        num_duration.Value = selectedItem.GetJabsDuration();
-
-        // piercing data
-        num_piercingCount.Value = selectedItem.GetJabsPiercingCount();
-        num_piercingDelay.Value = selectedItem.GetJabsPiercingDelay();
-
-        // usage data
-        num_cooldown.Value = selectedItem.GetJabsCooldown();
-        num_castAnimation.Value = selectedItem.GetJabsCastAnimation();
-        num_castTime.Value = selectedItem.GetJabsCastTime();
-        checkBox_aiSkillExclude.Checked = selectedItem.HasJabsAiSkillExclusion();
-        checkBox_canGapClose.Checked = selectedItem.HasJabsGapCloser();
-
-        // pose data
-        textBox_poseSuffix.Text = selectedItem.GetJabsPoseSuffix();
-        num_poseIndex.Value = selectedItem.GetJabsPoseIndex();
-        num_poseDuration.Value = selectedItem.GetJabsPoseDuration();
-    }
-
     #region setup
     public void FlagForRefresh()
     {
@@ -566,15 +567,16 @@ public partial class SkillsBoard : Form
         skillsList = data;
 
         // iterate over each of the items in the list 
-        skillsList.ForEach(skill =>
-        {
-            // the first entry in the list is always null, so accommodate.
-            if (skill != null)
+        skillsList.ForEach(
+            skill =>
             {
-                // add the data to the running list.
-                listboxSkills.Items.Add(skill);
-            }
-        });
+                // the first entry in the list is always null, so accommodate.
+                if (skill != null)
+                {
+                    // add the data to the running list.
+                    listboxSkills.Items.Add(skill);
+                }
+            });
 
         // let this form know we've finished setup.
         SetupComplete();

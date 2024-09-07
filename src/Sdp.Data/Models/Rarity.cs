@@ -10,5 +10,5 @@ public enum Rarity
     Rare = 23,
     Epic = 31,
     Legendary = 20,
-    Godlike = 25,
+    Godlike = 25
 }

@@ -1,13 +1,14 @@
 ﻿namespace JMZ.Dashboard.Extensions;
 
 /// <summary>
-/// Extension methods for the various ObjectCollection classes.
+///     Extension methods for the various ObjectCollection classes.
 /// </summary>
 public static class ObjectCollectionExtensions
 {
     /// <summary>
-    /// Finds the first index of an item in the <see cref="ComboBox.ObjectCollection"/> that meets the criteria of the provided
-    /// predicate.
+    ///     Finds the first index of an item in the <see cref="ComboBox.ObjectCollection" /> that meets the criteria of the
+    ///     provided
+    ///     predicate.
     /// </summary>
     /// <param name="objectCollection">The collection being searched.</param>
     /// <param name="predicate">The predicate- or lambda function- to use to find the item's index.</param>
@@ -37,8 +38,9 @@ public static class ObjectCollectionExtensions
     }
 
     /// <summary>
-    /// Finds the first index of an item in the <see cref="ListBox.ObjectCollection"/> that meets the criteria of the provided
-    /// predicate.
+    ///     Finds the first index of an item in the <see cref="ListBox.ObjectCollection" /> that meets the criteria of the
+    ///     provided
+    ///     predicate.
     /// </summary>
     /// <param name="objectCollection">The collection being searched.</param>
     /// <param name="predicate">The predicate- or lambda function- to use to find the item's index.</param>
@@ -68,8 +70,9 @@ public static class ObjectCollectionExtensions
     }
 
     /// <summary>
-    /// Finds the first index of an item in the <see cref="CheckedListBox.ObjectCollection"/> that meets the criteria of the provided
-    /// predicate.
+    ///     Finds the first index of an item in the <see cref="CheckedListBox.ObjectCollection" /> that meets the criteria of
+    ///     the provided
+    ///     predicate.
     /// </summary>
     /// <param name="objectCollection">The collection being searched.</param>
     /// <param name="predicate">The predicate- or lambda function- to use to find the item's index.</param>

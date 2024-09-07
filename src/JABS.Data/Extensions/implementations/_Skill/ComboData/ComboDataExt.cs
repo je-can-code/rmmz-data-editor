@@ -18,7 +18,7 @@ internal static class ComboDataExt
             // return an empty set.
             return new();
         }
-        
+
         // naming the first value.
         var comboSkillId = comboData[0];
 
@@ -46,7 +46,7 @@ internal static class ComboDataExt
         {
             // remove the tag entirely, zero is an invalid combo skill.
             skill.RemoveNoteData(Tags.Combo.Regex);
-            
+
             // stop processing.
             return;
         }

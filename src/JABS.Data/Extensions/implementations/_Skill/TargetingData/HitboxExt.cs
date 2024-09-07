@@ -21,7 +21,7 @@ public static class HitboxExt
         // the default hitbox is that none is associated.
         return JabsHitbox.None;
     }
-    
+
     public static void UpdateJabsHitbox(this RPG_Skill skill, JabsHitbox hitbox)
     {
         // grab our current state.
@@ -45,7 +45,9 @@ public static class HitboxExt
         }
 
         // we need to update the tag, so build the updated note with the new value.
-        var updatedNote = Tags.Hitbox.ToValueTag(hitbox.ToString().ToLower());
+        var updatedNote = Tags.Hitbox.ToValueTag(
+            hitbox.ToString()
+                .ToLower());
 
         // check if the value was missing previously.
         if (isMissing)
@@ -56,7 +58,7 @@ public static class HitboxExt
         else
         {
             // update the actual note.
-            skill.UpdateNoteData(Tags.Hitbox.Regex, updatedNote);    
+            skill.UpdateNoteData(Tags.Hitbox.Regex, updatedNote);
         }
     }
 }

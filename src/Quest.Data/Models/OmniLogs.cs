@@ -1,12 +1,12 @@
 ﻿namespace JMZ.Quest.Data.Models;
 
 /// <summary>
-/// A capture of the various logs associated with an objective throughout its state lifetime.
+///     A capture of the various logs associated with an objective throughout its state lifetime.
 /// </summary>
 public record OmniLogs
 {
     public string Inactive { get; set; } = string.Empty;
-    
+
     public string Active { get; set; } = string.Empty;
     public string Completed { get; set; } = string.Empty;
     public string Failed { get; set; } = string.Empty;

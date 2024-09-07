@@ -7,25 +7,26 @@ namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.CoreData;
 public class HideFromQuickMenuExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public HideFromQuickMenuExtTests()
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.HasJabsHideFromQuickMenu();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -33,12 +34,13 @@ public class HideFromQuickMenuExtTests : BaseTests
         var fakeTag = fdg.HideFromQuickMenuTag();
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.HasJabsHideFromQuickMenu();
-        
+
         // then
-        actual.Should().BeTrue();
+        actual.Should()
+            .BeTrue();
     }
 
     [Fact]
@@ -49,11 +51,12 @@ public class HideFromQuickMenuExtTests : BaseTests
         var fakeTagValue = true;
         modelUnderTest.UpdateJabsHideFromQuickMenu(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsHideFromQuickMenu(expected);
-        
+
         // when
         var actual = modelUnderTest.HasJabsHideFromQuickMenu();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
 }

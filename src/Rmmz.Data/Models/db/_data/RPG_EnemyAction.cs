@@ -1,7 +1,7 @@
 ﻿namespace JMZ.Rmmz.Data.Models.db._data;
 
 /// <summary>
-/// A class representing a single action a battler can execute.
+///     A class representing a single action a battler can execute.
 /// </summary>
 public class RPG_EnemyAction
 {

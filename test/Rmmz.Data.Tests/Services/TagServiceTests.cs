@@ -11,12 +11,13 @@ public class TagServiceTests : BaseTests
     {
         // given
         var testSingleTag = fdg.SkillIdTag();
-        
+
         // when
         var actual = TagService.translateTags(testSingleTag);
-        
+
         // then
-        actual.Should().HaveCount(1);
+        actual.Should()
+            .HaveCount(1);
     }
 
     [Theory]
@@ -30,13 +31,14 @@ public class TagServiceTests : BaseTests
 
         // when
         var actual = TagService.translateTags(testMultipleTags);
-        
+
         // then
-        actual.Should().HaveCount(tagCount);
+        actual.Should()
+            .HaveCount(tagCount);
     }
-    
+
     /// <summary>
-    /// Generates some fixed numbers for the tag translation test.
+    ///     Generates some fixed numbers for the tag translation test.
     /// </summary>
     private static IEnumerable<object[]> GenerateSkillId()
     {
@@ -47,7 +49,7 @@ public class TagServiceTests : BaseTests
         yield return [25];
         yield return [128]; // if we have more than this, its too much.
     }
-    
+
     [Theory]
     [MemberData(nameof(GenerateInvalidTag))]
     public void translateTags_skipsInvalidTags(string testTag)
@@ -55,13 +57,14 @@ public class TagServiceTests : BaseTests
         // given
         // when
         var actual = TagService.translateTags(testTag);
-        
+
         // then
-        actual.Should().BeEmpty();
+        actual.Should()
+            .BeEmpty();
     }
-    
+
     /// <summary>
-    /// Generates some invalid tag formats for the tag translation test.
+    ///     Generates some invalid tag formats for the tag translation test.
     /// </summary>
     private static IEnumerable<object[]> GenerateInvalidTag()
     {
@@ -69,20 +72,23 @@ public class TagServiceTests : BaseTests
         yield return ["bar>"];   // needs on start as well.
         yield return ["foobar"]; // needs on both start and end.
     }
-    
+
     [Fact]
     public void translateTags_withSingleTag_translatesBoolean()
     {
         // given
         var testSingleTag = fdg.DirectTargetingTag();
-        
+
         // when
         var actual = TagService.translateTags(testSingleTag);
-        
+
         // then
-        actual.Should().HaveCount(1);
+        actual.Should()
+            .HaveCount(1);
 
         var actualTag = actual.First();
-        actualTag.isBoolean.Should().BeTrue();
+        actualTag.isBoolean
+            .Should()
+            .BeTrue();
     }
 }

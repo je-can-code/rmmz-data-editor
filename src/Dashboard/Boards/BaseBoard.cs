@@ -1,5 +1,4 @@
 ﻿using JMZ.Dashboard.Configuration;
-using JMZ.Dashboard.Utils;
 using JMZ.Json.Data.Caches;
 using Microsoft.Extensions.Options;
 
@@ -8,7 +7,7 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard : Form
 {
     /// <summary>
-    /// The full path to the /data directory of the project.
+    ///     The full path to the /data directory of the project.
     /// </summary>
     private string _projectPath;
 
@@ -18,8 +17,7 @@ public partial class BaseBoard : Form
         // perform required designer-based logic.
         InitializeComponent();
 
-        var screen = Screen.PrimaryScreen
-            ?? throw new NullReferenceException("why tf is Screen.PrimaryScreen is null");
+        var screen = Screen.PrimaryScreen ?? throw new NullReferenceException("why tf is Screen.PrimaryScreen is null");
 
         // move the window to the center.
         StartPosition = FormStartPosition.Manual;
@@ -40,9 +38,19 @@ public partial class BaseBoard : Form
         RefreshProjectDataPath();
     }
 
+    private async Task OnDatabaseSave()
+    {
+        await RefreshDatabaseCaches();
+        weaponsBoard.FlagForRefresh();
+        enemiesBoard.FlagForRefresh();
+        skillsBoard.FlagForRefresh();
+
+        // this.difficultyBoard.FlagForRefresh();
+    }
+
     #region setup
     /// <summary>
-    /// Initializes all winforms boards used in this application.
+    ///     Initializes all winforms boards used in this application.
     /// </summary>
     private void SetupBoards()
     {
@@ -51,7 +59,7 @@ public partial class BaseBoard : Form
     }
 
     /// <summary>
-    /// Sets up the boards that are for database pages, like weapons or skills.
+    ///     Sets up the boards that are for database pages, like weapons or skills.
     /// </summary>
     private void SetupDatabaseBoards()
     {
@@ -61,7 +69,7 @@ public partial class BaseBoard : Form
     }
 
     /// <summary>
-    /// Sets up the boards that are for custom plugins, like SDP or Difficulties.
+    ///     Sets up the boards that are for custom plugins, like SDP or Difficulties.
     /// </summary>
     private void SetupCustomBoards()
     {
@@ -110,7 +118,7 @@ public partial class BaseBoard : Form
     }
 
     /// <summary>
-    /// Refreshes the project path and its label by the most-recently-selected project.
+    ///     Refreshes the project path and its label by the most-recently-selected project.
     /// </summary>
     private void RefreshProjectDataPath()
     {
@@ -154,14 +162,4 @@ public partial class BaseBoard : Form
         Armors.Refresh(_projectPath);
     }
     #endregion
-
-    private async Task OnDatabaseSave()
-    {
-        await RefreshDatabaseCaches();
-        weaponsBoard.FlagForRefresh();
-        enemiesBoard.FlagForRefresh();
-        skillsBoard.FlagForRefresh();
-
-        // this.difficultyBoard.FlagForRefresh();
-    }
 }

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace JMZ.Sdp.Data.Tests.Extensions.implementations._Enemy;
 
-[Trait("Category","SdpData")]
+[Trait("Category", "SdpData")]
 public class SdpPointsExtTests : BaseTests
 {
     private readonly RPG_Enemy modelUnderTest;
@@ -15,7 +15,7 @@ public class SdpPointsExtTests : BaseTests
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
@@ -27,9 +27,10 @@ public class SdpPointsExtTests : BaseTests
         var actual = modelUnderTest.GetSdpPoints();
 
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsData()
     {
@@ -41,9 +42,10 @@ public class SdpPointsExtTests : BaseTests
         var actual = modelUnderTest.GetSdpPoints();
 
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenUpdated_returnsUpdatedData()
     {
@@ -53,15 +55,17 @@ public class SdpPointsExtTests : BaseTests
 
         var secondPoints = fdg.RmmzUNumber();
         modelUnderTest.UpdateSdpPoints(secondPoints);
-      
+
         // when
         var actual = modelUnderTest.GetSdpPoints();
 
         // then
-        actual.Should().NotBe(firstPoints);
-        actual.Should().Be(secondPoints);
+        actual.Should()
+            .NotBe(firstPoints);
+        actual.Should()
+            .Be(secondPoints);
     }
-    
+
     [Fact]
     public void whenRemoved_returnsDefault()
     {
@@ -76,7 +80,9 @@ public class SdpPointsExtTests : BaseTests
         var actual = modelUnderTest.GetSdpPoints();
 
         // then
-        actual.Should().NotBe(firstPoints);
-        actual.Should().Be(expected);
+        actual.Should()
+            .NotBe(firstPoints);
+        actual.Should()
+            .Be(expected);
     }
 }

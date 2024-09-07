@@ -6,6 +6,7 @@ public static class PierceCountExt
 {
     public static decimal GetJabsPiercingCount(this RPG_Skill skill)
     {
-        return  skill.GetJabsPiercingData().PierceCount;
+        return skill.GetJabsPiercingData()
+            .PierceCount;
     }
 }

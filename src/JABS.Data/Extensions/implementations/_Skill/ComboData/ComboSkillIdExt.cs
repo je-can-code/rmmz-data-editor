@@ -6,6 +6,7 @@ public static class ComboSkillIdExt
 {
     public static decimal GetJabsComboSkillId(this RPG_Skill skill)
     {
-        return skill.GetJabsComboData().ComboSkill;
+        return skill.GetJabsComboData()
+            .ComboSkill;
     }
 }

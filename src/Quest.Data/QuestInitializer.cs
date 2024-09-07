@@ -3,12 +3,12 @@
 public static class QuestInitializer
 {
     /// <summary>
-    /// The name of the configuration file associated with this system.
+    ///     The name of the configuration file associated with this system.
     /// </summary>
     public static string ConfigurationFileName => "config.quest.json";
 
     /// <summary>
-    /// Initialize the bare minimum required in JSON format for loading the configuration.
+    ///     Initialize the bare minimum required in JSON format for loading the configuration.
     /// </summary>
     /// <param name="projectPath">The project data path.</param>
     public static async Task InitializeConfiguration(string projectPath)
@@ -21,17 +21,16 @@ public static class QuestInitializer
     }
 
     /// <summary>
-    /// The hard-coded bare minimum configuration template.
+    ///     The hard-coded bare minimum configuration template.
     /// </summary>
     private static string ConfigurationTemplate()
     {
-        return
-            """
-            {
-              "quests":[],
-              "categories":[],
-              "tags":[]
-            }
-            """;
+        return """
+               {
+                 "quests":[],
+                 "categories":[],
+                 "tags":[]
+               }
+               """;
     }
 }

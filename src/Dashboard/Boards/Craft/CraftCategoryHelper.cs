@@ -4,9 +4,8 @@ namespace JMZ.Dashboard.Boards.Craft;
 
 public partial class CraftCategoryHelper : Form
 {
-    private bool needsSetup = true;
-
     private List<Category> categories = [];
+    private bool needsSetup = true;
 
     public CraftCategoryHelper()
     {
@@ -18,7 +17,7 @@ public partial class CraftCategoryHelper : Form
     }
 
     /// <summary>
-    /// Gets the component from the helper in its current state.
+    ///     Gets the component from the helper in its current state.
     /// </summary>
     /// <returns></returns>
     public Category CurrentCategory()
@@ -44,9 +43,81 @@ public partial class CraftCategoryHelper : Form
         }
     }
 
+    private void buttonAddCategory_Click(object sender, EventArgs e)
+    {
+        // define the new SDP.
+        var newItem = Category.NEW;
+
+        // grab the current selection.
+        var selectedIndex = listBoxCategories.SelectedIndex;
+
+        // check if there was no current selection.
+        if (selectedIndex == -1 || selectedIndex == listBoxCategories.Items.Count - 1)
+        {
+            // add the item to the list without regard for index.
+            listBoxCategories.Items.Add(newItem);
+        }
+        // we are in the middle somewhere.
+        else
+        {
+            // add it at the given index.
+            listBoxCategories.Items.Insert(selectedIndex, newItem);
+        }
+    }
+
+    private void buttonDeleteCategory_Click(object sender, EventArgs e)
+    {
+        // grab the selection the user is considering removing.
+        var removalIndex = listBoxCategories.SelectedIndex;
+
+        // check if there is no index selected right now.
+        if (removalIndex == -1)
+        {
+            // do nothing.
+            return;
+        }
+
+        // grab the current panel we're working with.
+        var selectedItem = (Category)listBoxCategories.SelectedItem!;
+
+        // define the prompt.
+        var removalPrompt = $"Are you sure you want to remove the category with key [{selectedItem.Key}]?";
+
+        // show the box with the prompt.
+        var dialogResult = MessageBox.Show(removalPrompt, "Removing a Category", MessageBoxButtons.OKCancel);
+
+        // pivot on the user decisions.
+        switch (dialogResult)
+        {
+            case DialogResult.OK:
+                listBoxCategories.Items.RemoveAt(removalIndex);
+                if (listBoxCategories.Items.Count != 0)
+                {
+                    listBoxCategories.SelectedIndex = 0;
+                }
+
+                break;
+            case DialogResult.Cancel:
+                break;
+        }
+    }
+
+    #region setup
+    public void Setup(List<Category> data)
+    {
+        if (!needsSetup) return;
+
+        categories = data;
+
+        RefreshCategoryData();
+
+        needsSetup = false;
+    }
+    #endregion
+
     #region init
     /// <summary>
-    /// Initializes the data-binding of components to arbitrary values.
+    ///     Initializes the data-binding of components to arbitrary values.
     /// </summary>
     private void InitializeDataControls()
     {
@@ -56,7 +127,7 @@ public partial class CraftCategoryHelper : Form
     }
 
     /// <summary>
-    /// Initializes all tooltips associated with this board.
+    ///     Initializes all tooltips associated with this board.
     /// </summary>
     private void InitializeTooltips()
     {
@@ -111,7 +182,7 @@ public partial class CraftCategoryHelper : Form
         if (selectedItem is null) return;
 
         selectedItem.Name = textBoxName.Text;
-        
+
         listBoxCategories.Items[listBoxCategories.SelectedIndex] = selectedItem;
     }
 
@@ -143,68 +214,6 @@ public partial class CraftCategoryHelper : Form
     }
     #endregion
 
-    private void buttonAddCategory_Click(object sender, EventArgs e)
-    {
-        // define the new SDP.
-        var newItem = Category.NEW;
-
-        // grab the current selection.
-        var selectedIndex = listBoxCategories.SelectedIndex;
-
-        // check if there was no current selection.
-        if (selectedIndex == -1 || (selectedIndex == listBoxCategories.Items.Count - 1))
-        {
-            // add the item to the list without regard for index.
-            listBoxCategories.Items.Add(newItem);
-        }
-        // we are in the middle somewhere.
-        else
-        {
-            // add it at the given index.
-            listBoxCategories.Items.Insert(selectedIndex, newItem);
-        }
-    }
-
-    private void buttonDeleteCategory_Click(object sender, EventArgs e)
-    {
-        // grab the selection the user is considering removing.
-        var removalIndex = listBoxCategories.SelectedIndex;
-
-        // check if there is no index selected right now.
-        if (removalIndex == -1)
-        {
-            // do nothing.
-            return;
-        }
-
-        // grab the current panel we're working with.
-        var selectedItem = (Category)listBoxCategories.SelectedItem!;
-
-        // define the prompt.
-        var removalPrompt = $"Are you sure you want to remove the category with key [{selectedItem.Key}]?";
-
-        // show the box with the prompt.
-        var dialogResult = MessageBox.Show(
-            removalPrompt,
-            "Removing a Category",
-            MessageBoxButtons.OKCancel);
-
-        // pivot on the user decisions.
-        switch (dialogResult)
-        {
-            case DialogResult.OK:
-                listBoxCategories.Items.RemoveAt(removalIndex);
-                if (listBoxCategories.Items.Count != 0)
-                {
-                    listBoxCategories.SelectedIndex = 0;
-                }
-
-                break;
-            case DialogResult.Cancel:
-                break;
-        }
-    }
-
     #region refresh
     private void RefreshForm(object? sender, EventArgs e)
     {
@@ -233,27 +242,13 @@ public partial class CraftCategoryHelper : Form
     {
         listBoxCategories.Items.Clear();
 
-        categories.ForEach(category =>
-        {
-            if (category is null) return;
+        categories.ForEach(
+            category =>
+            {
+                if (category is null) return;
 
-            listBoxCategories.Items.Add(category);
-        });
-    }
-
-    #endregion
-
-    #region setup
-
-    public void Setup(List<Category> data)
-    {
-        if (!needsSetup) return;
-
-        categories = data;
-
-        RefreshCategoryData();
-
-        needsSetup = false;
+                listBoxCategories.Items.Add(category);
+            });
     }
     #endregion
 }

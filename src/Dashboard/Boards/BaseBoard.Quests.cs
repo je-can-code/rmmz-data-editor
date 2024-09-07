@@ -8,7 +8,7 @@ public partial class BaseBoard
 {
     private readonly QuestBoard _questBoard = new();
 
-    private bool skipQuestSavePopup = false;
+    private readonly bool skipQuestSavePopup = false;
 
     private partial void SetupQuestBoard()
     {
@@ -24,7 +24,7 @@ public partial class BaseBoard
             _projectPath,
             JsonLoaderService.SdpDataPath(_projectPath),
             QuestInitializer.InitializeConfiguration);
-        
+
         // validate we are able to load the board.
         if (canLoadBoard is false) return;
 
@@ -32,23 +32,23 @@ public partial class BaseBoard
         _questBoard.Setup(data);
         _questBoard.Show();
     }
-    
+
     private async void ButtonSaveQuests(object? target, EventArgs? eventArgs)
     {
         // check if the board hasn't been setup yet, or is in need of a refresh first.
-        if (craftBoard.needsSetup)
+        if (_questBoard.NeedsSetup)
         {
             MessageBox.Show(
                 """
                 Quest configuration data needs initialization.
-                Please click the 'Configure Quest Data' button
+                Please click the 'Modify Quests' button
                 to load the current data first.
                 """,
                 "Quest Configuration Data Needs Initialization",
                 MessageBoxButtons.OK);
             return;
         }
-        
+
         // check if we're skipping the popup dialogue to confirm saving.
         if (skipQuestSavePopup)
         {
@@ -56,7 +56,7 @@ public partial class BaseBoard
             await SaveQuests();
             return;
         }
-        
+
         // ask the user to confirm they want to save.
         var dialogResult = MessageBox.Show(
             "Are you sure you want to save all quest data?",
@@ -93,7 +93,7 @@ public partial class BaseBoard
             Categories = _questBoard.OmniCategories,
             Tags = _questBoard.OmniTags
         };
-        
+
         await JsonSavingService.SaveQuests(_projectPath, updatedConfiguration);
     }
 }

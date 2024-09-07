@@ -10,7 +10,7 @@ public static class HideFromQuickMenuExt
     {
         return skill.HasBooleanTag(Tags.HideFromQuickMenu.Name);
     }
-    
+
     public static void UpdateJabsHideFromQuickMenu(this RPG_Skill skill, bool hideFromQuickMenu)
     {
         // check what our current state is.

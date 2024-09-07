@@ -5,12 +5,12 @@ using JMZ.Sdp.Data.Models;
 namespace JMZ.Sdp.Data.Extensions.implementations._Enemy;
 
 /// <summary>
-/// Extensions related to SDP data management.
+///     Extensions related to SDP data management.
 /// </summary>
 public static class SdpDataExt
 {
     /// <summary>
-    /// Gets the <see cref="SdpDropData"/> from the enemy.
+    ///     Gets the <see cref="SdpDropData" /> from the enemy.
     /// </summary>
     public static SdpDropData GetSdpData(this RPG_Enemy enemy)
     {
@@ -26,10 +26,10 @@ public static class SdpDataExt
 
         // the string form of the key.
         var key = sdpDropData[0];
-        
+
         // parse the integer percent chance of the panel being dropped.
         var chance = decimal.Parse(sdpDropData[1]);
-        
+
         // parse the id of the database id of the item representing the panel.
         var itemId = decimal.Parse(sdpDropData[2]);
 
@@ -37,11 +37,7 @@ public static class SdpDataExt
         return new(key, itemId, chance);
     }
 
-    public static void UpdateSdpData(
-        this RPG_Enemy enemy,
-        string newKey,
-        decimal newDropChance,
-        decimal newItemId)
+    public static void UpdateSdpData(this RPG_Enemy enemy, string newKey, decimal newDropChance, decimal newItemId)
     {
         // check if we currently are missing a primary value.
         var isMissing = enemy.GetSdpKey() == string.Empty;
@@ -62,13 +58,10 @@ public static class SdpDataExt
             // stop processing.
             return;
         }
-        
+
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = Tags.DropData.ToArrayTag(
-            newKey,
-            newDropChance.ToString(),
-            newItemId.ToString());
-        
+        var updatedNote = Tags.DropData.ToArrayTag(newKey, newDropChance.ToString(), newItemId.ToString());
+
         // check if the value was missing previously.
         if (isMissing)
         {

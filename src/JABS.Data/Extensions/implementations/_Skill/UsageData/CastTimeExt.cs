@@ -28,7 +28,7 @@ public static class CastTimeExt
         {
             // remove the tag entirely, zero is an invalid castAnimationId.
             skill.RemoveNoteData(Tags.CastTime.Regex);
-            
+
             // stop processing.
             return;
         }

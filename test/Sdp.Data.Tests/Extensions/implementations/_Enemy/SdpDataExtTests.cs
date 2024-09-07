@@ -7,7 +7,7 @@ using Xunit;
 
 namespace JMZ.Sdp.Data.Tests.Extensions.implementations._Enemy;
 
-[Trait("Category","SdpData")]
+[Trait("Category", "SdpData")]
 public class SdpDataExtTests : BaseTests
 {
     private readonly RPG_Enemy modelUnderTest;
@@ -16,7 +16,7 @@ public class SdpDataExtTests : BaseTests
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
@@ -28,9 +28,10 @@ public class SdpDataExtTests : BaseTests
         var actual = modelUnderTest.GetSdpData();
 
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsData()
     {
@@ -42,9 +43,10 @@ public class SdpDataExtTests : BaseTests
         var actual = modelUnderTest.GetSdpData();
 
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenUpdated_returnsUpdatedData()
     {
@@ -54,15 +56,17 @@ public class SdpDataExtTests : BaseTests
 
         var secondSdp = generateSdpDropData();
         modelUnderTest.UpdateSdpData(secondSdp.Key, secondSdp.DropChance, secondSdp.ItemId);
-      
+
         // when
         var actual = modelUnderTest.GetSdpData();
 
         // then
-        actual.Should().NotBe(firstSdp);
-        actual.Should().Be(secondSdp);
+        actual.Should()
+            .NotBe(firstSdp);
+        actual.Should()
+            .Be(secondSdp);
     }
-    
+
     [Fact]
     public void whenRemoved_returnsDefault()
     {
@@ -77,15 +81,14 @@ public class SdpDataExtTests : BaseTests
         var actual = modelUnderTest.GetSdpData();
 
         // then
-        actual.Should().NotBe(firstSdp);
-        actual.Should().Be(expected);
+        actual.Should()
+            .NotBe(firstSdp);
+        actual.Should()
+            .Be(expected);
     }
 
     private SdpDropData generateSdpDropData()
     {
-        return new(
-            fdg.RmmzKey(),
-            fdg.RmmzUNumber(),
-            fdg.RmmzChance());
+        return new(fdg.RmmzKey(), fdg.RmmzUNumber(), fdg.RmmzChance());
     }
 }

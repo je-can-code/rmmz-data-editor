@@ -10,7 +10,7 @@ public static class DurationExt
     {
         return skill.GetFirstNumberByTag(Tags.Duration.Name) ?? decimal.Zero;
     }
-    
+
     public static void UpdateJabsDuration(this RPG_Skill skill, decimal duration)
     {
         // determine if this skill currently has value on it.
@@ -28,7 +28,7 @@ public static class DurationExt
         {
             // remove the tag entirely, zero is an invalid actionId.
             skill.RemoveNoteData(Tags.Duration.Regex);
-            
+
             // stop processing.
             return;
         }

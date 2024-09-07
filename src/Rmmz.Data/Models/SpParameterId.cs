@@ -17,8 +17,8 @@ public class SpParameterId
     public const int PHYSICAL_DMG_RATE = 6;
 
     public const int MAGICAL_DMG_RATE = 7;
-    
+
     public const int ENVIRON_DMG_RATE = 8;
-    
+
     public const int EXPERIENCE = 9;
 }

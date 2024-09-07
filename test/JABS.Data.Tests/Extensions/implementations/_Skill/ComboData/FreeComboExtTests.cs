@@ -7,25 +7,26 @@ namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.ComboData;
 public class FreeComboExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public FreeComboExtTests()
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.HasJabsFreeCombo();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -33,12 +34,13 @@ public class FreeComboExtTests : BaseTests
         var fakeTag = fdg.FreeComboTag();
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.HasJabsFreeCombo();
-        
+
         // then
-        actual.Should().BeTrue();
+        actual.Should()
+            .BeTrue();
     }
 
     [Fact]
@@ -49,11 +51,12 @@ public class FreeComboExtTests : BaseTests
         var fakeTagValue = true;
         modelUnderTest.UpdateJabsFreeCombo(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsFreeCombo(expected);
-        
+
         // when
         var actual = modelUnderTest.HasJabsFreeCombo();
-        
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
 }

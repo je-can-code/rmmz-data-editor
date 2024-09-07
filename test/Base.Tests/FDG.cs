@@ -8,25 +8,25 @@ using JabsTags = JMZ.JABS.Data.Models.Tags;
 namespace JMZ.Base.Tests;
 
 /// <summary>
-/// The fake data generator.
-/// Used in test for generating various objects.
+///     The fake data generator.
+///     Used in test for generating various objects.
 /// </summary>
 public class FDG
 {
-    private readonly Random RNG = new(1337);
-
     private readonly Faker FAKER = new();
+    private readonly Random RNG = new(1337);
 
     public RPG_Weapon GenerateWeapon()
     {
-        return new Faker<RPG_Weapon>()
-            .RuleFor(weapon => weapon.note, (f, w) =>
-            {
-                var fakeSkillIdTag = SkillIdTag();
-                var fakeSpeedBoostTag = SpeedBoostTag();
-                
-                return BuildNoteTag(fakeSkillIdTag, fakeSpeedBoostTag);
-            })
+        return new Faker<RPG_Weapon>().RuleFor(
+                weapon => weapon.note,
+                (f, w) =>
+                {
+                    var fakeSkillIdTag = SkillIdTag();
+                    var fakeSpeedBoostTag = SpeedBoostTag();
+
+                    return BuildNoteTag(fakeSkillIdTag, fakeSpeedBoostTag);
+                })
             .Generate();
     }
 
@@ -34,7 +34,7 @@ public class FDG
     {
         return new Faker<RPG_Skill>().Generate();
     }
-    
+
     public RPG_DropItem GenerateDropItem()
     {
         return new()
@@ -54,7 +54,7 @@ public class FDG
 
     #region tags
     /// <summary>
-    /// Generates a skillId tag with a given skill id, or random skill id if none is provided.
+    ///     Generates a skillId tag with a given skill id, or random skill id if none is provided.
     /// </summary>
     public string SkillIdTag(int? input = null)
     {
@@ -64,7 +64,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a speedBoost tag with a given value, or random value if none is provided.
+    ///     Generates a speedBoost tag with a given value, or random value if none is provided.
     /// </summary>
     public string SpeedBoostTag(int? input = null)
     {
@@ -74,7 +74,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a cooldown tag with a given value, or random value if none is provided.
+    ///     Generates a cooldown tag with a given value, or random value if none is provided.
     /// </summary>
     public string CooldownTag(int? input = null)
     {
@@ -82,9 +82,9 @@ public class FDG
         var builtTag = JabsTags.Cooldown.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a castAnimation tag with a given value, or random value if none is provided.
+    ///     Generates a castAnimation tag with a given value, or random value if none is provided.
     /// </summary>
     public string CastAnimationTag(int? input = null)
     {
@@ -92,9 +92,9 @@ public class FDG
         var builtTag = JabsTags.CastAnimation.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a castTime tag with a given value, or random value if none is provided.
+    ///     Generates a castTime tag with a given value, or random value if none is provided.
     /// </summary>
     public string CastTimeTag(int? input = null)
     {
@@ -102,9 +102,9 @@ public class FDG
         var builtTag = JabsTags.CastTime.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a actionId tag with a given value, or random value if none is provided.
+    ///     Generates a actionId tag with a given value, or random value if none is provided.
     /// </summary>
     public string ActionIdTag(int? input = null)
     {
@@ -112,9 +112,9 @@ public class FDG
         var builtTag = JabsTags.ActionId.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a duration tag with a given value, or random value if none is provided.
+    ///     Generates a duration tag with a given value, or random value if none is provided.
     /// </summary>
     public string DurationTag(int? input = null)
     {
@@ -122,17 +122,17 @@ public class FDG
         var builtTag = JabsTags.Duration.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a duration tag with a given value, or random value if none is provided.
+    ///     Generates a duration tag with a given value, or random value if none is provided.
     /// </summary>
     public string HideFromQuickMenuTag()
     {
         return JabsTags.HideFromQuickMenu.ToBooleanTag();
     }
-    
+
     /// <summary>
-    /// Generates a direct targeting tag.
+    ///     Generates a direct targeting tag.
     /// </summary>
     public string DirectTargetingTag()
     {
@@ -140,8 +140,8 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a hitbox tag with a given value, or a random value if none is provided.
-    /// Will not generate <see cref="Hitbox.None"/>.
+    ///     Generates a hitbox tag with a given value, or a random value if none is provided.
+    ///     Will not generate <see cref="Hitbox.None" />.
     /// </summary>
     public string HitboxTag(Hitbox? input = null)
     {
@@ -150,7 +150,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a radius tag with a given value, or a random value if none is provided.
+    ///     Generates a radius tag with a given value, or a random value if none is provided.
     /// </summary>
     public string RadiusTag(decimal? input = null)
     {
@@ -158,9 +158,9 @@ public class FDG
         var builtTag = JabsTags.Radius.ToValueTag(tagValue.ToString());
         return builtTag;
     }
-    
+
     /// <summary>
-    /// Generates a proximity tag with a given value, or a random value if none is provided.
+    ///     Generates a proximity tag with a given value, or a random value if none is provided.
     /// </summary>
     public string ProximityTag(decimal? input = null)
     {
@@ -170,7 +170,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates an AI skill exclusion tag.
+    ///     Generates an AI skill exclusion tag.
     /// </summary>
     public string AiSkillExclusionTag()
     {
@@ -178,7 +178,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a gap closer tag.
+    ///     Generates a gap closer tag.
     /// </summary>
     public string GapCloserTag()
     {
@@ -201,7 +201,7 @@ public class FDG
         var tag = JabsTags.Pierce.ToArrayTag(pierceCount.ToString(), pierceDelay.ToString());
         return tag;
     }
-    
+
     public string ComboDataTag(int? inputComboSkill = null, int? inputComboDelay = null)
     {
         var comboSkill = inputComboSkill ?? RmmzUNumber();
@@ -220,10 +220,10 @@ public class FDG
         return JabsTags.FreeCombo.ToBooleanTag();
     }
     #endregion tags
-    
+
     #region utility
     /// <summary>
-    /// Connects all lines together with a "\n" between each.
+    ///     Connects all lines together with a "\n" between each.
     /// </summary>
     /// <param name="lines">The various tags intended to in a single note.</param>
     public string BuildNoteTag(params string[] lines)
@@ -232,8 +232,8 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random whole number between 1 and 500.
-    /// This is a small number deliberately since most values used in RMMZ are pretty small.
+    ///     Generates a random whole number between 1 and 500.
+    ///     This is a small number deliberately since most values used in RMMZ are pretty small.
     /// </summary>
     public int RmmzUNumber()
     {
@@ -241,9 +241,9 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random whole number between -500 and 500.
-    /// This is a small number deliberately since most values used in RMMZ are pretty small,
-    /// and includes negative lower bounds to accommodate possible detriment effects.
+    ///     Generates a random whole number between -500 and 500.
+    ///     This is a small number deliberately since most values used in RMMZ are pretty small,
+    ///     and includes negative lower bounds to accommodate possible detriment effects.
     /// </summary>
     public int RmmzNumber()
     {
@@ -251,9 +251,9 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random decimal number between 1 and 500.
-    /// This uses the above <see cref="RmmzUNumber"/> to generate both sides as a string, and parses it
-    /// to produce the given decimal.
+    ///     Generates a random decimal number between 1 and 500.
+    ///     This uses the above <see cref="RmmzUNumber" /> to generate both sides as a string, and parses it
+    ///     to produce the given decimal.
     /// </summary>
     public decimal RmmzDecimal()
     {
@@ -264,7 +264,7 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random whole number between 1 and 100.
+    ///     Generates a random whole number between 1 and 100.
     /// </summary>
     public int RmmzChance()
     {
@@ -272,23 +272,22 @@ public class FDG
     }
 
     /// <summary>
-    /// Generates a random word or words that has no particular punctuation except maybe a space.
-    /// Used for generating keys in tags, among other things.
+    ///     Generates a random word or words that has no particular punctuation except maybe a space.
+    ///     Used for generating keys in tags, among other things.
     /// </summary>
     public string RmmzKey()
     {
-        return FAKER.Lorem.Random.String2(RNG.Next(8,33));
+        return FAKER.Lorem.Random.String2(RNG.Next(8, 33));
     }
 
     /// <summary>
-    /// Generates a random <see cref="Hitbox"/> from the available values in the enum.
-    /// Will not generate ordinal 0 aka <see cref="Hitbox.None"/>.
+    ///     Generates a random <see cref="Hitbox" /> from the available values in the enum.
+    ///     Will not generate ordinal 0 aka <see cref="Hitbox.None" />.
     /// </summary>
     public Hitbox RandomHitbox()
     {
         var values = Enum.GetValues<Hitbox>();
         return values[RNG.Next(1, values.Length)];
     }
-
     #endregion utility
 }

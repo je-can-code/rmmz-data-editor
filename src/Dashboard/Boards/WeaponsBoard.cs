@@ -7,12 +7,12 @@ namespace JMZ.Dashboard.Boards;
 public partial class WeaponsBoard : Form
 {
     /// <summary>
-    /// Whether or not this form needs setup.
+    ///     Whether or not this form needs setup.
     /// </summary>
     private bool needsSetup = true;
 
     /// <summary>
-    /// Constructor.
+    ///     Constructor.
     /// </summary>
     public WeaponsBoard()
     {
@@ -116,15 +116,16 @@ public partial class WeaponsBoard : Form
         listBoxWeapons.Items.Clear();
 
         // iterate over each of the weapons in the list 
-        weapons.ForEach(weapon =>
-        {
-            // the first weapon in the list is always null, so accommodate.
-            if (weapon != null)
+        weapons.ForEach(
+            weapon =>
             {
-                // add the weapon to the running list.
-                listBoxWeapons.Items.Add(weapon);
-            }
-        });
+                // the first weapon in the list is always null, so accommodate.
+                if (weapon != null)
+                {
+                    // add the weapon to the running list.
+                    listBoxWeapons.Items.Add(weapon);
+                }
+            });
 
         // let this form know we've finished setup.
         SetupComplete();

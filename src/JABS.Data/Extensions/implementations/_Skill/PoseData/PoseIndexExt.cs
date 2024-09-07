@@ -6,6 +6,7 @@ public static class PoseIndexExt
 {
     public static decimal GetJabsPoseIndex(this RPG_Skill skill)
     {
-        return skill.GetJabsPoseData().PoseIndex;
+        return skill.GetJabsPoseData()
+            .PoseIndex;
     }
 }

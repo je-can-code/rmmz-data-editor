@@ -10,32 +10,32 @@ public static class AiDataExt
     {
         return enemy.HasBooleanTag(Tags.AiTraitCareful.Name);
     }
-    
+
     public static bool HasJabsAiTraitExecutor(this RPG_Enemy enemy)
     {
         return enemy.HasBooleanTag(Tags.AiTraitExecutor.Name);
     }
-    
+
     public static bool HasJabsAiTraitReckless(this RPG_Enemy enemy)
     {
         return enemy.HasBooleanTag(Tags.AiTraitReckless.Name);
     }
-    
+
     public static bool HasJabsAiTraitHealer(this RPG_Enemy enemy)
     {
         return enemy.HasBooleanTag(Tags.AiTraitHealer.Name);
     }
-    
+
     public static bool HasJabsAiTraitLeader(this RPG_Enemy enemy)
     {
         return enemy.HasBooleanTag(Tags.AiTraitLeader.Name);
     }
-    
+
     public static bool HasJabsAiTraitFollower(this RPG_Enemy enemy)
     {
         return enemy.HasBooleanTag(Tags.AiTraitFollower.Name);
     }
-    
+
     public static void UpdateJabsAiTraitCareful(this RPG_Enemy enemy, bool aiTraitEnabled)
     {
         // check what our current state is.
@@ -57,7 +57,7 @@ public static class AiDataExt
                 break;
         }
     }
-    
+
     public static void UpdateJabsAiTraitExecutor(this RPG_Enemy enemy, bool aiTraitEnabled)
     {
         // check what our current state is.
@@ -79,7 +79,7 @@ public static class AiDataExt
                 break;
         }
     }
-    
+
     public static void UpdateJabsAiTraitReckless(this RPG_Enemy enemy, bool aiTraitEnabled)
     {
         // check what our current state is.
@@ -123,7 +123,7 @@ public static class AiDataExt
                 break;
         }
     }
-    
+
     public static void UpdateJabsAiTraitLeader(this RPG_Enemy enemy, bool aiTraitEnabled)
     {
         // check what our current state is.
@@ -145,7 +145,7 @@ public static class AiDataExt
                 break;
         }
     }
-    
+
     public static void UpdateJabsAiTraitFollower(this RPG_Enemy enemy, bool aiTraitEnabled)
     {
         // check what our current state is.

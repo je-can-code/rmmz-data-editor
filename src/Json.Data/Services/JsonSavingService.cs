@@ -12,23 +12,23 @@ using Newtonsoft.Json.Serialization;
 namespace JMZ.Json.Data.Services;
 
 /// <summary>
-/// A utility class for saving JSON data files as their appropriate types.
-/// This will overwrite the existing file!
+///     A utility class for saving JSON data files as their appropriate types.
+///     This will overwrite the existing file!
 /// </summary>
 public static class JsonSavingService
 {
     /// <summary>
-    /// The default serialization settings.
+    ///     The default serialization settings.
     /// </summary>
     private static readonly JsonSerializerSettings settings = new()
     {
         ContractResolver = new CamelCasePropertyNamesContractResolver(),
         Formatting = Formatting.Indented,
-        Converters = new List<JsonConverter> { new StringEnumConverter() },
+        Converters = new List<JsonConverter> { new StringEnumConverter() }
     };
-    
+
     /// <summary>
-    /// Saves the current state of skills to the current project path directory.
+    ///     Saves the current state of skills to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of skills.</param>
@@ -40,9 +40,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of items to the current project path directory.
+    ///     Saves the current state of items to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of items.</param>
@@ -54,9 +54,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of weapons to the current project path directory.
+    ///     Saves the current state of weapons to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of weapons.</param>
@@ -68,9 +68,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of armors to the current project path directory.
+    ///     Saves the current state of armors to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of armors.</param>
@@ -82,9 +82,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of enemies to the current project path directory.
+    ///     Saves the current state of enemies to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of enemies.</param>
@@ -96,9 +96,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of states to the current project path directory.
+    ///     Saves the current state of states to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of states.</param>
@@ -112,7 +112,7 @@ public static class JsonSavingService
     }
 
     /// <summary>
-    /// Saves the current state of SDPs to the current project path directory.
+    ///     Saves the current state of SDPs to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of SDPs.</param>
@@ -124,9 +124,9 @@ public static class JsonSavingService
         // save the data to the designated path.
         await Save(fullPath, data);
     }
-    
+
     /// <summary>
-    /// Saves the current state of Crafting to the current project path directory.
+    ///     Saves the current state of Crafting to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of crafting.</param>
@@ -140,7 +140,7 @@ public static class JsonSavingService
     }
 
     /// <summary>
-    /// Saves the current state of Difficulties to the current project path directory.
+    ///     Saves the current state of Difficulties to the current project path directory.
     /// </summary>
     /// <param name="path">The current project path directory.</param>
     /// <param name="data">The current state of the data.</param>
@@ -163,7 +163,7 @@ public static class JsonSavingService
     {
         // convert the objects to JSON.
         var json = JsonConvert.SerializeObject(data, settings);
-        
+
         // write all the text back out as json.
         await File.WriteAllTextAsync(fullPath, json);
     }

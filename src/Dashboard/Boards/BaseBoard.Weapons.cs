@@ -6,7 +6,7 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles weapon modifications.
+    ///     The board that primarily handles weapon modifications.
     /// </summary>
     private readonly WeaponsBoard weaponsBoard = new();
 
@@ -14,7 +14,7 @@ public partial class BaseBoard
     {
         // TODO: does this sort of one-time setup work?
         // this.weaponsBoard.Load += SetupWeaponsBoard; // ??
-        
+
         weaponsBoard.FormClosing += FormUtils.HideBoard;
     }
 

@@ -61,8 +61,8 @@ partial class QuestBoard
         labelSlayAmount = new Label();
         numSlayEnemyId = new NumericUpDown();
         numSlayAmount = new NumericUpDown();
-        button2 = new Button();
-        button1 = new Button();
+        buttonDeleteQuest = new Button();
+        buttonAddQuest = new Button();
         listBoxQuests = new ListBox();
         groupBoxObjectiveData = new GroupBox();
         groupBoxObjectiveLogs = new GroupBox();
@@ -145,8 +145,8 @@ partial class QuestBoard
         // tabQuest
         // 
         tabQuest.Controls.Add(groupBoxFulfillmentData);
-        tabQuest.Controls.Add(button2);
-        tabQuest.Controls.Add(button1);
+        tabQuest.Controls.Add(buttonDeleteQuest);
+        tabQuest.Controls.Add(buttonAddQuest);
         tabQuest.Controls.Add(listBoxQuests);
         tabQuest.Controls.Add(groupBoxObjectiveData);
         tabQuest.Controls.Add(groupBoxCoreData);
@@ -463,29 +463,29 @@ partial class QuestBoard
         numSlayAmount.TabIndex = 31;
         numSlayAmount.TextAlign = HorizontalAlignment.Center;
         // 
-        // button2
+        // buttonDeleteQuest
         // 
-        button2.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        button2.ForeColor = Color.Red;
-        button2.Location = new Point(9, 1165);
-        button2.Margin = new Padding(6);
-        button2.Name = "button2";
-        button2.Size = new Size(172, 92);
-        button2.TabIndex = 68;
-        button2.Text = "❌";
-        button2.UseVisualStyleBackColor = true;
+        buttonDeleteQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonDeleteQuest.ForeColor = Color.Red;
+        buttonDeleteQuest.Location = new Point(9, 1165);
+        buttonDeleteQuest.Margin = new Padding(6);
+        buttonDeleteQuest.Name = "buttonDeleteQuest";
+        buttonDeleteQuest.Size = new Size(172, 92);
+        buttonDeleteQuest.TabIndex = 68;
+        buttonDeleteQuest.Text = "❌";
+        buttonDeleteQuest.UseVisualStyleBackColor = true;
         // 
-        // button1
+        // buttonAddQuest
         // 
-        button1.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        button1.ForeColor = Color.Green;
-        button1.Location = new Point(316, 1163);
-        button1.Margin = new Padding(6);
-        button1.Name = "button1";
-        button1.Size = new Size(166, 97);
-        button1.TabIndex = 67;
-        button1.Text = "✨";
-        button1.UseVisualStyleBackColor = true;
+        buttonAddQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        buttonAddQuest.ForeColor = Color.Green;
+        buttonAddQuest.Location = new Point(316, 1163);
+        buttonAddQuest.Margin = new Padding(6);
+        buttonAddQuest.Name = "buttonAddQuest";
+        buttonAddQuest.Size = new Size(166, 97);
+        buttonAddQuest.TabIndex = 67;
+        buttonAddQuest.Text = "✨";
+        buttonAddQuest.UseVisualStyleBackColor = true;
         // 
         // listBoxQuests
         // 
@@ -1034,8 +1034,8 @@ partial class QuestBoard
     private Label labelFetchId;
     private NumericUpDown numFetchId;
     private Button buttonAddObjective;
-    private Button button2;
-    private Button button1;
+    private Button buttonDeleteQuest;
+    private Button buttonAddQuest;
     private Button buttonDeleteObjective;
     private Label labelObjectiveQuestKeys;
     private TextBox textBoxObjectiveQuestData;

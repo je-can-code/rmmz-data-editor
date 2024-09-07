@@ -7,16 +7,16 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles SDP design.
+    ///     The board that primarily handles SDP design.
     /// </summary>
     private readonly SdpBoard sdpBoard = new();
 
     /// <summary>
-    /// When true, the prompt for skipping the prompt when saving SDP data.
-    /// When false, the confirmation popup will show.
+    ///     When true, the prompt for skipping the prompt when saving SDP data.
+    ///     When false, the confirmation popup will show.
     /// </summary>
     private bool skipSdpSavePopup;
-    
+
     private partial void SetupSdpBoard()
     {
         sdpBoard.FormClosing += FormUtils.HideBoard;

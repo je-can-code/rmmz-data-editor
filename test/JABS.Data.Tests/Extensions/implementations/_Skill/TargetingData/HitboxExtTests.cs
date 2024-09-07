@@ -5,7 +5,7 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.TargetingData;
 
-[Trait("Category","TargetingData")]
+[Trait("Category", "TargetingData")]
 public class HitboxExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
@@ -14,21 +14,22 @@ public class HitboxExtTests : BaseTests
     {
         modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         var expected = Hitbox.None;
         modelUnderTest.note = string.Empty;
-        
+
         // when
         var actual = modelUnderTest.GetJabsHitbox();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
@@ -37,12 +38,13 @@ public class HitboxExtTests : BaseTests
         var fakeTag = fdg.HitboxTag(fakeTagValue);
         var fakeNote = fdg.BuildNoteTag(fakeTag);
         modelUnderTest.note = fakeNote;
-        
+
         // when
         var actual = modelUnderTest.GetJabsHitbox();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -51,12 +53,13 @@ public class HitboxExtTests : BaseTests
         // given
         var fakeTagValue = fdg.RandomHitbox();
         modelUnderTest.UpdateJabsHitbox(fakeTagValue);
-        
+
         // when
         var actual = modelUnderTest.GetJabsHitbox();
-        
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -67,11 +70,12 @@ public class HitboxExtTests : BaseTests
         var fakeTagValue = fdg.RandomHitbox();
         modelUnderTest.UpdateJabsHitbox(fakeTagValue); // update with valid value.
         modelUnderTest.UpdateJabsHitbox(expected);
-        
+
         // when
         var actual = modelUnderTest.GetJabsHitbox();
-        
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
 }

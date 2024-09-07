@@ -10,7 +10,7 @@ public static class CastAnimationExt
     {
         return skill.GetFirstNumberByTag(Tags.CastAnimation.Name) ?? decimal.Zero;
     }
-    
+
     public static void UpdateJabsCastAnimation(this RPG_Skill skill, decimal castAnimationId)
     {
         // determine if this skill currently has actionId on it.
@@ -28,7 +28,7 @@ public static class CastAnimationExt
         {
             // remove the tag entirely, zero is an invalid castAnimationId.
             skill.RemoveNoteData(Tags.CastAnimation.Regex);
-            
+
             // stop processing.
             return;
         }

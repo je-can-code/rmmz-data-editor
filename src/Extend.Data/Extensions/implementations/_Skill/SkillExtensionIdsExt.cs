@@ -38,7 +38,7 @@ public static class SkillExtensionIdsExt
             // stop processing.
             return;
         }
-        
+
         // we need to update the tag, so build the updated note with the new values.
         var updatedNote = Tags.Extend.ToArrayTag(extensions);
 

@@ -18,7 +18,7 @@ internal static class PoseDataExt
             // return an empty set.
             return new(string.Empty);
         }
-        
+
         // the actual suffix appended to the base character sheet name.
         var poseSuffix = poseData[0];
 
@@ -27,7 +27,7 @@ internal static class PoseDataExt
 
         // parse the duration.
         var poseDuration = decimal.Parse(poseData[2]);
-        
+
         // return what the collection contained for pose data.
         return new(poseSuffix, poseIndex, poseDuration);
     }
@@ -57,12 +57,9 @@ internal static class PoseDataExt
             // stop processing.
             return;
         }
-        
+
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = Tags.Pose.ToArrayTag(
-            newPoseSuffix,
-            newPoseIndex.ToString(),
-            newPoseDuration.ToString());
+        var updatedNote = Tags.Pose.ToArrayTag(newPoseSuffix, newPoseIndex.ToString(), newPoseDuration.ToString());
 
         // check if the value was missing previously.
         if (isMissing)
