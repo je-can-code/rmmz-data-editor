@@ -1,5 +1,4 @@
 ﻿using JMZ.Dashboard.Configuration;
-using JMZ.Dashboard.Utils;
 using JMZ.Json.Data.Caches;
 using Microsoft.Extensions.Options;
 
@@ -8,63 +7,76 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard : Form
 {
     /// <summary>
-    /// The full path to the /data directory of the project.
+    ///     The full path to the /data directory of the project.
     /// </summary>
-    private string projectPath;
+    private string _projectPath;
 
     public BaseBoard(IOptions<JmzOptions> options)
     {
         // TODO: remove this if we end up pivoting to 100% code-driven design.
         // perform required designer-based logic.
-        this.InitializeComponent();
-        
+        InitializeComponent();
+
+        var screen = Screen.PrimaryScreen ?? throw new NullReferenceException("why tf is Screen.PrimaryScreen is null");
+
         // move the window to the center.
-        this.StartPosition = FormStartPosition.Manual;
-        var x = Screen.PrimaryScreen!.Bounds.Width / 2 - this.Width;
-        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height + 300;
-        this.Location = new(x, y);
+        StartPosition = FormStartPosition.Manual;
+        var x = screen.Bounds.Width / 2 - Width;
+        var y = screen.Bounds.Height / 2 - Height + 300;
+        Location = new(x, y);
 
         // define the initial state of the project path based on the options.
-        this.projectPath = options.Value.DefaultProjectPath;
+        _projectPath = options.Value.DefaultProjectPath;
 
         // start by initializing the database cache.
-        this.RefreshDatabaseCaches();
+        Task.Run(async () => await RefreshDatabaseCaches());
 
         // initialize the boards.
-        this.SetupBoards();
+        SetupBoards();
 
         // refresh the project path.
-        this.RefreshProjectDataPath();
+        RefreshProjectDataPath();
+    }
+
+    private async Task OnDatabaseSave()
+    {
+        await RefreshDatabaseCaches();
+        weaponsBoard.FlagForRefresh();
+        enemiesBoard.FlagForRefresh();
+        skillsBoard.FlagForRefresh();
+
+        // this.difficultyBoard.FlagForRefresh();
     }
 
     #region setup
     /// <summary>
-    /// Initializes all winforms boards used in this application.
+    ///     Initializes all winforms boards used in this application.
     /// </summary>
     private void SetupBoards()
     {
-        this.SetupDatabaseBoards();
-        this.SetupCustomBoards();
+        SetupDatabaseBoards();
+        SetupCustomBoards();
     }
 
     /// <summary>
-    /// Sets up the boards that are for database pages, like weapons or skills.
+    ///     Sets up the boards that are for database pages, like weapons or skills.
     /// </summary>
     private void SetupDatabaseBoards()
     {
-        this.SetupWeaponsBoard();
-        this.SetupSkillsBoard();
-        this.SetupEnemiesBoard();
+        SetupWeaponsBoard();
+        SetupSkillsBoard();
+        SetupEnemiesBoard();
     }
 
     /// <summary>
-    /// Sets up the boards that are for custom plugins, like SDP or Difficulties.
+    ///     Sets up the boards that are for custom plugins, like SDP or Difficulties.
     /// </summary>
     private void SetupCustomBoards()
     {
-        this.SetupDifficultyBoard();
-        this.SetupSdpBoard();
-        this.SetupCraftingBoard();
+        SetupDifficultyBoard();
+        SetupCraftingBoard();
+        SetupSdpBoard();
+        SetupQuestBoard();
     }
 
     #region database boards
@@ -87,70 +99,67 @@ public partial class BaseBoard : Form
 
     // implemented in BaseBoard.Sdp.
     private partial void SetupSdpBoard();
+
+    private partial void SetupQuestBoard();
     #endregion
     #endregion setup
 
     #region project data path
-    private void button_pickDataPath_Click(object sender, EventArgs e)
+    private async void button_pickDataPath_Click(object sender, EventArgs e)
     {
-        var dialogResult = this.folderDialogDataPath.ShowDialog();
+        var dialogResult = folderDialogDataPath.ShowDialog();
         if (dialogResult != DialogResult.OK) return;
 
-        if (this.projectPath != this.folderDialogDataPath.SelectedPath)
+        if (_projectPath != folderDialogDataPath.SelectedPath)
         {
-            this.OnProjectDataPathChange();
+            await OnProjectDataPathChange();
         }
 
     }
 
     /// <summary>
-    /// Refreshes the project path and its label by the most-recently-selected project.
+    ///     Refreshes the project path and its label by the most-recently-selected project.
     /// </summary>
     private void RefreshProjectDataPath()
     {
         // check if there is a selected folder path to update our project path with.
-        if (this.folderDialogDataPath.SelectedPath.Length > 0)
+        if (folderDialogDataPath.SelectedPath.Length > 0)
         {
             // update the underlying tracker for the path to the /data folder of the project.
-            this.projectPath = this.folderDialogDataPath.SelectedPath;
+            _projectPath = folderDialogDataPath.SelectedPath;
         }
 
         // if there is a project path, update the label.
-        if (this.projectPath.Length > 0)
+        if (_projectPath.Length > 0)
         {
             // update the label for the user to see this text.
-            this.label_dataPath.Text = this.projectPath;
+            label_dataPath.Text = _projectPath;
         }
     }
 
-    private void OnProjectDataPathChange()
+    private async Task OnProjectDataPathChange()
     {
         // sync the path and label with the actual project path.
-        this.RefreshProjectDataPath();
+        RefreshProjectDataPath();
 
-        // flag the weapons for update.
-        this.weaponsBoard.FlagForRefresh();
+        // flag the boards for update.
+        weaponsBoard.FlagForRefresh();
+        enemiesBoard.FlagForRefresh();
+        skillsBoard.FlagForRefresh();
+
+        // TODO: this should be implemented as an abstract class for ALL boards?
+        // this.difficultyBoard.FlagForRefresh();
 
         // refresh the database caches.
-        this.RefreshDatabaseCaches();
+        await RefreshDatabaseCaches();
     }
 
-    private void RefreshDatabaseCaches()
+    private async Task RefreshDatabaseCaches()
     {
         // refresh the various database caches.
-        Items.Refresh(this.projectPath);
-        Weapons.Refresh(this.projectPath);
-        Armors.Refresh(this.projectPath);
+        Items.Refresh(_projectPath);
+        await Weapons.Refresh(_projectPath);
+        Armors.Refresh(_projectPath);
     }
     #endregion
-
-    private void OnDatabaseSave()
-    {
-        this.RefreshDatabaseCaches();
-        this.weaponsBoard.FlagForRefresh();
-        this.enemiesBoard.FlagForRefresh();
-        this.skillsBoard.FlagForRefresh();
-        this.enemiesBoard.FlagForRefresh();
-        // this.difficultyBoard.FlagForRefresh();
-    }
 }

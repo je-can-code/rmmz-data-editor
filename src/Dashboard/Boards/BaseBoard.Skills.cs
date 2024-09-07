@@ -6,23 +6,23 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles skill modifications.
+    ///     The board that primarily handles skill modifications.
     /// </summary>
     private readonly SkillsBoard skillsBoard = new();
 
     private partial void SetupSkillsBoard()
     {
-        this.skillsBoard.FormClosing += FormUtils.HideBoard;
+        skillsBoard.FormClosing += FormUtils.HideBoard;
     }
 
     private void button_skills_Click(object sender, EventArgs e)
     {
         // get the core dataset for this board.
-        var data = JsonLoaderService.LoadSkills(this.projectPath);
+        var data = JsonLoaderService.LoadSkills(_projectPath);
 
         // setup the board.
-        this.skillsBoard.Show();
-        this.skillsBoard.Setup(data);
+        skillsBoard.Show();
+        skillsBoard.Setup(data);
     }
 
     private async void button_saveSkills_Click(object sender, EventArgs e)
@@ -34,16 +34,16 @@ public partial class BaseBoard
         if (dialogResult == DialogResult.OK)
         {
             // these are updated by reference.
-            var updated = this.skillsBoard.Skills();
+            var updated = skillsBoard.Skills();
 
             // execute the save.
-            await JsonSavingService.SaveSkills(this.projectPath, updated);
+            await JsonSavingService.SaveSkills(_projectPath, updated);
 
             // upon completion, show the success.
             MessageBox.Show("Saving has completed successfully.");
 
             // process the event.
-            this.OnDatabaseSave();
+            await OnDatabaseSave();
         }
         // they decided not to save.
         else

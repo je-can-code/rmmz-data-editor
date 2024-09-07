@@ -21,23 +21,29 @@ public static class DropComponentMapper
         {
             denominator = component.Count,
             dataId = component.Id,
-            kind = ToKindInteger(component.Type),
+            kind = ToKindInteger(component.Type)
         };
     }
 
-    private static string ToKindString(int kindInteger) => kindInteger switch
+    private static string ToKindString(int kindInteger)
     {
-        0 => "i",
-        1 => "w",
-        2 => "a",
-        _ => throw new($"bad kind integer provided: {kindInteger}")
-    };
-    
-    private static int ToKindInteger(string kindString) => kindString.ToLowerInvariant() switch
+        return kindInteger switch
+        {
+            0 => "i",
+            1 => "w",
+            2 => "a",
+            _ => throw new($"bad kind integer provided: {kindInteger}")
+        };
+    }
+
+    private static int ToKindInteger(string kindString)
     {
-        "i" or "item" => 0,
-        "w" or "weapon" => 1,
-        "a" or "armor" => 2,
-        _ => throw new($"bad kind string provided: {kindString}")
-    };
+        return kindString.ToLowerInvariant() switch
+        {
+            "i" or "item" => 0,
+            "w" or "weapon" => 1,
+            "a" or "armor" => 2,
+            _ => throw new($"bad kind string provided: {kindString}")
+        };
+    }
 }

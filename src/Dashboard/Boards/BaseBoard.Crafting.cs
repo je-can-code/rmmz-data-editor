@@ -8,25 +8,25 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles Crafting design.
+    ///     The board that primarily handles Crafting design.
     /// </summary>
     private readonly CraftBoard craftBoard = new();
 
     /// <summary>
-    /// When true, the prompt for skipping the prompt when saving crafting data.
-    /// When false, the confirmation popup will show.
+    ///     When true, the prompt for skipping the prompt when saving crafting data.
+    ///     When false, the confirmation popup will show.
     /// </summary>
     private bool skipCraftingSavePopup;
-    
+
     private partial void SetupCraftingBoard()
     {
-        this.craftBoard.FormClosing += FormUtils.HideBoard;
+        craftBoard.FormClosing += FormUtils.HideBoard;
     }
 
     private async void button_saveCrafting_Click(object sender, EventArgs e)
     {
         // check if the board hasn't been setup yet, or is in need of a refresh first.
-        if (this.craftBoard.needsSetup)
+        if (craftBoard.needsSetup)
         {
             MessageBox.Show(
                 """
@@ -40,10 +40,10 @@ public partial class BaseBoard
         }
 
         // check if we're skipping the popup dialogue to confirm saving.
-        if (this.skipCraftingSavePopup)
+        if (skipCraftingSavePopup)
         {
             // just save.
-            await this.SaveCrafting();
+            await SaveCrafting();
             return;
         }
 
@@ -59,7 +59,7 @@ public partial class BaseBoard
             // check if the user agreed.
             case DialogResult.Yes:
                 // then save.
-                await this.SaveCrafting();
+                await SaveCrafting();
                 MessageBox.Show("Saving has completed successfully.");
                 break;
             // the user didn't hit YES.
@@ -76,29 +76,29 @@ public partial class BaseBoard
     private async Task SaveCrafting()
     {
         // update the tracked stuff to saved stuff.
-        this.craftBoard.TrackedToSavedRecipes();
-        this.craftBoard.TrackedToSavedCategories();
+        craftBoard.TrackedToSavedRecipes();
+        craftBoard.TrackedToSavedCategories();
 
         // create the updated configuration data.
         var updatedConfiguration = new CraftingConfiguration
         {
-            Recipes = this.craftBoard.Recipes(),
-            Categories = this.craftBoard.Categories()
+            Recipes = craftBoard.Recipes(),
+            Categories = craftBoard.Categories()
         };
 
 
         // record the newly updated data to disk.
-        await JsonSavingService.SaveCrafting(this.projectPath, updatedConfiguration);
+        await JsonSavingService.SaveCrafting(_projectPath, updatedConfiguration);
 
         // flag our status strip.
-        this.statusStrip_base.Text = "Updated Crafting configuration data.";
-        this.statusStrip_base.Refresh();
+        statusStrip_base.Text = "Updated Crafting configuration data.";
+        statusStrip_base.Refresh();
     }
 
     private void CheckBoxSkipCraftingSavePopupCheckedChanged(object sender, EventArgs e)
     {
-        this.skipCraftingSavePopup = this.checkBoxSkipCraftingSavePopup.Checked;
-        this.checkBoxSkipCraftingSavePopup.Text = this.checkBoxSkipCraftingSavePopup.Checked
+        skipCraftingSavePopup = checkBoxSkipCraftingSavePopup.Checked;
+        checkBoxSkipCraftingSavePopup.Text = checkBoxSkipCraftingSavePopup.Checked
             ? "Just doing it ✅"
             : "Using Save Popup";
     }
@@ -107,18 +107,18 @@ public partial class BaseBoard
     {
         // check if we can load the board based on the required config.
         var canLoadBoard = await FormUtils.ValidateConfiguration(
-            this.projectPath,
-            JsonLoaderService.craftingDataPath(this.projectPath),
+            _projectPath,
+            JsonLoaderService.CraftingDataPath(_projectPath),
             CraftingInitializer.InitializeConfiguration);
 
         // validate we are able to load the board.
         if (canLoadBoard is false) return;
 
         // initialize the data for the board.
-        var data = JsonLoaderService.LoadCrafting(this.projectPath);
-        this.craftBoard.Setup(data);
+        var data = JsonLoaderService.LoadCrafting(_projectPath);
+        craftBoard.Setup(data);
 
         // show the window.
-        this.craftBoard.Show();
+        craftBoard.Show();
     }
 }

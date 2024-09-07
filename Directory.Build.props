@@ -9,11 +9,11 @@
         <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
         <SolutionNamespace>JMZ</SolutionNamespace>
-        
+
         <UITargetFramework>net8.0-windows</UITargetFramework>
         <LibraryTargetFramework>net8.0</LibraryTargetFramework>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <Log4NetVersion>2.0.15</Log4NetVersion>
         <NewtonsoftJsonVersion>13.0.1</NewtonsoftJsonVersion>

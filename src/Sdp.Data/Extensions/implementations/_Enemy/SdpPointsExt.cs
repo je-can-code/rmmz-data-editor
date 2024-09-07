@@ -7,10 +7,10 @@ namespace JMZ.Sdp.Data.Extensions.implementations._Enemy;
 public static class SdpPointsExt
 {
     /// <summary>
-    /// The value that is used to represent "no value" for this tag.
+    ///     The value that is used to represent "no value" for this tag.
     /// </summary>
     public const decimal NON_VALUE = decimal.Zero;
-    
+
     public static decimal GetSdpPoints(this RPG_Enemy enemy)
     {
         return enemy.GetFirstNumberByTag(Tags.Points.Name) ?? NON_VALUE;

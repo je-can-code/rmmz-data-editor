@@ -83,21 +83,22 @@ namespace JMZ.Dashboard.Boards
             labelSdpKey = new Label();
             textSdpKey = new TextBox();
             groupBoxJabsData = new GroupBox();
-            numJabsSight = new NumericUpDown();
-            labelJabsSight = new Label();
-            numJabsPursuit = new NumericUpDown();
-            label3 = new Label();
+            checkBoxAiTraitReckless = new CheckBox();
+            checkBoxAiTraitLeader = new CheckBox();
+            checkBoxAiTraitFollower = new CheckBox();
+            checkBoxAiTraitCareful = new CheckBox();
+            checkBoxAiTraitHealer = new CheckBox();
+            labelAlertDuration = new Label();
+            numAlertDuration = new NumericUpDown();
+            labelVisionAlerted = new Label();
+            labelVisionBase = new Label();
             numJabsPursuitAlerted = new NumericUpDown();
             numJabsSightAlerted = new NumericUpDown();
-            labelVisionBase = new Label();
-            labelVisionAlerted = new Label();
-            numAlertDuration = new NumericUpDown();
-            labelAlertDuration = new Label();
-            checkBoxAiTraitHealer = new CheckBox();
-            checkBoxAiTraitCareful = new CheckBox();
-            checkBoxAiTraitFollower = new CheckBox();
-            checkBoxAiTraitLeader = new CheckBox();
-            checkBoxAiTraitReckless = new CheckBox();
+            numJabsPursuit = new NumericUpDown();
+            label3 = new Label();
+            numJabsSight = new NumericUpDown();
+            labelJabsSight = new Label();
+            checkBoxAiTraitExecutor = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)weaponBindingSource).BeginInit();
             groupBoxCoreData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numParamLuck).BeginInit();
@@ -118,16 +119,16 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpPanelDrop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSdpChance).BeginInit();
             groupBoxJabsData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numJabsSight).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numAlertDuration).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numJabsPursuitAlerted).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numJabsSightAlerted).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numAlertDuration).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsSight).BeginInit();
             SuspendLayout();
             // 
             // listBoxEnemies
             // 
-            listBoxEnemies.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            listBoxEnemies.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             listBoxEnemies.FormattingEnabled = true;
             listBoxEnemies.ItemHeight = 33;
             listBoxEnemies.Location = new Point(22, 26);
@@ -186,7 +187,7 @@ namespace JMZ.Dashboard.Boards
             groupBoxCoreData.Controls.Add(labelId);
             groupBoxCoreData.Controls.Add(textBoxName);
             groupBoxCoreData.Controls.Add(labelName);
-            groupBoxCoreData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxCoreData.Font = new Font("Cascadia Code", 8.25F);
             groupBoxCoreData.Location = new Point(387, 26);
             groupBoxCoreData.Margin = new Padding(6);
             groupBoxCoreData.Name = "groupBoxCoreData";
@@ -198,7 +199,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamLuck
             // 
-            numParamLuck.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamLuck.Font = new Font("Cascadia Code", 10.125F);
             numParamLuck.Location = new Point(189, 719);
             numParamLuck.Margin = new Padding(11, 13, 11, 13);
             numParamLuck.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -210,7 +211,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamLuck
             // 
             labelParamLuck.AutoSize = true;
-            labelParamLuck.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamLuck.Font = new Font("Cascadia Code", 8.25F);
             labelParamLuck.Location = new Point(81, 726);
             labelParamLuck.Margin = new Padding(6, 0, 6, 0);
             labelParamLuck.Name = "labelParamLuck";
@@ -220,7 +221,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamSpeed
             // 
-            numParamSpeed.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamSpeed.Font = new Font("Cascadia Code", 10.125F);
             numParamSpeed.Location = new Point(189, 668);
             numParamSpeed.Margin = new Padding(11, 13, 11, 13);
             numParamSpeed.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -232,7 +233,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamSpeed
             // 
             labelParamSpeed.AutoSize = true;
-            labelParamSpeed.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamSpeed.Font = new Font("Cascadia Code", 8.25F);
             labelParamSpeed.Location = new Point(81, 675);
             labelParamSpeed.Margin = new Padding(6, 0, 6, 0);
             labelParamSpeed.Name = "labelParamSpeed";
@@ -242,7 +243,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamResistance
             // 
-            numParamResistance.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamResistance.Font = new Font("Cascadia Code", 10.125F);
             numParamResistance.Location = new Point(189, 585);
             numParamResistance.Margin = new Padding(11, 13, 11, 13);
             numParamResistance.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -254,7 +255,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamResistance
             // 
             labelParamResistance.AutoSize = true;
-            labelParamResistance.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamResistance.Font = new Font("Cascadia Code", 8.25F);
             labelParamResistance.Location = new Point(29, 592);
             labelParamResistance.Margin = new Padding(6, 0, 6, 0);
             labelParamResistance.Name = "labelParamResistance";
@@ -264,7 +265,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamForce
             // 
-            numParamForce.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamForce.Font = new Font("Cascadia Code", 10.125F);
             numParamForce.Location = new Point(189, 533);
             numParamForce.Margin = new Padding(11, 13, 11, 13);
             numParamForce.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -276,7 +277,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamForce
             // 
             labelParamForce.AutoSize = true;
-            labelParamForce.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamForce.Font = new Font("Cascadia Code", 8.25F);
             labelParamForce.Location = new Point(94, 540);
             labelParamForce.Margin = new Padding(6, 0, 6, 0);
             labelParamForce.Name = "labelParamForce";
@@ -286,7 +287,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamEndurance
             // 
-            numParamEndurance.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamEndurance.Font = new Font("Cascadia Code", 10.125F);
             numParamEndurance.Location = new Point(189, 468);
             numParamEndurance.Margin = new Padding(11, 13, 11, 13);
             numParamEndurance.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -298,7 +299,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamEndurance
             // 
             labelParamEndurance.AutoSize = true;
-            labelParamEndurance.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamEndurance.Font = new Font("Cascadia Code", 8.25F);
             labelParamEndurance.Location = new Point(42, 475);
             labelParamEndurance.Margin = new Padding(6, 0, 6, 0);
             labelParamEndurance.Name = "labelParamEndurance";
@@ -308,7 +309,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numParamPower
             // 
-            numParamPower.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numParamPower.Font = new Font("Cascadia Code", 10.125F);
             numParamPower.Location = new Point(189, 417);
             numParamPower.Margin = new Padding(11, 13, 11, 13);
             numParamPower.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -320,7 +321,7 @@ namespace JMZ.Dashboard.Boards
             // labelParamPower
             // 
             labelParamPower.AutoSize = true;
-            labelParamPower.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelParamPower.Font = new Font("Cascadia Code", 8.25F);
             labelParamPower.Location = new Point(94, 424);
             labelParamPower.Margin = new Padding(6, 0, 6, 0);
             labelParamPower.Name = "labelParamPower";
@@ -330,7 +331,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numMaxHp
             // 
-            numMaxHp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numMaxHp.Font = new Font("Cascadia Code", 10.125F);
             numMaxHp.Location = new Point(129, 221);
             numMaxHp.Margin = new Padding(11, 13, 11, 13);
             numMaxHp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -342,7 +343,7 @@ namespace JMZ.Dashboard.Boards
             // labelMaxTp
             // 
             labelMaxTp.AutoSize = true;
-            labelMaxTp.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMaxTp.Font = new Font("Cascadia Code", 8.25F);
             labelMaxTp.Location = new Point(73, 330);
             labelMaxTp.Margin = new Padding(6, 0, 6, 0);
             labelMaxTp.Name = "labelMaxTp";
@@ -352,7 +353,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numMaxTp
             // 
-            numMaxTp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numMaxTp.Font = new Font("Cascadia Code", 10.125F);
             numMaxTp.Location = new Point(129, 323);
             numMaxTp.Margin = new Padding(11, 13, 11, 13);
             numMaxTp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -364,7 +365,7 @@ namespace JMZ.Dashboard.Boards
             // labelMaxMp
             // 
             labelMaxMp.AutoSize = true;
-            labelMaxMp.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMaxMp.Font = new Font("Cascadia Code", 8.25F);
             labelMaxMp.Location = new Point(73, 278);
             labelMaxMp.Margin = new Padding(6, 0, 6, 0);
             labelMaxMp.Name = "labelMaxMp";
@@ -374,7 +375,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numMaxMp
             // 
-            numMaxMp.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numMaxMp.Font = new Font("Cascadia Code", 10.125F);
             numMaxMp.Location = new Point(129, 271);
             numMaxMp.Margin = new Padding(11, 13, 11, 13);
             numMaxMp.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -386,7 +387,7 @@ namespace JMZ.Dashboard.Boards
             // labelMaxHp
             // 
             labelMaxHp.AutoSize = true;
-            labelMaxHp.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMaxHp.Font = new Font("Cascadia Code", 8.25F);
             labelMaxHp.Location = new Point(73, 228);
             labelMaxHp.Margin = new Padding(6, 0, 6, 0);
             labelMaxHp.Name = "labelMaxHp";
@@ -396,7 +397,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numLevel
             // 
-            numLevel.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numLevel.Font = new Font("Cascadia Code", 10.125F);
             numLevel.Location = new Point(17, 131);
             numLevel.Margin = new Padding(11, 13, 11, 13);
             numLevel.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -408,7 +409,7 @@ namespace JMZ.Dashboard.Boards
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Cascadia Code", 8.25F);
             label1.Location = new Point(14, 105);
             label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
@@ -419,7 +420,7 @@ namespace JMZ.Dashboard.Boards
             // textBoxName
             // 
             textBoxName.BorderStyle = BorderStyle.FixedSingle;
-            textBoxName.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxName.Font = new Font("Cascadia Code", 8.25F);
             textBoxName.Location = new Point(14, 66);
             textBoxName.Margin = new Padding(6);
             textBoxName.Name = "textBoxName";
@@ -429,7 +430,7 @@ namespace JMZ.Dashboard.Boards
             // labelName
             // 
             labelName.AutoSize = true;
-            labelName.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelName.Font = new Font("Cascadia Code", 8.25F);
             labelName.Location = new Point(14, 31);
             labelName.Margin = new Padding(6, 0, 6, 0);
             labelName.Name = "labelName";
@@ -448,7 +449,7 @@ namespace JMZ.Dashboard.Boards
             groupBoxDropData.Controls.Add(labelExperience);
             groupBoxDropData.Controls.Add(labelGold);
             groupBoxDropData.Controls.Add(numExperience);
-            groupBoxDropData.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxDropData.Font = new Font("Cascadia Code", 8.25F);
             groupBoxDropData.Location = new Point(809, 26);
             groupBoxDropData.Margin = new Padding(6);
             groupBoxDropData.Name = "groupBoxDropData";
@@ -461,7 +462,7 @@ namespace JMZ.Dashboard.Boards
             // buttonDeleteDrop
             // 
             buttonDeleteDrop.FlatStyle = FlatStyle.Popup;
-            buttonDeleteDrop.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDeleteDrop.Font = new Font("Cascadia Code", 12F);
             buttonDeleteDrop.ForeColor = Color.Red;
             buttonDeleteDrop.Location = new Point(334, 839);
             buttonDeleteDrop.Margin = new Padding(6);
@@ -475,7 +476,7 @@ namespace JMZ.Dashboard.Boards
             // buttonCloneToDrops
             // 
             buttonCloneToDrops.FlatStyle = FlatStyle.Popup;
-            buttonCloneToDrops.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCloneToDrops.Font = new Font("Cascadia Code", 12F);
             buttonCloneToDrops.ForeColor = Color.Blue;
             buttonCloneToDrops.Location = new Point(12, 839);
             buttonCloneToDrops.Margin = new Padding(6);
@@ -489,7 +490,7 @@ namespace JMZ.Dashboard.Boards
             // labelBasicDrops
             // 
             labelBasicDrops.AutoSize = true;
-            labelBasicDrops.Font = new Font("Cascadia Code", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBasicDrops.Font = new Font("Cascadia Code", 10.125F, FontStyle.Bold);
             labelBasicDrops.Location = new Point(12, 129);
             labelBasicDrops.Margin = new Padding(6, 0, 6, 0);
             labelBasicDrops.Name = "labelBasicDrops";
@@ -500,7 +501,7 @@ namespace JMZ.Dashboard.Boards
             // buttonDropHelper
             // 
             buttonDropHelper.FlatStyle = FlatStyle.Flat;
-            buttonDropHelper.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDropHelper.Font = new Font("Cascadia Code", 12F);
             buttonDropHelper.Location = new Point(12, 931);
             buttonDropHelper.Margin = new Padding(6);
             buttonDropHelper.Name = "buttonDropHelper";
@@ -522,7 +523,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numGold
             // 
-            numGold.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numGold.Font = new Font("Cascadia Code", 10.125F);
             numGold.Location = new Point(304, 70);
             numGold.Margin = new Padding(11, 13, 11, 13);
             numGold.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -534,7 +535,7 @@ namespace JMZ.Dashboard.Boards
             // labelExperience
             // 
             labelExperience.AutoSize = true;
-            labelExperience.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelExperience.Font = new Font("Cascadia Code", 8.25F);
             labelExperience.Location = new Point(17, 41);
             labelExperience.Margin = new Padding(6, 0, 6, 0);
             labelExperience.Name = "labelExperience";
@@ -545,7 +546,7 @@ namespace JMZ.Dashboard.Boards
             // labelGold
             // 
             labelGold.AutoSize = true;
-            labelGold.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelGold.Font = new Font("Cascadia Code", 8.25F);
             labelGold.Location = new Point(304, 41);
             labelGold.Margin = new Padding(6, 0, 6, 0);
             labelGold.Name = "labelGold";
@@ -555,7 +556,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numExperience
             // 
-            numExperience.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numExperience.Font = new Font("Cascadia Code", 10.125F);
             numExperience.Location = new Point(17, 70);
             numExperience.Margin = new Padding(11, 13, 11, 13);
             numExperience.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -567,7 +568,7 @@ namespace JMZ.Dashboard.Boards
             // labelSdpPoints
             // 
             labelSdpPoints.AutoSize = true;
-            labelSdpPoints.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSdpPoints.Font = new Font("Cascadia Code", 8.25F);
             labelSdpPoints.Location = new Point(9, 49);
             labelSdpPoints.Margin = new Padding(6, 0, 6, 0);
             labelSdpPoints.Name = "labelSdpPoints";
@@ -577,7 +578,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numSdpPoints
             // 
-            numSdpPoints.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numSdpPoints.Font = new Font("Cascadia Code", 10.125F);
             numSdpPoints.Location = new Point(117, 42);
             numSdpPoints.Margin = new Padding(11, 13, 11, 13);
             numSdpPoints.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
@@ -591,7 +592,7 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpData.Controls.Add(groupBoxSdpPanelDrop);
             groupBoxSdpData.Controls.Add(labelSdpPoints);
             groupBoxSdpData.Controls.Add(numSdpPoints);
-            groupBoxSdpData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBoxSdpData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             groupBoxSdpData.Location = new Point(1386, 26);
             groupBoxSdpData.Name = "groupBoxSdpData";
             groupBoxSdpData.Size = new Size(558, 397);
@@ -611,7 +612,7 @@ namespace JMZ.Dashboard.Boards
             groupBoxSdpPanelDrop.Controls.Add(checkBoxHasPanelDrop);
             groupBoxSdpPanelDrop.Controls.Add(labelSdpKey);
             groupBoxSdpPanelDrop.Controls.Add(textSdpKey);
-            groupBoxSdpPanelDrop.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxSdpPanelDrop.Font = new Font("Cascadia Code", 8.25F);
             groupBoxSdpPanelDrop.Location = new Point(9, 97);
             groupBoxSdpPanelDrop.Name = "groupBoxSdpPanelDrop";
             groupBoxSdpPanelDrop.Size = new Size(534, 290);
@@ -622,7 +623,7 @@ namespace JMZ.Dashboard.Boards
             // buttonRemoveSdpData
             // 
             buttonRemoveSdpData.FlatStyle = FlatStyle.Popup;
-            buttonRemoveSdpData.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRemoveSdpData.Font = new Font("Cascadia Code", 12F);
             buttonRemoveSdpData.ForeColor = Color.Red;
             buttonRemoveSdpData.Location = new Point(342, 221);
             buttonRemoveSdpData.Margin = new Padding(6);
@@ -636,7 +637,7 @@ namespace JMZ.Dashboard.Boards
             // buttonUpdateSdpData
             // 
             buttonUpdateSdpData.FlatStyle = FlatStyle.Popup;
-            buttonUpdateSdpData.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonUpdateSdpData.Font = new Font("Cascadia Code", 12F);
             buttonUpdateSdpData.ForeColor = Color.Lime;
             buttonUpdateSdpData.Location = new Point(9, 221);
             buttonUpdateSdpData.Margin = new Padding(6);
@@ -650,7 +651,7 @@ namespace JMZ.Dashboard.Boards
             // buttonCloneToSdpDrop
             // 
             buttonCloneToSdpDrop.FlatStyle = FlatStyle.Popup;
-            buttonCloneToSdpDrop.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCloneToSdpDrop.Font = new Font("Cascadia Code", 12F);
             buttonCloneToSdpDrop.ForeColor = Color.Blue;
             buttonCloneToSdpDrop.Location = new Point(407, 124);
             buttonCloneToSdpDrop.Margin = new Padding(6);
@@ -684,7 +685,7 @@ namespace JMZ.Dashboard.Boards
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Cascadia Code", 8.25F);
             label2.Location = new Point(29, 156);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
@@ -694,7 +695,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // numSdpChance
             // 
-            numSdpChance.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numSdpChance.Font = new Font("Cascadia Code", 10.125F);
             numSdpChance.Location = new Point(137, 149);
             numSdpChance.Margin = new Padding(11, 13, 11, 13);
             numSdpChance.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -718,7 +719,7 @@ namespace JMZ.Dashboard.Boards
             // labelSdpKey
             // 
             labelSdpKey.AutoSize = true;
-            labelSdpKey.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSdpKey.Font = new Font("Cascadia Code", 8.25F);
             labelSdpKey.Location = new Point(25, 99);
             labelSdpKey.Margin = new Padding(6, 0, 6, 0);
             labelSdpKey.Name = "labelSdpKey";
@@ -729,7 +730,7 @@ namespace JMZ.Dashboard.Boards
             // textSdpKey
             // 
             textSdpKey.BorderStyle = BorderStyle.FixedSingle;
-            textSdpKey.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textSdpKey.Font = new Font("Cascadia Code", 8.25F);
             textSdpKey.Location = new Point(89, 97);
             textSdpKey.Margin = new Padding(6);
             textSdpKey.MaxLength = 64;
@@ -739,6 +740,7 @@ namespace JMZ.Dashboard.Boards
             // 
             // groupBoxJabsData
             // 
+            groupBoxJabsData.Controls.Add(checkBoxAiTraitExecutor);
             groupBoxJabsData.Controls.Add(checkBoxAiTraitReckless);
             groupBoxJabsData.Controls.Add(checkBoxAiTraitLeader);
             groupBoxJabsData.Controls.Add(checkBoxAiTraitFollower);
@@ -754,7 +756,7 @@ namespace JMZ.Dashboard.Boards
             groupBoxJabsData.Controls.Add(label3);
             groupBoxJabsData.Controls.Add(numJabsSight);
             groupBoxJabsData.Controls.Add(labelJabsSight);
-            groupBoxJabsData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBoxJabsData.Font = new Font("Victor Mono SemiBold", 10.124999F, FontStyle.Bold);
             groupBoxJabsData.Location = new Point(1386, 429);
             groupBoxJabsData.Name = "groupBoxJabsData";
             groupBoxJabsData.Size = new Size(558, 624);
@@ -762,33 +764,131 @@ namespace JMZ.Dashboard.Boards
             groupBoxJabsData.TabStop = false;
             groupBoxJabsData.Text = "JABS Data";
             // 
-            // numJabsSight
+            // checkBoxAiTraitReckless
             // 
-            numJabsSight.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            numJabsSight.Location = new Point(135, 97);
-            numJabsSight.Margin = new Padding(11, 13, 11, 13);
-            numJabsSight.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            numJabsSight.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-            numJabsSight.Name = "numJabsSight";
-            numJabsSight.Size = new Size(143, 39);
-            numJabsSight.TabIndex = 20;
-            numJabsSight.TextAlign = HorizontalAlignment.Center;
-            numJabsSight.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            checkBoxAiTraitReckless.AutoSize = true;
+            checkBoxAiTraitReckless.Location = new Point(18, 447);
+            checkBoxAiTraitReckless.Name = "checkBoxAiTraitReckless";
+            checkBoxAiTraitReckless.Size = new Size(227, 37);
+            checkBoxAiTraitReckless.TabIndex = 63;
+            checkBoxAiTraitReckless.Text = "AI: Reckless";
+            checkBoxAiTraitReckless.UseVisualStyleBackColor = true;
             // 
-            // labelJabsSight
+            // checkBoxAiTraitLeader
             // 
-            labelJabsSight.AutoSize = true;
-            labelJabsSight.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelJabsSight.Location = new Point(40, 104);
-            labelJabsSight.Margin = new Padding(6, 0, 6, 0);
-            labelJabsSight.Name = "labelJabsSight";
-            labelJabsSight.Size = new Size(78, 29);
-            labelJabsSight.TabIndex = 19;
-            labelJabsSight.Text = "Sight";
+            checkBoxAiTraitLeader.AutoSize = true;
+            checkBoxAiTraitLeader.Location = new Point(18, 490);
+            checkBoxAiTraitLeader.Name = "checkBoxAiTraitLeader";
+            checkBoxAiTraitLeader.Size = new Size(197, 37);
+            checkBoxAiTraitLeader.TabIndex = 62;
+            checkBoxAiTraitLeader.Text = "AI: Leader";
+            checkBoxAiTraitLeader.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitFollower
+            // 
+            checkBoxAiTraitFollower.AutoSize = true;
+            checkBoxAiTraitFollower.Location = new Point(271, 490);
+            checkBoxAiTraitFollower.Name = "checkBoxAiTraitFollower";
+            checkBoxAiTraitFollower.Size = new Size(227, 37);
+            checkBoxAiTraitFollower.TabIndex = 61;
+            checkBoxAiTraitFollower.Text = "AI: Follower";
+            checkBoxAiTraitFollower.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitCareful
+            // 
+            checkBoxAiTraitCareful.AutoSize = true;
+            checkBoxAiTraitCareful.Location = new Point(18, 404);
+            checkBoxAiTraitCareful.Name = "checkBoxAiTraitCareful";
+            checkBoxAiTraitCareful.Size = new Size(212, 37);
+            checkBoxAiTraitCareful.TabIndex = 60;
+            checkBoxAiTraitCareful.Text = "AI: Careful";
+            checkBoxAiTraitCareful.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAiTraitHealer
+            // 
+            checkBoxAiTraitHealer.AutoSize = true;
+            checkBoxAiTraitHealer.Location = new Point(271, 447);
+            checkBoxAiTraitHealer.Name = "checkBoxAiTraitHealer";
+            checkBoxAiTraitHealer.Size = new Size(197, 37);
+            checkBoxAiTraitHealer.TabIndex = 59;
+            checkBoxAiTraitHealer.Text = "AI: Healer";
+            checkBoxAiTraitHealer.UseVisualStyleBackColor = true;
+            // 
+            // labelAlertDuration
+            // 
+            labelAlertDuration.AutoSize = true;
+            labelAlertDuration.Font = new Font("Cascadia Code", 8.25F);
+            labelAlertDuration.Location = new Point(300, 224);
+            labelAlertDuration.Margin = new Padding(6, 0, 6, 0);
+            labelAlertDuration.Name = "labelAlertDuration";
+            labelAlertDuration.Size = new Size(117, 29);
+            labelAlertDuration.TabIndex = 28;
+            labelAlertDuration.Text = "Duration";
+            // 
+            // numAlertDuration
+            // 
+            numAlertDuration.Font = new Font("Cascadia Code", 10.125F);
+            numAlertDuration.Location = new Point(300, 254);
+            numAlertDuration.Margin = new Padding(11, 13, 11, 13);
+            numAlertDuration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            numAlertDuration.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numAlertDuration.Name = "numAlertDuration";
+            numAlertDuration.Size = new Size(190, 39);
+            numAlertDuration.TabIndex = 27;
+            numAlertDuration.TextAlign = HorizontalAlignment.Center;
+            numAlertDuration.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // labelVisionAlerted
+            // 
+            labelVisionAlerted.AutoSize = true;
+            labelVisionAlerted.Font = new Font("Cascadia Code", 8.25F);
+            labelVisionAlerted.Location = new Point(325, 55);
+            labelVisionAlerted.Margin = new Padding(6, 0, 6, 0);
+            labelVisionAlerted.Name = "labelVisionAlerted";
+            labelVisionAlerted.Size = new Size(104, 29);
+            labelVisionAlerted.TabIndex = 26;
+            labelVisionAlerted.Text = "Alerted";
+            // 
+            // labelVisionBase
+            // 
+            labelVisionBase.AutoSize = true;
+            labelVisionBase.Font = new Font("Cascadia Code", 8.25F);
+            labelVisionBase.Location = new Point(156, 55);
+            labelVisionBase.Margin = new Padding(6, 0, 6, 0);
+            labelVisionBase.Name = "labelVisionBase";
+            labelVisionBase.Size = new Size(65, 29);
+            labelVisionBase.TabIndex = 25;
+            labelVisionBase.Text = "Base";
+            // 
+            // numJabsPursuitAlerted
+            // 
+            numJabsPursuitAlerted.Font = new Font("Cascadia Code", 10.125F);
+            numJabsPursuitAlerted.Location = new Point(300, 162);
+            numJabsPursuitAlerted.Margin = new Padding(11, 13, 11, 13);
+            numJabsPursuitAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsPursuitAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsPursuitAlerted.Name = "numJabsPursuitAlerted";
+            numJabsPursuitAlerted.Size = new Size(143, 39);
+            numJabsPursuitAlerted.TabIndex = 24;
+            numJabsPursuitAlerted.TextAlign = HorizontalAlignment.Center;
+            numJabsPursuitAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // numJabsSightAlerted
+            // 
+            numJabsSightAlerted.Font = new Font("Cascadia Code", 10.125F);
+            numJabsSightAlerted.Location = new Point(300, 97);
+            numJabsSightAlerted.Margin = new Padding(11, 13, 11, 13);
+            numJabsSightAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsSightAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsSightAlerted.Name = "numJabsSightAlerted";
+            numJabsSightAlerted.Size = new Size(143, 39);
+            numJabsSightAlerted.TabIndex = 23;
+            numJabsSightAlerted.TextAlign = HorizontalAlignment.Center;
+            numJabsSightAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
             // 
             // numJabsPursuit
             // 
-            numJabsPursuit.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
+            numJabsPursuit.Font = new Font("Cascadia Code", 10.125F);
             numJabsPursuit.Location = new Point(135, 162);
             numJabsPursuit.Margin = new Padding(11, 13, 11, 13);
             numJabsPursuit.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
@@ -802,7 +902,7 @@ namespace JMZ.Dashboard.Boards
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Cascadia Code", 8.25F);
             label3.Location = new Point(14, 169);
             label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
@@ -810,127 +910,39 @@ namespace JMZ.Dashboard.Boards
             label3.TabIndex = 21;
             label3.Text = "Pursuit";
             // 
-            // numJabsPursuitAlerted
+            // numJabsSight
             // 
-            numJabsPursuitAlerted.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            numJabsPursuitAlerted.Location = new Point(300, 162);
-            numJabsPursuitAlerted.Margin = new Padding(11, 13, 11, 13);
-            numJabsPursuitAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            numJabsPursuitAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-            numJabsPursuitAlerted.Name = "numJabsPursuitAlerted";
-            numJabsPursuitAlerted.Size = new Size(143, 39);
-            numJabsPursuitAlerted.TabIndex = 24;
-            numJabsPursuitAlerted.TextAlign = HorizontalAlignment.Center;
-            numJabsPursuitAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsSight.Font = new Font("Cascadia Code", 10.125F);
+            numJabsSight.Location = new Point(135, 97);
+            numJabsSight.Margin = new Padding(11, 13, 11, 13);
+            numJabsSight.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            numJabsSight.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            numJabsSight.Name = "numJabsSight";
+            numJabsSight.Size = new Size(143, 39);
+            numJabsSight.TabIndex = 20;
+            numJabsSight.TextAlign = HorizontalAlignment.Center;
+            numJabsSight.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
             // 
-            // numJabsSightAlerted
+            // labelJabsSight
             // 
-            numJabsSightAlerted.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            numJabsSightAlerted.Location = new Point(300, 97);
-            numJabsSightAlerted.Margin = new Padding(11, 13, 11, 13);
-            numJabsSightAlerted.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            numJabsSightAlerted.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-            numJabsSightAlerted.Name = "numJabsSightAlerted";
-            numJabsSightAlerted.Size = new Size(143, 39);
-            numJabsSightAlerted.TabIndex = 23;
-            numJabsSightAlerted.TextAlign = HorizontalAlignment.Center;
-            numJabsSightAlerted.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            labelJabsSight.AutoSize = true;
+            labelJabsSight.Font = new Font("Cascadia Code", 8.25F);
+            labelJabsSight.Location = new Point(40, 104);
+            labelJabsSight.Margin = new Padding(6, 0, 6, 0);
+            labelJabsSight.Name = "labelJabsSight";
+            labelJabsSight.Size = new Size(78, 29);
+            labelJabsSight.TabIndex = 19;
+            labelJabsSight.Text = "Sight";
             // 
-            // labelVisionBase
+            // checkBoxAiTraitExecutor
             // 
-            labelVisionBase.AutoSize = true;
-            labelVisionBase.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVisionBase.Location = new Point(156, 55);
-            labelVisionBase.Margin = new Padding(6, 0, 6, 0);
-            labelVisionBase.Name = "labelVisionBase";
-            labelVisionBase.Size = new Size(65, 29);
-            labelVisionBase.TabIndex = 25;
-            labelVisionBase.Text = "Base";
-            // 
-            // labelVisionAlerted
-            // 
-            labelVisionAlerted.AutoSize = true;
-            labelVisionAlerted.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVisionAlerted.Location = new Point(325, 55);
-            labelVisionAlerted.Margin = new Padding(6, 0, 6, 0);
-            labelVisionAlerted.Name = "labelVisionAlerted";
-            labelVisionAlerted.Size = new Size(104, 29);
-            labelVisionAlerted.TabIndex = 26;
-            labelVisionAlerted.Text = "Alerted";
-            // 
-            // numAlertDuration
-            // 
-            numAlertDuration.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point);
-            numAlertDuration.Location = new Point(300, 254);
-            numAlertDuration.Margin = new Padding(11, 13, 11, 13);
-            numAlertDuration.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            numAlertDuration.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-            numAlertDuration.Name = "numAlertDuration";
-            numAlertDuration.Size = new Size(190, 39);
-            numAlertDuration.TabIndex = 27;
-            numAlertDuration.TextAlign = HorizontalAlignment.Center;
-            numAlertDuration.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
-            // 
-            // labelAlertDuration
-            // 
-            labelAlertDuration.AutoSize = true;
-            labelAlertDuration.Font = new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelAlertDuration.Location = new Point(300, 224);
-            labelAlertDuration.Margin = new Padding(6, 0, 6, 0);
-            labelAlertDuration.Name = "labelAlertDuration";
-            labelAlertDuration.Size = new Size(117, 29);
-            labelAlertDuration.TabIndex = 28;
-            labelAlertDuration.Text = "Duration";
-            // 
-            // checkBoxAiTraitHealer
-            // 
-            checkBoxAiTraitHealer.AutoSize = true;
-            checkBoxAiTraitHealer.Location = new Point(18, 404);
-            checkBoxAiTraitHealer.Name = "checkBoxAiTraitHealer";
-            checkBoxAiTraitHealer.Size = new Size(197, 37);
-            checkBoxAiTraitHealer.TabIndex = 59;
-            checkBoxAiTraitHealer.Text = "AI: Healer";
-            checkBoxAiTraitHealer.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAiTraitCareful
-            // 
-            checkBoxAiTraitCareful.AutoSize = true;
-            checkBoxAiTraitCareful.Location = new Point(271, 404);
-            checkBoxAiTraitCareful.Name = "checkBoxAiTraitCareful";
-            checkBoxAiTraitCareful.Size = new Size(212, 37);
-            checkBoxAiTraitCareful.TabIndex = 60;
-            checkBoxAiTraitCareful.Text = "AI: Careful";
-            checkBoxAiTraitCareful.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAiTraitFollower
-            // 
-            checkBoxAiTraitFollower.AutoSize = true;
-            checkBoxAiTraitFollower.Location = new Point(18, 447);
-            checkBoxAiTraitFollower.Name = "checkBoxAiTraitFollower";
-            checkBoxAiTraitFollower.Size = new Size(227, 37);
-            checkBoxAiTraitFollower.TabIndex = 61;
-            checkBoxAiTraitFollower.Text = "AI: Follower";
-            checkBoxAiTraitFollower.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAiTraitLeader
-            // 
-            checkBoxAiTraitLeader.AutoSize = true;
-            checkBoxAiTraitLeader.Location = new Point(271, 447);
-            checkBoxAiTraitLeader.Name = "checkBoxAiTraitLeader";
-            checkBoxAiTraitLeader.Size = new Size(197, 37);
-            checkBoxAiTraitLeader.TabIndex = 62;
-            checkBoxAiTraitLeader.Text = "AI: Leader";
-            checkBoxAiTraitLeader.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAiTraitReckless
-            // 
-            checkBoxAiTraitReckless.AutoSize = true;
-            checkBoxAiTraitReckless.Location = new Point(18, 490);
-            checkBoxAiTraitReckless.Name = "checkBoxAiTraitReckless";
-            checkBoxAiTraitReckless.Size = new Size(197, 37);
-            checkBoxAiTraitReckless.TabIndex = 63;
-            checkBoxAiTraitReckless.Text = "AI: Leader";
-            checkBoxAiTraitReckless.UseVisualStyleBackColor = true;
+            checkBoxAiTraitExecutor.AutoSize = true;
+            checkBoxAiTraitExecutor.Location = new Point(271, 404);
+            checkBoxAiTraitExecutor.Name = "checkBoxAiTraitExecutor";
+            checkBoxAiTraitExecutor.Size = new Size(227, 37);
+            checkBoxAiTraitExecutor.TabIndex = 64;
+            checkBoxAiTraitExecutor.Text = "AI: Executor";
+            checkBoxAiTraitExecutor.UseVisualStyleBackColor = true;
             // 
             // EnemiesBoard
             // 
@@ -970,11 +982,11 @@ namespace JMZ.Dashboard.Boards
             ((System.ComponentModel.ISupportInitialize)numSdpChance).EndInit();
             groupBoxJabsData.ResumeLayout(false);
             groupBoxJabsData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numJabsSight).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numAlertDuration).EndInit();
             ((System.ComponentModel.ISupportInitialize)numJabsPursuitAlerted).EndInit();
             ((System.ComponentModel.ISupportInitialize)numJabsSightAlerted).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numAlertDuration).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsPursuit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numJabsSight).EndInit();
             ResumeLayout(false);
         }
 
@@ -1047,5 +1059,6 @@ namespace JMZ.Dashboard.Boards
         private CheckBox checkBoxAiTraitFollower;
         private CheckBox checkBoxAiTraitCareful;
         private CheckBox checkBoxAiTraitHealer;
+        private CheckBox checkBoxAiTraitExecutor;
     }
 }

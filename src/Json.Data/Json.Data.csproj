@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
-    <RootNamespace>$(SolutionNamespace).Json.Data</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>$(LibraryTargetFramework)</TargetFramework>
+        <RootNamespace>$(SolutionNamespace).Json.Data</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
+    <ItemGroup>
+        <ProjectReference Include="..\Quest.Data\Quest.Data.csproj"/>
+        <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj"/>
 
-    <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
-    <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
-    <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj" />
-    <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj" />
-    <ProjectReference Include="..\Difficulty.Data\Difficulty.Data.csproj" />
-  </ItemGroup>
+        <ProjectReference Include="..\JABS.Data\JABS.Data.csproj"/>
+        <ProjectReference Include="..\Extend.Data\Extend.Data.csproj"/>
+        <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj"/>
+        <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj"/>
+        <ProjectReference Include="..\Difficulty.Data\Difficulty.Data.csproj"/>
+    </ItemGroup>
 
 </Project>

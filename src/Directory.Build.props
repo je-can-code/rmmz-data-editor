@@ -1,7 +1,7 @@
 ﻿<Project>
-    <Import Project="../Directory.Build.props" />
+    <Import Project="../Directory.Build.props"/>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
+        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)"/>
     </ItemGroup>
 </Project>

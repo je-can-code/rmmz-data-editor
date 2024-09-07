@@ -10,7 +10,7 @@ public static class DirectTargetingExt
     {
         return skill.HasBooleanTag(Tags.Direct.Name);
     }
-    
+
     public static void UpdateJabsDirectTargeting(this RPG_Skill skill, bool directTargeting)
     {
         // check what our current state is.

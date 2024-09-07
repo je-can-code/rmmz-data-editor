@@ -17,8 +17,8 @@ public class ExParameterId
     public const int COUNTER_CHANCE = 6;
 
     public const int LIFE_REGEN = 7;
-    
+
     public const int MAGI_REGEN = 8;
-    
+
     public const int TECH_REGEN = 9;
 }

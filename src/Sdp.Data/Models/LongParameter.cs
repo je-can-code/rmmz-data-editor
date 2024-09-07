@@ -1,8 +1,8 @@
 ﻿namespace JMZ.Sdp.Data.Models;
 
 /// <summary>
-/// The "long" parameter id mapping as an enum.
-/// The indexes align with the "long parameter id" format.
+///     The "long" parameter id mapping as an enum.
+///     The indexes align with the "long parameter id" format.
 /// </summary>
 public enum LongParameter
 {
@@ -15,7 +15,7 @@ public enum LongParameter
     Resistance = 5,
     Speed = 6,
     Luck = 7,
-    
+
     // s-params
     Accuracy = 8,
     ParryExtend = 9,
@@ -27,7 +27,7 @@ public enum LongParameter
     HpRegen = 15,
     MpRegen = 16,
     TpRegen = 17,
-    
+
     // x-params
     Aggro = 18,
     Parry = 19,
@@ -39,11 +39,11 @@ public enum LongParameter
     MagiDmgRate = 25,
     LightFooted = 26,
     ExperienceUp = 27,
-    
+
     // custom params
     CritAmp = 28,
     CritBlock = 29,
     MaxTech = 30,
     MoveBoost = 31,
-    ProficiencyBoost = 32,
+    ProficiencyBoost = 32
 }

@@ -6,6 +6,7 @@ public static class PoseSuffixExt
 {
     public static string GetJabsPoseSuffix(this RPG_Skill skill)
     {
-        return skill.GetJabsPoseData().PoseSuffix;
+        return skill.GetJabsPoseData()
+            .PoseSuffix;
     }
 }

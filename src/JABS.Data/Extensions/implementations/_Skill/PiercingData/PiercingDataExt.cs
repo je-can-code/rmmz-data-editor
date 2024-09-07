@@ -47,11 +47,9 @@ internal static class PiercingDataExt
             // stop processing.
             return;
         }
-        
+
         // we need to update the tag, so build the updated note with the new values.
-        var updatedNote = Tags.Pierce.ToArrayTag(
-            newPiercingCount.ToString(),
-            newPiercingDelay.ToString());
+        var updatedNote = Tags.Pierce.ToArrayTag(newPiercingCount.ToString(), newPiercingDelay.ToString());
 
         // check if the value was missing previously.
         if (isMissing)
@@ -63,7 +61,7 @@ internal static class PiercingDataExt
         else
         {
             // update the actual note.
-            skill.UpdateNoteData(Tags.Pierce.Regex, updatedNote);   
+            skill.UpdateNoteData(Tags.Pierce.Regex, updatedNote);
         }
     }
 }

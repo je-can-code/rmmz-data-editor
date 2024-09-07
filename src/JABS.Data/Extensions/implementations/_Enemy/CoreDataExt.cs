@@ -7,27 +7,27 @@ namespace JMZ.JABS.Data.Extensions.implementations._Enemy;
 public static class CoreDataExt
 {
     internal static readonly decimal NonValue = -1;
-    
+
     public static decimal GetJabsSight(this RPG_Enemy enemy)
     {
         return enemy.GetFirstNumberByTag(Tags.Sight.Name, true) ?? NonValue;
     }
-    
+
     public static decimal GetJabsAlertedSightBoost(this RPG_Enemy enemy)
     {
         return enemy.GetFirstNumberByTag(Tags.AlertedSightBoost.Name, true) ?? NonValue;
     }
-    
+
     public static decimal GetJabsPursuit(this RPG_Enemy enemy)
     {
         return enemy.GetFirstNumberByTag(Tags.Pursuit.Name, true) ?? NonValue;
     }
-    
+
     public static decimal GetJabsAlertedPursuitBoost(this RPG_Enemy enemy)
     {
         return enemy.GetFirstNumberByTag(Tags.AlertedPursuitBoost.Name, true) ?? NonValue;
     }
-    
+
     public static void UpdateJabsSight(this RPG_Enemy enemy, decimal newValue)
     {
         // determine if currently there is a value on it.
@@ -111,7 +111,7 @@ public static class CoreDataExt
             enemy.UpdateNoteData(Tags.AlertedSightBoost.Regex, updatedNote);
         }
     }
-    
+
     public static void UpdateJabsPursuit(this RPG_Enemy enemy, decimal newValue)
     {
         // determine if currently there is a value on it.

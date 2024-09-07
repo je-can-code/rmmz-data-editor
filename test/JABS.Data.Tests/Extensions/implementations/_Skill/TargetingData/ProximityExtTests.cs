@@ -4,58 +4,61 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.TargetingData;
 
-[Trait("Category","TargetingData")]
+[Trait("Category", "TargetingData")]
 public class ProximityExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public ProximityExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
         var expected = -1;
-        this.modelUnderTest.note = string.Empty;
-        
+        modelUnderTest.note = string.Empty;
+
         // when
-        var actual = this.modelUnderTest.GetJabsProximity();
-        
+        var actual = modelUnderTest.GetJabsProximity();
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RmmzUNumber();
-        var fakeTag = this.fdg.ProximityTag(fakeTagValue);
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
-        
+        var fakeTagValue = fdg.RmmzUNumber();
+        var fakeTag = fdg.ProximityTag(fakeTagValue);
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
+
         // when
-        var actual = this.modelUnderTest.GetJabsProximity();
-        
+        var actual = modelUnderTest.GetJabsProximity();
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
     public void whenUpdated_returnsValue()
     {
         // given
-        var fakeTagValue = this.fdg.RmmzDecimal();
-        this.modelUnderTest.UpdateJabsProximity(fakeTagValue);
-        
+        var fakeTagValue = fdg.RmmzDecimal();
+        modelUnderTest.UpdateJabsProximity(fakeTagValue);
+
         // when
-        var actual = this.modelUnderTest.GetJabsProximity();
-        
+        var actual = modelUnderTest.GetJabsProximity();
+
         // then
-        actual.Should().Be(fakeTagValue);
+        actual.Should()
+            .Be(fakeTagValue);
     }
 
     [Fact]
@@ -63,14 +66,15 @@ public class ProximityExtTests : BaseTests
     {
         // given
         var expected = -1;
-        var fakeTagValue = this.fdg.RmmzUNumber();
-        this.modelUnderTest.UpdateJabsProximity(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsProximity(-1);
-        
+        var fakeTagValue = fdg.RmmzUNumber();
+        modelUnderTest.UpdateJabsProximity(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsProximity(-1);
+
         // when
-        var actual = this.modelUnderTest.GetJabsProximity();
-        
+        var actual = modelUnderTest.GetJabsProximity();
+
         // then
-        actual.Should().Be(expected);
+        actual.Should()
+            .Be(expected);
     }
 }

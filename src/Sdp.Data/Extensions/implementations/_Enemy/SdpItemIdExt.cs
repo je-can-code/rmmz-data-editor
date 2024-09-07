@@ -6,6 +6,7 @@ public static class SdpItemIdExt
 {
     public static decimal GetSdpItemId(this RPG_Enemy enemy)
     {
-        return  enemy.GetSdpData().ItemId;
+        return enemy.GetSdpData()
+            .ItemId;
     }
 }

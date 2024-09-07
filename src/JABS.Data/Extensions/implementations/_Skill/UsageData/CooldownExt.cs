@@ -10,7 +10,7 @@ public static class CooldownExt
     {
         return skill.GetFirstNumberByTag(Tags.Cooldown.Name) ?? decimal.Zero;
     }
-    
+
     public static void UpdateJabsCooldown(this RPG_Skill skill, decimal cooldown)
     {
         // determine if this skill currently has a value on it.
@@ -28,7 +28,7 @@ public static class CooldownExt
         {
             // remove the tag entirely, zero is an invalid cooldown.
             skill.RemoveNoteData(Tags.Cooldown.Regex);
-            
+
             // stop processing.
             return;
         }

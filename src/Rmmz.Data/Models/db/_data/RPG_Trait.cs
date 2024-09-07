@@ -1,8 +1,8 @@
 ﻿namespace JMZ.Rmmz.Data.Models.db._data;
 
 /// <summary>
-/// A data model representing a single trait.
-/// These traits are used across multiple items in the database.
+///     A data model representing a single trait.
+///     These traits are used across multiple items in the database.
 /// </summary>
 public class RPG_Trait
 {

@@ -3,7 +3,7 @@
 namespace JMZ.Crafting.Data;
 
 /// <summary>
-/// The shape of the configuration file for crafting.
+///     The shape of the configuration file for crafting.
 /// </summary>
 public class CraftingConfiguration
 {

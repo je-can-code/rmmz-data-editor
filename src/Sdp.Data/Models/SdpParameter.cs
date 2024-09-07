@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace JMZ.Sdp.Data.Models;
 
@@ -11,14 +10,14 @@ public class SdpParameter
         get
         {
             //var name = ParameterMapper.NameFromLongParameterId(this.ParameterId);
-            var name = ((LongParameter)this.ParameterId).ToString();
+            var name = ((LongParameter)ParameterId).ToString();
 
-            if (!this.IsFlat)
+            if (!IsFlat)
             {
                 name += " %";
             }
 
-            if (this.IsCore)
+            if (IsCore)
             {
                 name = $"✨{name}";
             }

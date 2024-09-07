@@ -5,8 +5,8 @@ namespace JMZ.Dashboard.Utils;
 public static class FormUtils
 {
     /// <summary>
-    /// An event handler for simply hiding a form instead of closing it when the user tries to close the form.<br/>
-    /// This is explicitly unique to this 
+    ///     An event handler for simply hiding a form instead of closing it when the user tries to close the form.<br />
+    ///     This is explicitly unique to this
     /// </summary>
     public static void HideBoard(object? sender, FormClosingEventArgs e)
     {
@@ -19,12 +19,15 @@ public static class FormUtils
         // hide the window instead.
         ((Form)sender!).Hide();
     }
-    
+
     /// <summary>
-    /// Determines whether or not the configuration is valid.<br/>
-    /// If it is not, it will be created using the provided init func.
+    ///     Determines whether or not the configuration is valid.<br />
+    ///     If it is not, it will be created using the provided init func.
     /// </summary>
-    public static async Task<bool> ValidateConfiguration(string projectPath, string configPath, Func<string, Task> initConfigFunc)
+    public static async Task<bool> ValidateConfiguration(
+        string projectPath,
+        string configPath,
+        Func<string, Task> initConfigFunc)
     {
         // check if the config exists.
         var isConfigPresent = JsonLoaderService.IsConfigPresent(configPath);

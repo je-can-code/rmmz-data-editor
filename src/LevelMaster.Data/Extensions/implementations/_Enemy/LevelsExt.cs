@@ -28,7 +28,7 @@ public static class LevelsExt
         {
             // remove the tag entirely..
             enemy.RemoveNoteData(Tags.Level.Regex);
-            
+
             // stop processing.
             return;
         }

@@ -1091,8 +1091,16 @@
           "Extend.Data": "[1.0.0, )",
           "JABS.Data": "[1.0.0, )",
           "Newtonsoft.Json": "[13.0.1, )",
+          "Quest.Data": "[1.0.0, )",
           "Rmmz.Data": "[1.0.0, )",
           "Sdp.Data": "[1.0.0, )"
+        }
+      },
+      "quest.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
         }
       },
       "rmmz.data": {

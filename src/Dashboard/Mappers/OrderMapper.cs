@@ -1,4 +1,5 @@
-﻿using JMZ.Sdp.Data.Models;
+﻿using JMZ.Quest.Data.Enums;
+using JMZ.Sdp.Data.Models;
 
 namespace JMZ.Dashboard.Mappers;
 
@@ -28,7 +29,7 @@ public static class OrderMapper
             LongParameter.MaxMagi,
             LongParameter.MpRegen,
             LongParameter.MagiCost,
-            
+
             LongParameter.MaxTech,
             LongParameter.TpRegen,
             LongParameter.TechCost,
@@ -36,7 +37,7 @@ public static class OrderMapper
             LongParameter.Power,
             LongParameter.Endurance,
             LongParameter.PhysDmgRate,
-            
+
             LongParameter.Force,
             LongParameter.Resistance,
             LongParameter.MagiDmgRate,
@@ -44,7 +45,7 @@ public static class OrderMapper
             LongParameter.Speed,
             LongParameter.MoveBoost,
             LongParameter.LightFooted,
-            
+
             LongParameter.Accuracy,
             LongParameter.Parry,
             LongParameter.ParryExtend, // TODO: revert to EVA and make custom/calculated.
@@ -53,17 +54,17 @@ public static class OrderMapper
             LongParameter.CritDodge,
             LongParameter.CritAmp,
             LongParameter.CritBlock,
-            
+
             LongParameter.MagicEvade,
             LongParameter.MagicReflect,
             LongParameter.Autocounter,
-            
+
             LongParameter.Aggro,
             LongParameter.ItemEffects,
             LongParameter.Luck,
-            
+
             LongParameter.ExperienceUp,
-            LongParameter.ProficiencyBoost,
+            LongParameter.ProficiencyBoost
         ];
         // sequential order
         // 
@@ -106,5 +107,15 @@ public static class OrderMapper
         //     LongParameter.MoveBoost,
         //     LongParameter.ProficiencyBoost,
         // ];
+    }
+
+    public static OmniObjectiveFetchType[] ToOmniObjectiveFetchTypes()
+    {
+        return
+        [
+            OmniObjectiveFetchType.Item,
+            OmniObjectiveFetchType.Weapon,
+            OmniObjectiveFetchType.Armor
+        ];
     }
 }

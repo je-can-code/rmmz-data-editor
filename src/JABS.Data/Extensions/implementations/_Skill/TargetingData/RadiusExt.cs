@@ -8,9 +8,9 @@ public static class RadiusExt
 {
     public static decimal GetJabsRadius(this RPG_Skill skill)
     {
-        return skill.GetFirstNumberByTag(Tags.Radius.Name, true)  ?? -1;
+        return skill.GetFirstNumberByTag(Tags.Radius.Name, true) ?? -1;
     }
-    
+
     public static void UpdateJabsRadius(this RPG_Skill skill, decimal radius)
     {
         // grab our current state.
@@ -35,7 +35,7 @@ public static class RadiusExt
 
         // we need to update the tag, so build the updated note with the new value.
         var updatedNote = Tags.Radius.ToValueTag(radius.ToString());
-        
+
         // check if the value was missing previously.
         if (isMissing)
         {
@@ -46,7 +46,7 @@ public static class RadiusExt
         else
         {
             // update the actual note.
-            skill.UpdateNoteData(Tags.Radius.Regex, updatedNote);   
+            skill.UpdateNoteData(Tags.Radius.Regex, updatedNote);
         }
     }
 }

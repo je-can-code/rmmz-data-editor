@@ -10,7 +10,7 @@ public static class AiSkillExclusionExt
     {
         return skill.HasBooleanTag(Tags.AiSkillExclusion.Name);
     }
-    
+
     public static void UpdateJabsAiSkillExclusion(this RPG_Skill skill, bool isSkillExcluded)
     {
         // check what our current state is.

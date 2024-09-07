@@ -9,54 +9,59 @@
 
     <ItemGroup>
         <!-- TODO: remove this and add some test coverage to the winforms stuff when you learn how. -->
-        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="log4net" Version="$(Log4NetVersion)" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsVersion)" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
+        <PackageReference Include="log4net" Version="$(Log4NetVersion)"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsVersion)"/>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)"/>
+        <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Json.Data\Json.Data.csproj" />
-        <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj" />
+        <ProjectReference Include="..\Json.Data\Json.Data.csproj"/>
+        <ProjectReference Include="..\Quest.Data\Quest.Data.csproj"/>
+        <ProjectReference Include="..\Rmmz.Data\Rmmz.Data.csproj"/>
 
-        <ProjectReference Include="..\JABS.Data\JABS.Data.csproj" />
-        <ProjectReference Include="..\Drops.Data\Drops.Data.csproj" />
-        <ProjectReference Include="..\Extend.Data\Extend.Data.csproj" />
-        <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj" />
-        <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj" />
-        <ProjectReference Include="..\LevelMaster.Data\LevelMaster.Data.csproj" />
+        <ProjectReference Include="..\JABS.Data\JABS.Data.csproj"/>
+        <ProjectReference Include="..\Drops.Data\Drops.Data.csproj"/>
+        <ProjectReference Include="..\Extend.Data\Extend.Data.csproj"/>
+        <ProjectReference Include="..\Sdp.Data\Sdp.Data.csproj"/>
+        <ProjectReference Include="..\Crafting.Data\Crafting.Data.csproj"/>
+        <ProjectReference Include="..\LevelMaster.Data\LevelMaster.Data.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Boards\DifficultyBoard.Updates.cs">
-        <DependentUpon>DifficultyBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Difficulties.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Enemies.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Crafting.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Sdp.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Weapons.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Boards\BaseBoard.Skills.cs">
-        <DependentUpon>BaseBoard.cs</DependentUpon>
-      </Compile>
+        <Compile Update="Boards\DifficultyBoard.Updates.cs">
+            <DependentUpon>DifficultyBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Difficulties.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Enemies.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Crafting.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Sdp.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Weapons.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\BaseBoard.Skills.cs">
+            <DependentUpon>BaseBoard.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Boards\QuestBoard.cs">
+            <SubType>Form</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="appsettings.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="configuration.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>

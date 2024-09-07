@@ -7,49 +7,49 @@ namespace JMZ.Dashboard.Boards;
 public partial class BaseBoard
 {
     /// <summary>
-    /// The board that primarily handles SDP design.
+    ///     The board that primarily handles SDP design.
     /// </summary>
     private readonly SdpBoard sdpBoard = new();
 
     /// <summary>
-    /// When true, the prompt for skipping the prompt when saving SDP data.
-    /// When false, the confirmation popup will show.
+    ///     When true, the prompt for skipping the prompt when saving SDP data.
+    ///     When false, the confirmation popup will show.
     /// </summary>
     private bool skipSdpSavePopup;
-    
+
     private partial void SetupSdpBoard()
     {
-        this.sdpBoard.FormClosing += FormUtils.HideBoard;
+        sdpBoard.FormClosing += FormUtils.HideBoard;
     }
 
     private async void button_sdps_Click(object sender, EventArgs e)
     {
         // check if we can load the board based on the required config.
         var canLoadBoard = await FormUtils.ValidateConfiguration(
-            this.projectPath,
-            JsonLoaderService.sdpDataPath(this.projectPath),
+            _projectPath,
+            JsonLoaderService.SdpDataPath(_projectPath),
             SdpInitializer.InitializeConfiguration);
 
         // validate we are able to load the board.
         if (canLoadBoard is false) return;
 
         // initialize the data for the board.
-        var data = JsonLoaderService.LoadSdps(this.projectPath);
-        this.sdpBoard.Setup(data);
+        var data = JsonLoaderService.LoadSdps(_projectPath);
+        sdpBoard.Setup(data);
 
         // show the window.
-        this.sdpBoard.Show();
+        sdpBoard.Show();
 
         // relocate the window to where we want it to be.
-        var x = this.Right;
-        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - this.Height / 2;
-        this.sdpBoard.SetDesktopLocation(x, y);
+        var x = Right;
+        var y = Screen.PrimaryScreen!.Bounds.Height / 2 - Height / 2;
+        sdpBoard.SetDesktopLocation(x, y);
     }
 
     private async void button_saveSdps_Click(object sender, EventArgs e)
     {
         // check if the board hasn't been setup yet, or is in need of a refresh first.
-        if (this.sdpBoard.needsSetup)
+        if (sdpBoard.needsSetup)
         {
             MessageBox.Show(
                 """
@@ -62,10 +62,10 @@ public partial class BaseBoard
         }
 
         // check if we're skipping the popup dialogue to confirm saving.
-        if (this.skipSdpSavePopup)
+        if (skipSdpSavePopup)
         {
             // just save.
-            await this.saveSdps();
+            await saveSdps();
             return;
         }
 
@@ -81,7 +81,7 @@ public partial class BaseBoard
             // check if the user agreed.
             case DialogResult.Yes:
                 // then save.
-                await this.saveSdps();
+                await saveSdps();
                 MessageBox.Show("Saving has completed successfully.");
                 break;
             // the user didn't hit YES.
@@ -94,23 +94,23 @@ public partial class BaseBoard
     private async Task saveSdps()
     {
         // update the tracked stuff to saved stuff.
-        this.sdpBoard.TrackedToSavedSdps();
+        sdpBoard.TrackedToSavedSdps();
 
         // grab the updated save data.
-        var updated = this.sdpBoard.Sdps();
+        var updated = sdpBoard.Sdps();
 
         // record the newly updated data to disk.
-        await JsonSavingService.SaveSdps(this.projectPath, updated);
+        await JsonSavingService.SaveSdps(_projectPath, updated);
 
         // flag our status strip.
-        this.statusStrip_base.Text = "Updated SDP configuration data.";
-        this.statusStrip_base.Refresh();
+        statusStrip_base.Text = "Updated SDP configuration data.";
+        statusStrip_base.Refresh();
     }
 
     private void checkBox_sdpSkipSavePopup_CheckedChanged(object sender, EventArgs e)
     {
-        this.skipSdpSavePopup = this.checkBox_sdpSkipSavePopup.Checked;
-        this.checkBox_sdpSkipSavePopup.Text = this.checkBox_sdpSkipSavePopup.Checked
+        skipSdpSavePopup = checkBox_sdpSkipSavePopup.Checked;
+        checkBox_sdpSkipSavePopup.Text = checkBox_sdpSkipSavePopup.Checked
             ? "Just doing it ✅"
             : "Using Save Popup";
     }

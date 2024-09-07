@@ -1,15 +1,15 @@
 ﻿namespace JMZ.Base.Tests;
 
 /// <summary>
-/// A baseclass for extending tests with.
-/// Will provide useful testing utilities to accelerate testing.
+///     A baseclass for extending tests with.
+///     Will provide useful testing utilities to accelerate testing.
 /// </summary>
 public abstract class BaseTests
 {
     /// <summary>
-    /// The fake data generator.<br/>
-    /// Use this to generate various components of RM objects, or
-    /// to generate the RM objects themselves.
+    ///     The fake data generator.<br />
+    ///     Use this to generate various components of RM objects, or
+    ///     to generate the RM objects themselves.
     /// </summary>
     protected readonly FDG fdg = new();
 }

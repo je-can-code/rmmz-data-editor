@@ -52,6 +52,17 @@
           "Microsoft.Extensions.Options": "8.0.0"
         }
       },
+      "NetEscapades.Configuration.Yaml": {
+        "type": "Direct",
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "D5Pxt4hXABna5OwYQmAQukspW7LEoYgvfAqyw85gUF/gnH9pWHsZCLMXy2ewWoQ0PELZ1lOGFLDbDVeoCvtBgA==",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "2.0.0",
+          "YamlDotNet": "13.0.1"
+        }
+      },
       "Newtonsoft.Json": {
         "type": "Direct",
         "requested": "[13.0.1, )",
@@ -368,6 +379,11 @@
           "System.Text.Encodings.Web": "8.0.0"
         }
       },
+      "YamlDotNet": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "E1e/xFXB+Cbn7pLVlr+8E3nemEitIReVgmAMMMveADvZvXGuSGHP+1Cg6oA+SUfwXHfaXLQn4STCaPKtdIJkWA=="
+      },
       "crafting.data": {
         "type": "Project",
         "dependencies": {
@@ -410,11 +426,19 @@
           "Extend.Data": "[1.0.0, )",
           "JABS.Data": "[1.0.0, )",
           "Newtonsoft.Json": "[13.0.1, )",
+          "Quest.Data": "[1.0.0, )",
           "Rmmz.Data": "[1.0.0, )",
           "Sdp.Data": "[1.0.0, )"
         }
       },
       "levelmaster.data": {
+        "type": "Project",
+        "dependencies": {
+          "Newtonsoft.Json": "[13.0.1, )",
+          "Rmmz.Data": "[1.0.0, )"
+        }
+      },
+      "quest.data": {
         "type": "Project",
         "dependencies": {
           "Newtonsoft.Json": "[13.0.1, )",

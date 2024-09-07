@@ -10,7 +10,7 @@ public static class AiComboStarterExt
     {
         return skill.HasBooleanTag(Tags.AiComboStarter.Name);
     }
-    
+
     public static void UpdateJabsAiComboStarter(this RPG_Skill skill, bool freeCombo)
     {
         // check what our current state is.

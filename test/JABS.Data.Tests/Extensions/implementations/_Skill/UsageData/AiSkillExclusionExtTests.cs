@@ -4,42 +4,44 @@ using JMZ.Rmmz.Data.Models.db.implementations;
 
 namespace JMZ.JABS.Data.Tests.Extensions.implementations._Skill.UsageData;
 
-[Trait("Category","UsageData")]
+[Trait("Category", "UsageData")]
 public class AiSkillExclusionExtTests : BaseTests
 {
     private readonly RPG_Skill modelUnderTest;
-    
+
     public AiSkillExclusionExtTests()
     {
-        this.modelUnderTest = new();
+        modelUnderTest = new();
     }
-    
+
     [Fact]
     public void whenUnset_returnsDefault()
     {
         // given
-        this.modelUnderTest.note = string.Empty;
-        
+        modelUnderTest.note = string.Empty;
+
         // when
-        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
-        
+        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
-    
+
     [Fact]
     public void whenAdded_returnsValue()
     {
         // given
-        var fakeTag = this.fdg.AiSkillExclusionTag();
-        var fakeNote = this.fdg.BuildNoteTag(fakeTag);
-        this.modelUnderTest.note = fakeNote;
-        
+        var fakeTag = fdg.AiSkillExclusionTag();
+        var fakeNote = fdg.BuildNoteTag(fakeTag);
+        modelUnderTest.note = fakeNote;
+
         // when
-        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
-        
+        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+
         // then
-        actual.Should().BeTrue();
+        actual.Should()
+            .BeTrue();
     }
 
     [Fact]
@@ -48,13 +50,14 @@ public class AiSkillExclusionExtTests : BaseTests
         // given
         var expected = false;
         var fakeTagValue = true;
-        this.modelUnderTest.UpdateJabsAiSkillExclusion(fakeTagValue); // update with valid value.
-        this.modelUnderTest.UpdateJabsAiSkillExclusion(expected);
-        
+        modelUnderTest.UpdateJabsAiSkillExclusion(fakeTagValue); // update with valid value.
+        modelUnderTest.UpdateJabsAiSkillExclusion(expected);
+
         // when
-        var actual = this.modelUnderTest.HasJabsAiSkillExclusion();
-        
+        var actual = modelUnderTest.HasJabsAiSkillExclusion();
+
         // then
-        actual.Should().BeFalse();
+        actual.Should()
+            .BeFalse();
     }
 }
