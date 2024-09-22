@@ -54,8 +54,8 @@
         <Compile Update="Boards\BaseBoard.Skills.cs">
             <DependentUpon>BaseBoard.cs</DependentUpon>
         </Compile>
-        <Compile Update="Boards\QuestBoard.cs">
-            <SubType>Form</SubType>
+        <Compile Update="Boards\BaseBoard.Quests.cs">
+          <DependentUpon>BaseBoard.cs</DependentUpon>
         </Compile>
     </ItemGroup>
 

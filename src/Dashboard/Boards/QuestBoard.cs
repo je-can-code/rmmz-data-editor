@@ -116,6 +116,32 @@ public partial class QuestBoard : Form
         });
     }
 
+    private void QuestTabRepopulateCategoriesAndTags(object? sender, EventArgs e)
+    {
+        RepopulateQuestTabCategories();
+        RepopulateQuestTabTags();
+    }
+
+    private void RepopulateQuestTabTags()
+    {
+        listBoxQuestTags.Items.Clear();
+
+        foreach (var tag in listBoxTags.Items)
+        {
+            listBoxQuestTags.Items.Add(tag);
+        }
+    }
+
+    private void RepopulateQuestTabCategories()
+    {
+        comboBoxCategory.Items.Clear();
+
+        foreach (var category in listBoxCategories.Items)
+        {
+            comboBoxCategory.Items.Add(category);
+        }
+    }
+
     #region init
     /// <summary>
     ///     Initializes the data-binding of components to arbitrary values.
@@ -169,6 +195,8 @@ public partial class QuestBoard : Form
 
         buttonAddTag.Click += ButtonAddTagEvent;
         buttonDeleteTag.Click += ButtonDeleteTagEvent;
+
+        tabQuest.Enter += QuestTabRepopulateCategoriesAndTags;
     }
 
     private void ButtonAddQuestEvent(object? sender, EventArgs e)
@@ -527,6 +555,9 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Name = textBoxName.Text;
+
+        // update the list to reflect the new display data.
+        listBoxQuests.Items[listBoxQuests.SelectedIndex] = item;
     }
 
     private void UpdateIconIndex(object? sender, EventArgs e)
@@ -626,6 +657,9 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Id = (int)numObjectiveId.Value;
+        
+        // update the list to reflect the new display data.
+        listBoxObjectives.Items[listBoxObjectives.SelectedIndex] = item;
     }
 
     private void UpdateObjectiveHiddenByDefault(object? sender, EventArgs e)
@@ -921,6 +955,9 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Name = textBoxCategoryName.Text;
+        
+        // update the list to reflect the new display data.
+        listBoxCategories.Items[listBoxCategories.SelectedIndex] = item;
     }
 
     private void UpdateCategoryIconIndex(object? sender, EventArgs e)
@@ -959,6 +996,9 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Name = textBoxTagName.Text;
+        
+        // update the list to reflect the new display data.
+        listBoxTags.Items[listBoxTags.SelectedIndex] = item;
     }
 
     private void UpdateTagIconIndex(object? sender, EventArgs e)

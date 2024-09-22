@@ -8,7 +8,7 @@ public partial class BaseBoard
 {
     private readonly QuestBoard _questBoard = new();
 
-    private readonly bool skipQuestSavePopup = false;
+    private readonly bool _skipQuestSavePopup = false;
 
     private partial void SetupQuestBoard()
     {
@@ -50,7 +50,7 @@ public partial class BaseBoard
         }
 
         // check if we're skipping the popup dialogue to confirm saving.
-        if (skipQuestSavePopup)
+        if (_skipQuestSavePopup)
         {
             // just save.
             await SaveQuests();
