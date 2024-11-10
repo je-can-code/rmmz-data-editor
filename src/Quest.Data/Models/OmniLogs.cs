@@ -5,6 +5,16 @@
 /// </summary>
 public record OmniLogs
 {
+    public static OmniLogs From(OmniLogs otherLogs)
+    {
+        return new(
+            otherLogs.Inactive,
+            otherLogs.Active,
+            otherLogs.Completed,
+            otherLogs.Failed,
+            otherLogs.Missed);
+    }
+
     public string Inactive { get; set; } = string.Empty;
 
     public string Active { get; set; } = string.Empty;

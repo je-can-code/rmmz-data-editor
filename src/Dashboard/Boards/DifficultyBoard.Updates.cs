@@ -137,6 +137,9 @@ public partial class DifficultyBoard
 
         // update with the new value.
         item.Key = textBoxKey.Text;
+        
+        // the name is special in that it needs to be synced with the list to ensure name updates apply.
+        listboxDifficultyLayers.Items[listboxDifficultyLayers.SelectedIndex] = item;
     }
 
     private void UpdateName(object? sender, EventArgs e)

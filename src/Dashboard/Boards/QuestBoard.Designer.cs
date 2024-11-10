@@ -34,8 +34,6 @@ partial class QuestBoard
         tabControlQuestBoard = new TabControl();
         tabQuest = new TabPage();
         labelQuests = new Label();
-        buttonDeleteQuest = new Button();
-        buttonAddQuest = new Button();
         listBoxQuests = new ListBox();
         groupBoxObjectiveData = new GroupBox();
         groupBoxObjectiveLogs = new GroupBox();
@@ -49,8 +47,6 @@ partial class QuestBoard
         textBoxLogActive = new TextBox();
         labelLogInactive = new Label();
         textBoxLogInactive = new TextBox();
-        buttonDeleteObjective = new Button();
-        buttonAddObjective = new Button();
         groupBoxFulfillmentData = new GroupBox();
         groupBoxQuestData = new GroupBox();
         textBoxObjectiveQuestData = new TextBox();
@@ -90,11 +86,11 @@ partial class QuestBoard
         checkBoxHiddenByDefault = new CheckBox();
         checkBoxIsOptional = new CheckBox();
         groupBoxCoreData = new GroupBox();
+        checkedListBoxQuestTags = new CheckedListBox();
         labelRecommendedLevel = new Label();
         numRecommendedLevel = new NumericUpDown();
         textBoxOverview = new TextBox();
         labelCategory = new Label();
-        listBoxQuestTags = new ListBox();
         comboBoxCategory = new ComboBox();
         labelTags = new Label();
         labelIconIndex = new Label();
@@ -173,8 +169,6 @@ partial class QuestBoard
         // tabQuest
         // 
         tabQuest.Controls.Add(labelQuests);
-        tabQuest.Controls.Add(buttonDeleteQuest);
-        tabQuest.Controls.Add(buttonAddQuest);
         tabQuest.Controls.Add(listBoxQuests);
         tabQuest.Controls.Add(groupBoxObjectiveData);
         tabQuest.Controls.Add(groupBoxCoreData);
@@ -197,28 +191,6 @@ partial class QuestBoard
         labelQuests.TabIndex = 70;
         labelQuests.Text = "Quests";
         // 
-        // buttonDeleteQuest
-        // 
-        buttonDeleteQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        buttonDeleteQuest.ForeColor = Color.Red;
-        buttonDeleteQuest.Location = new Point(9, 785);
-        buttonDeleteQuest.Name = "buttonDeleteQuest";
-        buttonDeleteQuest.Size = new Size(93, 43);
-        buttonDeleteQuest.TabIndex = 68;
-        buttonDeleteQuest.Text = "❌";
-        buttonDeleteQuest.UseVisualStyleBackColor = true;
-        // 
-        // buttonAddQuest
-        // 
-        buttonAddQuest.Font = new Font("Cascadia Code", 13.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        buttonAddQuest.ForeColor = Color.Green;
-        buttonAddQuest.Location = new Point(173, 785);
-        buttonAddQuest.Name = "buttonAddQuest";
-        buttonAddQuest.Size = new Size(89, 43);
-        buttonAddQuest.TabIndex = 67;
-        buttonAddQuest.Text = "✨";
-        buttonAddQuest.UseVisualStyleBackColor = true;
-        // 
         // listBoxQuests
         // 
         listBoxQuests.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -227,14 +199,12 @@ partial class QuestBoard
         listBoxQuests.Location = new Point(9, 40);
         listBoxQuests.Margin = new Padding(2, 1, 2, 1);
         listBoxQuests.Name = "listBoxQuests";
-        listBoxQuests.Size = new Size(357, 724);
+        listBoxQuests.Size = new Size(357, 784);
         listBoxQuests.TabIndex = 13;
         // 
         // groupBoxObjectiveData
         // 
         groupBoxObjectiveData.Controls.Add(groupBoxObjectiveLogs);
-        groupBoxObjectiveData.Controls.Add(buttonDeleteObjective);
-        groupBoxObjectiveData.Controls.Add(buttonAddObjective);
         groupBoxObjectiveData.Controls.Add(groupBoxFulfillmentData);
         groupBoxObjectiveData.Controls.Add(labelObjectiveId);
         groupBoxObjectiveData.Controls.Add(numObjectiveId);
@@ -244,11 +214,11 @@ partial class QuestBoard
         groupBoxObjectiveData.Controls.Add(checkBoxHiddenByDefault);
         groupBoxObjectiveData.Controls.Add(checkBoxIsOptional);
         groupBoxObjectiveData.Font = new Font("Victor Mono", 7.874999F);
-        groupBoxObjectiveData.Location = new Point(370, 240);
+        groupBoxObjectiveData.Location = new Point(370, 269);
         groupBoxObjectiveData.Margin = new Padding(2, 1, 2, 1);
         groupBoxObjectiveData.Name = "groupBoxObjectiveData";
         groupBoxObjectiveData.Padding = new Padding(2, 1, 2, 1);
-        groupBoxObjectiveData.Size = new Size(1058, 588);
+        groupBoxObjectiveData.Size = new Size(1199, 559);
         groupBoxObjectiveData.TabIndex = 19;
         groupBoxObjectiveData.TabStop = false;
         groupBoxObjectiveData.Text = "Objective Data";
@@ -269,7 +239,7 @@ partial class QuestBoard
         groupBoxObjectiveLogs.Margin = new Padding(2, 1, 2, 1);
         groupBoxObjectiveLogs.Name = "groupBoxObjectiveLogs";
         groupBoxObjectiveLogs.Padding = new Padding(2, 1, 2, 1);
-        groupBoxObjectiveLogs.Size = new Size(746, 218);
+        groupBoxObjectiveLogs.Size = new Size(1199, 218);
         groupBoxObjectiveLogs.TabIndex = 70;
         groupBoxObjectiveLogs.TabStop = false;
         groupBoxObjectiveLogs.Text = "Logs";
@@ -290,7 +260,7 @@ partial class QuestBoard
         textBoxLogMissed.Location = new Point(72, 156);
         textBoxLogMissed.Margin = new Padding(2, 1, 2, 1);
         textBoxLogMissed.Name = "textBoxLogMissed";
-        textBoxLogMissed.Size = new Size(649, 30);
+        textBoxLogMissed.Size = new Size(1118, 30);
         textBoxLogMissed.TabIndex = 16;
         // 
         // labelLogFailed
@@ -309,7 +279,7 @@ partial class QuestBoard
         textBoxLogFailed.Location = new Point(72, 119);
         textBoxLogFailed.Margin = new Padding(2, 1, 2, 1);
         textBoxLogFailed.Name = "textBoxLogFailed";
-        textBoxLogFailed.Size = new Size(649, 30);
+        textBoxLogFailed.Size = new Size(1118, 30);
         textBoxLogFailed.TabIndex = 14;
         // 
         // labelLogCompleted
@@ -328,7 +298,7 @@ partial class QuestBoard
         textBoxLogCompleted.Location = new Point(72, 83);
         textBoxLogCompleted.Margin = new Padding(2, 1, 2, 1);
         textBoxLogCompleted.Name = "textBoxLogCompleted";
-        textBoxLogCompleted.Size = new Size(649, 30);
+        textBoxLogCompleted.Size = new Size(1118, 30);
         textBoxLogCompleted.TabIndex = 12;
         // 
         // labelLogActive
@@ -347,7 +317,7 @@ partial class QuestBoard
         textBoxLogActive.Location = new Point(72, 49);
         textBoxLogActive.Margin = new Padding(2, 1, 2, 1);
         textBoxLogActive.Name = "textBoxLogActive";
-        textBoxLogActive.Size = new Size(649, 30);
+        textBoxLogActive.Size = new Size(1118, 30);
         textBoxLogActive.TabIndex = 10;
         // 
         // labelLogInactive
@@ -366,30 +336,8 @@ partial class QuestBoard
         textBoxLogInactive.Location = new Point(72, 12);
         textBoxLogInactive.Margin = new Padding(2, 1, 2, 1);
         textBoxLogInactive.Name = "textBoxLogInactive";
-        textBoxLogInactive.Size = new Size(649, 30);
+        textBoxLogInactive.Size = new Size(1118, 30);
         textBoxLogInactive.TabIndex = 8;
-        // 
-        // buttonDeleteObjective
-        // 
-        buttonDeleteObjective.Font = new Font("Cascadia Code", 8.25F);
-        buttonDeleteObjective.ForeColor = Color.Red;
-        buttonDeleteObjective.Location = new Point(5, 217);
-        buttonDeleteObjective.Name = "buttonDeleteObjective";
-        buttonDeleteObjective.Size = new Size(38, 29);
-        buttonDeleteObjective.TabIndex = 67;
-        buttonDeleteObjective.Text = "❌";
-        buttonDeleteObjective.UseVisualStyleBackColor = true;
-        // 
-        // buttonAddObjective
-        // 
-        buttonAddObjective.Font = new Font("Cascadia Code", 8.25F);
-        buttonAddObjective.ForeColor = Color.Green;
-        buttonAddObjective.Location = new Point(5, 182);
-        buttonAddObjective.Name = "buttonAddObjective";
-        buttonAddObjective.Size = new Size(38, 29);
-        buttonAddObjective.TabIndex = 66;
-        buttonAddObjective.Text = "✨";
-        buttonAddObjective.UseVisualStyleBackColor = true;
         // 
         // groupBoxFulfillmentData
         // 
@@ -404,7 +352,7 @@ partial class QuestBoard
         groupBoxFulfillmentData.Margin = new Padding(2, 1, 2, 1);
         groupBoxFulfillmentData.Name = "groupBoxFulfillmentData";
         groupBoxFulfillmentData.Padding = new Padding(2, 1, 2, 1);
-        groupBoxFulfillmentData.Size = new Size(935, 273);
+        groupBoxFulfillmentData.Size = new Size(1147, 273);
         groupBoxFulfillmentData.TabIndex = 69;
         groupBoxFulfillmentData.TabStop = false;
         groupBoxFulfillmentData.Text = "Fulfillment Data";
@@ -469,7 +417,7 @@ partial class QuestBoard
         groupBoxIndiscriminateData.Margin = new Padding(2, 1, 2, 1);
         groupBoxIndiscriminateData.Name = "groupBoxIndiscriminateData";
         groupBoxIndiscriminateData.Padding = new Padding(2, 1, 2, 1);
-        groupBoxIndiscriminateData.Size = new Size(927, 57);
+        groupBoxIndiscriminateData.Size = new Size(1143, 57);
         groupBoxIndiscriminateData.TabIndex = 37;
         groupBoxIndiscriminateData.TabStop = false;
         groupBoxIndiscriminateData.Text = "Indiscriminate Data";
@@ -477,10 +425,10 @@ partial class QuestBoard
         // textBoxIndiscriminateData
         // 
         textBoxIndiscriminateData.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        textBoxIndiscriminateData.Location = new Point(10, 17);
+        textBoxIndiscriminateData.Location = new Point(25, 17);
         textBoxIndiscriminateData.Margin = new Padding(2, 1, 2, 1);
         textBoxIndiscriminateData.Name = "textBoxIndiscriminateData";
-        textBoxIndiscriminateData.Size = new Size(913, 30);
+        textBoxIndiscriminateData.Size = new Size(1114, 30);
         textBoxIndiscriminateData.TabIndex = 25;
         // 
         // groupBoxFetchData
@@ -799,7 +747,7 @@ partial class QuestBoard
         textBoxObjectiveDescription.Location = new Point(46, 72);
         textBoxObjectiveDescription.Margin = new Padding(2, 1, 2, 1);
         textBoxObjectiveDescription.Name = "textBoxObjectiveDescription";
-        textBoxObjectiveDescription.Size = new Size(937, 30);
+        textBoxObjectiveDescription.Size = new Size(1145, 30);
         textBoxObjectiveDescription.TabIndex = 23;
         // 
         // listBoxObjectives
@@ -810,7 +758,7 @@ partial class QuestBoard
         listBoxObjectives.Location = new Point(3, 18);
         listBoxObjectives.Margin = new Padding(2, 1, 2, 1);
         listBoxObjectives.Name = "listBoxObjectives";
-        listBoxObjectives.Size = new Size(41, 164);
+        listBoxObjectives.Size = new Size(41, 284);
         listBoxObjectives.TabIndex = 20;
         // 
         // checkBoxHiddenByDefault
@@ -841,11 +789,11 @@ partial class QuestBoard
         // 
         // groupBoxCoreData
         // 
+        groupBoxCoreData.Controls.Add(checkedListBoxQuestTags);
         groupBoxCoreData.Controls.Add(labelRecommendedLevel);
         groupBoxCoreData.Controls.Add(numRecommendedLevel);
         groupBoxCoreData.Controls.Add(textBoxOverview);
         groupBoxCoreData.Controls.Add(labelCategory);
-        groupBoxCoreData.Controls.Add(listBoxQuestTags);
         groupBoxCoreData.Controls.Add(comboBoxCategory);
         groupBoxCoreData.Controls.Add(labelTags);
         groupBoxCoreData.Controls.Add(labelIconIndex);
@@ -862,16 +810,28 @@ partial class QuestBoard
         groupBoxCoreData.Margin = new Padding(2, 1, 2, 1);
         groupBoxCoreData.Name = "groupBoxCoreData";
         groupBoxCoreData.Padding = new Padding(2, 1, 2, 1);
-        groupBoxCoreData.Size = new Size(1058, 227);
+        groupBoxCoreData.Size = new Size(1199, 260);
         groupBoxCoreData.TabIndex = 18;
         groupBoxCoreData.TabStop = false;
         groupBoxCoreData.Text = "Core Data";
+        // 
+        // checkedListBoxQuestTags
+        // 
+        checkedListBoxQuestTags.CheckOnClick = true;
+        checkedListBoxQuestTags.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        checkedListBoxQuestTags.FormattingEnabled = true;
+        checkedListBoxQuestTags.Location = new Point(208, 83);
+        checkedListBoxQuestTags.Name = "checkedListBoxQuestTags";
+        checkedListBoxQuestTags.RightToLeft = RightToLeft.Yes;
+        checkedListBoxQuestTags.Size = new Size(237, 154);
+        checkedListBoxQuestTags.TabIndex = 20;
+        checkedListBoxQuestTags.ThreeDCheckBoxes = true;
         // 
         // labelRecommendedLevel
         // 
         labelRecommendedLevel.AutoSize = true;
         labelRecommendedLevel.Font = new Font("Victor Mono", 9.749999F);
-        labelRecommendedLevel.Location = new Point(0, 136);
+        labelRecommendedLevel.Location = new Point(3, 195);
         labelRecommendedLevel.Margin = new Padding(2, 0, 2, 0);
         labelRecommendedLevel.Name = "labelRecommendedLevel";
         labelRecommendedLevel.Size = new Size(126, 16);
@@ -881,7 +841,7 @@ partial class QuestBoard
         // numRecommendedLevel
         // 
         numRecommendedLevel.Font = new Font("Victor Mono", 12F);
-        numRecommendedLevel.Location = new Point(0, 153);
+        numRecommendedLevel.Location = new Point(3, 212);
         numRecommendedLevel.Margin = new Padding(2, 1, 2, 1);
         numRecommendedLevel.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
         numRecommendedLevel.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
@@ -893,11 +853,11 @@ partial class QuestBoard
         // textBoxOverview
         // 
         textBoxOverview.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        textBoxOverview.Location = new Point(460, 70);
+        textBoxOverview.Location = new Point(460, 83);
         textBoxOverview.Margin = new Padding(2, 1, 2, 1);
         textBoxOverview.Multiline = true;
         textBoxOverview.Name = "textBoxOverview";
-        textBoxOverview.Size = new Size(584, 155);
+        textBoxOverview.Size = new Size(735, 175);
         textBoxOverview.TabIndex = 5;
         // 
         // labelCategory
@@ -910,18 +870,6 @@ partial class QuestBoard
         labelCategory.Size = new Size(63, 16);
         labelCategory.TabIndex = 14;
         labelCategory.Text = "Category";
-        // 
-        // listBoxQuestTags
-        // 
-        listBoxQuestTags.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        listBoxQuestTags.FormattingEnabled = true;
-        listBoxQuestTags.ItemHeight = 20;
-        listBoxQuestTags.Location = new Point(208, 121);
-        listBoxQuestTags.Margin = new Padding(2, 1, 2, 1);
-        listBoxQuestTags.Name = "listBoxQuestTags";
-        listBoxQuestTags.SelectionMode = SelectionMode.MultiExtended;
-        listBoxQuestTags.Size = new Size(179, 104);
-        listBoxQuestTags.TabIndex = 17;
         // 
         // comboBoxCategory
         // 
@@ -936,11 +884,11 @@ partial class QuestBoard
         // labelTags
         // 
         labelTags.AutoSize = true;
-        labelTags.Font = new Font("Victor Mono", 7.874999F);
-        labelTags.Location = new Point(208, 107);
+        labelTags.Font = new Font("Victor Mono", 9.749999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        labelTags.Location = new Point(169, 85);
         labelTags.Margin = new Padding(2, 0, 2, 0);
         labelTags.Name = "labelTags";
-        labelTags.Size = new Size(31, 13);
+        labelTags.Size = new Size(35, 16);
         labelTags.TabIndex = 16;
         labelTags.Text = "Tags";
         // 
@@ -948,7 +896,7 @@ partial class QuestBoard
         // 
         labelIconIndex.AutoSize = true;
         labelIconIndex.Font = new Font("Victor Mono", 9.749999F);
-        labelIconIndex.Location = new Point(0, 63);
+        labelIconIndex.Location = new Point(3, 122);
         labelIconIndex.Margin = new Padding(2, 0, 2, 0);
         labelIconIndex.Name = "labelIconIndex";
         labelIconIndex.Size = new Size(77, 16);
@@ -958,7 +906,7 @@ partial class QuestBoard
         // numIconIndex
         // 
         numIconIndex.Font = new Font("Victor Mono", 12F);
-        numIconIndex.Location = new Point(0, 80);
+        numIconIndex.Location = new Point(3, 139);
         numIconIndex.Margin = new Padding(2, 1, 2, 1);
         numIconIndex.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
         numIconIndex.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
@@ -971,7 +919,7 @@ partial class QuestBoard
         // 
         labelUnknownHint.AutoSize = true;
         labelUnknownHint.Font = new Font("Victor Mono", 9.749999F);
-        labelUnknownHint.Location = new Point(460, 4);
+        labelUnknownHint.Location = new Point(460, 0);
         labelUnknownHint.Margin = new Padding(2, 0, 2, 0);
         labelUnknownHint.Name = "labelUnknownHint";
         labelUnknownHint.Size = new Size(91, 16);
@@ -992,17 +940,17 @@ partial class QuestBoard
         // textBoxUnknownHint
         // 
         textBoxUnknownHint.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        textBoxUnknownHint.Location = new Point(460, 21);
+        textBoxUnknownHint.Location = new Point(460, 17);
         textBoxUnknownHint.Margin = new Padding(2, 1, 2, 1);
         textBoxUnknownHint.Name = "textBoxUnknownHint";
-        textBoxUnknownHint.Size = new Size(584, 30);
+        textBoxUnknownHint.Size = new Size(735, 30);
         textBoxUnknownHint.TabIndex = 7;
         // 
         // labelName
         // 
         labelName.AutoSize = true;
         labelName.Font = new Font("Victor Mono", 9.749999F);
-        labelName.Location = new Point(144, 20);
+        labelName.Location = new Point(5, 19);
         labelName.Margin = new Padding(2, 0, 2, 0);
         labelName.Name = "labelName";
         labelName.Size = new Size(35, 16);
@@ -1012,7 +960,7 @@ partial class QuestBoard
         // textBoxKey
         // 
         textBoxKey.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        textBoxKey.Location = new Point(31, 14);
+        textBoxKey.Location = new Point(0, 83);
         textBoxKey.Margin = new Padding(2, 1, 2, 1);
         textBoxKey.Name = "textBoxKey";
         textBoxKey.Size = new Size(100, 30);
@@ -1021,17 +969,17 @@ partial class QuestBoard
         // textBoxName
         // 
         textBoxName.Font = new Font("Victor Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        textBoxName.Location = new Point(183, 13);
+        textBoxName.Location = new Point(44, 13);
         textBoxName.Margin = new Padding(2, 1, 2, 1);
         textBoxName.Name = "textBoxName";
-        textBoxName.Size = new Size(268, 30);
+        textBoxName.Size = new Size(407, 30);
         textBoxName.TabIndex = 3;
         // 
         // labelKey
         // 
         labelKey.AutoSize = true;
         labelKey.Font = new Font("Victor Mono", 9.749999F);
-        labelKey.Location = new Point(4, 19);
+        labelKey.Location = new Point(5, 66);
         labelKey.Margin = new Padding(2, 0, 2, 0);
         labelKey.Name = "labelKey";
         labelKey.Size = new Size(28, 16);
@@ -1350,7 +1298,6 @@ partial class QuestBoard
     private Label labelCategory;
     private ComboBox comboBoxCategory;
     private Label labelTags;
-    private ListBox listBoxQuestTags;
     private GroupBox groupBoxCoreData;
     private GroupBox groupBoxObjectiveData;
     private ListBox listBoxQuests;
@@ -1387,10 +1334,6 @@ partial class QuestBoard
     private NumericUpDown numFetchAmount;
     private Label labelFetchId;
     private NumericUpDown numFetchId;
-    private Button buttonAddObjective;
-    private Button buttonDeleteQuest;
-    private Button buttonAddQuest;
-    private Button buttonDeleteObjective;
     private Label labelObjectiveQuestKeys;
     private TextBox textBoxObjectiveQuestData;
     private GroupBox groupBoxObjectiveLogs;
@@ -1428,4 +1371,5 @@ partial class QuestBoard
     private NumericUpDown numCategoryIconIndex;
     private Label labelTagIconIndex;
     private NumericUpDown numTagIconIndex;
+    private CheckedListBox checkedListBoxQuestTags;
 }

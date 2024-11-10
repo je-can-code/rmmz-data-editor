@@ -15,6 +15,8 @@ public partial class QuestBoard : Form
 
     public List<OmniTag> OmniTags { get; } = [];
 
+    private bool ReloadingTags { get; set; } = false;
+
     public QuestBoard()
     {
         InitializeComponent();
@@ -91,29 +93,31 @@ public partial class QuestBoard : Form
         OmniCategories.AddRange(categories);
 
         // iterate over each of the entries to add to the list.
-        categories.ForEach(category =>
-        {
-            comboBoxCategory.Items.Add(category);
-            listBoxCategories.Items.Add(category);
-        });
+        categories.ForEach(
+            category =>
+            {
+                comboBoxCategory.Items.Add(category);
+                listBoxCategories.Items.Add(category);
+            });
     }
 
     private void PopulateTags(List<OmniTag> tags)
     {
         // empty the list first.
         OmniTags.Clear();
-        listBoxQuestTags.Items.Clear();
         listBoxTags.Items.Clear();
+        checkedListBoxQuestTags.Items.Clear();
 
         // assign the list of items locally to the form.
         OmniTags.AddRange(tags);
 
         // iterate over each of the entries to add to the list.
-        tags.ForEach(tag =>
-        {
-            listBoxQuestTags.Items.Add(tag);
-            listBoxTags.Items.Add(tag);
-        });
+        tags.ForEach(
+            tag =>
+            {
+                listBoxTags.Items.Add(tag);
+                checkedListBoxQuestTags.Items.Add(tag);
+            });
     }
 
     private void QuestTabRepopulateCategoriesAndTags(object? sender, EventArgs e)
@@ -124,11 +128,11 @@ public partial class QuestBoard : Form
 
     private void RepopulateQuestTabTags()
     {
-        listBoxQuestTags.Items.Clear();
+        checkedListBoxQuestTags.Items.Clear();
 
         foreach (var tag in listBoxTags.Items)
         {
-            listBoxQuestTags.Items.Add(tag);
+            checkedListBoxQuestTags.Items.Add(tag);
         }
     }
 
@@ -148,19 +152,33 @@ public partial class QuestBoard : Form
     /// </summary>
     private void InitializeDataControls()
     {
+        InitializeQuestTabDynamicDataControls();
+        InitializeQuestTabStaticDataControls();
+        InitializeCategoryTabDynamicDataControls();
+        InitializeTagTabDynamicDataControls();
+
+        SetupContextMenus();
+    }
+
+    private void InitializeQuestTabDynamicDataControls()
+    {
+        // dynamic data on quest tab
         listBoxQuests.DisplayMember = nameof(OmniQuest.Name);
         listBoxQuests.ValueMember = nameof(OmniQuest.Key);
 
         comboBoxCategory.DisplayMember = nameof(OmniCategory.Name);
         comboBoxCategory.ValueMember = nameof(OmniCategory.Key);
 
-        listBoxQuestTags.DisplayMember = nameof(OmniTag.Name);
-        listBoxQuestTags.ValueMember = nameof(OmniTag.Key);
+        checkedListBoxQuestTags.DisplayMember = nameof(OmniTag.Name);
+        checkedListBoxQuestTags.ValueMember = nameof(OmniTag.Key);
 
         listBoxObjectives.DisplayMember = nameof(OmniObjective.Id);
         listBoxObjectives.ValueMember = nameof(OmniObjective.Id);
+    }
 
-        // this is unchanging data.
+    private void InitializeQuestTabStaticDataControls()
+    {
+        // static data on quest tab
         comboBoxObjectiveType.DisplayMember = nameof(OmniObjective.ObjectiveName);
         comboBoxObjectiveType.ValueMember = nameof(OmniObjective.Type);
         foreach (var enumValue in Enum.GetValues<OmniObjectiveType>())
@@ -174,22 +192,56 @@ public partial class QuestBoard : Form
         {
             comboBoxFetchType.Items.Add(enumValue);
         }
+    }
 
+    private void InitializeCategoryTabDynamicDataControls()
+    {
         listBoxCategories.DisplayMember = nameof(OmniCategory.Name);
         listBoxCategories.ValueMember = nameof(OmniCategory.Key);
+    }
 
+    private void InitializeTagTabDynamicDataControls()
+    {
         listBoxTags.DisplayMember = nameof(OmniTag.Name);
         listBoxTags.ValueMember = nameof(OmniTag.Key);
     }
 
+    private void SetupContextMenus()
+    {
+        SetupQuestListContextMenu();
+        SetupObjectiveListContextMenu();
+    }
+
+    private void SetupQuestListContextMenu()
+    {
+        var contextMenuStrip = new ContextMenuStrip();
+        contextMenuStrip.Items.Add("➕⬆️ Add new quest above", null, AddQuestAboveEvent);
+        contextMenuStrip.Items.Add("➕⬇️ Add new quest below", null, AddQuestBelowEvent);
+        contextMenuStrip.Items.Add(new ToolStripSeparator());
+        contextMenuStrip.Items.Add("📄⬆️ Clone quest above", null, CloneQuestAboveEvent);
+        contextMenuStrip.Items.Add("📄⬇️ Clone quest below", null, CloneQuestBelowEvent);
+        contextMenuStrip.Items.Add(new ToolStripSeparator());
+        contextMenuStrip.Items.Add("🗑️ Delete quest", null, DeleteQuestEvent);
+        
+        listBoxQuests.ContextMenuStrip  = contextMenuStrip;
+    }
+
+    private void SetupObjectiveListContextMenu()
+    {
+        var contextMenuStrip = new ContextMenuStrip();
+        contextMenuStrip.Items.Add("➕⬆️ Add new objective above", null, AddObjectiveAboveEvent);
+        contextMenuStrip.Items.Add("➕⬇️ Add new objective below", null, AddObjectiveBelowEvent);
+        contextMenuStrip.Items.Add(new ToolStripSeparator());
+        contextMenuStrip.Items.Add("📄⬆️ Clone objective above", null, CloneObjectiveAboveEvent);
+        contextMenuStrip.Items.Add("📄⬇️ Clone objective below", null, CloneObjectiveBelowEvent);
+        contextMenuStrip.Items.Add(new ToolStripSeparator());
+        contextMenuStrip.Items.Add("🗑️ Delete objective", null, DeleteObjectiveEvent);
+        
+        listBoxObjectives.ContextMenuStrip  = contextMenuStrip;
+    }
+
     private void ApplyButtonEvents()
     {
-        buttonAddQuest.Click += ButtonAddQuestEvent;
-        buttonDeleteQuest.Click += ButtonDeleteQuestEvent;
-        
-        buttonAddObjective.Click += ButtonAddObjectiveEvent;
-        buttonDeleteObjective.Click += ButtonDeleteObjectiveEvent;
-
         buttonAddCategory.Click += ButtonAddCategoryEvent;
         buttonDeleteCategory.Click += ButtonDeleteCategoryEvent;
 
@@ -199,48 +251,77 @@ public partial class QuestBoard : Form
         tabQuest.Enter += QuestTabRepopulateCategoriesAndTags;
     }
 
-    private void ButtonAddQuestEvent(object? sender, EventArgs e)
+    private void AddQuestAboveEvent(object? sender, EventArgs e)
     {
         // define the new quest.
         var newQuest = OmniQuest.DefaultTemplate();
-        
-        // determine the index for the new objective.
-        var selectedIndex = listBoxQuests.SelectedIndex;
-        
-        // check if there was no current selection.
-        if (selectedIndex == -1 || selectedIndex == listBoxQuests.Items.Count - 1)
-        {
-            // add the item to the list without regard for index.
-            listBoxQuests.Items.Add(newQuest);
-        }
-        // the index selected is valid.
-        else
-        { 
-            // add it at the given index.
-            listBoxQuests.Items.Insert(selectedIndex, newQuest);
-        }
+
+        // determine the index for the new quest.
+        var selectedIndex = listBoxQuests.GetIndexAbove();
+
+        // add it at the given index.
+        listBoxQuests.Items.Insert(selectedIndex, newQuest);
     }
     
-    private void ButtonDeleteQuestEvent(object? sender, EventArgs e)
+    private void AddQuestBelowEvent(object? sender, EventArgs e)
     {
-        // determine the selected quest.
-        var selectedItem = (OmniQuest?)listBoxQuests.SelectedItem;
+        // define the new quest.
+        var newQuest = OmniQuest.DefaultTemplate();
+
+        // determine the index for the new quest.
+        var selectedIndex = listBoxQuests.GetIndexBelow();
+
+        // add it at the given index.
+        listBoxQuests.Items.Insert(selectedIndex, newQuest);
+    }
+    
+    private void CloneQuestAboveEvent(object? sender, EventArgs e)
+    {
+        // determine the quest to clone.
+        if (listBoxQuests.SelectedItem is not OmniQuest targetQuest) return;
         
-        // do not proceed if there is no quest selected.
-        if (selectedItem is null) return;
+        // clone the quest.
+        var clonedQuest = OmniQuest.From(targetQuest);
+
+        // determine the index for the new objective.
+        var targetIndex = listBoxQuests.GetIndexAbove();
+
+        // add it at the given index.
+        listBoxQuests.Items.Insert(targetIndex, clonedQuest);
+    }
+
+    private void CloneQuestBelowEvent(object? sender, EventArgs e)
+    {
+        // determine the quest to clone.
+        if (listBoxQuests.SelectedItem is not OmniQuest targetQuest) return;
         
+        // clone the quest.
+        var clonedQuest = OmniQuest.From(targetQuest);
+
+        // grab the current selection's index.
+        var targetIndex = listBoxQuests.GetIndexBelow();
+
+        // add it at the given index.
+        listBoxQuests.Items.Insert(targetIndex, clonedQuest);
+    }
+
+    private void DeleteQuestEvent(object? sender, EventArgs e)
+    {
+        // determine the quest to clone.
+        if (listBoxQuests.SelectedItem is not OmniQuest targetQuest) return;
+
         // determine the index for the new objective.
         var removalIndex = listBoxQuests.SelectedIndex;
-        
+
         // check if there is no index selected right now.
         if (removalIndex == -1) return;
-        
+
         // define the prompt.
-        var removalPrompt = $"Are you sure you want to remove the selected quest, [{selectedItem.Name}]?";
+        var removalPrompt = $"Are you sure you want to remove the selected quest, [{targetQuest.Name}]?";
 
         // show the box with the prompt.
         var dialogResult = MessageBox.Show(removalPrompt, "Removing a quest", MessageBoxButtons.OKCancel);
-        
+
         // pivot on the user decisions.
         switch (dialogResult)
         {
@@ -256,69 +337,106 @@ public partial class QuestBoard : Form
                 break;
         }
     }
-
-    private void ButtonAddObjectiveEvent(object? sender, EventArgs e)
+    
+    private void AddObjectiveAboveEvent(object? sender, EventArgs e)
     {
-        // determine the selected quest.
-        var omniQuest = (OmniQuest?)listBoxQuests.SelectedItem;
-
-        // do not proceed if there is no quest selected.
-        if (omniQuest is null) return;
+        // determine the quest to clone.
+        if (listBoxQuests.SelectedItem is not OmniQuest omniQuest) return;
 
         // determine the index for the new objective.
-        var selectedIndex = listBoxObjectives.SelectedIndex;
-        
+        var targetIndex = listBoxObjectives.GetIndexAbove();
+
         // define the new objective.
         var newObjective = OmniObjective.DefaultTemplate();
-        newObjective.Id = selectedIndex;
-        
-        // add the objective to the quest.
+        newObjective.Id = targetIndex;
 
-        // check if there was no current selection.
-        if (selectedIndex == -1 || selectedIndex == listBoxObjectives.Items.Count - 1)
-        {
-            // add the item to the list without regard for index.
-            omniQuest.Objectives.Add(newObjective);
-            listBoxObjectives.Items.Add(newObjective);
-        }
-        // the index selected is valid.
-        else
-        { 
-            // add it at the given index.
-            omniQuest.Objectives.Insert(selectedIndex, newObjective);
-            listBoxObjectives.Items.Insert(selectedIndex, newObjective);
-        }
+        // add it at the given index.
+        omniQuest.Objectives.Insert(targetIndex, newObjective);
+        listBoxObjectives.Items.Insert(targetIndex, newObjective);
     }
     
-    private void ButtonDeleteObjectiveEvent(object? sender, EventArgs e)
+    private void AddObjectiveBelowEvent(object? sender, EventArgs e)
     {
-        // determine the selected quest.
-        var omniQuest = (OmniQuest?)listBoxQuests.SelectedItem;
+        // determine the quest to clone.
+        if (listBoxQuests.SelectedItem is not OmniQuest omniQuest) return;
+
+        // determine the index for the new objective.
+        var targetIndex = listBoxObjectives.GetIndexBelow();
+
+        // define the new objective.
+        var newObjective = OmniObjective.DefaultTemplate();
+        newObjective.Id = targetIndex;
+
+        // add it at the given index.
+        omniQuest.Objectives.Insert(targetIndex, newObjective);
+        listBoxObjectives.Items.Insert(targetIndex, newObjective);
+    }
+    
+    private void CloneObjectiveAboveEvent(object? sender, EventArgs e)
+    {
+        // determine the quest being worked with.
+        if (listBoxQuests.SelectedItem is not OmniQuest omniQuest) return;
+
+        // determine the index for the new objective.
+        var targetIndex = listBoxObjectives.GetIndexAbove();
         
-        // do not proceed if there is no quest selected.
-        if (omniQuest is null) return;
+        // determine the objective to clone.
+        if (listBoxObjectives.SelectedItem is not OmniObjective targetObjective) return;
         
+        // define the new objective.
+        var clonedObjective = OmniObjective.From(targetObjective);
+        clonedObjective.Id = targetIndex;
+
+        // add it at the given index.
+        omniQuest.Objectives.Insert(targetIndex, clonedObjective);
+        listBoxObjectives.Items.Insert(targetIndex, clonedObjective);
+    }
+    
+    private void CloneObjectiveBelowEvent(object? sender, EventArgs e)
+    {
+        // determine the quest being worked with.
+        if (listBoxQuests.SelectedItem is not OmniQuest omniQuest) return;
+
+        // determine the index for the new objective.
+        var targetIndex = listBoxObjectives.GetIndexBelow();
+        
+        // determine the objective to clone.
+        if (listBoxObjectives.SelectedItem is not OmniObjective targetObjective) return;
+        
+        // define the new objective.
+        var clonedObjective = OmniObjective.From(targetObjective);
+        clonedObjective.Id = targetIndex;
+
+        // add it at the given index.
+        omniQuest.Objectives.Insert(targetIndex, clonedObjective);
+        listBoxObjectives.Items.Insert(targetIndex, clonedObjective);
+    }
+
+    private void DeleteObjectiveEvent(object? sender, EventArgs e)
+    {
+        // determine the quest being worked with.
+        if (listBoxQuests.SelectedItem is not OmniQuest omniQuest) return;
+
         // determine the index for the new objective.
         var removalIndex = listBoxObjectives.SelectedIndex;
-        
+
         // check if there is no index selected right now.
         if (removalIndex == -1) return;
 
-        var selectedItem = (OmniObjective?)listBoxObjectives.SelectedItem;
-        
-        if (selectedItem is null) return;
-        
+        // determine the objective to delete.
+        if (listBoxObjectives.SelectedItem is not OmniObjective targetObjective) return;
+
         // define the prompt.
-        var removalPrompt = $"Are you sure you want to remove the selected objective, [{selectedItem.ObjectiveName}]?";
+        var removalPrompt = $"Are you sure you want to remove the selected objective, [{targetObjective.ObjectiveName}]?";
 
         // show the box with the prompt.
         var dialogResult = MessageBox.Show(removalPrompt, "Removing an objective", MessageBoxButtons.OKCancel);
-        
+
         // pivot on the user decisions.
         switch (dialogResult)
         {
             case DialogResult.OK:
-                omniQuest.Objectives.Remove(selectedItem);
+                omniQuest.Objectives.Remove(targetObjective);
                 listBoxObjectives.Items.RemoveAt(removalIndex);
                 if (listBoxObjectives.Items.Count != 0)
                 {
@@ -335,10 +453,10 @@ public partial class QuestBoard : Form
     {
         // define the new entry.
         var newCategory = OmniCategory.DefaultTemplate();
-        
+
         // determine the index for the new entry.
         var selectedIndex = listBoxCategories.SelectedIndex;
-        
+
         // check if there was no current selection.
         if (selectedIndex == -1 || selectedIndex == listBoxCategories.Items.Count - 1)
         {
@@ -347,32 +465,32 @@ public partial class QuestBoard : Form
         }
         // the index selected is valid.
         else
-        { 
+        {
             // add it at the given index.
             listBoxCategories.Items.Insert(selectedIndex, newCategory);
         }
     }
-    
+
     private void ButtonDeleteCategoryEvent(object? sender, EventArgs e)
     {
         // determine the selected entry.
         var selectedItem = (OmniCategory?)listBoxCategories.SelectedItem;
-        
+
         // do not proceed if there is no entry selected.
         if (selectedItem is null) return;
-        
+
         // determine the index for the new entry.
         var removalIndex = listBoxCategories.SelectedIndex;
-        
+
         // check if there is no index selected right now.
         if (removalIndex == -1) return;
-        
+
         // define the prompt.
         var removalPrompt = $"Are you sure you want to remove the selected category, [{selectedItem.Name}]?";
 
         // show the box with the prompt.
         var dialogResult = MessageBox.Show(removalPrompt, "Removing a category", MessageBoxButtons.OKCancel);
-        
+
         // pivot on the user decisions.
         switch (dialogResult)
         {
@@ -388,15 +506,15 @@ public partial class QuestBoard : Form
                 break;
         }
     }
-    
+
     private void ButtonAddTagEvent(object? sender, EventArgs e)
     {
         // define the new entry.
         var newTag = OmniTag.DefaultTemplate();
-        
+
         // determine the index for the new entry.
         var selectedIndex = listBoxTags.SelectedIndex;
-        
+
         // check if there was no current selection.
         if (selectedIndex == -1 || selectedIndex == listBoxTags.Items.Count - 1)
         {
@@ -405,32 +523,32 @@ public partial class QuestBoard : Form
         }
         // the index selected is valid.
         else
-        { 
+        {
             // add it at the given index.
             listBoxTags.Items.Insert(selectedIndex, newTag);
         }
     }
-    
+
     private void ButtonDeleteTagEvent(object? sender, EventArgs e)
     {
         // determine the selected entry.
         var selectedItem = (OmniTag?)listBoxTags.SelectedItem;
-        
+
         // do not proceed if there is no entry selected.
         if (selectedItem is null) return;
-        
+
         // determine the index for the new entry.
         var removalIndex = listBoxTags.SelectedIndex;
-        
+
         // check if there is no index selected right now.
         if (removalIndex == -1) return;
-        
+
         // define the prompt.
         var removalPrompt = $"Are you sure you want to remove the selected tag, [{selectedItem.Name}]?";
 
         // show the box with the prompt.
         var dialogResult = MessageBox.Show(removalPrompt, "Removing a tag", MessageBoxButtons.OKCancel);
-        
+
         // pivot on the user decisions.
         switch (dialogResult)
         {
@@ -471,7 +589,18 @@ public partial class QuestBoard : Form
         numRecommendedLevel.ValueChanged += UpdateRecommendedLevel;
         textBoxUnknownHint.TextChanged += UpdateUnknownHint;
         textBoxOverview.TextChanged += UpdateOverview;
-        listBoxQuestTags.SelectedIndexChanged += UpdateQuestTagKeys;
+
+        // a hacky approach to updating AFTER an item is checked rather than BEFORE.
+        checkedListBoxQuestTags.ItemCheck += (sender, eventArgs) =>
+        {
+            // required when the form is initially loaded because winforms is stupid.
+            if (IsHandleCreated)
+            {
+                // async execution with a delay that is JUST ENOUGH to happen after the check.
+                BeginInvoke((MethodInvoker)(() => UpdateQuestTagKeys(sender, eventArgs)));
+            }
+
+        };
     }
 
     private void ApplyUpdateEventsForObjectiveData()
@@ -582,7 +711,7 @@ public partial class QuestBoard : Form
 
         // determine the new value.
         var updatedCategoryKey = (OmniCategory?)comboBoxCategory.SelectedItem;
-        
+
         // don't update if it was null.
         if (updatedCategoryKey is null) return;
 
@@ -604,21 +733,23 @@ public partial class QuestBoard : Form
 
     private void UpdateQuestTagKeys(object? sender, EventArgs e)
     {
+        // no updating the data model while reloading tags.
+        if (ReloadingTags) return;
+
         // determine the selected item.
         var item = (OmniQuest)listBoxQuests.SelectedItem!;
 
         // don't update if it was null.
         if (item is null) return;
 
-        // update with the new value.
-        var tagKeys = new List<string>();
-        foreach (var tag in listBoxQuestTags.SelectedItems)
-        {
-            var omniTag = (OmniTag)tag;
-            tagKeys.Add(omniTag.Key);
-        }
+        // identify the new tag keys.
+        var questTagKeys = checkedListBoxQuestTags.CheckedItems
+            .Cast<OmniTag>()
+            .Select(tag => tag.Key)
+            .ToList();
 
-        item.TagKeys = tagKeys;
+        // update with the new value.
+        item.TagKeys = questTagKeys;
     }
 
     private void UpdateUnknownHint(object? sender, EventArgs e)
@@ -657,7 +788,7 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Id = (int)numObjectiveId.Value;
-        
+
         // update the list to reflect the new display data.
         listBoxObjectives.Items[listBoxObjectives.SelectedIndex] = item;
     }
@@ -931,7 +1062,7 @@ public partial class QuestBoard : Form
             .ToList();
     }
     #endregion objective
-    
+
     #region categories
     private void UpdateCategoryKey(object? sender, EventArgs e)
     {
@@ -955,7 +1086,7 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Name = textBoxCategoryName.Text;
-        
+
         // update the list to reflect the new display data.
         listBoxCategories.Items[listBoxCategories.SelectedIndex] = item;
     }
@@ -972,7 +1103,7 @@ public partial class QuestBoard : Form
         item.IconIndex = (int)numCategoryIconIndex.Value;
     }
     #endregion categories
-    
+
     #region tags
     private void UpdateTagKey(object? sender, EventArgs e)
     {
@@ -996,7 +1127,7 @@ public partial class QuestBoard : Form
 
         // update with the new value.
         item.Name = textBoxTagName.Text;
-        
+
         // update the list to reflect the new display data.
         listBoxTags.Items[listBoxTags.SelectedIndex] = item;
     }
@@ -1039,16 +1170,35 @@ public partial class QuestBoard : Form
         textBoxOverview.Text = selectedItem.Overview;
         textBoxUnknownHint.Text = selectedItem.UnknownHint;
         numIconIndex.Value = selectedItem.IconIndex;
+        numRecommendedLevel.Value = selectedItem.RecommendedLevel;
 
         var categoryIndex =
             comboBoxCategory.Items.FindIndex<OmniCategory>(category => category.Key == selectedItem.CategoryKey);
         comboBoxCategory.SelectedIndex = categoryIndex;
 
-        listBoxQuestTags.SelectedIndices.Clear();
+        RefreshQuestTags(selectedItem);
+    }
+
+    private void RefreshQuestTags(OmniQuest selectedItem)
+    {
+        // flag to notify that we're reloading the tags and shouldn't update the data model.
+        ReloadingTags = true;
+
+        // uncheck all the quest tags.
+        foreach (int checkedIndex in checkedListBoxQuestTags.CheckedIndices)
+        {
+            checkedListBoxQuestTags.SetItemChecked(checkedIndex, false);
+        }
+
+        // check all the data model's quest tags.
         foreach (var tagKey in selectedItem.TagKeys)
         {
-            listBoxQuestTags.SelectedIndices.Add(listBoxQuestTags.Items.FindIndex<OmniTag>(tag => tag.Key == tagKey));
+            var index = checkedListBoxQuestTags.Items.FindIndex<OmniTag>(tag => tag.Key == tagKey);
+            checkedListBoxQuestTags.SetItemChecked(index, true);
         }
+
+        // flag to notify that we're done reloading tags.
+        ReloadingTags = false;
     }
 
     private void RefreshObjectivesData(OmniQuest selectedItem)
@@ -1236,7 +1386,7 @@ public partial class QuestBoard : Form
         textBoxObjectiveQuestData.Text = string.Join(",", selectedObjective.Fulfillment.Quest.Keys);
     }
     #endregion quest tab
-    
+
     #region category tab
     private void RefreshCategoryTabEvent(object? sender, EventArgs e)
     {
@@ -1247,13 +1397,13 @@ public partial class QuestBoard : Form
     {
         var selectedItem = (OmniCategory?)listBoxCategories.SelectedItem;
         if (selectedItem is null) return;
-        
+
         textBoxCategoryKey.Text = selectedItem.Key;
         textBoxCategoryName.Text = selectedItem.Name;
         numCategoryIconIndex.Value = selectedItem.IconIndex;
     }
     #endregion category tab
-    
+
     #region tag tab
     private void RefreshTagTabEvent(object? sender, EventArgs e)
     {
@@ -1264,7 +1414,7 @@ public partial class QuestBoard : Form
     {
         var selectedItem = (OmniTag?)listBoxTags.SelectedItem;
         if (selectedItem is null) return;
-        
+
         textBoxTagKey.Text = selectedItem.Key;
         textBoxTagName.Text = selectedItem.Name;
         numTagIconIndex.Value = selectedItem.IconIndex;
