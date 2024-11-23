@@ -20,6 +20,18 @@ public record OmniObjective
             false);
     }
 
+    public static OmniObjective From(OmniObjective otherObjective)
+    {
+        return new(
+            otherObjective.Id,
+            otherObjective.Type,
+            otherObjective.Description,
+            OmniLogs.From(otherObjective.Logs),
+            OmniFulfillmentData.From(otherObjective.Fulfillment),
+            otherObjective.HiddenByDefault,
+            otherObjective.IsOptional);
+    }
+
     public int Id { get; set; }
     public OmniObjectiveType Type { get; set; }
     public string Description { get; set; } = string.Empty;

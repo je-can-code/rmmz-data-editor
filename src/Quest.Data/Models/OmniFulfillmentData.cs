@@ -7,7 +7,22 @@ public record OmniFulfillmentData
 {
     public static OmniFulfillmentData DefaultTemplate()
     {
-        return new(new(), new(-1, -1, -1, -1, -1), new(OmniObjectiveFetchType.Unset, 0, 0), new(0, 0), new([]));
+        return new(
+            new(),
+            new(-1, -1, -1, -1, -1),
+            new(OmniObjectiveFetchType.Unset, 0, 0),
+            new(0, 0),
+            new([]));
+    }
+
+    public static OmniFulfillmentData From(OmniFulfillmentData otherFulfillmentData)
+    {
+        return new(
+            otherFulfillmentData.Indiscriminate with {},
+            otherFulfillmentData.Destination with {},
+            otherFulfillmentData.Fetch with {},
+            otherFulfillmentData.Slay with {},
+            otherFulfillmentData.Quest with {});
     }
 
     public IndiscriminateData Indiscriminate { get; set; }

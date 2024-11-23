@@ -8,20 +8,40 @@ public record OmniQuest
     public static OmniQuest DefaultTemplate()
     {
         return new(
-            "neo-9999",
-            "The Journey Continues",
-            0,
-            string.Empty,
-            [],
-            "The old man at the Raevula Waterfront has a crazy idea for a heroic quest.",
-            "A new quest for brave adventurers to undertake the journey of a lifetime.",
-            1,
-            [OmniObjective.DefaultTemplate()]
+            key: "neo-9999",
+            name: "The Journey Continues",
+            iconIndex: 0,
+            categoryKey: string.Empty,
+            tagKeys: [],
+            unknownHint: "The old man at the Raevula Waterfront has a crazy idea for a heroic quest.",
+            overview: "A new quest for brave adventurers to undertake the journey of a lifetime.",
+            recommendedLevel: 1,
+            objectives: [OmniObjective.DefaultTemplate()]
+        );
+    }
+
+    public static OmniQuest From(OmniQuest otherQuest)
+    {
+        var copiedObjectives = otherQuest.Objectives
+            .Select(OmniObjective.From)
+            .ToList();
+        return new(
+            key: otherQuest.Key,
+            name: $"{otherQuest.Name} (Copy)",
+            iconIndex: otherQuest.IconIndex,
+            categoryKey: otherQuest.CategoryKey,
+            tagKeys: [..otherQuest.TagKeys],
+            unknownHint: otherQuest.UnknownHint,
+            overview: otherQuest.Overview,
+            recommendedLevel: otherQuest.RecommendedLevel,
+            objectives: copiedObjectives
         );
     }
 
     public string Key { get; set; } = string.Empty;
+    
     public string Name { get; set; } = string.Empty;
+    
     public int IconIndex { get; set; }
 
     public string CategoryKey { get; set; } = string.Empty;
