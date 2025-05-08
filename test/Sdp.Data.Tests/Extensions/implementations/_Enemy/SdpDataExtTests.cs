@@ -45,6 +45,7 @@ public class SdpDataExtTests : BaseTests
         // then
         actual.Should()
             .Be(expected);
+        (true).Should().BeTrue();
     }
 
     [Fact]
